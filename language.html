@@ -8,33 +8,59 @@
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 
 <style>
+
 body{
     margin:0;
     font-family:'Poppins', sans-serif;
-    background: radial-gradient(circle at top left, #1a1a1a, #000000 60%);
+    background:#0b0b0b;
     display:flex;
     justify-content:center;
     align-items:center;
     height:100vh;
+    flex-direction:column;
+    gap:12px;
 }
 
-/* FRAME - CLEAN GOLD BORDER FIX */
+/* ================= FRAME ================= */
 .frame{
     width:360px;
     height:480px;
-
-    /* 🔥 SHARP GOLD BORDER */
-    border:2px solid #c9a86a;
-
     border-radius:20px;
     background:#0a0a0a;
-
-    /* 🔥 REDUCED GLOW (FIXED) */
-    box-shadow:0 0 8px rgba(201,168,106,0.25);
-
+    position:relative;
+    overflow:hidden;
     display:flex;
     flex-direction:column;
-    overflow:hidden;
+}
+
+/* GOLD BORDER SHINE */
+.frame::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    padding:2px;
+    border-radius:20px;
+
+    background:linear-gradient(
+        90deg,
+        #b8860b,
+        #ffd700,
+        #b8860b,
+        #8b6508,
+        #ffd700,
+        #b8860b
+    );
+
+    background-size:300% 100%;
+    animation:shineMove 3s linear infinite;
+
+    -webkit-mask:
+        linear-gradient(#000 0 0) content-box,
+        linear-gradient(#000 0 0);
+    -webkit-mask-composite:xor;
+    mask-composite:exclude;
+
+    pointer-events:none;
 }
 
 /* TITLE */
@@ -47,20 +73,42 @@ body{
     letter-spacing:2px;
 }
 
-/* GOLD LINES */
+/* LINES */
 .title-line,
 .nav-line{
     width:100%;
-    height:1px;
-    background:#c9a86a;
-    opacity:0.9;
+    height:2px;
+    position:relative;
+    overflow:hidden;
+    background:#1e1e1e;
+}
+
+.title-line::before,
+.nav-line::before{
+    content:"";
+    position:absolute;
+    top:0;
+    left:-60%;
+    width:60%;
+    height:100%;
+
+    background:linear-gradient(
+        90deg,
+        transparent,
+        #b8860b,
+        #ffd700,
+        #b8860b,
+        transparent
+    );
+
+    animation:lineMove 3s linear infinite;
 }
 
 /* GRID */
 .grid{
     display:flex;
     flex-direction:column;
-    gap:8px;
+    gap:10px;
     padding:15px;
     margin-top:10px;
     flex:1;
@@ -68,27 +116,26 @@ body{
 
 /* BUTTON */
 .btn{
+    position:relative;
+    overflow:hidden;
+
     padding:12px;
-    border:1px solid #c9a86a;
     border-radius:10px;
-    background:rgba(0,0,0,0.4);
+    background:#111;
+
     color:#fff;
     font-weight:600;
     font-size:14px;
     text-align:center;
     cursor:pointer;
-    transition:0.2s;
-}
 
-.btn:hover{
-    box-shadow:0 0 10px rgba(201,168,106,0.6);
-    transform:scale(1.02);
+    border:2px solid #b8860b;
 }
 
 /* LOCK */
 .locked{
-    position:relative;
     opacity:0.7;
+    position:relative;
 }
 
 .lock-tag{
@@ -103,47 +150,46 @@ body{
     font-weight:700;
 }
 
-/* NAV */
-.navbar{
+/* ================= OUTSIDE NAV (ANDROID CLEAN) ================= */
+.outside-nav{
+    width:360px;
     display:flex;
     justify-content:space-between;
-    padding:12px 15px;
-}
-
-.nav-btn{
-    color:#b22222;
-    font-weight:700;
-    cursor:pointer;
-    font-size:13px;
-}
-
-/* POPUP */
-.popup{
-    position:fixed;
-    top:0;
-    left:0;
-    width:100%;
-    height:100%;
-    background:rgba(0,0,0,0.85);
-    display:none;
-    justify-content:center;
-    align-items:center;
-}
-
-.popup-box{
-    background:#111;
-    border:1px solid #c9a86a;
-    padding:20px;
-    border-radius:10px;
-    text-align:center;
-    width:290px;
-}
-
-.countdown{
     margin-top:10px;
-    color:#c9a86a;
-    font-weight:700;
 }
+
+/* CLEAN TEXT BUTTONS (NO BORDER) */
+.out-btn{
+    width:48%;
+    padding:10px;
+    text-align:center;
+    font-weight:700;
+    font-size:13px;
+    color:red;
+
+    background:transparent;
+    border:none;
+
+    cursor:pointer;
+    transition:0.2s;
+}
+
+.out-btn:hover{
+    color:#ff4d4d;
+    transform:scale(1.05);
+}
+
+/* ANIMATIONS */
+@keyframes shineMove{
+    0%{ background-position:0% 50%; }
+    100%{ background-position:100% 50%; }
+}
+
+@keyframes lineMove{
+    0%{ left:-60%; }
+    100%{ left:160%; }
+}
+
 </style>
 </head>
 
@@ -151,44 +197,40 @@ body{
 
 <div class="frame">
 
-<!-- TITLE -->
 <div class="title">LANGUAGE LEARNING</div>
 
 <div class="title-line"></div>
 
-<!-- BUTTONS -->
 <div class="grid">
 
-    <div class="btn" onclick="openLang('japanese/index.html')">
-        Japanese Language 🇯🇵
-    </div>
+    <div class="btn">Japanese Language 🇯🇵</div>
 
-    <div class="btn locked" onclick="showPopup()">
+    <div class="btn locked">
         Chinese Language 🇨🇳
         <div class="lock-tag">LOCK</div>
     </div>
 
-    <div class="btn locked" onclick="showPopup()">
+    <div class="btn locked">
         Korean Language 🇰🇷
         <div class="lock-tag">LOCK</div>
     </div>
 
-    <div class="btn locked" onclick="showPopup()">
+    <div class="btn locked">
         Russian Language 🇷🇺
         <div class="lock-tag">LOCK</div>
     </div>
 
-    <div class="btn locked" onclick="showPopup()">
+    <div class="btn locked">
         French Language 🇫🇷
         <div class="lock-tag">LOCK</div>
     </div>
 
-    <div class="btn locked" onclick="showPopup()">
+    <div class="btn locked">
         German Language 🇩🇪
         <div class="lock-tag">LOCK</div>
     </div>
 
-    <div class="btn locked" onclick="showPopup()">
+    <div class="btn locked">
         Italian Language 🇮🇹
         <div class="lock-tag">LOCK</div>
     </div>
@@ -197,31 +239,17 @@ body{
 
 <div class="nav-line"></div>
 
-<!-- NAV -->
-<div class="navbar">
-    <div class="nav-btn" onclick="goBack()">← Back</div>
-    <div class="nav-btn" onclick="goHome()">Home →</div>
 </div>
 
-</div>
+<!-- OUTSIDE NAV BUTTONS -->
+<div class="outside-nav">
 
-<!-- POPUP -->
-<div class="popup" id="popup">
-    <div class="popup-box">
-        <h3 style="color:white;">Coming Soon</h3>
-        <p style="color:white;">2026.11.28</p>
+    <div class="out-btn" onclick="goBack()">← Back</div>
+    <div class="out-btn" onclick="goHome()">Home →</div>
 
-        <div id="countdown" class="countdown"></div>
-
-        <br>
-        <button onclick="closePopup()">Close</button>
-    </div>
 </div>
 
 <script>
-function openLang(url){
-    window.location.href = url;
-}
 
 function goBack(){
     window.history.back();
@@ -231,37 +259,6 @@ function goHome(){
     window.location.href = "index.html";
 }
 
-let countdownStarted = false;
-
-function showPopup(){
-    document.getElementById("popup").style.display = "flex";
-
-    if(!countdownStarted){
-        startCountdown();
-        countdownStarted = true;
-    }
-}
-
-function closePopup(){
-    document.getElementById("popup").style.display = "none";
-}
-
-function startCountdown(){
-    let target = new Date("2026-11-28T00:00:00").getTime();
-
-    setInterval(function(){
-        let now = new Date().getTime();
-        let diff = target - now;
-
-        let d = Math.floor(diff / (1000*60*60*24));
-        let h = Math.floor((diff % (1000*60*60*24))/(1000*60*60));
-        let m = Math.floor((diff % (1000*60*60))/(1000*60));
-        let s = Math.floor((diff % (1000*60))/1000);
-
-        document.getElementById("countdown").innerHTML =
-            d+"d : "+h+"h : "+m+"m : "+s+"s";
-    },1000);
-}
 </script>
 
 </body>
