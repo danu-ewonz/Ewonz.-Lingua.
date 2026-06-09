@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Ewonz Lingua</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600;700;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Dancing+Script:wght@400;600&display=swap" rel="stylesheet">
 
 <style>
 body{
@@ -19,7 +19,7 @@ body{
     overflow:hidden;
 }
 
-/* BACKGROUND GLOW */
+/* GLOW */
 body::before,
 body::after{
     content:"";
@@ -45,7 +45,7 @@ body::after{
     opacity:0.15;
 }
 
-/* FRAME */
+/* FRAME 3:4 */
 .phone{
     width:360px;
     height:480px;
@@ -54,28 +54,97 @@ body::after{
     background:#0a0a0a;
     box-shadow:0 0 18px #ffd700;
     display:flex;
-    justify-content:center;
+    flex-direction:column;
+    overflow:hidden;
+}
+
+/* CONTENT */
+.content{
+    flex:1;
+    display:flex;
+    flex-direction:column;
     align-items:center;
-    z-index:1;
+    padding:15px;
+    color:white;
+    text-align:center;
+}
+
+/* TITLE */
+.title{
+    font-size:24px;
+    font-weight:700;
+    letter-spacing:3px;
+    margin-top:10px;
+}
+
+/* ABOUT */
+.about{
+    font-size:13px;
+    color:#e0e0e0;
+    line-height:1.6;
+    max-width:320px;
+    font-family:'Dancing Script', cursive;
+    font-weight:600;
+}
+
+/* BIG GAP */
+.big-gap{
+    height:22px;
+}
+
+/* SMALL GAP (IMPORTANT FIX) */
+.gap{
+    height:6px;   /* 🔥 SAME GAP FOR BOTH SECTIONS */
+}
+
+/* GOLD */
+.gold{
+    font-size:10px;
+    color:#ffd700;
+    font-weight:600;
+    letter-spacing:1px;
+}
+
+/* TEXT */
+.text{
+    font-size:10px;
+    color:#aaa;
+    font-weight:500;
+    letter-spacing:1px;
+}
+
+/* CONTACT */
+.contact{
+    color:red;
+    font-weight:700;
+    cursor:pointer;
+    transition:0.2s;
+}
+
+.contact:hover{
+    text-shadow:0 0 8px red;
 }
 
 /* BUTTON */
 .card{
     border:1px solid #ffd700;
     background:rgba(0,0,0,0.4);
-    padding:14px 18px;
+    backdrop-filter:blur(6px);
+    padding:12px 18px;
     border-radius:10px;
     cursor:pointer;
-    color:white;
-    font-weight:800;
-    font-size:14px;
     transition:0.25s;
+    color:white;
+    font-weight:600;
+    font-size:13px;
     text-align:center;
+    margin-top:auto;
+    margin-bottom:10px;
 }
 
 .card:hover{
     box-shadow:0 0 12px #ffd700;
-    transform:scale(1.03);
+    transform:scale(1.02);
 }
 </style>
 </head>
@@ -83,15 +152,55 @@ body::after{
 <body>
 
 <div class="phone">
+
+<div class="content">
+
+    <!-- TITLE -->
+    <div class="title">EWONZ LINGUA</div>
+
+    <div class="big-gap"></div>
+
+    <!-- ABOUT -->
+    <div class="about">
+        Discover the world through language with Ewonz Lingua.  
+        A modern learning platform designed to help you explore languages in a simple, clear, and structured way.
+    </div>
+
+    <div class="big-gap"></div>
+
+    <!-- SPECIAL THANKS -->
+    <div class="gold">SPECIAL THANKS</div>
+    <div class="gap"></div> <!-- 🔥 SMALL EQUAL GAP -->
+    <div class="text">JAPANESE - TSUKI SENSEI</div>
+
+    <div class="big-gap"></div>
+
+    <!-- UI DESIGN -->
+    <div class="gold">UI DESIGN & DEVELOPMENT</div>
+    <div class="gap"></div> <!-- 🔥 SAME GAP -->
+    <div class="text">
+        DANU EWONZ - 
+        <span class="contact" onclick="openWhatsApp()">CONTACT</span>
+    </div>
+
+    <div style="flex:1"></div>
+
+    <!-- BUTTON -->
     <div class="card" onclick="goLang()">
         Start Learning Language
     </div>
+
+</div>
+
 </div>
 
 <script>
 function goLang(){
-    // 🔥 SAFE RELATIVE PATH (NO FILE NOT FOUND)
     window.location.href = "./language.html";
+}
+
+function openWhatsApp(){
+    window.open("https://wa.me/9477870530", "_blank");
 }
 </script>
 
