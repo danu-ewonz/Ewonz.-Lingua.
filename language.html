@@ -18,10 +18,9 @@ body{
     align-items:center;
     height:100vh;
     flex-direction:column;
-    gap:12px;
 }
 
-/* ================= FRAME ================= */
+/* FRAME */
 .frame{
     width:360px;
     height:480px;
@@ -33,33 +32,22 @@ body{
     flex-direction:column;
 }
 
-/* GOLD BORDER SHINE */
+/* GOLD BORDER */
 .frame::before{
     content:"";
     position:absolute;
     inset:0;
     padding:2px;
     border-radius:20px;
-
-    background:linear-gradient(
-        90deg,
-        #b8860b,
-        #ffd700,
-        #b8860b,
-        #8b6508,
-        #ffd700,
-        #b8860b
-    );
-
+    background:linear-gradient(90deg,#b8860b,#ffd700,#b8860b,#8b6508,#ffd700);
     background-size:300% 100%;
-    animation:shineMove 3s linear infinite;
+    animation:shine 3s linear infinite;
 
     -webkit-mask:
-        linear-gradient(#000 0 0) content-box,
-        linear-gradient(#000 0 0);
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
     -webkit-mask-composite:xor;
     mask-composite:exclude;
-
     pointer-events:none;
 }
 
@@ -70,38 +58,14 @@ body{
     font-weight:700;
     color:#e6e6e6;
     margin-top:18px;
-    letter-spacing:2px;
 }
 
-/* LINES */
-.title-line,
-.nav-line{
-    width:100%;
+/* LINE */
+.title-line{
+    width:80%;
     height:2px;
-    position:relative;
-    overflow:hidden;
-    background:#1e1e1e;
-}
-
-.title-line::before,
-.nav-line::before{
-    content:"";
-    position:absolute;
-    top:0;
-    left:-60%;
-    width:60%;
-    height:100%;
-
-    background:linear-gradient(
-        90deg,
-        transparent,
-        #b8860b,
-        #ffd700,
-        #b8860b,
-        transparent
-    );
-
-    animation:lineMove 3s linear infinite;
+    margin:8px auto;
+    background:linear-gradient(90deg,transparent,#b8860b,#ffd700,transparent);
 }
 
 /* GRID */
@@ -110,31 +74,30 @@ body{
     flex-direction:column;
     gap:10px;
     padding:15px;
-    margin-top:10px;
     flex:1;
 }
 
 /* BUTTON */
 .btn{
-    position:relative;
-    overflow:hidden;
-
     padding:12px;
     border-radius:10px;
     background:#111;
-
     color:#fff;
     font-weight:600;
     font-size:14px;
     text-align:center;
-    cursor:pointer;
-
     border:2px solid #b8860b;
+    cursor:pointer;
+}
+
+/* UNLOCKED */
+.unlocked{
+    border:2px solid #ffd700;
 }
 
 /* LOCK */
 .locked{
-    opacity:0.7;
+    opacity:0.6;
     position:relative;
 }
 
@@ -150,44 +113,65 @@ body{
     font-weight:700;
 }
 
-/* ================= OUTSIDE NAV (ANDROID CLEAN) ================= */
-.outside-nav{
+/* POPUP */
+.popup{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.7);
+    display:none;
+    justify-content:center;
+    align-items:center;
+}
+
+.popup-box{
+    background:#fff;
+    padding:18px;
+    border-radius:12px;
+    text-align:center;
+    width:290px;
+}
+
+.popup-box h3{ margin:0; color:#111; }
+.popup-box p{ color:#444; }
+
+.space{ height:10px; }
+
+.countdown{
+    color:#b8860b;
+    font-weight:700;
+}
+
+/* NAV */
+.bottom-nav{
     width:360px;
     display:flex;
-    justify-content:space-between;
-    margin-top:10px;
-}
-
-/* CLEAN TEXT BUTTONS (NO BORDER) */
-.out-btn{
-    width:48%;
-    padding:10px;
-    text-align:center;
-    font-weight:700;
+    justify-content:center;
+    align-items:center;
+    gap:12px;
+    padding:8px 0;
     font-size:13px;
+}
+
+.nav-text{
     color:red;
-
-    background:transparent;
-    border:none;
-
+    font-weight:700;
     cursor:pointer;
-    transition:0.2s;
+    white-space:nowrap;
 }
 
-.out-btn:hover{
-    color:#ff4d4d;
-    transform:scale(1.05);
+.center{
+    color:#b8860b;
+    font-weight:700;
+    letter-spacing:1px;
 }
 
-/* ANIMATIONS */
-@keyframes shineMove{
-    0%{ background-position:0% 50%; }
-    100%{ background-position:100% 50%; }
-}
-
-@keyframes lineMove{
-    0%{ left:-60%; }
-    100%{ left:160%; }
+/* ANIMATION */
+@keyframes shine{
+    0%{background-position:0%;}
+    100%{background-position:100%;}
 }
 
 </style>
@@ -198,58 +182,86 @@ body{
 <div class="frame">
 
 <div class="title">LANGUAGE LEARNING</div>
-
 <div class="title-line"></div>
 
 <div class="grid">
 
-    <div class="btn">Japanese Language 🇯🇵</div>
+    <!-- ✅ ONLY UNLOCKED -->
+    <div class="btn unlocked" onclick="openLang('japanese/index.html')">
+        Japanese Language 🇯🇵
+    </div>
 
-    <div class="btn locked">
+    <!-- ❌ LOCKED ALL OTHERS -->
+    <div class="btn locked" onclick="showPopup()">
         Chinese Language 🇨🇳
         <div class="lock-tag">LOCK</div>
     </div>
 
-    <div class="btn locked">
+    <div class="btn locked" onclick="showPopup()">
         Korean Language 🇰🇷
         <div class="lock-tag">LOCK</div>
     </div>
 
-    <div class="btn locked">
+    <div class="btn locked" onclick="showPopup()">
         Russian Language 🇷🇺
         <div class="lock-tag">LOCK</div>
     </div>
 
-    <div class="btn locked">
+    <div class="btn locked" onclick="showPopup()">
         French Language 🇫🇷
         <div class="lock-tag">LOCK</div>
     </div>
 
-    <div class="btn locked">
+    <div class="btn locked" onclick="showPopup()">
         German Language 🇩🇪
         <div class="lock-tag">LOCK</div>
     </div>
 
-    <div class="btn locked">
+    <div class="btn locked" onclick="showPopup()">
         Italian Language 🇮🇹
         <div class="lock-tag">LOCK</div>
     </div>
 
 </div>
 
-<div class="nav-line"></div>
-
 </div>
 
-<!-- OUTSIDE NAV BUTTONS -->
-<div class="outside-nav">
+<!-- POPUP -->
+<div class="popup" id="popup">
+    <div class="popup-box">
 
-    <div class="out-btn" onclick="goBack()">← Back</div>
-    <div class="out-btn" onclick="goHome()">Home →</div>
+        <h3>Coming Soon</h3>
+
+        <div class="space"></div>
+        <p>2026.11.28</p>
+
+        <div class="space"></div>
+
+        <div id="countdown" class="countdown"></div>
+
+        <div class="space"></div>
+
+        <button onclick="closePopup()">Close</button>
+
+    </div>
+</div>
+
+<!-- NAV -->
+<div class="bottom-nav">
+
+    <div class="nav-text" onclick="goBack()">← Back →</div>
+
+    <div class="center">EWONZ LINGUA</div>
+
+    <div class="nav-text" onclick="goHome()">← Home →</div>
 
 </div>
 
 <script>
+
+function openLang(url){
+    window.location.href = url;
+}
 
 function goBack(){
     window.history.back();
@@ -257,6 +269,33 @@ function goBack(){
 
 function goHome(){
     window.location.href = "index.html";
+}
+
+function showPopup(){
+    document.getElementById("popup").style.display="flex";
+    startCountdown();
+}
+
+function closePopup(){
+    document.getElementById("popup").style.display="none";
+}
+
+function startCountdown(){
+    let target = new Date("2026-11-28").getTime();
+
+    setInterval(()=>{
+        let now = new Date().getTime();
+        let diff = target - now;
+
+        let d = Math.floor(diff/(1000*60*60*24));
+        let h = Math.floor((diff%(1000*60*60*24))/(1000*60*60));
+        let m = Math.floor((diff%(1000*60*60))/(1000*60));
+        let s = Math.floor((diff%(1000*60))/1000);
+
+        document.getElementById("countdown").innerHTML =
+        d+"d : "+h+"h : "+m+"m : "+s+"s";
+
+    },1000);
 }
 
 </script>
