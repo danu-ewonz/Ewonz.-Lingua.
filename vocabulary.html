@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vocabulary - Ewonz Lingua</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600;700&family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+/* RESET */
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    user-select:none;
+}
+
+body{
+    background:#0b0b0b;
+    font-family:Poppins;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+}
+
+/* FRAME (OLD STYLE BACK) */
+.frame{
+    width:360px;
+    height:480px;
+    background:#0a0a0a;
+    border-radius:20px;
+    position:relative;
+    display:flex;
+    flex-direction:column;
+    overflow:hidden;
+}
+
+/* GOLD BORDER ANIMATION (OLD PREMIUM) */
+.frame::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    padding:2px;
+    border-radius:20px;
+
+    background:linear-gradient(
+        90deg,
+        #b8860b,
+        #ffd700,
+        #b8860b,
+        #8b6508,
+        #ffd700
+    );
+
+    background-size:300% 100%;
+    animation:borderMove 3s linear infinite;
+
+    z-index:0;
+}
+
+.frame::after{
+    content:"";
+    position:absolute;
+    inset:2px;
+    background:#0a0a0a;
+    border-radius:18px;
+    z-index:1;
+}
+
+/* CONTENT */
+.content{
+    position:relative;
+    z-index:2;
+    display:flex;
+    flex-direction:column;
+    height:100%;
+}
+
+/* TITLE */
+.title{
+    text-align:center;
+    font-size:18px;
+    font-weight:700;
+    color:#e6e6e6;
+    margin-top:18px;
+}
+
+/* LINE (OLD GOLD LINE) */
+.line{
+    width:80%;
+    height:2px;
+    margin:8px auto;
+    background:linear-gradient(90deg,transparent,#b8860b,#ffd700,transparent);
+}
+
+/* SCROLL AREA */
+.grid{
+    flex:1;
+    overflow-y:auto;
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+    padding:15px;
+}
+
+/* BUTTON (OLD PREMIUM STYLE) */
+.btn{
+    padding:14px;
+    border-radius:10px;
+    background:#111;
+    color:#fff;
+
+    font-family:Montserrat;
+    font-size:12px;
+    font-weight:600;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    text-transform:uppercase;
+    letter-spacing:1px;
+
+    border:2px solid #b8860b;
+    cursor:pointer;
+    transition:0.2s;
+}
+
+/* TOUCH GOLD EFFECT ONLY */
+.btn:active{
+    background:#b8860b;
+    color:#000;
+    transform:scale(0.98);
+}
+
+.btn:hover{
+    border-color:#ffd700;
+}
+
+/* SCROLLBAR */
+.grid::-webkit-scrollbar{
+    width:3px;
+}
+
+.grid::-webkit-scrollbar-thumb{
+    background:#b8860b;
+    border-radius:10px;
+}
+
+/* =========================
+BOTTOM NAV (RESTORED OLD STYLE)
+========================= */
+.bottom-nav{
+    width:360px;
+    height:60px;
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    padding:0 20px;
+
+    margin-top:10px;
+}
+
+/* OLD RED STYLE */
+.nav-btn{
+    color:red;
+    font-weight:700;
+    cursor:pointer;
+    font-size:13px;
+}
+
+.nav-btn:hover{
+    color:#ffd700;
+}
+
+/* CENTER TITLE */
+.center{
+    color:#b8860b;
+    font-weight:700;
+    letter-spacing:1px;
+}
+
+/* ANIMATION */
+@keyframes borderMove{
+    0%{background-position:0%;}
+    100%{background-position:100%;}
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- FRAME -->
+<div class="frame">
+
+<div class="content">
+
+    <div class="title">VOCABULARY</div>
+    <div class="line"></div>
+
+    <div class="grid">
+
+        <div class="btn">Greetings & Aisatsu (挨拶)</div>
+        <div class="btn">People & Relationships</div>
+        <div class="btn">Home & Living (家・生活)</div>
+        <div class="btn">Food & Drinks (食べ物)</div>
+        <div class="btn">Daily Activities (日常生活)</div>
+        <div class="btn">Time & Calendar (時間・日付)</div>
+        <div class="btn">Numbers & Counting (数字)</div>
+        <div class="btn">Colors & Shapes (色・形)</div>
+        <div class="btn">Clothing & Accessories (服)</div>
+        <div class="btn">Transportation (乗り物)</div>
+        <div class="btn">Weather & Nature (天気・自然)</div>
+        <div class="btn">Animals (動物)</div>
+        <div class="btn">School & Education (学校)</div>
+        <div class="btn">Shopping & Money (買い物)</div>
+        <div class="btn">Emotions & Feelings (感情)</div>
+        <div class="btn">Basic Expressions (基本表現)</div>
+        <div class="btn">Body Parts (体)</div>
+        <div class="btn">Places & Locations (場所)</div>
+        <div class="btn">Directions (方向)</div>
+        <div class="btn">Technology & Internet</div>
+        <div class="btn">Hobbies & Entertainment</div>
+        <div class="btn">Actions & Verbs (動詞)</div>
+        <div class="btn">Travel & Abroad</div>
+        <div class="btn">Emergency & Health</div>
+
+    </div>
+
+</div>
+
+</div>
+
+<!-- BOTTOM NAV (OLD DESIGN RESTORED) -->
+<div class="bottom-nav">
+
+    <div class="nav-btn" onclick="history.back()">← BACK</div>
+
+    <div class="center">EWONZ LINGUA</div>
+
+    <div class="nav-btn" onclick="location.href='index.html'">HOME →</div>
+
+</div>
+
+</body>
+</html>
