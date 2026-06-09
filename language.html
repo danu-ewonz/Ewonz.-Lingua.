@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ewonz Lingua</title>
+<title>Language Learning</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600;700;900&display=swap" rel="stylesheet">
 
@@ -28,16 +28,6 @@ body{
     background:#0a0a0a;
     box-shadow:0 0 18px #ffd700;
     overflow:hidden;
-}
-
-/* PAGE */
-.page{
-    display:none;
-    height:100%;
-    width:100%;
-}
-
-.page.active{
     display:flex;
     flex-direction:column;
 }
@@ -54,13 +44,12 @@ body{
 
 /* TITLE */
 .title{
-    font-size:20px;
+    font-size:18px;
     font-weight:900;
-    letter-spacing:2px;
     margin:10px 0 15px;
     text-transform:uppercase;
     color:#ffd700;
-    -webkit-text-stroke:1.2px #000;
+    -webkit-text-stroke:1px #000;
     text-shadow:0 0 6px rgba(255,215,0,0.6);
 }
 
@@ -68,14 +57,13 @@ body{
 .card{
     border:1px solid #ffd700;
     background:rgba(0,0,0,0.4);
-    backdrop-filter:blur(6px);
     padding:12px 14px;
     border-radius:10px;
     cursor:pointer;
     width:85%;
 
     display:flex;
-    justify-content:center;   /* 🔥 CENTER TEXT */
+    justify-content:center;
     align-items:center;
 
     position:relative;
@@ -92,12 +80,7 @@ body{
     transform:scale(1.02);
 }
 
-/* TEXT WRAPPER */
-.lang-name{
-    text-align:center;
-}
-
-/* FLAG (END OF TEXT) */
+/* FLAG */
 .flag{
     margin-left:8px;
 }
@@ -169,53 +152,37 @@ body{
 
 <div class="phone">
 
-<!-- HOME -->
-<div class="page active" id="home">
-    <div class="content">
+<!-- CONTENT -->
+<div class="content">
 
-        <div style="flex:1"></div>
+    <div class="title">Language Learning</div>
 
-        <div class="card" onclick="goLang()">Start Learning Language</div>
+    <div class="card">Japanese Language <span class="flag">🇯🇵</span></div>
+    <div class="space"></div>
 
-        <div style="flex:1"></div>
+    <div class="card" onclick="showLock()">Chinese Language <span class="flag">🇨🇳</span><div class="lock">LOCK</div></div>
+    <div class="space"></div>
 
-    </div>
+    <div class="card" onclick="showLock()">Korean Language <span class="flag">🇰🇷</span><div class="lock">LOCK</div></div>
+    <div class="space"></div>
+
+    <div class="card" onclick="showLock()">Russian Language <span class="flag">🇷🇺</span><div class="lock">LOCK</div></div>
+    <div class="space"></div>
+
+    <div class="card" onclick="showLock()">French Language <span class="flag">🇫🇷</span><div class="lock">LOCK</div></div>
+    <div class="space"></div>
+
+    <div class="card" onclick="showLock()">German Language <span class="flag">🇩🇪</span><div class="lock">LOCK</div></div>
+    <div class="space"></div>
+
+    <div class="card" onclick="showLock()">Italian Language <span class="flag">🇮🇹</span><div class="lock">LOCK</div></div>
+
 </div>
 
-<!-- LANGUAGE PAGE -->
-<div class="page" id="lang">
-
-    <div class="content">
-
-        <div class="title">Language Learning</div>
-
-        <div class="card">Japanese Language <span class="flag">🇯🇵</span></div>
-        <div class="space"></div>
-
-        <div class="card" onclick="showLock()">Chinese Language <span class="flag">🇨🇳</span> <div class="lock">LOCK</div></div>
-        <div class="space"></div>
-
-        <div class="card" onclick="showLock()">Korean Language <span class="flag">🇰🇷</span> <div class="lock">LOCK</div></div>
-        <div class="space"></div>
-
-        <div class="card" onclick="showLock()">Russian Language <span class="flag">🇷🇺</span> <div class="lock">LOCK</div></div>
-        <div class="space"></div>
-
-        <div class="card" onclick="showLock()">French Language <span class="flag">🇫🇷</span> <div class="lock">LOCK</div></div>
-        <div class="space"></div>
-
-        <div class="card" onclick="showLock()">German Language <span class="flag">🇩🇪</span> <div class="lock">LOCK</div></div>
-        <div class="space"></div>
-
-        <div class="card" onclick="showLock()">Italian Language <span class="flag">🇮🇹</span> <div class="lock">LOCK</div></div>
-
-    </div>
-
-    <div class="nav">
-        <div class="nav-btn" onclick="goHome()">← Back</div>
-        <div class="nav-btn" onclick="goHome()">Home →</div>
-    </div>
-
+<!-- NAV -->
+<div class="nav">
+    <div class="nav-btn" onclick="window.location.href='./index.html'">← Back</div>
+    <div class="nav-btn" onclick="window.location.href='./index.html'">Home →</div>
 </div>
 
 </div>
@@ -229,16 +196,6 @@ body{
 </div>
 
 <script>
-
-function goLang(){
-    document.getElementById("home").classList.remove("active");
-    document.getElementById("lang").classList.add("active");
-}
-
-function goHome(){
-    document.getElementById("lang").classList.remove("active");
-    document.getElementById("home").classList.add("active");
-}
 
 function showLock(){
     document.getElementById("modal").style.display = "flex";
@@ -269,4 +226,4 @@ document.getElementById("modal").addEventListener("click", function(e){
 </script>
 
 </body>
-  </html>
+</html>
