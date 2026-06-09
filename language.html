@@ -5,7 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Language Learning</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+<!-- NEW FONT -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
 
 <style>
 
@@ -49,7 +50,6 @@ body{
     linear-gradient(#000 0 0);
     -webkit-mask-composite:xor;
     mask-composite:exclude;
-
     pointer-events:none;
 }
 
@@ -60,17 +60,14 @@ body{
     font-weight:700;
     color:#e6e6e6;
     margin-top:18px;
-    letter-spacing:1px;
 }
 
-/* 🔥 TITLE LINE */
+/* LINE */
 .title-line{
     width:80%;
     height:2px;
-    margin:8px auto 0 auto;
-    background:linear-gradient(90deg,transparent,#b8860b,#ffd700,#b8860b,transparent);
-    border-radius:2px;
-    animation:lineMove 2.5s linear infinite;
+    margin:8px auto;
+    background:linear-gradient(90deg,transparent,#b8860b,#ffd700,transparent);
 }
 
 /* GRID */
@@ -82,17 +79,25 @@ body{
     flex:1;
 }
 
-/* BUTTON */
+/* 🔥 BUTTON FONT CHANGED */
 .btn{
     padding:12px;
     border-radius:10px;
     background:#111;
     color:#fff;
+
+    /* NEW FONT */
+    font-family:'Montserrat', sans-serif;
+
+    font-size:11px;
     font-weight:600;
-    font-size:14px;
+
     text-align:center;
     border:2px solid #b8860b;
     cursor:pointer;
+
+    text-transform:uppercase;
+    letter-spacing:1px;
 }
 
 /* LOCK */
@@ -134,15 +139,6 @@ body{
     width:290px;
 }
 
-.popup-box h3{
-    margin:0;
-    color:#111;
-}
-
-.popup-box p{
-    color:#444;
-}
-
 .space{ height:10px; }
 
 .countdown{
@@ -174,16 +170,10 @@ body{
     letter-spacing:1px;
 }
 
-/* ANIMATIONS */
+/* ANIMATION */
 @keyframes shine{
     0%{background-position:0%;}
     100%{background-position:100%;}
-}
-
-@keyframes lineMove{
-    0%{transform:translateX(-20px);}
-    50%{transform:translateX(20px);}
-    100%{transform:translateX(-20px);}
 }
 
 </style>
@@ -194,8 +184,6 @@ body{
 <div class="frame">
 
 <div class="title">LANGUAGE LEARNING</div>
-
-<!-- TITLE LINE -->
 <div class="title-line"></div>
 
 <div class="grid">
