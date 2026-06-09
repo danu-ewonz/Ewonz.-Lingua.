@@ -5,9 +5,15 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Japanese Language</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600;700&family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
 
 <style>
+
+/* BLOCK COPY */
+*{
+    -webkit-user-select:none;
+    user-select:none;
+}
 
 body{
     margin:0;
@@ -17,6 +23,8 @@ body{
     justify-content:center;
     align-items:center;
     height:100vh;
+    flex-direction:column;
+    gap:10px;
 }
 
 /* FRAME */
@@ -77,14 +85,14 @@ body{
     flex:1;
 }
 
-/* BUTTON */
+/* BUTTON (FONT FIX HERE) */
 .btn{
     padding:11px;
     border-radius:10px;
     background:#111;
     color:#fff;
 
-    font-family:'Montserrat', sans-serif;
+    font-family:'Montserrat', sans-serif; /* 🔥 RESTORED FONT */
     font-size:12px;
     font-weight:600;
 
@@ -98,22 +106,23 @@ body{
 
 /* NAV */
 .bottom-nav{
-    width:100%;
+    width:360px;
     display:flex;
-    justify-content:center;
+    justify-content:space-between;
     align-items:center;
-    gap:14px;
-    padding:10px 0;
+    padding:10px 5px;
     font-size:13px;
 }
 
-.nav-text{
+/* NAV BUTTONS */
+.nav-btn{
     color:red;
     font-weight:700;
     cursor:pointer;
     white-space:nowrap;
 }
 
+/* CENTER */
 .center{
     color:#b8860b;
     font-weight:700;
@@ -138,51 +147,33 @@ body{
 
 <div class="grid">
 
-    <div class="btn" onclick="openPage('learning.html')">Learning System</div>
+    <div class="btn" onclick="go('learning.html')">Learning System</div>
+    <div class="btn" onclick="go('writing.html')">Writing System</div>
+    <div class="btn" onclick="go('vocabulary.html')">Vocabulary</div>
+    <div class="btn" onclick="go('grammar.html')">Grammar</div>
+    <div class="btn" onclick="go('reading.html')">Reading Practice</div>
+    <div class="btn" onclick="go('exam.html')">Exam</div>
+    <div class="btn" onclick="go('quiz.html')">Quiz Center</div>
 
-    <div class="btn" onclick="openPage('writing.html')">Writing System</div>
-
-    <div class="btn" onclick="openPage('vocabulary.html')">Vocabulary</div>
-
-    <div class="btn" onclick="openPage('grammar.html')">Grammar</div>
-
-    <div class="btn" onclick="openPage('reading.html')">Reading Practice</div>
-
-    <div class="btn" onclick="openPage('exam.html')">Exam</div>
-
-    <div class="btn" onclick="openPage('quiz.html')">Quiz Center</div>
+</div>
 
 </div>
 
 <!-- NAV -->
 <div class="bottom-nav">
 
-    <div class="nav-text" onclick="goBack()">← Back →</div>
+    <div class="nav-btn" onclick="history.back()">← BACK →</div>
 
     <div class="center">EWONZ LINGUA</div>
 
-    <div class="nav-text" onclick="goHome()">← Home →</div>
-
-</div>
+    <div class="nav-btn" onclick="location.href='index.html'">→ HOME →</div>
 
 </div>
 
 <script>
-
-function openPage(url){
+function go(url){
     window.location.href = url;
 }
-
-/* SAFE BACK */
-function goBack(){
-    window.history.back();
-}
-
-/* FIXED HOME PATH (IMPORTANT) */
-function goHome(){
-    window.location.href = "../index.html";
-}
-
 </script>
 
 </body>
