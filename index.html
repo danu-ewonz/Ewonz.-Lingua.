@@ -5,9 +5,16 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Ewonz Lingua</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Dancing+Script:wght@400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Dancing+Script:wght@400;600&display=swap" rel="stylesheet">
 
 <style>
+*{
+    -webkit-user-select:none;
+    -moz-user-select:none;
+    -ms-user-select:none;
+    user-select:none;
+}
+
 body{
     margin:0;
     font-family:'Poppins', sans-serif;
@@ -17,6 +24,7 @@ body{
     align-items:center;
     background: radial-gradient(circle at top left, #1a1a1a, #000000 60%);
     overflow:hidden;
+    -webkit-touch-callout:none;
 }
 
 /* GLOW */
@@ -52,7 +60,7 @@ body::after{
     border:2px solid #ffd700;
     border-radius:22px;
     background:#0a0a0a;
-    box-shadow:0 0 18px #ffd700;
+    box-shadow:0 0 8px rgba(255,215,0,0.3);
     display:flex;
     flex-direction:column;
     overflow:hidden;
@@ -97,14 +105,15 @@ body::after{
     height:6px;
 }
 
-/* TEXT COLORS */
+/* 🔥 GOLD TEXT (DIMMER FIX) */
 .gold{
     font-size:10px;
-    color:#ffd700;
+    color:rgba(255,215,0,0.75); /* less bright */
     font-weight:600;
     letter-spacing:1px;
 }
 
+/* TEXT */
 .text{
     font-size:10px;
     color:#aaa;
@@ -112,15 +121,20 @@ body::after{
     letter-spacing:1px;
 }
 
-/* CONTACT */
+/* 🔥 SLIGHT BOLD FIX (not too heavy) */
+.text strong{
+    font-weight:600;
+}
+
+/* CONTACT (MORE BOLD & CLEAN) */
 .contact{
-    color:red;
-    font-weight:700;
+    color:#ff2d2d;
+    font-weight:800;   /* stronger but clean */
     cursor:pointer;
 }
 
 .contact:hover{
-    text-shadow:0 0 8px red;
+    text-shadow:0 0 10px rgba(255,45,45,0.7);
 }
 
 /* BUTTON */
@@ -169,7 +183,9 @@ body::after{
     <!-- SPECIAL THANKS -->
     <div class="gold">SPECIAL THANKS</div>
     <div class="gap"></div>
-    <div class="text">JAPANESE - TSUKI SENSEI</div>
+    <div class="text">
+        <strong>JAPANESE - TSUKI SENSEI</strong>
+    </div>
 
     <div class="big-gap"></div>
 
@@ -177,13 +193,13 @@ body::after{
     <div class="gold">UI DESIGN & DEVELOPMENT</div>
     <div class="gap"></div>
     <div class="text">
-        DANU EWONZ -
+        <strong>DANU EWONZ</strong> -
         <span class="contact" onclick="openWhatsApp()">CONTACT</span>
     </div>
 
     <div style="flex:1"></div>
 
-    <!-- START BUTTON -->
+    <!-- BUTTON -->
     <div class="card" onclick="goLang()">
         Start Learning Language
     </div>
@@ -194,8 +210,7 @@ body::after{
 
 <script>
 function goLang(){
-    // FIX: correct GitHub Pages safe relative path
-    window.location.href = "language.html";
+    window.location.href = "./language.html";
 }
 
 function openWhatsApp(){
