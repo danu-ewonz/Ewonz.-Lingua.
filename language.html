@@ -39,6 +39,7 @@ body{
     inset:0;
     padding:2px;
     border-radius:20px;
+
     background:linear-gradient(90deg,#b8860b,#ffd700,#b8860b,#8b6508,#ffd700);
     background-size:300% 100%;
     animation:shine 3s linear infinite;
@@ -48,6 +49,7 @@ body{
     linear-gradient(#000 0 0);
     -webkit-mask-composite:xor;
     mask-composite:exclude;
+
     pointer-events:none;
 }
 
@@ -58,14 +60,17 @@ body{
     font-weight:700;
     color:#e6e6e6;
     margin-top:18px;
+    letter-spacing:1px;
 }
 
-/* LINE */
+/* 🔥 TITLE LINE */
 .title-line{
     width:80%;
     height:2px;
-    margin:8px auto;
-    background:linear-gradient(90deg,transparent,#b8860b,#ffd700,transparent);
+    margin:8px auto 0 auto;
+    background:linear-gradient(90deg,transparent,#b8860b,#ffd700,#b8860b,transparent);
+    border-radius:2px;
+    animation:lineMove 2.5s linear infinite;
 }
 
 /* GRID */
@@ -88,11 +93,6 @@ body{
     text-align:center;
     border:2px solid #b8860b;
     cursor:pointer;
-}
-
-/* UNLOCKED */
-.unlocked{
-    border:2px solid #ffd700;
 }
 
 /* LOCK */
@@ -134,8 +134,14 @@ body{
     width:290px;
 }
 
-.popup-box h3{ margin:0; color:#111; }
-.popup-box p{ color:#444; }
+.popup-box h3{
+    margin:0;
+    color:#111;
+}
+
+.popup-box p{
+    color:#444;
+}
 
 .space{ height:10px; }
 
@@ -168,10 +174,16 @@ body{
     letter-spacing:1px;
 }
 
-/* ANIMATION */
+/* ANIMATIONS */
 @keyframes shine{
     0%{background-position:0%;}
     100%{background-position:100%;}
+}
+
+@keyframes lineMove{
+    0%{transform:translateX(-20px);}
+    50%{transform:translateX(20px);}
+    100%{transform:translateX(-20px);}
 }
 
 </style>
@@ -182,16 +194,16 @@ body{
 <div class="frame">
 
 <div class="title">LANGUAGE LEARNING</div>
+
+<!-- TITLE LINE -->
 <div class="title-line"></div>
 
 <div class="grid">
 
-    <!-- ✅ ONLY UNLOCKED -->
-    <div class="btn unlocked" onclick="openLang('japanese/index.html')">
+    <div class="btn" onclick="openLang('japanese/index.html')">
         Japanese Language 🇯🇵
     </div>
 
-    <!-- ❌ LOCKED ALL OTHERS -->
     <div class="btn locked" onclick="showPopup()">
         Chinese Language 🇨🇳
         <div class="lock-tag">LOCK</div>
