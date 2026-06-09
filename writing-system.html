@@ -9,10 +9,12 @@
 
 <style>
 
+/* BLOCK */
 *{
     -webkit-user-select:none;
     user-select:none;
     -webkit-touch-callout:none;
+    -webkit-tap-highlight-color:transparent;
 }
 
 body{
@@ -37,7 +39,7 @@ body{
     overflow:hidden;
 }
 
-/* GOLD BORDER */
+/* GOLD BORDER ANIMATION */
 .frame::before{
     content:"";
     position:absolute;
@@ -47,7 +49,7 @@ body{
 
     background:linear-gradient(90deg,#b8860b,#ffd700,#b8860b,#8b6508,#ffd700);
     background-size:300% 100%;
-    animation:move 5s linear infinite;
+    animation:shine 3s linear infinite;
 
     -webkit-mask:
     linear-gradient(#000 0 0) content-box,
@@ -56,7 +58,6 @@ body{
     mask-composite:exclude;
 
     pointer-events:none;
-    z-index:2;
 }
 
 /* TITLE */
@@ -66,7 +67,6 @@ body{
     font-size:18px;
     font-weight:700;
     margin-top:18px;
-    z-index:1;
 }
 
 /* LINE */
@@ -75,23 +75,21 @@ body{
     height:2px;
     margin:8px auto;
     background:linear-gradient(90deg,transparent,#b8860b,#ffd700,transparent);
-    z-index:1;
 }
 
-/* GRID (IMPORTANT FIX) */
+/* GRID */
 .grid{
     display:flex;
     flex-direction:column;
     gap:10px;
     padding:15px;
     flex:1;
-    overflow-y:auto; /* 🔥 FIX: buttons always visible */
-    z-index:1;
+    overflow-y:auto;
 }
 
 /* BUTTON */
 .btn{
-    padding:11px;
+    padding:12px;
     background:#111;
     color:#fff;
     border-radius:10px;
@@ -104,98 +102,43 @@ body{
     text-transform:uppercase;
     letter-spacing:1px;
 
+    border:2px solid #b8860b;
+    cursor:pointer;
+
     position:relative;
     overflow:hidden;
 }
 
-/* BORDER ANIMATION */
-.btn::before{
-    content:"";
-    position:absolute;
-    inset:0;
-    border-radius:10px;
-    padding:2px;
-
-    background:linear-gradient(90deg,
-        transparent,
-        #b8860b,
-        #ffd700,
-        #b8860b,
-        transparent
-    );
-
-    background-size:200% 100%;
-    animation:move 5s linear infinite;
-
-    -webkit-mask:
-    linear-gradient(#000 0 0) content-box,
-    linear-gradient(#000 0 0);
-    -webkit-mask-composite:xor;
-    mask-composite:exclude;
-
-    pointer-events:none;
+/* BUTTON HOVER GLOW */
+.btn:active{
+    background:#b8860b;
+    color:#000;
 }
 
-/* SUB TEXT */
-.sub{
-    font-size:9px;
-    color:#aaa;
-    margin-top:3px;
-    text-transform:none;
-}
-
-/* NAV (FIXED POSITION) */
+/* NAV */
 .bottom-nav{
     width:100%;
     display:flex;
     justify-content:center;
     align-items:center;
     gap:14px;
-
     padding:10px 0;
-    position:relative;
     border-top:1px solid rgba(255,215,0,0.15);
-    z-index:3; /* 🔥 FIX */
 }
 
-/* NAV LINE */
-.bottom-nav::after{
-    content:"";
-    position:absolute;
-    top:0;
-    left:0;
-    width:100%;
-    height:2px;
-
-    background:linear-gradient(90deg,
-        transparent,
-        #b8860b,
-        #ffd700,
-        #b8860b,
-        transparent
-    );
-
-    background-size:200% 100%;
-    animation:move 5s linear infinite;
-}
-
-/* NAV TEXT */
 .nav-text{
     color:red;
     font-weight:700;
     cursor:pointer;
-    white-space:nowrap;
 }
 
-/* CENTER */
 .center{
     color:#b8860b;
     font-weight:700;
-    white-space:nowrap;
 }
 
 /* ANIMATION */
-@keyframes move{
+@keyframes shine{
     0%{background-position:0%;}
     100%{background-position:200%;}
 }
@@ -212,26 +155,26 @@ body{
 
 <div class="grid">
 
-    <div class="btn">Hiragana<div class="sub">Basic</div></div>
+    <div class="btn" onclick="location.href='hiragana.html'">Hiragana</div>
 
-    <div class="btn">Katakana<div class="sub">Foreign words</div></div>
+    <div class="btn" onclick="location.href='katakana.html'">Katakana</div>
 
-    <div class="btn">Kanji<div class="sub">Meaning based </div></div>
+    <div class="btn" onclick="location.href='kanji.html'">Kanji</div>
 
-    <div class="btn">Hiragana Special<div class="sub">Dakuten • Handakuten • Yōon • Chōon• Sokuon</div></div>
+    <div class="btn" onclick="location.href='hiragana-special.html'">Hiragana Special</div>
 
-    <div class="btn">Katakana Special<div class="sub">Dakuten • Handakuten • Yōon • Chōon • Sokuon</div></div>
+    <div class="btn" onclick="location.href='katakana-special.html'">Katakana Special</div>
 
 </div>
 
-<!-- NAV (INSIDE FIX) -->
+<!-- NAV -->
 <div class="bottom-nav">
 
-    <div class="nav-text">← BACK →</div>
+    <div class="nav-text" onclick="history.back()">← BACK →</div>
 
     <div class="center">EWONZ LINGUA</div>
 
-    <div class="nav-text">→ HOME →</div>
+    <div class="nav-text" onclick="location.href='index.html'">→ HOME →</div>
 
 </div>
 
