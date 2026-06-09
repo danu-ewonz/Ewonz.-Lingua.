@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+<title>Katakana Choon</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600;700&family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    user-select:none;
+    -webkit-user-select:none;
+}
+
+body{
+    margin:0;
+    background:#0b0b0b;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+    font-family:'Poppins', sans-serif;
+}
+
+/* FRAME */
+.frame{
+    width:360px;
+    height:480px;
+    background:#0a0a0a;
+    border-radius:20px;
+    display:flex;
+    flex-direction:column;
+    overflow:hidden;
+    position:relative;
+}
+
+/* GOLD BORDER */
+.frame::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    padding:2px;
+    border-radius:20px;
+
+    background:linear-gradient(90deg,#b8860b,#ffd700,#b8860b,#8b6508,#ffd700);
+    background-size:300% 100%;
+    animation:shine 3s linear infinite;
+
+    -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+    -webkit-mask-composite:xor;
+    mask-composite:exclude;
+
+    pointer-events:none;
+}
+
+/* TITLE */
+.title{
+    text-align:center;
+    color:#fff;
+    font-size:18px;
+    font-weight:700;
+    margin-top:15px;
+}
+
+/* LINE */
+.line{
+    width:80%;
+    height:2px;
+    margin:8px auto;
+    background:linear-gradient(90deg,transparent,#b8860b,#ffd700,transparent);
+}
+
+/* GRID */
+.grid{
+    flex:1;
+    padding:12px;
+    overflow-y:auto;
+    display:grid;
+    grid-template-columns:1fr;
+    gap:10px;
+}
+
+/* CARD */
+.card{
+    background:#111;
+    border:1px solid #b8860b;
+    border-radius:10px;
+    padding:12px;
+    text-align:center;
+}
+
+/* MAIN */
+.kana{
+    color:#fff;
+    font-size:18px;
+    font-weight:700;
+}
+
+/* ARROW */
+.arrow{
+    color:#ffd700;
+    font-size:14px;
+    margin:5px 0;
+}
+
+/* ROMAJI */
+.romaji{
+    color:#aaa;
+    font-size:11px;
+}
+
+/* NAV */
+.bottom-nav{
+    width:100%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:14px;
+    padding:10px 0;
+    border-top:1px solid rgba(255,215,0,0.15);
+}
+
+.nav-text{
+    color:red;
+    font-weight:700;
+    cursor:pointer;
+}
+
+.center{
+    color:#b8860b;
+    font-weight:700;
+}
+
+/* ANIMATION */
+@keyframes shine{
+    0%{background-position:0%;}
+    100%{background-position:200%;}
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="frame">
+
+<div class="title">CHŌON (ー LONG VOWEL)</div>
+<div class="line"></div>
+
+<div class="grid">
+
+<div class="card">
+    <div class="kana">アー</div>
+    <div class="arrow">→</div>
+    <div class="romaji">ā (long a)</div>
+</div>
+
+<div class="card">
+    <div class="kana">イー</div>
+    <div class="arrow">→</div>
+    <div class="romaji">ī (long i)</div>
+</div>
+
+<div class="card">
+    <div class="kana">ウー</div>
+    <div class="arrow">→</div>
+    <div class="romaji">ū (long u)</div>
+</div>
+
+<div class="card">
+    <div class="kana">エー</div>
+    <div class="arrow">→</div>
+    <div class="romaji">ē (long e)</div>
+</div>
+
+<div class="card">
+    <div class="kana">オー</div>
+    <div class="arrow">→</div>
+    <div class="romaji">ō (long o)</div>
+</div>
+
+</div>
+
+<!-- NAV -->
+<div class="bottom-nav">
+
+    <div class="nav-text" onclick="history.back()">← BACK →</div>
+
+    <div class="center">EWONZ LINGUA</div>
+
+    <div class="nav-text" onclick="location.href='index.html'">→ HOME →</div>
+
+</div>
+
+</div>
+
+</body>
+</html>
