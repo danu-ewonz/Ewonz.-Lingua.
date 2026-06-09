@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ewonz Lingua</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600;700;900&display=swap" rel="stylesheet">
+
+<style>
+body{
+    margin:0;
+    font-family:'Poppins', sans-serif;
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background: radial-gradient(circle at top left, #1a1a1a, #000000 60%);
+    overflow:hidden;
+}
+
+/* FRAME */
+.phone{
+    width:360px;
+    height:480px;
+    border:2px solid #ffd700;
+    border-radius:22px;
+    background:#0a0a0a;
+    box-shadow:0 0 18px #ffd700;
+    overflow:hidden;
+}
+
+/* PAGE */
+.page{
+    display:none;
+    height:100%;
+    width:100%;
+}
+
+.page.active{
+    display:flex;
+    flex-direction:column;
+}
+
+/* CONTENT */
+.content{
+    flex:1;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    padding:15px;
+    color:white;
+}
+
+/* TITLE */
+.title{
+    font-size:20px;
+    font-weight:900;
+    letter-spacing:2px;
+    margin:10px 0 15px;
+    text-transform:uppercase;
+    color:#ffd700;
+    -webkit-text-stroke:1.2px #000;
+    text-shadow:0 0 6px rgba(255,215,0,0.6);
+}
+
+/* BUTTON */
+.card{
+    border:1px solid #ffd700;
+    background:rgba(0,0,0,0.4);
+    backdrop-filter:blur(6px);
+    padding:12px 14px;
+    border-radius:10px;
+    cursor:pointer;
+    width:85%;
+
+    display:flex;
+    justify-content:center;   /* 🔥 CENTER TEXT */
+    align-items:center;
+
+    position:relative;
+
+    color:white;
+    font-weight:800;
+    font-size:14px;
+
+    transition:0.25s;
+}
+
+.card:hover{
+    box-shadow:0 0 12px #ffd700;
+    transform:scale(1.02);
+}
+
+/* TEXT WRAPPER */
+.lang-name{
+    text-align:center;
+}
+
+/* FLAG (END OF TEXT) */
+.flag{
+    margin-left:8px;
+}
+
+/* LOCK */
+.lock{
+    position:absolute;
+    top:6px;
+    right:8px;
+    font-size:9px;
+    background:red;
+    color:white;
+    padding:2px 6px;
+    border-radius:5px;
+}
+
+/* SPACE */
+.space{
+    height:10px;
+}
+
+/* NAV */
+.nav{
+    display:flex;
+    justify-content:space-between;
+    padding:10px 15px;
+}
+
+.nav-btn{
+    color:red;
+    font-weight:700;
+    cursor:pointer;
+    font-size:14px;
+}
+
+/* MODAL */
+.modal{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.7);
+    display:none;
+    justify-content:center;
+    align-items:center;
+}
+
+.modal-box{
+    width:300px;
+    background:#111;
+    border:1px solid #ffd700;
+    border-radius:12px;
+    padding:15px;
+    text-align:center;
+    color:white;
+    box-shadow:0 0 15px #ffd700;
+}
+
+.timer{
+    margin-top:10px;
+    font-size:14px;
+    color:#ffd700;
+}
+</style>
+</head>
+
+<body>
+
+<div class="phone">
+
+<!-- HOME -->
+<div class="page active" id="home">
+    <div class="content">
+
+        <div style="flex:1"></div>
+
+        <div class="card" onclick="goLang()">Start Learning Language</div>
+
+        <div style="flex:1"></div>
+
+    </div>
+</div>
+
+<!-- LANGUAGE PAGE -->
+<div class="page" id="lang">
+
+    <div class="content">
+
+        <div class="title">Language Learning</div>
+
+        <div class="card">Japanese Language <span class="flag">🇯🇵</span></div>
+        <div class="space"></div>
+
+        <div class="card" onclick="showLock()">Chinese Language <span class="flag">🇨🇳</span> <div class="lock">LOCK</div></div>
+        <div class="space"></div>
+
+        <div class="card" onclick="showLock()">Korean Language <span class="flag">🇰🇷</span> <div class="lock">LOCK</div></div>
+        <div class="space"></div>
+
+        <div class="card" onclick="showLock()">Russian Language <span class="flag">🇷🇺</span> <div class="lock">LOCK</div></div>
+        <div class="space"></div>
+
+        <div class="card" onclick="showLock()">French Language <span class="flag">🇫🇷</span> <div class="lock">LOCK</div></div>
+        <div class="space"></div>
+
+        <div class="card" onclick="showLock()">German Language <span class="flag">🇩🇪</span> <div class="lock">LOCK</div></div>
+        <div class="space"></div>
+
+        <div class="card" onclick="showLock()">Italian Language <span class="flag">🇮🇹</span> <div class="lock">LOCK</div></div>
+
+    </div>
+
+    <div class="nav">
+        <div class="nav-btn" onclick="goHome()">← Back</div>
+        <div class="nav-btn" onclick="goHome()">Home →</div>
+    </div>
+
+</div>
+
+</div>
+
+<!-- MODAL -->
+<div class="modal" id="modal">
+    <div class="modal-box">
+        <div>🔒 Coming Soon - 2026.11.28</div>
+        <div class="timer" id="timer"></div>
+    </div>
+</div>
+
+<script>
+
+function goLang(){
+    document.getElementById("home").classList.remove("active");
+    document.getElementById("lang").classList.add("active");
+}
+
+function goHome(){
+    document.getElementById("lang").classList.remove("active");
+    document.getElementById("home").classList.add("active");
+}
+
+function showLock(){
+    document.getElementById("modal").style.display = "flex";
+
+    const target = new Date("2026-11-28").getTime();
+
+    setInterval(()=>{
+        let now = new Date().getTime();
+        let diff = target - now;
+
+        let days = Math.floor(diff / (1000*60*60*24));
+        let hours = Math.floor((diff%(1000*60*60*24))/(1000*60*60));
+        let mins = Math.floor((diff%(1000*60*60))/(1000*60));
+        let secs = Math.floor((diff%(1000*60))/1000);
+
+        document.getElementById("timer").innerHTML =
+        days + "d : " + hours + "h : " + mins + "m : " + secs + "s";
+
+    },1000);
+}
+
+document.getElementById("modal").addEventListener("click", function(e){
+    if(e.target.id === "modal"){
+        this.style.display = "none";
+    }
+});
+
+</script>
+
+</body>
+  </html>
