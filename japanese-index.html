@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Japanese Language</title>
+<title>Japanese Index</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600;700&family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
 
@@ -24,7 +24,6 @@ body{
     align-items:center;
     height:100vh;
     flex-direction:column;
-    gap:10px;
 }
 
 /* FRAME */
@@ -56,6 +55,7 @@ body{
     linear-gradient(#000 0 0);
     -webkit-mask-composite:xor;
     mask-composite:exclude;
+
     pointer-events:none;
 }
 
@@ -85,23 +85,39 @@ body{
     flex:1;
 }
 
-/* BUTTON (FONT FIX HERE) */
+/* BUTTON */
 .btn{
     padding:11px;
     border-radius:10px;
     background:#111;
     color:#fff;
 
-    font-family:'Montserrat', sans-serif; /* 🔥 RESTORED FONT */
+    font-family:'Montserrat', sans-serif;
     font-size:12px;
     font-weight:600;
 
     text-align:center;
     border:2px solid #b8860b;
     cursor:pointer;
-
     text-transform:uppercase;
     letter-spacing:1px;
+
+    position:relative;
+}
+
+/* LOCK TAG */
+.lock-tag{
+    position:absolute;
+    right:10px;
+    top:8px;
+
+    font-size:9px;
+    background:red;
+    color:white;
+
+    padding:2px 6px;
+    border-radius:4px;
+    font-weight:700;
 }
 
 /* NAV */
@@ -114,7 +130,6 @@ body{
     font-size:13px;
 }
 
-/* NAV BUTTONS */
 .nav-btn{
     color:red;
     font-weight:700;
@@ -122,17 +137,67 @@ body{
     white-space:nowrap;
 }
 
-/* CENTER */
 .center{
     color:#b8860b;
     font-weight:700;
-    letter-spacing:1px;
 }
 
 /* ANIMATION */
 @keyframes shine{
     0%{background-position:0%;}
     100%{background-position:100%;}
+}
+
+/* 🔥 ORIGINAL NOTIFICATION STYLE (FIXED) */
+.popup{
+    display:none;
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.85);
+    justify-content:center;
+    align-items:center;
+    z-index:999;
+}
+
+.popup-box{
+    background:#111;
+    padding:18px;
+    border-radius:12px;
+    text-align:center;
+    width:290px;
+    border:2px solid #b8860b;
+}
+
+.popup-box h3{
+    margin:0;
+    color:#ff0000;
+    font-size:16px;
+}
+
+.popup-box p{
+    color:#b8860b;
+    font-size:13px;
+}
+
+.countdown{
+    color:#ffd700;
+    font-weight:700;
+    margin-top:10px;
+    font-size:18px;
+}
+
+.close-btn{
+    margin-top:15px;
+    padding:8px 15px;
+    border:none;
+    background:#b8860b;
+    color:#000;
+    font-weight:700;
+    border-radius:8px;
+    cursor:pointer;
 }
 
 </style>
@@ -142,18 +207,28 @@ body{
 
 <div class="frame">
 
-<div class="title">JAPANESE LANGUAGE 🇯🇵</div>
+<div class="title">JAPANESE 🇯🇵</div>
 <div class="line"></div>
 
 <div class="grid">
 
-    <div class="btn" onclick="go('learning-system.html')">Learning System</div>
-    <div class="btn" onclick="go('writing-system.html')">Writing System</div>
-    <div class="btn" onclick="go('vocabulary.html')">Vocabulary</div>
-    <div class="btn" onclick="go('grammar.html')">Grammar</div>
-    <div class="btn" onclick="go('reading.html')">Reading Practice</div>
-    <div class="btn" onclick="go('exam.html')">Exam</div>
-    <div class="btn" onclick="go('quiz.html')">Quiz Center</div>
+    <div class="btn">Learning System</div>
+    <div class="btn">Writing System</div>
+    <div class="btn">Vocabulary</div>
+
+    <!-- LOCKED -->
+    <div class="btn" onclick="openPopup()">
+        Grammar
+        <div class="lock-tag">LOCK</div>
+    </div>
+
+    <div class="btn" onclick="openPopup()">
+        Reading Practice
+        <div class="lock-tag">LOCK</div>
+    </div>
+
+    <div class="btn">Exam</div>
+    <div class="btn">Quiz Center</div>
 
 </div>
 
@@ -170,10 +245,48 @@ body{
 
 </div>
 
+<!-- POPUP -->
+<div class="popup" id="popup">
+    <div class="popup-box">
+
+        <h3>🔴 COMING SOON</h3>
+        <p>Release Date: 2026.11.28</p>
+
+        <div class="countdown" id="countdown">Loading...</div>
+
+        <button class="close-btn" onclick="closePopup()">CLOSE</button>
+
+    </div>
+</div>
+
 <script>
-function go(url){
-    window.location.href = url;
+
+function openPopup(){
+    document.getElementById("popup").style.display="flex";
+    startCountdown();
 }
+
+function closePopup(){
+    document.getElementById("popup").style.display="none";
+}
+
+const targetDate = new Date("2026-11-28T00:00:00").getTime();
+
+function startCountdown(){
+    setInterval(function(){
+        let now = new Date().getTime();
+        let diff = targetDate - now;
+
+        let d = Math.floor(diff/(1000*60*60*24));
+        let h = Math.floor((diff%(1000*60*60*24))/(1000*60*60));
+        let m = Math.floor((diff%(1000*60*60))/(1000*60));
+        let s = Math.floor((diff%(1000*60))/1000);
+
+        document.getElementById("countdown").innerHTML =
+        d+"d : "+h+"h : "+m+"m : "+s+"s";
+    },1000);
+}
+
 </script>
 
 </body>
