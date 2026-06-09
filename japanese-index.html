@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Japanese Language</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+body{
+    margin:0;
+    font-family:'Poppins', sans-serif;
+    background:#0b0b0b;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+}
+
+/* FRAME */
+.frame{
+    width:360px;
+    height:480px;
+    background:#0a0a0a;
+    border-radius:20px;
+    position:relative;
+    overflow:hidden;
+    display:flex;
+    flex-direction:column;
+}
+
+/* GOLD BORDER */
+.frame::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    padding:2px;
+    border-radius:20px;
+
+    background:linear-gradient(90deg,#b8860b,#ffd700,#b8860b,#8b6508,#ffd700);
+    background-size:300% 100%;
+    animation:shine 3s linear infinite;
+
+    -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+    -webkit-mask-composite:xor;
+    mask-composite:exclude;
+    pointer-events:none;
+}
+
+/* TITLE */
+.title{
+    text-align:center;
+    font-size:18px;
+    font-weight:700;
+    color:#e6e6e6;
+    margin-top:18px;
+}
+
+/* LINE */
+.line{
+    width:80%;
+    height:2px;
+    margin:8px auto;
+    background:linear-gradient(90deg,transparent,#b8860b,#ffd700,transparent);
+}
+
+/* GRID */
+.grid{
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+    padding:15px;
+    flex:1;
+}
+
+/* BUTTON */
+.btn{
+    padding:11px;
+    border-radius:10px;
+    background:#111;
+    color:#fff;
+
+    font-family:'Montserrat', sans-serif;
+    font-size:12px;
+    font-weight:600;
+
+    text-align:center;
+    border:2px solid #b8860b;
+    cursor:pointer;
+
+    text-transform:uppercase;
+    letter-spacing:1px;
+}
+
+/* NAV */
+.bottom-nav{
+    width:100%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:14px;
+    padding:10px 0;
+    font-size:13px;
+}
+
+.nav-text{
+    color:red;
+    font-weight:700;
+    cursor:pointer;
+    white-space:nowrap;
+}
+
+.center{
+    color:#b8860b;
+    font-weight:700;
+    letter-spacing:1px;
+}
+
+/* ANIMATION */
+@keyframes shine{
+    0%{background-position:0%;}
+    100%{background-position:100%;}
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="frame">
+
+<div class="title">JAPANESE LANGUAGE 🇯🇵</div>
+<div class="line"></div>
+
+<div class="grid">
+
+    <div class="btn" onclick="openPage('learning.html')">Learning System</div>
+
+    <div class="btn" onclick="openPage('writing.html')">Writing System</div>
+
+    <div class="btn" onclick="openPage('vocabulary.html')">Vocabulary</div>
+
+    <div class="btn" onclick="openPage('grammar.html')">Grammar</div>
+
+    <div class="btn" onclick="openPage('reading.html')">Reading Practice</div>
+
+    <div class="btn" onclick="openPage('exam.html')">Exam</div>
+
+    <div class="btn" onclick="openPage('quiz.html')">Quiz Center</div>
+
+</div>
+
+<!-- NAV -->
+<div class="bottom-nav">
+
+    <div class="nav-text" onclick="goBack()">← Back →</div>
+
+    <div class="center">EWONZ LINGUA</div>
+
+    <div class="nav-text" onclick="goHome()">← Home →</div>
+
+</div>
+
+</div>
+
+<script>
+
+function openPage(url){
+    window.location.href = url;
+}
+
+/* SAFE BACK */
+function goBack(){
+    window.history.back();
+}
+
+/* FIXED HOME PATH (IMPORTANT) */
+function goHome(){
+    window.location.href = "../index.html";
+}
+
+</script>
+
+</body>
+</html>
