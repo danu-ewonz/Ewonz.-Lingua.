@@ -16,7 +16,7 @@ body{
     height:100vh;
 }
 
-/* 📱 9:16 PHONE FRAME */
+/* 📱 9:16 FRAME */
 .phone{
     width:360px;
     height:640px;
@@ -25,7 +25,6 @@ body{
     overflow:hidden;
     background:#0a0a0a;
     box-shadow:0 0 20px #ffd700;
-    position:relative;
 }
 
 /* CONTENT */
@@ -37,54 +36,53 @@ body{
 
 /* TITLE */
 .title{
-    font-size:24px;
+    font-size:26px;
     font-weight:bold;
     color:#ffd700;
     text-shadow:0 0 10px #ffd700, 0 0 20px #b8860b;
-    margin-top:10px;
+    margin-top:15px;
 }
 
 /* GRID */
 .grid{
     display:grid;
     grid-template-columns:1fr;
-    gap:15px;
-    margin-top:20px;
+    gap:10px;
+    margin-top:25px;
 }
 
-/* BUTTON */
+/* BUTTON (SMALLER SIZE) */
 .card{
     border:1px solid #ffd700;
     background:transparent;
-    padding:16px;
-    border-radius:12px;
+    padding:10px;          /* reduced size */
+    border-radius:10px;
     cursor:pointer;
     transition:0.3s;
     color:white;
-    position:relative;
+    font-size:14px;        /* smaller text */
 }
 
 /* HOVER */
 .card:hover{
-    box-shadow:0 0 10px #ffd700;
-    transform:scale(1.03);
+    box-shadow:0 0 8px #ffd700;
+    transform:scale(1.02);
 }
 
 /* LOCK TAG */
 .lock{
     position:absolute;
-    top:8px;
-    right:10px;
-    font-size:11px;
+    top:6px;
+    right:8px;
+    font-size:10px;
     background:red;
-    padding:3px 6px;
-    border-radius:6px;
+    padding:2px 5px;
+    border-radius:5px;
 }
 
-/* SMALL */
-.small{
-    font-size:12px;
-    color:#aaa;
+/* BUTTON WRAPPER */
+.card-wrap{
+    position:relative;
 }
 </style>
 </head>
@@ -96,38 +94,37 @@ body{
     <div class="content">
 
         <!-- TITLE UPDATED -->
-        <div class="title">
-            Discover the world through language with Ewonz Lingua
-        </div>
+        <div class="title">EWONZ LINGUA</div>
 
-        <!-- BUTTONS -->
         <div class="grid">
 
-            <!-- JAPANESE -->
+            <!-- JAPANESE (OPEN) -->
             <div class="card" onclick="openPage('japanese/index.html')">
-                🇯🇵 Japanese Language
-                <div class="small">Start Learning</div>
+                Japanese Language 🇯🇵
             </div>
 
             <!-- CHINESE LOCKED -->
-            <div class="card" onclick="locked()">
-                <div class="lock">🔒 LOCK</div>
-                🇨🇳 Chinese Language
-                <div class="small">Coming Soon</div>
+            <div class="card-wrap">
+                <div class="lock">LOCK</div>
+                <div class="card" onclick="locked()">
+                    Chinese Language 🇨🇳
+                </div>
             </div>
 
             <!-- KOREAN LOCKED -->
-            <div class="card" onclick="locked()">
-                <div class="lock">🔒 LOCK</div>
-                🇰🇷 Korean Language
-                <div class="small">Coming Soon</div>
+            <div class="card-wrap">
+                <div class="lock">LOCK</div>
+                <div class="card" onclick="locked()">
+                    Korean Language 🇰🇷
+                </div>
             </div>
 
             <!-- RUSSIAN LOCKED -->
-            <div class="card" onclick="locked()">
-                <div class="lock">🔒 LOCK</div>
-                🇷🇺 Russian Language
-                <div class="small">Coming Soon</div>
+            <div class="card-wrap">
+                <div class="lock">LOCK</div>
+                <div class="card" onclick="locked()">
+                    Russian Language 🇷🇺
+                </div>
             </div>
 
         </div>
@@ -142,19 +139,14 @@ function openPage(page){
     window.location.href = page;
 }
 
-/* LOCK ALERT + COUNTDOWN INSIDE MESSAGE */
 function locked(){
-
-    // countdown calculation
-    let target = new Date("2026-11-28T00:00:00").getTime();
+    let target = new Date("2026-11-28").getTime();
     let now = new Date().getTime();
     let diff = target - now;
 
     let days = Math.floor(diff / (1000*60*60*24));
 
-    alert(
-        "🔒 Coming Soon - 2026.11.28\n⏳ Time Left: " + days + " Days"
-    );
+    alert("🔒 Coming Soon - 2026.11.28\n⏳ " + days + " Days Left");
 }
 
 </script>
