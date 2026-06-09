@@ -15,13 +15,11 @@ body{
     display:flex;
     justify-content:center;
     align-items:center;
-
-    /* 🌌 PREMIUM BACKGROUND */
     background: radial-gradient(circle at top left, #1a1a1a, #000000 60%);
     overflow:hidden;
 }
 
-/* ✨ GLOW BACKGROUND BLOBS */
+/* GLOW */
 body::before,
 body::after{
     content:"";
@@ -47,10 +45,10 @@ body::after{
     opacity:0.15;
 }
 
-/* 📱 FRAME */
+/* FRAME */
 .phone{
     width:360px;
-    max-height:95vh;
+    height:480px;
     border:2px solid #ffd700;
     border-radius:22px;
     background:#0a0a0a;
@@ -58,9 +56,8 @@ body::after{
 
     display:flex;
     flex-direction:column;
-
     overflow:hidden;
-    z-index:1; /* above background */
+    z-index:1;
 }
 
 /* CONTENT */
@@ -71,7 +68,6 @@ body::after{
     align-items:center;
     padding:15px;
     color:white;
-    overflow-y:auto;
 }
 
 /* TITLE */
@@ -81,6 +77,7 @@ body::after{
     color:#ffffff;
     letter-spacing:4px;
     margin-top:10px;
+    margin-bottom:24px;
     text-align:center;
 
     text-shadow:
@@ -98,31 +95,42 @@ body::after{
     max-width:320px;
     font-family:'Dancing Script', cursive;
     font-weight:600;
+    margin-bottom:20px;
+}
+
+/* TEXT BASE (SMALLER CLEAN LOOK) */
+.credit{
+    font-size:10px;   /* ✔ reduced size */
+    color:#e0e0e0;
+    text-align:center;
+    font-weight:500;  /* lighter for premium feel */
+    letter-spacing:0.8px;
+}
+
+/* GOLD TEXT */
+.gold{
+    color:#ffd700;
+    font-weight:600;
 }
 
 /* SPACE */
-.spacer{
-    height:18px;
+.small-gap{
+    height:8px;
 }
 
-/* SECTION */
-.section-title{
-    font-size:11px;
-    color:#aaa;
-    text-align:center;
-    text-transform:uppercase;
-    letter-spacing:6px;
-    margin-top:10px;
-    margin-bottom:15px;
+.space-large{
+    height:16px;
 }
 
-/* GRID */
-.grid{
-    display:grid;
-    grid-template-columns:1fr;
-    gap:8px;
-    width:100%;
-    max-width:320px;
+/* CONTACT LINK */
+.contact-link{
+    color:#ffd700;
+    cursor:pointer;
+    font-weight:600;
+}
+
+.contact-link:hover{
+    text-shadow:0 0 8px #ffd700;
 }
 
 /* BUTTON */
@@ -130,7 +138,7 @@ body::after{
     border:1px solid #ffd700;
     background:rgba(0,0,0,0.4);
     backdrop-filter:blur(6px);
-    padding:10px;
+    padding:12px 18px;
     border-radius:10px;
     cursor:pointer;
     transition:0.25s;
@@ -138,29 +146,11 @@ body::after{
     font-weight:600;
     font-size:14px;
     text-align:center;
-    position:relative;
 }
 
-/* HOVER */
 .card:hover{
     box-shadow:0 0 12px #ffd700;
     transform:scale(1.02);
-}
-
-/* LOCK */
-.lock{
-    position:absolute;
-    top:6px;
-    right:8px;
-    font-size:10px;
-    background:red;
-    padding:2px 5px;
-    border-radius:5px;
-}
-
-/* DISABLED */
-.disabled{
-    opacity:0.7;
 }
 </style>
 </head>
@@ -171,58 +161,38 @@ body::after{
 
     <div class="content">
 
-        <!-- TITLE -->
         <div class="title">EWONZ LINGUA</div>
 
-        <div class="spacer"></div>
-
-        <!-- ABOUT -->
         <div class="about">
             Discover the world through language with Ewonz Lingua.  
             A modern learning platform designed to help you explore languages in a simple, clear, and structured way.
         </div>
 
-        <div class="spacer"></div>
+        <!-- SPECIAL THANKS -->
+        <div class="credit gold">SPECIAL THANKS.</div>
 
-        <!-- START LEARNING -->
-        <div class="section-title">START LEARNING</div>
+        <div class="small-gap"></div>
 
-        <div class="grid">
+        <!-- TSUKI SENSEI -->
+        <div class="credit">JAPANESE LANGUAGE - TSUKI SENSEI.</div>
 
-            <div class="card" onclick="openPage('japanese/index.html')">
-                Japanese Language 🇯🇵
-            </div>
+        <div class="space-large"></div>
 
-            <div class="card disabled" onclick="locked()">
-                Chinese Language 🇨🇳
-                <div class="lock">LOCK</div>
-            </div>
+        <!-- UI DESIGN -->
+        <div class="credit gold">UI DESIGN & DEVELOPMENT.</div>
 
-            <div class="card disabled" onclick="locked()">
-                Korean Language 🇰🇷
-                <div class="lock">LOCK</div>
-            </div>
+        <div class="small-gap"></div>
 
-            <div class="card disabled" onclick="locked()">
-                Russian Language 🇷🇺
-                <div class="lock">LOCK</div>
-            </div>
+        <!-- NAME + CONTACT -->
+        <div class="credit">
+            DANU EWONZ - <span class="contact-link" onclick="openWhatsApp()">CONTACT</span>
+        </div>
 
-            <div class="card disabled" onclick="locked()">
-                French Language 🇫🇷
-                <div class="lock">LOCK</div>
-            </div>
+        <div class="space-large"></div>
 
-            <div class="card disabled" onclick="locked()">
-                German Language 🇩🇪
-                <div class="lock">LOCK</div>
-            </div>
-
-            <div class="card disabled" onclick="locked()">
-                Italian Language 🇮🇹
-                <div class="lock">LOCK</div>
-            </div>
-
+        <!-- BUTTON -->
+        <div class="card" onclick="startLearning()">
+            Start Learning Language
         </div>
 
     </div>
@@ -230,21 +200,13 @@ body::after{
 </div>
 
 <script>
-
-function openPage(page){
-    window.location.href = page;
+function startLearning(){
+    window.location.href = "japanese/index.html";
 }
 
-function locked(){
-    let target = new Date("2026-11-28").getTime();
-    let now = new Date().getTime();
-    let diff = target - now;
-
-    let days = Math.floor(diff / (1000*60*60*24));
-
-    alert("🔒 Coming Soon - 2026.11.28\n⏳ " + days + " Days Left");
+function openWhatsApp(){
+    window.open("https://wa.me/9477870530", "_blank");
 }
-
 </script>
 
 </body>
