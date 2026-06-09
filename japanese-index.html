@@ -3,13 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Japanese Index</title>
+<title>Japanese Language</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600;700&family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
 
 <style>
 
-/* BLOCK COPY */
 *{
     -webkit-user-select:none;
     user-select:none;
@@ -26,7 +25,6 @@ body{
     flex-direction:column;
 }
 
-/* FRAME */
 .frame{
     width:360px;
     height:480px;
@@ -38,14 +36,12 @@ body{
     flex-direction:column;
 }
 
-/* GOLD BORDER */
 .frame::before{
     content:"";
     position:absolute;
     inset:0;
     padding:2px;
     border-radius:20px;
-
     background:linear-gradient(90deg,#b8860b,#ffd700,#b8860b,#8b6508,#ffd700);
     background-size:300% 100%;
     animation:shine 3s linear infinite;
@@ -55,11 +51,9 @@ body{
     linear-gradient(#000 0 0);
     -webkit-mask-composite:xor;
     mask-composite:exclude;
-
     pointer-events:none;
 }
 
-/* TITLE */
 .title{
     text-align:center;
     font-size:18px;
@@ -68,7 +62,6 @@ body{
     margin-top:18px;
 }
 
-/* LINE */
 .line{
     width:80%;
     height:2px;
@@ -76,7 +69,6 @@ body{
     background:linear-gradient(90deg,transparent,#b8860b,#ffd700,transparent);
 }
 
-/* GRID */
 .grid{
     display:flex;
     flex-direction:column;
@@ -85,7 +77,6 @@ body{
     flex:1;
 }
 
-/* BUTTON */
 .btn{
     padding:11px;
     border-radius:10px;
@@ -105,7 +96,7 @@ body{
     position:relative;
 }
 
-/* LOCK TAG */
+/* 🔴 LOCK TAG (ORIGINAL STYLE) */
 .lock-tag{
     position:absolute;
     right:10px;
@@ -142,13 +133,7 @@ body{
     font-weight:700;
 }
 
-/* ANIMATION */
-@keyframes shine{
-    0%{background-position:0%;}
-    100%{background-position:100%;}
-}
-
-/* 🔥 ORIGINAL NOTIFICATION STYLE (FIXED) */
+/* POPUP */
 .popup{
     display:none;
     position:fixed;
@@ -174,19 +159,16 @@ body{
 .popup-box h3{
     margin:0;
     color:#ff0000;
-    font-size:16px;
 }
 
 .popup-box p{
     color:#b8860b;
-    font-size:13px;
 }
 
 .countdown{
     color:#ffd700;
     font-weight:700;
     margin-top:10px;
-    font-size:18px;
 }
 
 .close-btn{
@@ -198,6 +180,11 @@ body{
     font-weight:700;
     border-radius:8px;
     cursor:pointer;
+}
+
+@keyframes shine{
+    0%{background-position:0%;}
+    100%{background-position:100%;}
 }
 
 </style>
@@ -212,23 +199,24 @@ body{
 
 <div class="grid">
 
-    <div class="btn">Learning System</div>
-    <div class="btn">Writing System</div>
-    <div class="btn">Vocabulary</div>
+    <div class="btn" onclick="go('learning-system.html')">Learning System</div>
+    <div class="btn" onclick="go('writing-system.html')">Writing System</div>
+    <div class="btn" onclick="go('vocabulary.html')">Vocabulary</div>
 
-    <!-- LOCKED -->
+    <!-- 🔴 LOCKED 1 -->
     <div class="btn" onclick="openPopup()">
         Grammar
         <div class="lock-tag">LOCK</div>
     </div>
 
+    <!-- 🔴 LOCKED 2 -->
     <div class="btn" onclick="openPopup()">
         Reading Practice
         <div class="lock-tag">LOCK</div>
     </div>
 
-    <div class="btn">Exam</div>
-    <div class="btn">Quiz Center</div>
+    <div class="btn" onclick="go('exam.html')">Exam</div>
+    <div class="btn" onclick="go('quiz.html')">Quiz Center</div>
 
 </div>
 
@@ -260,6 +248,10 @@ body{
 </div>
 
 <script>
+
+function go(url){
+    window.location.href = url;
+}
 
 function openPopup(){
     document.getElementById("popup").style.display="flex";
