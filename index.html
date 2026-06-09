@@ -19,6 +19,32 @@ body{
     overflow:hidden;
 }
 
+/* BACKGROUND GLOW */
+body::before,
+body::after{
+    content:"";
+    position:absolute;
+    width:300px;
+    height:300px;
+    border-radius:50%;
+    filter:blur(80px);
+    z-index:0;
+}
+
+body::before{
+    background:#ffd700;
+    top:10%;
+    left:15%;
+    opacity:0.15;
+}
+
+body::after{
+    background:#3b82f6;
+    bottom:10%;
+    right:15%;
+    opacity:0.15;
+}
+
 /* FRAME */
 .phone{
     width:360px;
@@ -30,6 +56,7 @@ body{
     display:flex;
     justify-content:center;
     align-items:center;
+    z-index:1;
 }
 
 /* BUTTON */
@@ -43,11 +70,12 @@ body{
     font-weight:800;
     font-size:14px;
     transition:0.25s;
+    text-align:center;
 }
 
 .card:hover{
     box-shadow:0 0 12px #ffd700;
-    transform:scale(1.02);
+    transform:scale(1.03);
 }
 </style>
 </head>
@@ -62,7 +90,7 @@ body{
 
 <script>
 function goLang(){
-    // 🔥 FIXED PATH (NO ERROR)
+    // 🔥 SAFE RELATIVE PATH (NO FILE NOT FOUND)
     window.location.href = "./language.html";
 }
 </script>
