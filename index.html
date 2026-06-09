@@ -9,34 +9,39 @@
 body{
     margin:0;
     font-family:Arial, sans-serif;
+    background:#000;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+}
+
+/* 📱 9:16 PHONE FRAME */
+.phone{
+    width:360px;
+    height:640px;
+    border:2px solid #ffd700;
+    border-radius:25px;
+    overflow:hidden;
     background:#0a0a0a;
-    color:white;
+    box-shadow:0 0 20px #ffd700;
+    position:relative;
+}
+
+/* CONTENT */
+.content{
+    padding:20px;
     text-align:center;
+    color:white;
 }
 
 /* TITLE */
 .title{
-    margin-top:25px;
-    font-size:26px;
+    font-size:24px;
     font-weight:bold;
     color:#ffd700;
     text-shadow:0 0 10px #ffd700, 0 0 20px #b8860b;
-}
-
-.subtitle{
-    color:#aaa;
-    margin-bottom:10px;
-}
-
-/* COUNTDOWN */
-.countdown{
-    margin:15px;
-    font-size:14px;
-    color:#fff;
-    border:1px solid #333;
-    display:inline-block;
-    padding:10px 15px;
-    border-radius:10px;
+    margin-top:10px;
 }
 
 /* GRID */
@@ -44,21 +49,19 @@ body{
     display:grid;
     grid-template-columns:1fr;
     gap:15px;
-    padding:20px;
-    max-width:420px;
-    margin:auto;
+    margin-top:20px;
 }
 
-/* CARD */
+/* BUTTON */
 .card{
     border:1px solid #ffd700;
     background:transparent;
-    padding:18px;
+    padding:16px;
     border-radius:12px;
     cursor:pointer;
-    position:relative;
     transition:0.3s;
     color:white;
+    position:relative;
 }
 
 /* HOVER */
@@ -72,92 +75,88 @@ body{
     position:absolute;
     top:8px;
     right:10px;
-    font-size:12px;
+    font-size:11px;
     background:red;
-    padding:3px 8px;
+    padding:3px 6px;
     border-radius:6px;
-    color:white;
 }
 
-/* SMALL TEXT */
+/* SMALL */
 .small{
     font-size:12px;
     color:#aaa;
-}
-
-/* DISABLED LOOK */
-.disabled{
-    opacity:0.6;
 }
 </style>
 </head>
 
 <body>
 
-<div class="title">🌐 Ewonz Lingua</div>
-<div class="subtitle">Select Your Language</div>
+<div class="phone">
 
-<!-- COUNTDOWN -->
-<div class="countdown" id="countdown">Loading...</div>
+    <div class="content">
 
-<div class="grid">
+        <!-- TITLE UPDATED -->
+        <div class="title">
+            Discover the world through language with Ewonz Lingua
+        </div>
 
-    <!-- JAPANESE (OPEN) -->
-    <div class="card" onclick="openPage('japanese/index.html')">
-        🇯🇵 Japanese Language
-        <div class="small">Start learning Japanese</div>
-    </div>
+        <!-- BUTTONS -->
+        <div class="grid">
 
-    <!-- CHINESE (LOCKED) -->
-    <div class="card disabled" onclick="locked()">
-        <div class="lock">🔒 LOCK</div>
-        🇨🇳 Chinese Language
-        <div class="small">Coming soon</div>
-    </div>
+            <!-- JAPANESE -->
+            <div class="card" onclick="openPage('japanese/index.html')">
+                🇯🇵 Japanese Language
+                <div class="small">Start Learning</div>
+            </div>
 
-    <!-- KOREAN (LOCKED) -->
-    <div class="card disabled" onclick="locked()">
-        <div class="lock">🔒 LOCK</div>
-        🇰🇷 Korean Language
-        <div class="small">Coming soon</div>
-    </div>
+            <!-- CHINESE LOCKED -->
+            <div class="card" onclick="locked()">
+                <div class="lock">🔒 LOCK</div>
+                🇨🇳 Chinese Language
+                <div class="small">Coming Soon</div>
+            </div>
 
-    <!-- RUSSIAN (LOCKED) -->
-    <div class="card disabled" onclick="locked()">
-        <div class="lock">🔒 LOCK</div>
-        🇷🇺 Russian Language
-        <div class="small">Coming soon</div>
+            <!-- KOREAN LOCKED -->
+            <div class="card" onclick="locked()">
+                <div class="lock">🔒 LOCK</div>
+                🇰🇷 Korean Language
+                <div class="small">Coming Soon</div>
+            </div>
+
+            <!-- RUSSIAN LOCKED -->
+            <div class="card" onclick="locked()">
+                <div class="lock">🔒 LOCK</div>
+                🇷🇺 Russian Language
+                <div class="small">Coming Soon</div>
+            </div>
+
+        </div>
+
     </div>
 
 </div>
 
 <script>
+
 function openPage(page){
     window.location.href = page;
 }
 
-/* LOCK ALERT */
+/* LOCK ALERT + COUNTDOWN INSIDE MESSAGE */
 function locked(){
-    alert("🚀 Coming Soon - 2026.11.28");
-}
 
-/* COUNTDOWN TIMER */
-function updateCountdown(){
-    let targetDate = new Date("2026-11-28T00:00:00").getTime();
+    // countdown calculation
+    let target = new Date("2026-11-28T00:00:00").getTime();
     let now = new Date().getTime();
-    let diff = targetDate - now;
+    let diff = target - now;
 
-    let days = Math.floor(diff / (1000 * 60 * 60 * 24));
-    let hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    let minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-    let seconds = Math.floor((diff % (1000 * 60)) / 1000);
+    let days = Math.floor(diff / (1000*60*60*24));
 
-    document.getElementById("countdown").innerHTML =
-        "⏳ Coming Soon: " + days + "d " + hours + "h " + minutes + "m " + seconds + "s";
+    alert(
+        "🔒 Coming Soon - 2026.11.28\n⏳ Time Left: " + days + " Days"
+    );
 }
 
-setInterval(updateCountdown, 1000);
-updateCountdown();
 </script>
 
 </body>
