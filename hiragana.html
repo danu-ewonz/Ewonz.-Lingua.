@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+
+<!-- 🚫 ZOOM DISABLE -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+<title>Hiragana Chart</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600;700&family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+/* 🚫 BLOCK EVERYTHING */
+*{
+    user-select:none;
+    -webkit-user-select:none;
+    -moz-user-select:none;
+    -ms-user-select:none;
+    -webkit-tap-highlight-color:transparent;
+}
+
+body{
+    margin:0;
+    background:#0b0b0b;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+    font-family:'Poppins', sans-serif;
+
+    /* 🚫 mobile long press */
+    -webkit-touch-callout:none;
+}
+
+/* 3:4 FRAME */
+.frame{
+    width:360px;
+    height:480px;
+    background:#0a0a0a;
+    border-radius:20px;
+    position:relative;
+    overflow:hidden;
+    display:flex;
+    flex-direction:column;
+}
+
+/* GOLD BORDER ANIMATION */
+.frame::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    padding:2px;
+    border-radius:20px;
+
+    background:linear-gradient(90deg,#b8860b,#ffd700,#b8860b,#8b6508,#ffd700);
+    background-size:300% 100%;
+    animation:shine 3s linear infinite;
+
+    -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+    -webkit-mask-composite:xor;
+    mask-composite:exclude;
+
+    pointer-events:none;
+}
+
+/* TITLE */
+.title{
+    text-align:center;
+    color:#fff;
+    font-size:18px;
+    font-weight:700;
+    margin-top:15px;
+}
+
+/* LINE */
+.line{
+    width:80%;
+    height:2px;
+    margin:8px auto;
+    background:linear-gradient(90deg,transparent,#b8860b,#ffd700,transparent);
+}
+
+/* CONTENT */
+.content{
+    flex:1;
+    overflow-y:auto;
+    padding:10px;
+}
+
+/* TABLE */
+table{
+    width:100%;
+    border-collapse:collapse;
+    text-align:center;
+}
+
+td{
+    border:1px solid rgba(184,134,11,0.6);
+    padding:10px;
+}
+
+/* JAPANESE */
+.jp{
+    font-size:20px;
+    font-weight:700;
+    color:#fff;
+}
+
+/* ROMAJI */
+.rm{
+    font-size:10px;
+    color:#b8860b;
+}
+
+/* NAV */
+.bottom-nav{
+    width:360px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:10px 0;
+}
+
+.nav-btn{
+    color:red;
+    font-weight:700;
+    cursor:pointer;
+    font-size:13px;
+}
+
+.center{
+    color:#b8860b;
+    font-weight:700;
+}
+
+/* ANIMATION */
+@keyframes shine{
+    0%{background-position:0%;}
+    100%{background-position:100%;}
+}
+
+</style>
+</head>
+
+<body oncontextmenu="return false">
+
+<!-- FRAME -->
+<div class="frame">
+
+<div class="title">HIRAGANA CHART 🇯🇵</div>
+<div class="line"></div>
+
+<div class="content">
+
+<table>
+
+<tr>
+<td><div class="jp">あ</div><div class="rm">a</div></td>
+<td><div class="jp">い</div><div class="rm">i</div></td>
+<td><div class="jp">う</div><div class="rm">u</div></td>
+<td><div class="jp">え</div><div class="rm">e</div></td>
+<td><div class="jp">お</div><div class="rm">o</div></td>
+</tr>
+
+<tr>
+<td><div class="jp">か</div><div class="rm">ka</div></td>
+<td><div class="jp">き</div><div class="rm">ki</div></td>
+<td><div class="jp">く</div><div class="rm">ku</div></td>
+<td><div class="jp">け</div><div class="rm">ke</div></td>
+<td><div class="jp">こ</div><div class="rm">ko</div></td>
+</tr>
+
+<tr>
+<td><div class="jp">さ</div><div class="rm">sa</div></td>
+<td><div class="jp">し</div><div class="rm">shi</div></td>
+<td><div class="jp">す</div><div class="rm">su</div></td>
+<td><div class="jp">せ</div><div class="rm">se</div></td>
+<td><div class="jp">そ</div><div class="rm">so</div></td>
+</tr>
+
+<tr>
+<td><div class="jp">た</div><div class="rm">ta</div></td>
+<td><div class="jp">ち</div><div class="rm">chi</div></td>
+<td><div class="jp">つ</div><div class="rm">tsu</div></td>
+<td><div class="jp">て</div><div class="rm">te</div></td>
+<td><div class="jp">と</div><div class="rm">to</div></td>
+</tr>
+
+<tr>
+<td><div class="jp">な</div><div class="rm">na</div></td>
+<td><div class="jp">に</div><div class="rm">ni</div></td>
+<td><div class="jp">ぬ</div><div class="rm">nu</div></td>
+<td><div class="jp">ね</div><div class="rm">ne</div></td>
+<td><div class="jp">の</div><div class="rm">no</div></td>
+</tr>
+
+<tr>
+<td><div class="jp">は</div><div class="rm">ha</div></td>
+<td><div class="jp">ひ</div><div class="rm">hi</div></td>
+<td><div class="jp">ふ</div><div class="rm">fu</div></td>
+<td><div class="jp">へ</div><div class="rm">he</div></td>
+<td><div class="jp">ほ</div><div class="rm">ho</div></td>
+</tr>
+
+<tr>
+<td><div class="jp">ま</div><div class="rm">ma</div></td>
+<td><div class="jp">み</div><div class="rm">mi</div></td>
+<td><div class="jp">む</div><div class="rm">mu</div></td>
+<td><div class="jp">め</div><div class="rm">me</div></td>
+<td><div class="jp">も</div><div class="rm">mo</div></td>
+</tr>
+
+<tr>
+<td><div class="jp">や</div><div class="rm">ya</div></td>
+<td><div class="jp">ゆ</div><div class="rm">yu</div></td>
+<td><div class="jp">よ</div><div class="rm">yo</div></td>
+</tr>
+
+<tr>
+<td><div class="jp">ら</div><div class="rm">ra</div></td>
+<td><div class="jp">り</div><div class="rm">ri</div></td>
+<td><div class="jp">る</div><div class="rm">ru</div></td>
+<td><div class="jp">れ</div><div class="rm">re</div></td>
+<td><div class="jp">ろ</div><div class="rm">ro</div></td>
+</tr>
+
+<tr>
+<td><div class="jp">わ</div><div class="rm">wa</div></td>
+<td><div class="jp">を</div><div class="rm">wo</div></td>
+<td><div class="jp">ん</div><div class="rm">n</div></td>
+</tr>
+
+</table>
+
+</div>
+
+</div>
+
+<!-- NAV -->
+<div class="bottom-nav">
+
+<div class="nav-btn" onclick="history.back()">← BACK →</div>
+
+<div class="center">EWONZ LINGUA</div>
+
+<div class="nav-btn" onclick="location.href='index.html'">→ HOME →</div>
+
+</div>
+
+<!-- 🚫 SECURITY SCRIPT -->
+<script>
+
+// right click block
+document.addEventListener("contextmenu", e => e.preventDefault());
+
+// copy block
+document.addEventListener("copy", e => e.preventDefault());
+
+// cut block
+document.addEventListener("cut", e => e.preventDefault());
+
+// paste block
+document.addEventListener("paste", e => e.preventDefault());
+
+</script>
+
+</body>
+</html>
