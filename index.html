@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Ewonz Lingua</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Dancing+Script:wght@400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600;700;900&display=swap" rel="stylesheet">
 
 <style>
 body{
@@ -19,32 +19,6 @@ body{
     overflow:hidden;
 }
 
-/* GLOW */
-body::before,
-body::after{
-    content:"";
-    position:absolute;
-    width:300px;
-    height:300px;
-    border-radius:50%;
-    filter:blur(80px);
-    z-index:0;
-}
-
-body::before{
-    background:#ffd700;
-    top:10%;
-    left:15%;
-    opacity:0.15;
-}
-
-body::after{
-    background:#3b82f6;
-    bottom:10%;
-    right:15%;
-    opacity:0.15;
-}
-
 /* FRAME */
 .phone{
     width:360px;
@@ -54,122 +28,21 @@ body::after{
     background:#0a0a0a;
     box-shadow:0 0 18px #ffd700;
     display:flex;
-    flex-direction:column;
-    overflow:hidden;
-    z-index:1;
-}
-
-/* CONTENT */
-.content{
-    flex:1;
-    display:flex;
-    flex-direction:column;
+    justify-content:center;
     align-items:center;
-    padding:15px;
-    color:white;
-}
-
-/* TITLE */
-.title{
-    font-size:26px;
-    font-weight:700;
-    color:#ffffff;
-    letter-spacing:4px;
-    margin-top:10px;
-    margin-bottom:24px;
-    text-align:center;
-
-    text-shadow:
-        0 0 2px #000,
-        0 0 6px #ffd700,
-        0 0 12px rgba(255,215,0,0.6);
-
-    animation:fadeDown 0.8s ease forwards;
-}
-
-@keyframes fadeDown{
-    from{
-        opacity:0;
-        transform:translateY(-20px);
-    }
-    to{
-        opacity:1;
-        transform:translateY(0);
-    }
-}
-
-/* ABOUT */
-.about{
-    font-size:14px;
-    color:#e0e0e0;
-    text-align:center;
-    line-height:1.7;
-    max-width:320px;
-    font-family:'Dancing Script', cursive;
-    font-weight:600;
-    margin-bottom:20px;
-
-    opacity:0;
-    transform:translateY(20px);
-    animation:fadeUp 1.2s ease forwards;
-    animation-delay:0.5s;
-}
-
-@keyframes fadeUp{
-    to{
-        opacity:1;
-        transform:translateY(0);
-    }
-}
-
-/* TEXT */
-.credit{
-    font-size:10px;
-    color:#e0e0e0;
-    text-align:center;
-    font-weight:500;
-    letter-spacing:0.8px;
-    opacity:0;
-    animation:fadeUp 1s ease forwards;
-    animation-delay:0.8s;
-}
-
-.gold{
-    color:#ffd700;
-    font-weight:600;
-}
-
-.small-gap{ height:8px; }
-.space-large{ height:16px; }
-
-/* CONTACT */
-.contact-link{
-    color:#ff3b3b;
-    cursor:pointer;
-    font-weight:600;
-}
-
-.contact-link:hover{
-    text-shadow:0 0 8px #ff3b3b;
 }
 
 /* BUTTON */
 .card{
     border:1px solid #ffd700;
     background:rgba(0,0,0,0.4);
-    backdrop-filter:blur(6px);
-    padding:12px 18px;
+    padding:14px 18px;
     border-radius:10px;
     cursor:pointer;
-    transition:0.25s;
     color:white;
-    font-weight:600;
+    font-weight:800;
     font-size:14px;
-    text-align:center;
-
-    opacity:0;
-    animation:fadeUp 1s ease forwards;
-    animation-delay:1s;
+    transition:0.25s;
 }
 
 .card:hover{
@@ -182,49 +55,15 @@ body::after{
 <body>
 
 <div class="phone">
-
-    <div class="content">
-
-        <div class="title">EWONZ LINGUA</div>
-
-        <div class="about">
-            Discover the world through language with Ewonz Lingua.  
-            A modern learning platform designed to help you explore languages in a simple, clear, and structured way.
-        </div>
-
-        <div class="credit gold">SPECIAL THANKS.</div>
-
-        <div class="small-gap"></div>
-
-        <div class="credit">JAPANESE LANGUAGE - TSUKI SENSEI.</div>
-
-        <div class="space-large"></div>
-
-        <div class="credit gold">UI DESIGN & DEVELOPMENT.</div>
-
-        <div class="small-gap"></div>
-
-        <div class="credit">
-            DANU EWONZ - <span class="contact-link" onclick="openWhatsApp()">CONTACT</span>
-        </div>
-
-        <div class="space-large"></div>
-
-        <div class="card" onclick="startLearning()">
-            Start Learning Language
-        </div>
-
+    <div class="card" onclick="goLang()">
+        Start Learning Language
     </div>
-
 </div>
 
 <script>
-function startLearning(){
-    window.location.href = "japanese/index.html";
-}
-
-function openWhatsApp(){
-    window.open("https://wa.me/94778730530", "_blank");
+function goLang(){
+    // 🔥 FIXED PATH (NO ERROR)
+    window.location.href = "./language.html";
 }
 </script>
 
