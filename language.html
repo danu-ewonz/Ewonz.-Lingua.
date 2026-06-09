@@ -5,10 +5,17 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Language Learning</title>
 
-<!-- NEW FONT -->
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
 
 <style>
+
+/* 🔥 BLOCK COPY FULL SYSTEM */
+*{
+    -webkit-user-select:none;
+    -moz-user-select:none;
+    -ms-user-select:none;
+    user-select:none;
+}
 
 body{
     margin:0;
@@ -19,6 +26,9 @@ body{
     align-items:center;
     height:100vh;
     flex-direction:column;
+
+    /* mobile long press block */
+    -webkit-touch-callout:none;
 }
 
 /* FRAME */
@@ -50,6 +60,7 @@ body{
     linear-gradient(#000 0 0);
     -webkit-mask-composite:xor;
     mask-composite:exclude;
+
     pointer-events:none;
 }
 
@@ -79,14 +90,13 @@ body{
     flex:1;
 }
 
-/* 🔥 BUTTON FONT CHANGED */
+/* BUTTON */
 .btn{
     padding:12px;
     border-radius:10px;
     background:#111;
     color:#fff;
 
-    /* NEW FONT */
     font-family:'Montserrat', sans-serif;
 
     font-size:11px;
@@ -139,6 +149,9 @@ body{
     width:290px;
 }
 
+.popup-box h3{ margin:0; color:#111; }
+.popup-box p{ color:#444; }
+
 .space{ height:10px; }
 
 .countdown{
@@ -162,12 +175,22 @@ body{
     font-weight:700;
     cursor:pointer;
     white-space:nowrap;
+
+    /* 🔥 EXTRA BLOCK */
+    user-select:none;
+    -webkit-user-select:none;
+    -webkit-touch-callout:none;
 }
 
 .center{
     color:#b8860b;
     font-weight:700;
     letter-spacing:1px;
+
+    /* 🔥 EXTRA BLOCK */
+    user-select:none;
+    -webkit-user-select:none;
+    -webkit-touch-callout:none;
 }
 
 /* ANIMATION */
@@ -179,7 +202,7 @@ body{
 </style>
 </head>
 
-<body>
+<body oncontextmenu="return false">
 
 <div class="frame">
 
