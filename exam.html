@@ -3,13 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Japanese Exam</title>
+<title>Exam Page</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600;700&family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600;700&display=swap" rel="stylesheet">
 
 <style>
 
-/* RESET */
 *{
     margin:0;
     padding:0;
@@ -25,7 +24,6 @@ body{
     align-items:center;
     height:100vh;
     flex-direction:column;
-    gap:10px;
 }
 
 /* FRAME */
@@ -47,7 +45,6 @@ body{
     inset:0;
     padding:2px;
     border-radius:20px;
-
     background:linear-gradient(90deg,#b8860b,#ffd700,#b8860b,#8b6508,#ffd700);
     background-size:300% 100%;
     animation:borderMove 3s linear infinite;
@@ -72,23 +69,22 @@ body{
     height:100%;
 }
 
-/* 🔥 TITLE (OLD STYLE WHITE) */
+/* TITLE */
 .title{
     text-align:center;
     font-size:18px;
     font-weight:700;
-    color:#ffffff;   /* WHITE FIX */
+    color:#fff;
     margin-top:18px;
-    letter-spacing:1px;
+    text-transform:uppercase;
 }
 
-/* 🔥 SUB TITLE (CHANGED) */
+/* SUBTITLE */
 .subtitle{
     text-align:center;
     font-size:12px;
     color:#b8860b;
     margin-top:5px;
-    font-weight:600;
     text-transform:uppercase;
 }
 
@@ -103,7 +99,6 @@ body{
 /* BUTTON AREA */
 .grid{
     flex:1;
-    overflow-y:auto;
     display:flex;
     flex-direction:column;
     gap:10px;
@@ -113,41 +108,29 @@ body{
 /* BUTTON */
 .btn{
     padding:15px;
-    border-radius:10px;
     background:#111;
-    color:#fff;
-
-    font-size:13px;
-    font-weight:600;
-
-    display:flex;
-    justify-content:center;
-    align-items:center;
-
     border:2px solid #b8860b;
+    color:#fff;
+    font-weight:600;
+    font-size:13px;
+    text-align:center;
+    border-radius:10px;
     cursor:pointer;
     transition:0.2s;
     text-transform:uppercase;
 }
 
 .btn:active{
-    background:#b8860b;
+    background:#ffd700;
     color:#000;
-    transform:scale(0.98);
+    transform:scale(0.97);
 }
 
-/* SCROLLBAR */
-.grid::-webkit-scrollbar{
-    width:3px;
+.btn:hover{
+    border-color:#ffd700;
 }
 
-.grid::-webkit-scrollbar-thumb{
-    background:#b8860b;
-}
-
-/* =========================
-BOTTOM NAV (NO BORDER LINE)
-========================= */
+/* BOTTOM NAV */
 .bottom-nav{
     width:360px;
     display:flex;
@@ -156,11 +139,9 @@ BOTTOM NAV (NO BORDER LINE)
     padding:8px 10px;
 }
 
-/* 🔥 SIMPLE TEXT (NO BORDER) */
 .nav-btn{
     color:red;
     font-weight:700;
-    font-size:13px;
     cursor:pointer;
 }
 
@@ -168,12 +149,9 @@ BOTTOM NAV (NO BORDER LINE)
     color:#ffd700;
 }
 
-/* CENTER */
 .center{
-    color:#b8860b;
+    color:#ffd700;
     font-weight:700;
-    letter-spacing:1px;
-    font-size:13px;
 }
 
 /* ANIMATION */
@@ -187,26 +165,22 @@ BOTTOM NAV (NO BORDER LINE)
 
 <body>
 
-<!-- FRAME -->
 <div class="frame">
 
 <div class="content">
 
-    <!-- FIXED TITLE -->
-    <div class="title">Japanese Exam</div>
-
-    <!-- FIXED SUBTITLE -->
-    <div class="subtitle">Select Exam</div>
+    <div class="title">EXAM</div>
+    <div class="subtitle">SELECT EXAM TYPE</div>
 
     <div class="line"></div>
 
-    <!-- BUTTONS -->
     <div class="grid">
 
-        <div class="btn">JLPT EXAM</div>
-        <div class="btn">NAT-TEST EXAM</div>
-        <div class="btn">JFT-BASIC EXAM</div>
-        <div class="btn">EXAM FEATURES</div>
+        <!-- 🔥 FIXED LINKS -->
+        <div class="btn" onclick="location.href='jlpt-exam.html'">JLPT EXAM</div>
+        <div class="btn" onclick="location.href='nat-exam.html'">NAT-TEST EXAM</div>
+        <div class="btn" onclick="location.href='jft-exam.html'">JFT-BASIC EXAM</div>
+        <div class="btn" onclick="location.href='exam-features.html'">EXAM FEATURES</div>
 
     </div>
 
@@ -214,7 +188,7 @@ BOTTOM NAV (NO BORDER LINE)
 
 </div>
 
-<!-- OUTSIDE NAV (NO BORDER LINE) -->
+<!-- NAV -->
 <div class="bottom-nav">
 
     <div class="nav-btn" onclick="history.back()">← BACK</div>
