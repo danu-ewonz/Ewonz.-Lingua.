@@ -45,7 +45,7 @@ body::after{
     opacity:0.15;
 }
 
-/* FRAME 3:4 */
+/* FRAME */
 .phone{
     width:360px;
     height:480px;
@@ -56,6 +56,7 @@ body::after{
     display:flex;
     flex-direction:column;
     overflow:hidden;
+    z-index:1;
 }
 
 /* CONTENT */
@@ -87,17 +88,16 @@ body::after{
     font-weight:600;
 }
 
-/* BIG GAP */
+/* GAP */
 .big-gap{
     height:22px;
 }
 
-/* SMALL GAP (IMPORTANT FIX) */
 .gap{
-    height:6px;   /* 🔥 SAME GAP FOR BOTH SECTIONS */
+    height:6px;
 }
 
-/* GOLD */
+/* TEXT COLORS */
 .gold{
     font-size:10px;
     color:#ffd700;
@@ -105,7 +105,6 @@ body::after{
     letter-spacing:1px;
 }
 
-/* TEXT */
 .text{
     font-size:10px;
     color:#aaa;
@@ -118,7 +117,6 @@ body::after{
     color:red;
     font-weight:700;
     cursor:pointer;
-    transition:0.2s;
 }
 
 .contact:hover{
@@ -170,22 +168,22 @@ body::after{
 
     <!-- SPECIAL THANKS -->
     <div class="gold">SPECIAL THANKS</div>
-    <div class="gap"></div> <!-- 🔥 SMALL EQUAL GAP -->
+    <div class="gap"></div>
     <div class="text">JAPANESE - TSUKI SENSEI</div>
 
     <div class="big-gap"></div>
 
     <!-- UI DESIGN -->
     <div class="gold">UI DESIGN & DEVELOPMENT</div>
-    <div class="gap"></div> <!-- 🔥 SAME GAP -->
+    <div class="gap"></div>
     <div class="text">
-        DANU EWONZ - 
+        DANU EWONZ -
         <span class="contact" onclick="openWhatsApp()">CONTACT</span>
     </div>
 
     <div style="flex:1"></div>
 
-    <!-- BUTTON -->
+    <!-- START BUTTON -->
     <div class="card" onclick="goLang()">
         Start Learning Language
     </div>
@@ -196,7 +194,8 @@ body::after{
 
 <script>
 function goLang(){
-    window.location.href = "./language.html";
+    // FIX: correct GitHub Pages safe relative path
+    window.location.href = "language.html";
 }
 
 function openWhatsApp(){
