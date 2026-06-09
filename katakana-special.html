@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+<title>Katakana Special</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600;700&family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+/* BLOCK SYSTEM */
+*{
+    user-select:none;
+    -webkit-user-select:none;
+    -webkit-touch-callout:none;
+    -webkit-tap-highlight-color:transparent;
+}
+
+body{
+    margin:0;
+    background:#0b0b0b;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+    font-family:'Poppins', sans-serif;
+}
+
+/* FRAME */
+.frame{
+    width:360px;
+    height:480px;
+    background:#0a0a0a;
+    border-radius:20px;
+    position:relative;
+    display:flex;
+    flex-direction:column;
+    overflow:hidden;
+}
+
+/* GOLD BORDER ANIMATION */
+.frame::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    padding:2px;
+    border-radius:20px;
+
+    background:linear-gradient(90deg,#b8860b,#ffd700,#b8860b,#8b6508,#ffd700);
+    background-size:300% 100%;
+    animation:shine 3s linear infinite;
+
+    -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+    -webkit-mask-composite:xor;
+    mask-composite:exclude;
+
+    pointer-events:none;
+}
+
+/* TITLE */
+.title{
+    text-align:center;
+    color:#fff;
+    font-size:18px;
+    font-weight:700;
+    margin-top:15px;
+}
+
+/* LINE */
+.line{
+    width:80%;
+    height:2px;
+    margin:8px auto;
+    background:linear-gradient(90deg,transparent,#b8860b,#ffd700,transparent);
+}
+
+/* GRID */
+.grid{
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+    padding:15px;
+    flex:1;
+    overflow-y:auto;
+}
+
+/* BUTTON */
+.btn{
+    padding:12px;
+    background:#111;
+    color:#fff;
+    border-radius:10px;
+
+    font-family:'Montserrat', sans-serif;
+    font-size:12px;
+    font-weight:600;
+
+    text-align:center;
+    text-transform:uppercase;
+    letter-spacing:1px;
+
+    border:2px solid #b8860b;
+    cursor:pointer;
+}
+
+/* TOUCH EFFECT */
+.btn:active{
+    background:#b8860b;
+    color:#000;
+}
+
+/* NAV */
+.bottom-nav{
+    width:100%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:14px;
+    padding:10px 0;
+    border-top:1px solid rgba(255,215,0,0.15);
+}
+
+.nav-text{
+    color:red;
+    font-weight:700;
+    cursor:pointer;
+}
+
+.center{
+    color:#b8860b;
+    font-weight:700;
+}
+
+/* ANIMATION */
+@keyframes shine{
+    0%{background-position:0%;}
+    100%{background-position:200%;}
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="frame">
+
+<div class="title">KATAKANA SPECIAL 🇯🇵</div>
+<div class="line"></div>
+
+<div class="grid">
+
+    <div class="btn" onclick="location.href='katakana-dakuten.html'">
+        Dakuten
+    </div>
+
+    <div class="btn" onclick="location.href='katakana-handakuten.html'">
+        Handakuten
+    </div>
+
+    <div class="btn" onclick="location.href='katakana-yoon.html'">
+        Yōon
+    </div>
+
+    <div class="btn" onclick="location.href='katakana-sokuon.html'">
+        Sokuon
+    </div>
+
+    <div class="btn" onclick="location.href='katakana-choonpu.html'">
+        Chōonpu
+    </div>
+
+</div>
+
+<!-- NAV -->
+<div class="bottom-nav">
+
+    <div class="nav-text" onclick="history.back()">← BACK →</div>
+
+    <div class="center">EWONZ LINGUA</div>
+
+    <div class="nav-text" onclick="location.href='index.html'">→ HOME →</div>
+
+</div>
+
+</div>
+
+</body>
+</html>
