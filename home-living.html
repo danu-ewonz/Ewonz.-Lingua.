@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Home & Living</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    user-select:none;
+}
+
+body{
+    background:#0b0b0b;
+    font-family:Poppins;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+    overflow:hidden;
+}
+
+/* FRAME */
+.frame{
+    width:360px;
+    height:480px;
+    background:#0a0a0a;
+    border-radius:20px;
+    position:relative;
+    overflow:hidden;
+    display:flex;
+    flex-direction:column;
+}
+
+/* BORDER */
+.frame::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    padding:2px;
+    border-radius:20px;
+    background:linear-gradient(90deg,#b8860b,#ffd700,#b8860b,#8b6508,#ffd700);
+    background-size:300% 100%;
+    animation:shine 3s linear infinite;
+
+    -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+    -webkit-mask-composite:xor;
+}
+
+/* TITLE */
+.title{
+    text-align:center;
+    font-size:18px;
+    font-weight:700;
+    color:#fff;
+    margin-top:14px;
+}
+
+.subtitle{
+    text-align:center;
+    font-size:12px;
+    color:#b8860b;
+}
+
+.line{
+    width:80%;
+    height:2px;
+    margin:8px auto;
+    background:linear-gradient(90deg,transparent,#b8860b,#ffd700,transparent);
+}
+
+/* SCROLL */
+.content{
+    position:absolute;
+    top:90px;
+    bottom:70px;
+    left:0;
+    right:0;
+    overflow-y:auto;
+    padding:12px;
+    text-align:center;
+}
+
+/* GROUP */
+.group{
+    color:#ffd700;
+    font-weight:700;
+    font-size:13px;
+    margin:18px 0 10px;
+}
+
+/* CARD */
+.card{
+    background:#111;
+    border:1px solid rgba(184,134,11,0.4);
+    border-radius:10px;
+    padding:10px;
+    margin-bottom:8px;
+}
+
+/* JAPANESE (WHITE) */
+.jp{
+    color:#ffffff;
+    font-weight:700;
+    font-size:14px;
+}
+
+/* ROMAJI (GOLD) */
+.rm{
+    color:#ffd700;
+    font-size:12px;
+    margin-top:2px;
+}
+
+/* SINHALA (GOLD) */
+.si{
+    color:#ffd700;
+    font-size:12px;
+    margin-top:2px;
+}
+
+/* NAV */
+.bottom-nav{
+    position:absolute;
+    bottom:0;
+    left:0;
+    width:100%;
+    height:60px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:0 10px;
+    background:#0a0a0a;
+}
+
+.bottom-nav::before,
+.bottom-nav::after{
+    content:"";
+    position:absolute;
+    left:0;
+    width:100%;
+    height:2px;
+    background:linear-gradient(90deg,transparent,#ffd700,transparent);
+}
+.bottom-nav::before{top:0;}
+.bottom-nav::after{bottom:0;}
+
+.nav-btn{
+    width:60px;
+    text-align:center;
+    color:#ff3b3b;
+    font-weight:700;
+    font-size:12px;
+}
+
+.center{
+    flex:1;
+    text-align:center;
+    color:#ffd700;
+    font-weight:700;
+    font-size:12px;
+}
+
+@keyframes shine{
+    0%{background-position:0%;}
+    100%{background-position:100%;}
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="frame">
+
+<div class="title">Home & Living（住まい）</div>
+<div class="subtitle">ගෙදර සහ ජීවිතය</div>
+
+<div class="line"></div>
+
+<div class="content">
+
+<div class="group">House Basics</div>
+
+<div class="card"><div class="jp">家（いえ）</div><div class="rm">ie</div><div class="si">ගෙදර</div></div>
+<div class="card"><div class="jp">部屋（へや）</div><div class="rm">heya</div><div class="si">කාමරය</div></div>
+<div class="card"><div class="jp">台所（だいどころ）</div><div class="rm">daidokoro</div><div class="si">මුළුතැන්ගෙය</div></div>
+<div class="card"><div class="jp">居間（いま）</div><div class="rm">ima</div><div class="si">විසිත්ත කාමරය</div></div>
+<div class="card"><div class="jp">寝室（しんしつ）</div><div class="rm">shinshitsu</div><div class="si">නිදන කාමරය</div></div>
+<div class="card"><div class="jp">風呂場（ふろば）</div><div class="rm">furoba</div><div class="si">නාන කාමරය</div></div>
+<div class="card"><div class="jp">トイレ（といれ）</div><div class="rm">toire</div><div class="si">වැසිකිළිය</div></div>
+<div class="card"><div class="jp">玄関（げんかん）</div><div class="rm">genkan</div><div class="si">ඇතුල්වීම</div></div>
+
+<div class="card"><div class="jp">庭（にわ）</div><div class="rm">niwa</div><div class="si">උද්‍යානය</div></div>
+<div class="card"><div class="jp">二階（にかい）</div><div class="rm">nikai</div><div class="si">දෙවන මහල</div></div>
+<div class="card"><div class="jp">一階（いっかい）</div><div class="rm">ikkai</div><div class="si">පළමු මහල</div></div>
+<div class="card"><div class="jp">地下（ちか）</div><div class="rm">chika</div><div class="si">පහළ මහල</div></div>
+<div class="card"><div class="jp">屋根（やね）</div><div class="rm">yane</div><div class="si">වහලය</div></div>
+<div class="card"><div class="jp">壁（かべ）</div><div class="rm">kabe</div><div class="si">බිත්තිය</div></div>
+<div class="card"><div class="jp">床（ゆか）</div><div class="rm">yuka</div><div class="si">මහල</div></div>
+<div class="card"><div class="jp">天井（てんじょう）</div><div class="rm">tenjou</div><div class="si">සිවිලින්</div></div>
+<div class="card"><div class="jp">窓（まど）</div><div class="rm">mado</div><div class="si">කවුළුව</div></div>
+<div class="card"><div class="jp">ドア（どあ）</div><div class="rm">doa</div><div class="si">දොර</div></div>
+<div class="card"><div class="jp">階段（かいだん）</div><div class="rm">kaidan</div><div class="si">පඩිපෙළ</div></div>
+<div class="card"><div class="jp">廊下（ろうか）</div><div class="rm">rouka</div><div class="si">කොරීඩෝරය</div></div>
+<div class="card"><div class="jp">ベランダ（べらんだ）</div><div class="rm">beranda</div><div class="si">බැල්කනි</div></div>
+
+<div class="card"><div class="jp">テーブル（てーぶる）</div><div class="rm">teeburu</div><div class="si">මේසය</div></div>
+<div class="card"><div class="jp">椅子（いす）</div><div class="rm">isu</div><div class="si">පුටුව</div></div>
+<div class="card"><div class="jp">ソファ（そふぁ）</div><div class="rm">sofa</div><div class="si">සෝෆා</div></div>
+<div class="card"><div class="jp">ベッド（べっど）</div><div class="rm">beddo</div><div class="si">ඇඳ</div></div>
+<div class="card"><div class="jp">布団（ふとん）</div><div class="rm">futon</div><div class="si">ෆුටන්</div></div>
+<div class="card"><div class="jp">枕（まくら）</div><div class="rm">makura</div><div class="si">කොට්ටය</div></div>
+<div class="card"><div class="jp">毛布（もうふ）</div><div class="rm">moufu</div><div class="si">බ්ලැන්කට්</div></div>
+<div class="card"><div class="jp">タンス（たんす）</div><div class="rm">tansu</div><div class="si">ඇඳුම් අල්මාරිය</div></div>
+<div class="card"><div class="jp">本棚（ほんだな）</div><div class="rm">hondana</div><div class="si">පොත් රාක්කය</div></div>
+
+<div class="card"><div class="jp">冷蔵庫（れいぞうこ）</div><div class="rm">reizouko</div><div class="si">ශීතකරණය</div></div>
+<div class="card"><div class="jp">電子レンジ（でんしれんじ）</div><div class="rm">denshi renji</div><div class="si">මයික්‍රෝවේව්</div></div>
+<div class="card"><div class="jp">洗濯機（せんたくき）</div><div class="rm">sentakuki</div><div class="si">වොෂින් මැෂින්</div></div>
+<div class="card"><div class="jp">掃除機（そうじき）</div><div class="rm">soujiki</div><div class="si">වැකුම් ක්ලීනර්</div></div>
+<div class="card"><div class="jp">エアコン（えあこん）</div><div class="rm">eakon</div><div class="si">එයාර්කන්</div></div>
+<div class="card"><div class="jp">テレビ（てれび）</div><div class="rm">terebi</div><div class="si">රූපවාහිනිය</div></div>
+<div class="card"><div class="jp">電気（でんき）</div><div class="rm">denki</div><div class="si">විදුලිය</div></div>
+<div class="card"><div class="jp">水道（すいどう）</div><div class="rm">suidou</div><div class="si">ජල සැපයුම</div></div>
+<div class="card"><div class="jp">ガス（がす）</div><div class="rm">gasu</div><div class="si">ගෑස්</div></div>
+
+<div class="card"><div class="jp">鍵（かぎ）</div><div class="rm">kagi</div><div class="si">යතුර</div></div>
+<div class="card"><div class="jp">郵便受け（ゆうびんうけ）</div><div class="rm">yuubin'uke</div><div class="si">ලිපි පෙට්ටිය</div></div>
+<div class="card"><div class="jp">ごみ箱（ごみばこ）</div><div class="rm">gomibako</div><div class="si">කසළ බාල්දිය</div></div>
+<div class="card"><div class="jp">カーテン（かーてん）</div><div class="rm">kaaten</div><div class="si">තිර</div></div>
+<div class="card"><div class="jp">時計（とけい）</div><div class="rm">tokei</div><div class="si">ඔරලෝසුව</div></div>
+
+</div>
+
+<!-- NAV -->
+<div class="bottom-nav">
+<div class="nav-btn" onclick="history.back()">BACK</div>
+<div class="center">← EWONZ LINGUA →</div>
+<div class="nav-btn" onclick="location.href='index.html'">HOME</div>
+</div>
+
+</div>
+
+</body>
+  </html>
