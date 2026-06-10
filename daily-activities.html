@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Daily Activities</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    user-select:none;
+}
+
+body{
+    background:#0b0b0b;
+    font-family:Poppins;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+    overflow:hidden;
+}
+
+/* FRAME */
+.frame{
+    width:360px;
+    height:480px;
+    background:#0a0a0a;
+    border-radius:20px;
+    position:relative;
+    overflow:hidden;
+    display:flex;
+    flex-direction:column;
+}
+
+/* BORDER */
+.frame::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    padding:2px;
+    border-radius:20px;
+    background:linear-gradient(90deg,#b8860b,#ffd700,#b8860b,#8b6508,#ffd700);
+    background-size:300% 100%;
+    animation:shine 3s linear infinite;
+
+    -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+    -webkit-mask-composite:xor;
+}
+
+/* TITLE */
+.title{
+    text-align:center;
+    font-size:18px;
+    font-weight:700;
+    color:#fff;
+    margin-top:14px;
+}
+
+.subtitle{
+    text-align:center;
+    font-size:12px;
+    color:#b8860b;
+}
+
+.line{
+    width:80%;
+    height:2px;
+    margin:8px auto;
+    background:linear-gradient(90deg,transparent,#b8860b,#ffd700,transparent);
+}
+
+/* SCROLL FIX */
+.content{
+    position:absolute;
+    top:90px;
+    bottom:70px;
+    left:0;
+    right:0;
+    overflow-y:auto;
+    padding:12px;
+    text-align:center;
+}
+
+/* CARD */
+.card{
+    background:#111;
+    border:1px solid rgba(184,134,11,0.4);
+    border-radius:10px;
+    padding:10px;
+    margin-bottom:8px;
+}
+
+.jp{color:#fff;font-weight:700;font-size:14px;}
+.rm{color:#b8860b;font-size:12px;margin-top:2px;}
+.si{color:#ffcc70;font-size:12px;margin-top:2px;}
+
+.bottom-nav{
+    position:absolute;
+    bottom:0;
+    left:0;
+    width:100%;
+    height:60px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:0 10px;
+    background:#0a0a0a;
+}
+
+.bottom-nav::before,
+.bottom-nav::after{
+    content:"";
+    position:absolute;
+    left:0;
+    width:100%;
+    height:2px;
+    background:linear-gradient(90deg,transparent,#ffd700,transparent);
+}
+.bottom-nav::before{top:0;}
+.bottom-nav::after{bottom:0;}
+
+.nav-btn{
+    width:60px;
+    text-align:center;
+    color:#ff3b3b;
+    font-weight:700;
+    font-size:12px;
+}
+
+.center{
+    flex:1;
+    text-align:center;
+    color:#ffd700;
+    font-weight:700;
+    font-size:12px;
+}
+
+@keyframes shine{
+    0%{background-position:0%;}
+    100%{background-position:100%;}
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="frame">
+
+<div class="title">Daily Activities（毎日の活動）</div>
+<div class="subtitle">දෛනික ක්‍රියාකාරකම්</div>
+
+<div class="line"></div>
+
+<div class="content">
+
+<!-- 1–50 FULL LIST -->
+
+<div class="card"><div class="jp">起きる（おきる）</div><div class="rm">okiru</div><div class="si">ඇහැරෙන්න</div></div>
+<div class="card"><div class="jp">寝る（ねる）</div><div class="rm">neru</div><div class="si">නිදාගන්න</div></div>
+<div class="card"><div class="jp">目覚める（めざめる）</div><div class="rm">mezameru</div><div class="si">ස්වභාවිකව ඇහැරෙන්න</div></div>
+<div class="card"><div class="jp">歯を磨く（はをみがく）</div><div class="rm">ha o migaku</div><div class="si">දත් මදින්න</div></div>
+<div class="card"><div class="jp">顔を洗う（かおをあらう）</div><div class="rm">kao o arau</div><div class="si">මුහුණ සෝදන්න</div></div>
+
+<div class="card"><div class="jp">ひげを剃る（ひげをそる）</div><div class="rm">hige o soru</div><div class="si">රැවුල කපන්න</div></div>
+<div class="card"><div class="jp">化粧する（けしょうする）</div><div class="rm">keshou suru</div><div class="si">මේකප් කරන්න</div></div>
+<div class="card"><div class="jp">シャワーを浴びる（しゃわーをあびる）</div><div class="rm">shawaa o abiru</div><div class="si">නාන්න</div></div>
+<div class="card"><div class="jp">風呂に入る（ふろにはいる）</div><div class="rm">furo ni hairu</div><div class="si">බාත් ගන්න</div></div>
+<div class="card"><div class="jp">髪をとかす（かみをとかす）</div><div class="rm">kami o tokasu</div><div class="si">කෙස් අදින්න</div></div>
+
+<div class="card"><div class="jp">服を着る（ふくをきる）</div><div class="rm">fuku o kiru</div><div class="si">ඇඳුම් ඇඳගන්න</div></div>
+<div class="card"><div class="jp">服を脱ぐ（ふくをぬぐ）</div><div class="rm">fuku o nugu</div><div class="si">ඇඳුම් ගලවන්න</div></div>
+<div class="card"><div class="jp">靴を履く（くつをはく）</div><div class="rm">kutsu o haku</div><div class="si">සපත්තු දාන්න</div></div>
+
+<div class="card"><div class="jp">朝ご飯を食べる（あさごはんをたべる）</div><div class="rm">asagohan o taberu</div><div class="si">උදේ කෑම කන්න</div></div>
+<div class="card"><div class="jp">昼ご飯を食べる（ひるごはんをたべる）</div><div class="rm">hirugohan o taberu</div><div class="si">දවල් කෑම කන්න</div></div>
+<div class="card"><div class="jp">晩ご飯を食べる（ばんごはんをたべる）</div><div class="rm">bangohan o taberu</div><div class="si">රෑ කෑම කන්න</div></div>
+<div class="card"><div class="jp">おやつを食べる（おやつをたべる）</div><div class="rm">oyatsu o taberu</div><div class="si">ස්නැක් කන්න</div></div>
+
+<div class="card"><div class="jp">コーヒーを飲む（こーひーをのむ）</div><div class="rm">koohii o nomu</div><div class="si">කෝපි බොන්න</div></div>
+<div class="card"><div class="jp">料理する（りょうりする）</div><div class="rm">ryouri suru</div><div class="si">ඉවුම් පිහුම්</div></div>
+<div class="card"><div class="jp">皿を洗う（さらをあらう）</div><div class="rm">sara o arau</div><div class="si">පිඟන් සෝදන්න</div></div>
+<div class="card"><div class="jp">掃除する（そうじする）</div><div class="rm">souji suru</div><div class="si">පිරිසිදු කරන්න</div></div>
+<div class="card"><div class="jp">洗濯する（せんたくする）</div><div class="rm">sentaku suru</div><div class="si">රෙදි සෝදන්න</div></div>
+
+<div class="card"><div class="jp">洗濯物を干す（せんたくものをほす）</div><div class="rm">sentakumono o hosu</div><div class="si">රෙදි වේලන්න</div></div>
+<div class="card"><div class="jp">アイロンをかける（あいろんをかける）</div><div class="rm">airon o kakeru</div><div class="si">අයන් කරන්න</div></div>
+<div class="card"><div class="jp">ゴミを出す（ごみをだす）</div><div class="rm">gomi o dasu</div><div class="si">කුණු දමන්න</div></div>
+<div class="card"><div class="jp">部屋を片付ける（へやをかたづける）</div><div class="rm">heya o katazukeru</div><div class="si">කාමරය සෙට් කරන්න</div></div>
+<div class="card"><div class="jp">買い物する（かいものする）</div><div class="rm">kaimono suru</div><div class="si">සාප්පු යන්න</div></div>
+
+<div class="card"><div class="jp">仕事する（しごとする）</div><div class="rm">shigoto suru</div><div class="si">වැඩ කරන්න</div></div>
+<div class="card"><div class="jp">勉強する（べんきょうする）</div><div class="rm">benkyou suru</div><div class="si">ඉගෙන ගන්න</div></div>
+<div class="card"><div class="jp">学校へ行く（がっこうへいく）</div><div class="rm">gakkou e iku</div><div class="si">පාසල් යන්න</div></div>
+<div class="card"><div class="jp">会社へ行く（かいしゃへいく）</div><div class="rm">kaisha e iku</div><div class="si">කාර්යාලයට යන්න</div></div>
+<div class="card"><div class="jp">通勤する（つうきんする）</div><div class="rm">tsuukin suru</div><div class="si">වැඩට යන්න</div></div>
+
+<div class="card"><div class="jp">帰る（かえる）</div><div class="rm">kaeru</div><div class="si">ගෙදර යන්න</div></div>
+<div class="card"><div class="jp">電車に乗る（でんしゃにのる）</div><div class="rm">densha ni noru</div><div class="si">දුම්රියෙන් යන්න</div></div>
+<div class="card"><div class="jp">バスに乗る（ばすにのる）</div><div class="rm">basu ni noru</div><div class="si">බස් එකෙන් යන්න</div></div>
+<div class="card"><div class="jp">運転する（うんてんする）</div><div class="rm">unten suru</div><div class="si">කාර් ධාවනය</div></div>
+<div class="card"><div class="jp">歩く（あるく）</div><div class="rm">aruku</div><div class="si">ඇවිදින්න</div></div>
+
+<div class="card"><div class="jp">散歩する（さんぽする）</div><div class="rm">sanpo suru</div><div class="si">විනෝද ඇවිදීම</div></div>
+<div class="card"><div class="jp">運動する（うんどうする）</div><div class="rm">undou suru</div><div class="si">ව්‍යායාම කරන්න</div></div>
+<div class="card"><div class="jp">ジョギングする（じょぎんぐする）</div><div class="rm">jogingu suru</div><div class="si">ජොගින්</div></div>
+
+<div class="card"><div class="jp">電話する（でんわする）</div><div class="rm">denwa suru</div><div class="si">දුරකථන කරන්න</div></div>
+<div class="card"><div class="jp">メールを送る（めーるをおくる）</div><div class="rm">meeru o okuru</div><div class="si">ඊමේල් යවන්න</div></div>
+<div class="card"><div class="jp">パソコンを使う（ぱそこんをつかう）</div><div class="rm">pasokon o tsukau</div><div class="si">පරිගණක භාවිතය</div></div>
+<div class="card"><div class="jp">スマホを見る（すまほをみる）</div><div class="rm">sumaho o miru</div><div class="si">ෆෝන් බලන්න</div></div>
+<div class="card"><div class="jp">テレビを見る（てれびをみる）</div><div class="rm">terebi o miru</div><div class="si">TV බලන්න</div></div>
+
+<div class="card"><div class="jp">音楽を聞く（おんがくをきく）</div><div class="rm">ongaku o kiku</div><div class="si">සංගීත අහන්න</div></div>
+<div class="card"><div class="jp">本を読む（ほんをよむ）</div><div class="rm">hon o yomu</div><div class="si">පොත් කියවන්න</div></div>
+<div class="card"><div class="jp">新聞を読む（しんぶんをよむ）</div><div class="rm">shinbun o yomu</div><div class="si">පුවත්පත් කියවන්න</div></div>
+<div class="card"><div class="jp">友達に会う（ともだちにあう）</div><div class="rm">tomodachi ni au</div><div class="si">මිතුරන් හමුවන්න</div></div>
+<div class="card"><div class="jp">休む（やすむ）</div><div class="rm">yasumu</div><div class="si">විවේක ගන්න</div></div>
+
+</div>
+
+<div class="bottom-nav">
+<div class="nav-btn" onclick="history.back()">BACK</div>
+<div class="center">← EWONZ LINGUA →</div>
+<div class="nav-btn" onclick="location.href='index.html'">HOME</div>
+</div>
+
+</div>
+
+</body>
+  </html>
