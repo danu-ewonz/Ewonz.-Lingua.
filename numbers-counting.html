@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Numbers & Counting</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    user-select:none;
+}
+
+body{
+    background:#0b0b0b;
+    font-family:Poppins;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+    overflow:hidden;
+}
+
+/* FRAME */
+.frame{
+    width:360px;
+    height:480px;
+    background:#0a0a0a;
+    border-radius:20px;
+    position:relative;
+    overflow:hidden;
+    display:flex;
+    flex-direction:column;
+}
+
+/* BORDER */
+.frame::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    padding:2px;
+    border-radius:20px;
+    background:linear-gradient(90deg,#b8860b,#ffd700,#b8860b,#8b6508,#ffd700);
+    background-size:300% 100%;
+    animation:shine 3s linear infinite;
+
+    -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+    -webkit-mask-composite:xor;
+}
+
+/* TITLE */
+.title{
+    text-align:center;
+    font-size:18px;
+    font-weight:700;
+    color:#fff;
+    margin-top:14px;
+}
+
+.subtitle{
+    text-align:center;
+    font-size:12px;
+    color:#b8860b;
+}
+
+.line{
+    width:80%;
+    height:2px;
+    margin:8px auto;
+    background:linear-gradient(90deg,transparent,#b8860b,#ffd700,transparent);
+}
+
+/* SCROLL */
+.content{
+    position:absolute;
+    top:90px;
+    bottom:70px;
+    left:0;
+    right:0;
+    overflow-y:auto;
+    padding:12px;
+    text-align:center;
+}
+
+/* CARD */
+.card{
+    background:#111;
+    border:1px solid rgba(184,134,11,0.4);
+    border-radius:10px;
+    padding:10px;
+    margin-bottom:8px;
+}
+
+.jp{color:#fff;font-weight:700;font-size:14px;}
+.rm{color:#b8860b;font-size:12px;margin-top:2px;}
+.si{color:#ffcc70;font-size:12px;margin-top:2px;}
+
+.bottom-nav{
+    position:absolute;
+    bottom:0;
+    left:0;
+    width:100%;
+    height:60px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:0 10px;
+    background:#0a0a0a;
+}
+
+.bottom-nav::before,
+.bottom-nav::after{
+    content:"";
+    position:absolute;
+    left:0;
+    width:100%;
+    height:2px;
+    background:linear-gradient(90deg,transparent,#ffd700,transparent);
+}
+.bottom-nav::before{top:0;}
+.bottom-nav::after{bottom:0;}
+
+.nav-btn{
+    width:60px;
+    text-align:center;
+    color:#ff3b3b;
+    font-weight:700;
+    font-size:12px;
+}
+
+.center{
+    flex:1;
+    text-align:center;
+    color:#ffd700;
+    font-weight:700;
+    font-size:12px;
+}
+
+@keyframes shine{
+    0%{background-position:0%;}
+    100%{background-position:100%;}
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="frame">
+
+<div class="title">Numbers & Counting（数字）</div>
+<div class="subtitle">සංඛ්‍යා සහ ගණන් කිරීම</div>
+
+<div class="line"></div>
+
+<div class="content">
+
+<!-- 50 ITEMS -->
+
+<div class="card"><div class="jp">零 / ゼロ（れい）</div><div class="rm">rei / zero</div><div class="si">ශූන්‍ය</div></div>
+<div class="card"><div class="jp">一（いち）</div><div class="rm">ichi</div><div class="si">එක</div></div>
+<div class="card"><div class="jp">二（に）</div><div class="rm">ni</div><div class="si">දෙක</div></div>
+<div class="card"><div class="jp">三（さん）</div><div class="rm">san</div><div class="si">තුන</div></div>
+<div class="card"><div class="jp">四（よん）</div><div class="rm">yon</div><div class="si">හතර</div></div>
+
+<div class="card"><div class="jp">五（ご）</div><div class="rm">go</div><div class="si">පහ</div></div>
+<div class="card"><div class="jp">六（ろく）</div><div class="rm">roku</div><div class="si">හය</div></div>
+<div class="card"><div class="jp">七（なな）</div><div class="rm">nana</div><div class="si">හත</div></div>
+<div class="card"><div class="jp">八（はち）</div><div class="rm">hachi</div><div class="si">අට</div></div>
+<div class="card"><div class="jp">九（きゅう）</div><div class="rm">kyuu</div><div class="si">නවය</div></div>
+
+<div class="card"><div class="jp">十（じゅう）</div><div class="rm">juu</div><div class="si">දහය</div></div>
+<div class="card"><div class="jp">十一（じゅういち）</div><div class="rm">juuichi</div><div class="si">11</div></div>
+<div class="card"><div class="jp">十二（じゅうに）</div><div class="rm">juuni</div><div class="si">12</div></div>
+<div class="card"><div class="jp">二十（にじゅう）</div><div class="rm">nijuu</div><div class="si">20</div></div>
+<div class="card"><div class="jp">三十（さんじゅう）</div><div class="rm">sanjuu</div><div class="si">30</div></div>
+
+<div class="card"><div class="jp">四十（よんじゅう）</div><div class="rm">yonjuu</div><div class="si">40</div></div>
+<div class="card"><div class="jp">五十（ごじゅう）</div><div class="rm">gojuu</div><div class="si">50</div></div>
+<div class="card"><div class="jp">六十（ろくじゅう）</div><div class="rm">rokujuu</div><div class="si">60</div></div>
+<div class="card"><div class="jp">七十（ななじゅう）</div><div class="rm">nanajuu</div><div class="si">70</div></div>
+<div class="card"><div class="jp">八十（はちじゅう）</div><div class="rm">hachijuu</div><div class="si">80</div></div>
+
+<div class="card"><div class="jp">九十（きゅうじゅう）</div><div class="rm">kyuujuu</div><div class="si">90</div></div>
+<div class="card"><div class="jp">百（ひゃく）</div><div class="rm">hyaku</div><div class="si">100</div></div>
+<div class="card"><div class="jp">二百（にひゃく）</div><div class="rm">nihyaku</div><div class="si">200</div></div>
+<div class="card"><div class="jp">三百（さんびゃく）</div><div class="rm">sanbyaku</div><div class="si">300</div></div>
+<div class="card"><div class="jp">六百（ろっぴゃく）</div><div class="rm">roppyaku</div><div class="si">600</div></div>
+
+<div class="card"><div class="jp">八百（はっぴゃく）</div><div class="rm">happyaku</div><div class="si">800</div></div>
+<div class="card"><div class="jp">千（せん）</div><div class="rm">sen</div><div class="si">1000</div></div>
+<div class="card"><div class="jp">三千（さんぜん）</div><div class="rm">sanzen</div><div class="si">3000</div></div>
+<div class="card"><div class="jp">八千（はっせん）</div><div class="rm">hassen</div><div class="si">8000</div></div>
+<div class="card"><div class="jp">一万（いちまん）</div><div class="rm">ichiman</div><div class="si">10,000</div></div>
+
+<div class="card"><div class="jp">十万（じゅうまん）</div><div class="rm">juuman</div><div class="si">100,000</div></div>
+<div class="card"><div class="jp">百万（ひゃくまん）</div><div class="rm">hyakuman</div><div class="si">1,000,000</div></div>
+<div class="card"><div class="jp">千万（せんまん）</div><div class="rm">senman</div><div class="si">10,000,000</div></div>
+<div class="card"><div class="jp">一億（いちおく）</div><div class="rm">ichioku</div><div class="si">100,000,000</div></div>
+
+<div class="card"><div class="jp">一つ（ひとつ）</div><div class="rm">hitotsu</div><div class="si">එකක්</div></div>
+<div class="card"><div class="jp">二つ（ふたつ）</div><div class="rm">futatsu</div><div class="si">දෙකක්</div></div>
+<div class="card"><div class="jp">三つ（みっつ）</div><div class="rm">mittsu</div><div class="si">තුනක්</div></div>
+<div class="card"><div class="jp">四つ（よっつ）</div><div class="rm">yottsu</div><div class="si">හතරක්</div></div>
+<div class="card"><div class="jp">五つ（いつつ）</div><div class="rm">itsutsu</div><div class="si">පහක්</div></div>
+
+<div class="card"><div class="jp">六つ（むっつ）</div><div class="rm">muttsu</div><div class="si">හයක්</div></div>
+<div class="card"><div class="jp">七つ（ななつ）</div><div class="rm">nanatsu</div><div class="si">හතක්</div></div>
+<div class="card"><div class="jp">八つ（やっつ）</div><div class="rm">yattsu</div><div class="si">අටක්</div></div>
+<div class="card"><div class="jp">九つ（ここのつ）</div><div class="rm">kokonotsu</div><div class="si">නවයක්</div></div>
+<div class="card"><div class="jp">十（とお）</div><div class="rm">too</div><div class="si">දහයක්</div></div>
+
+</div>
+
+<div class="bottom-nav">
+<div class="nav-btn" onclick="history.back()">BACK</div>
+<div class="center">← EWONZ LINGUA →</div>
+<div class="nav-btn" onclick="location.href='index.html'">HOME</div>
+</div>
+
+</div>
+
+</body>
+  </html>
