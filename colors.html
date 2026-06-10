@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Colors</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    user-select:none;
+}
+
+body{
+    background:#0b0b0b;
+    font-family:Poppins;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+    overflow:hidden;
+}
+
+/* FRAME */
+.frame{
+    width:360px;
+    height:480px;
+    background:#0a0a0a;
+    border-radius:20px;
+    position:relative;
+    overflow:hidden;
+    display:flex;
+    flex-direction:column;
+}
+
+/* BORDER */
+.frame::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    padding:2px;
+    border-radius:20px;
+    background:linear-gradient(90deg,#b8860b,#ffd700,#b8860b,#8b6508,#ffd700);
+    background-size:300% 100%;
+    animation:shine 3s linear infinite;
+
+    -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+    -webkit-mask-composite:xor;
+}
+
+/* TITLE */
+.title{
+    text-align:center;
+    font-size:18px;
+    font-weight:700;
+    color:#fff;
+    margin-top:14px;
+}
+
+.subtitle{
+    text-align:center;
+    font-size:12px;
+    color:#b8860b;
+}
+
+.line{
+    width:80%;
+    height:2px;
+    margin:8px auto;
+    background:linear-gradient(90deg,transparent,#b8860b,#ffd700,transparent);
+}
+
+/* SCROLL */
+.content{
+    position:absolute;
+    top:90px;
+    bottom:70px;
+    left:0;
+    right:0;
+    overflow-y:auto;
+    padding:12px;
+    text-align:center;
+}
+
+/* CARD */
+.card{
+    background:#111;
+    border:1px solid rgba(184,134,11,0.4);
+    border-radius:10px;
+    padding:10px;
+    margin-bottom:8px;
+}
+
+.jp{
+    color:#fff;
+    font-weight:700;
+    font-size:14px;
+}
+
+.rm{
+    color:#b8860b;
+    font-size:12px;
+    margin-top:2px;
+}
+
+.si{
+    color:#ffcc70;
+    font-size:12px;
+    margin-top:2px;
+}
+
+/* NAV */
+.bottom-nav{
+    position:absolute;
+    bottom:0;
+    left:0;
+    width:100%;
+    height:60px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:0 10px;
+    background:#0a0a0a;
+}
+
+.bottom-nav::before,
+.bottom-nav::after{
+    content:"";
+    position:absolute;
+    left:0;
+    width:100%;
+    height:2px;
+    background:linear-gradient(90deg,transparent,#ffd700,transparent);
+}
+
+.bottom-nav::before{top:0;}
+.bottom-nav::after{bottom:0;}
+
+.nav-btn{
+    width:60px;
+    text-align:center;
+    color:#ff3b3b;
+    font-weight:700;
+    font-size:12px;
+}
+
+.center{
+    flex:1;
+    text-align:center;
+    color:#ffd700;
+    font-weight:700;
+    font-size:12px;
+}
+
+@keyframes shine{
+    0%{background-position:0%;}
+    100%{background-position:100%;}
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="frame">
+
+<div class="title">Colors（色）</div>
+<div class="subtitle">වර්ණ සහ පාට</div>
+
+<div class="line"></div>
+
+<div class="content">
+
+<div class="card"><div class="jp">色（いろ）</div><div class="rm">iro</div><div class="si">වර්ණය</div></div>
+<div class="card"><div class="jp">赤（あか）</div><div class="rm">aka</div><div class="si">රතු</div></div>
+<div class="card"><div class="jp">青（あお）</div><div class="rm">ao</div><div class="si">නිල්</div></div>
+<div class="card"><div class="jp">黄色（きいろ）</div><div class="rm">kiiro</div><div class="si">කහ</div></div>
+<div class="card"><div class="jp">緑（みどり）</div><div class="rm">midori</div><div class="si">කොළ</div></div>
+
+<div class="card"><div class="jp">黒（くろ）</div><div class="rm">kuro</div><div class="si">කළු</div></div>
+<div class="card"><div class="jp">白（しろ）</div><div class="rm">shiro</div><div class="si">සුදු</div></div>
+<div class="card"><div class="jp">茶色（ちゃいろ）</div><div class="rm">chairo</div><div class="si">දුඹුරු</div></div>
+<div class="card"><div class="jp">オレンジ（おれんじ）</div><div class="rm">orenji</div><div class="si">තැඹිලි</div></div>
+<div class="card"><div class="jp">紫（むらさき）</div><div class="rm">murasaki</div><div class="si">දම්</div></div>
+
+<div class="card"><div class="jp">ピンク（ぴんく）</div><div class="rm">pinku</div><div class="si">පිංක්</div></div>
+<div class="card"><div class="jp">グレー（ぐれー）</div><div class="rm">guree</div><div class="si">අළු</div></div>
+<div class="card"><div class="jp">水色（みずいろ）</div><div class="rm">mizuiro</div><div class="si">ලා නිල්</div></div>
+<div class="card"><div class="jp">紺色（こんいろ）</div><div class="rm">kon'iro</div><div class="si">ගැඹුරු නිල්</div></div>
+<div class="card"><div class="jp">金色（きんいろ）</div><div class="rm">kin'iro</div><div class="si">රන්වන්</div></div>
+
+<div class="card"><div class="jp">銀色（ぎんいろ）</div><div class="rm">gin'iro</div><div class="si">රිදී</div></div>
+<div class="card"><div class="jp">ベージュ（べーじゅ）</div><div class="rm">beeju</div><div class="si">ලා දුඹුරු</div></div>
+<div class="card"><div class="jp">黄緑（きみどり）</div><div class="rm">kimidori</div><div class="si">කහ-කොළ</div></div>
+<div class="card"><div class="jp">空色（そらいろ）</div><div class="rm">sorairo</div><div class="si">අහස් නිල්</div></div>
+<div class="card"><div class="jp">藍色（あいいろ）</div><div class="rm">ai'iro</div><div class="si">ඉන්ඩිගෝ</div></div>
+
+<div class="card"><div class="jp">朱色（しゅいろ）</div><div class="rm">shuiro</div><div class="si">තද රතු</div></div>
+<div class="card"><div class="jp">桃色（ももいろ）</div><div class="rm">momoiro</div><div class="si">පීච් රෝස</div></div>
+<div class="card"><div class="jp">灰色（はいいろ）</div><div class="rm">haiiro</div><div class="si">අළු පාට</div></div>
+<div class="card"><div class="jp">薄い（うすい）</div><div class="rm">usui</div><div class="si">ලා පාට</div></div>
+<div class="card"><div class="jp">濃い（こい）</div><div class="rm">koi</div><div class="si">ගැඹුරු පාට</div></div>
+
+<div class="card"><div class="jp">明るい（あかるい）</div><div class="rm">akarui</div><div class="si">දීප්තිමත්</div></div>
+<div class="card"><div class="jp">暗い（くらい）</div><div class="rm">kurai</div><div class="si">අඳුරු</div></div>
+
+</div>
+
+<div class="bottom-nav">
+<div class="nav-btn" onclick="history.back()">BACK</div>
+<div class="center">← EWONZ LINGUA →</div>
+<div class="nav-btn" onclick="location.href='index.html'">HOME</div>
+</div>
+
+</div>
+
+</body>
+</html>
