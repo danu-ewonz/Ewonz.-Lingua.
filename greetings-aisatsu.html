@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+<title>Basic Aisatsu</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    user-select:none;
+    -webkit-user-select:none;
+    -webkit-tap-highlight-color:transparent;
+}
+
+body{
+    background:#0b0b0b;
+    font-family:Poppins;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+    flex-direction:column;
+}
+
+/* FRAME */
+.frame{
+    width:360px;
+    height:480px;
+    background:#0a0a0a;
+    border-radius:20px;
+    position:relative;
+    overflow:hidden;
+    display:flex;
+    flex-direction:column;
+}
+
+/* GOLD BORDER */
+.frame::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    padding:2px;
+    border-radius:20px;
+    background:linear-gradient(90deg,#b8860b,#ffd700,#b8860b,#8b6508,#ffd700);
+    background-size:300% 100%;
+    animation:shine 3s linear infinite;
+
+    -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+    -webkit-mask-composite:xor;
+    mask-composite:exclude;
+
+    pointer-events:none;
+}
+
+/* TITLE */
+.title{
+    text-align:center;
+    font-size:18px;
+    font-weight:700;
+    color:#fff;
+    margin-top:16px;
+}
+
+/* SUBTITLE */
+.subtitle{
+    text-align:center;
+    font-size:12px;
+    font-weight:600;
+    color:#b8860b;
+    margin-top:6px;
+}
+
+/* LINE */
+.line{
+    width:80%;
+    height:2px;
+    margin:10px auto;
+    background:linear-gradient(90deg,transparent,#b8860b,#ffd700,transparent);
+}
+
+/* CONTENT */
+.content{
+    flex:1;
+    overflow-y:auto;
+    padding:12px;
+}
+
+/* BOX */
+.box{
+    background:#111;
+    border:1px solid rgba(184,134,11,0.5);
+    border-radius:12px;
+    padding:12px;
+    margin-bottom:10px;
+    text-align:center;
+}
+
+/* TEXT */
+.jp{
+    font-size:20px;
+    font-weight:700;
+    color:#fff;
+}
+
+.rm{
+    font-size:12px;
+    color:#b8860b;
+    margin-top:3px;
+}
+
+.en{
+    font-size:12px;
+    color:#ccc;
+    margin-top:3px;
+}
+
+.si{
+    font-size:12px;
+    color:#ffcc70;
+    margin-top:2px;
+}
+
+/* ANIMATION */
+@keyframes shine{
+    0%{background-position:0%;}
+    100%{background-position:100%;}
+}
+
+/* NAV */
+.bottom-nav{
+    width:360px;
+    height:55px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:0 15px;
+    margin-top:10px;
+    background:#0a0a0a;
+    border:1px solid rgba(255,215,0,0.15);
+    border-radius:12px;
+}
+
+.nav-btn{
+    flex:1;
+    text-align:center;
+    color:#ff3b3b;
+    font-weight:700;
+    font-size:13px;
+    cursor:pointer;
+}
+
+.center{
+    flex:1;
+    text-align:center;
+    color:#ffd700;
+    font-weight:700;
+    font-size:12px;
+}
+
+.nav-btn:active{
+    transform:scale(0.95);
+    color:#ffd700;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="frame">
+
+<div class="title">BASIC AISATSU (あいさつ)</div>
+<div class="subtitle">ආචාර විදි සහ ආචාර ක්‍රම</div>
+
+<div class="line"></div>
+
+<div class="content">
+
+    <div class="box">
+        <div class="jp">おはよう</div>
+        <div class="rm">Ohayou</div>
+        <div class="en">Good morning (casual)</div>
+        <div class="si">සුබ උදෑසනක්</div>
+    </div>
+
+    <div class="box">
+        <div class="jp">おはようございます</div>
+        <div class="rm">Ohayou gozaimasu</div>
+        <div class="en">Good morning (polite)</div>
+        <div class="si">සුබ උදෑසනක් (ගෞරවයෙන්)</div>
+    </div>
+
+    <div class="box">
+        <div class="jp">こんにちは</div>
+        <div class="rm">Konnichiwa</div>
+        <div class="en">Good afternoon</div>
+        <div class="si">ආයුබෝවන්</div>
+    </div>
+
+    <div class="box">
+        <div class="jp">こんばんは</div>
+        <div class="rm">Konbanwa</div>
+        <div class="en">Good evening</div>
+        <div class="si">සුබ සන්ධ්‍යාවක්</div>
+    </div>
+
+    <div class="box">
+        <div class="jp">お久しぶりです</div>
+        <div class="rm">Ohisashiburi desu</div>
+        <div class="en">Long time no see</div>
+        <div class="si">කාලෙකින් හමුවෙන්න</div>
+    </div>
+
+    <div class="box">
+        <div class="jp">はじめまして</div>
+        <div class="rm">Hajimemashite</div>
+        <div class="en">Nice to meet you</div>
+        <div class="si">පළමු හමුවීම</div>
+    </div>
+
+    <div class="box">
+        <div class="jp">いってきます</div>
+        <div class="rm">Ittekimasu</div>
+        <div class="en">I’m leaving</div>
+        <div class="si">මම යනවා</div>
+    </div>
+
+    <div class="box">
+        <div class="jp">いってらっしゃい</div>
+        <div class="rm">Itterasshai</div>
+        <div class="en">Take care</div>
+        <div class="si">පරිස්සමින් යන්න</div>
+    </div>
+
+    <div class="box">
+        <div class="jp">ただいま</div>
+        <div class="rm">Tadaima</div>
+        <div class="en">I’m home</div>
+        <div class="si">මම ආවා</div>
+    </div>
+
+    <div class="box">
+        <div class="jp">おかえりなさい</div>
+        <div class="rm">Okaerinasai</div>
+        <div class="en">Welcome back</div>
+        <div class="si">ආවද</div>
+    </div>
+
+    <div class="box">
+        <div class="jp">ありがとう</div>
+        <div class="rm">Arigatou</div>
+        <div class="en">Thanks</div>
+        <div class="si">ස්තුතියි</div>
+    </div>
+
+    <div class="box">
+        <div class="jp">ありがとうございます</div>
+        <div class="rm">Arigatou gozaimasu</div>
+        <div class="en">Thank you (polite)</div>
+        <div class="si">බොහෝම ස්තුතියි</div>
+    </div>
+
+    <div class="box">
+        <div class="jp">すみません</div>
+        <div class="rm">Sumimasen</div>
+        <div class="en">Sorry / Excuse me</div>
+        <div class="si">සමාවෙන්න</div>
+    </div>
+
+    <div class="box">
+        <div class="jp">ごめんなさい</div>
+        <div class="rm">Gomen nasai</div>
+        <div class="en">Sorry</div>
+        <div class="si">සමාවෙන්න (casual)</div>
+    </div>
+
+    <div class="box">
+        <div class="jp">どういたしまして</div>
+        <div class="rm">Dou itashimashite</div>
+        <div class="en">You’re welcome</div>
+        <div class="si">කමක් නෑ</div>
+    </div>
+
+    <div class="box">
+        <div class="jp">いただきます</div>
+        <div class="rm">Itadakimasu</div>
+        <div class="en">Before eating</div>
+        <div class="si">කන්න පටන් ගන්න කලින්</div>
+    </div>
+
+    <div class="box">
+        <div class="jp">ごちそうさまでした</div>
+        <div class="rm">Gochisousama deshita</div>
+        <div class="en">After eating</div>
+        <div class="si">කාලා ඉවරයි</div>
+    </div>
+
+    <div class="box">
+        <div class="jp">お疲れ様です</div>
+        <div class="rm">Otsukaresama desu</div>
+        <div class="en">Good job / Thanks for hard work</div>
+        <div class="si">කොච්චර මහන්සි වුනත් ස්තුතියි</div>
+    </div>
+
+    <div class="box">
+        <div class="jp">おやすみ</div>
+        <div class="rm">Oyasumi</div>
+        <div class="en">Good night (casual)</div>
+        <div class="si">සුබ රාත්‍රියක්</div>
+    </div>
+
+    <div class="box">
+        <div class="jp">おやすみなさい</div>
+        <div class="rm">Oyasuminasai</div>
+        <div class="en">Good night (polite)</div>
+        <div class="si">සුබ රාත්‍රියක් (ගෞරවයෙන්)</div>
+    </div>
+
+    <div class="box">
+        <div class="jp">さようなら</div>
+        <div class="rm">Sayounara</div>
+        <div class="en">Goodbye</div>
+        <div class="si">ගිහින් එන්නම්</div>
+    </div>
+
+    <div class="box">
+        <div class="jp">またね</div>
+        <div class="rm">Mata ne</div>
+        <div class="en">See you</div>
+        <div class="si">පසුව හමුවෙමු</div>
+    </div>
+
+    <div class="box">
+        <div class="jp">じゃあね</div>
+        <div class="rm">Jaa ne</div>
+        <div class="en">Bye</div>
+        <div class="si">බායි</div>
+    </div>
+
+    <div class="box">
+        <div class="jp">失礼します</div>
+        <div class="rm">Shitsurei shimasu</div>
+        <div class="en">Excuse me (leaving/entering)</div>
+        <div class="si">සමාවෙන්න (ඇතුල්/බැහැර වීමේදී)</div>
+    </div>
+
+</div>
+
+</div>
+
+<!-- NAV -->
+<div class="bottom-nav">
+
+<div class="nav-btn" onclick="history.back()">← BACK</div>
+
+<div class="center">EWONZ LINGUA</div>
+
+<div class="nav-btn" onclick="location.href='index.html'">HOME →</div>
+
+</div>
+
+</body>
+          </html>
