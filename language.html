@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Language  Learning</title>
+<title>Language Learning</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
 
@@ -11,35 +11,47 @@
 
 /* RESET */
 *{
-    -webkit-user-select:none;
-    -moz-user-select:none;
-    -ms-user-select:none;
     user-select:none;
+    -webkit-user-select:none;
     -webkit-touch-callout:none;
 }
 
+/* ================= OUTER BACKGROUND ================= */
 body{
     margin:0;
     font-family:'Poppins', sans-serif;
-    background:#0b0b0b;
+
+    background:url("file_00000000e7ec72079aae777de1d0cd37.png") no-repeat center center;
+    background-size:cover;
+
     display:flex;
     justify-content:center;
     align-items:center;
     height:100vh;
     flex-direction:column;
-    gap:10px;
 }
 
-/* FRAME */
+/* FRAME (3:4 BOX) */
 .frame{
     width:360px;
     height:480px;
     border-radius:20px;
-    background:#0a0a0a;
     position:relative;
     overflow:hidden;
     display:flex;
     flex-direction:column;
+
+    background:url("1781112369362_edit_86540557914926.png") no-repeat center center;
+    background-size:cover;
+}
+
+/* DARK OVERLAY */
+.frame::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:rgba(10,10,10,0.65);
+    z-index:0;
 }
 
 /* GOLD BORDER */
@@ -61,14 +73,21 @@ body{
     mask-composite:exclude;
 
     pointer-events:none;
+    z-index:2;
+}
+
+/* CONTENT LAYER */
+.title, .title-line, .grid{
+    position:relative;
+    z-index:1;
 }
 
 /* TITLE */
 .title{
     text-align:center;
-    font-size:20px;
+    font-size:22px;
     font-weight:700;
-    color:#e6e6e6;
+    color:#fff;
     margin-top:18px;
 }
 
@@ -84,28 +103,36 @@ body{
 .grid{
     display:flex;
     flex-direction:column;
-    gap:10px;
-    padding:15px;
+    gap:12px;
+    padding:18px;
     flex:1;
 }
 
-/* BUTTON */
+/* ================= BUTTON (UPDATED TEXT STYLE ONLY) ================= */
 .btn{
-    padding:12px;
+    padding:14px;
     border-radius:10px;
-    background:#111;
+    background:rgba(0,0,0,0.55);
     color:#fff;
 
     font-family:'Montserrat', sans-serif;
-    font-size:11px;
-    font-weight:600;
+    font-size:16px;   /* 🔥 BIGGER TEXT */
+    font-weight:700;  /* 🔥 BOLD PREMIUM */
 
     text-align:center;
     border:2px solid #b8860b;
     cursor:pointer;
 
     text-transform:uppercase;
-    letter-spacing:1px;
+    letter-spacing:1.2px;
+    line-height:1.2;
+}
+
+/* ACTIVE EFFECT */
+.btn:active{
+    background:#b8860b;
+    color:#000;
+    transform:scale(0.98);
 }
 
 /* LOCK */
@@ -126,35 +153,7 @@ body{
     font-weight:700;
 }
 
-/* POPUP */
-.popup{
-    position:fixed;
-    top:0;
-    left:0;
-    width:100%;
-    height:100%;
-    background:rgba(0,0,0,0.7);
-    display:none;
-    justify-content:center;
-    align-items:center;
-}
-
-.popup-box{
-    background:#fff;
-    padding:18px;
-    border-radius:12px;
-    text-align:center;
-    width:290px;
-}
-
-.countdown{
-    color:#b8860b;
-    font-weight:700;
-}
-
-/* =========================
-LOCKED NAV SYSTEM
-========================= */
+/* NAV */
 .bottom-nav{
     width:360px;
     height:55px;
@@ -171,35 +170,28 @@ LOCKED NAV SYSTEM
     border:1px solid rgba(255,215,0,0.15);
 }
 
-/* ITEMS */
+/* NAV ITEMS */
 .nav-item,
 .nav-center{
     flex:1;
     text-align:center;
-
     font-weight:700;
-    letter-spacing:1px;
     white-space:nowrap;
 }
 
-/* SIDE */
 .nav-item{
     color:#ff3b3b;
     font-size:13px;
     cursor:pointer;
-    transition:0.2s;
 }
 
-/* CENTER */
 .nav-center{
     color:#ffd700;
     font-size:12px;
 }
 
-/* TOUCH */
 .nav-item:active{
     color:#ffd700;
-    transform:scale(0.95);
 }
 
 /* ANIMATION */
@@ -213,7 +205,6 @@ LOCKED NAV SYSTEM
 
 <body>
 
-<!-- FRAME -->
 <div class="frame">
 
 <div class="title">LANGUAGE LEARNING</div>
@@ -221,94 +212,38 @@ LOCKED NAV SYSTEM
 
 <div class="grid">
 
-    <div class="btn" onclick="openLang('japanese-index.html')">Japanese Language 🇯🇵</div>
+    <div class="btn" onclick="location.href='japanese-index.html'">Japanese Language 🇯🇵</div>
 
-    <div class="btn locked" onclick="showPopup()">Chinese Language 🇨🇳
+    <div class="btn locked" onclick="alert('Coming Soon')">Chinese Language 🇨🇳
         <div class="lock-tag">LOCK</div>
     </div>
 
-    <div class="btn locked" onclick="showPopup()">Korean Language 🇰🇷
+    <div class="btn locked" onclick="alert('Coming Soon')">Korean Language 🇰🇷
         <div class="lock-tag">LOCK</div>
     </div>
 
-    <div class="btn locked" onclick="showPopup()">French Language 🇫🇷
+    <div class="btn locked" onclick="alert('Coming Soon')">French Language 🇫🇷
         <div class="lock-tag">LOCK</div>
     </div>
 
-    <div class="btn locked" onclick="showPopup()">German Language 🇩🇪
+    <div class="btn locked" onclick="alert('Coming Soon')">German Language 🇩🇪
         <div class="lock-tag">LOCK</div>
     </div>
-
 
 </div>
 
 </div>
 
-<!-- POPUP -->
-<div class="popup" id="popup">
-    <div class="popup-box">
-        <h3>Coming Soon</h3>
-        <div class="countdown" id="countdown"></div>
-        <button onclick="closePopup()">Close</button>
-    </div>
-</div>
-
-<!-- OUTSIDE NAV -->
+<!-- NAV -->
 <div class="bottom-nav">
 
-    <div class="nav-item" onclick="goBack()">
-        BACK
-    </div>
+    <div class="nav-item" onclick="history.back()">BACK</div>
 
-    <div class="nav-center">
-        ← EWONZ LINGUA →
-    </div>
+    <div class="nav-center">← EWONZ LINGUA →</div>
 
-    <div class="nav-item" onclick="goHome()">
-        HOME
-    </div>
+    <div class="nav-item" onclick="location.href='index.html'">HOME</div>
 
 </div>
-
-<script>
-
-function openLang(url){
-    window.location.href = url;
-}
-
-function goBack(){
-    history.back();
-}
-
-function goHome(){
-    location.href = "index.html";
-}
-
-function showPopup(){
-    document.getElementById("popup").style.display="flex";
-
-    let target = new Date("2026-11-28").getTime();
-
-    setInterval(()=>{
-        let now = new Date().getTime();
-        let diff = target - now;
-
-        let d = Math.floor(diff/(1000*60*60*24));
-        let h = Math.floor((diff%(1000*60*60*24))/(1000*60*60));
-        let m = Math.floor((diff%(1000*60*60))/(1000*60));
-        let s = Math.floor((diff%(1000*60))/1000);
-
-        document.getElementById("countdown").innerHTML =
-        d+"d : "+h+"h : "+m+"m : "+s+"s";
-
-    },1000);
-}
-
-function closePopup(){
-    document.getElementById("popup").style.display="none";
-}
-
-</script>
 
 </body>
 </html>
