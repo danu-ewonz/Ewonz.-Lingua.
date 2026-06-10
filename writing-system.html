@@ -21,10 +21,12 @@ body{
     margin:0;
     background:#0b0b0b;
     display:flex;
+    flex-direction:column;
     justify-content:center;
     align-items:center;
     height:100vh;
     font-family:'Poppins', sans-serif;
+    gap:10px;
 }
 
 /* FRAME */
@@ -60,6 +62,13 @@ body{
     pointer-events:none;
 }
 
+/* CONTENT */
+.content{
+    display:flex;
+    flex-direction:column;
+    height:100%;
+}
+
 /* TITLE */
 .title{
     text-align:center;
@@ -77,14 +86,14 @@ body{
     background:linear-gradient(90deg,transparent,#b8860b,#ffd700,transparent);
 }
 
-/* GRID */
+/* GRID SCROLL */
 .grid{
+    flex:1;
+    overflow-y:auto;
     display:flex;
     flex-direction:column;
     gap:10px;
     padding:15px;
-    flex:1;
-    overflow-y:auto;
 }
 
 /* BUTTON */
@@ -104,99 +113,74 @@ body{
 
     border:2px solid #b8860b;
     cursor:pointer;
-    position:relative;
 }
 
-/* BUTTON ACTIVE */
 .btn:active{
     background:#b8860b;
     color:#000;
 }
 
-/* NAV */
+/* SCROLLBAR */
+.grid::-webkit-scrollbar{
+    width:3px;
+}
+
+.grid::-webkit-scrollbar-thumb{
+    background:#b8860b;
+    border-radius:10px;
+}
+
+/* =========================
+GLOBAL NAV SYSTEM (LOCKED DESIGN)
+========================= */
 .bottom-nav{
-    position:absolute;
-    bottom:0;
-    left:0;
-    width:100%;
+    width:360px;
+    height:55px;
 
     display:flex;
     justify-content:space-between;
     align-items:center;
 
-    padding:10px 14px;
+    padding:0 15px;
+
     background:#0a0a0a;
-    border-top:1px solid rgba(255,215,0,0.15);
+    border-radius:12px;
+
+    border:1px solid rgba(255,215,0,0.15);
 }
 
-/* INNER BORDER BOX */
-.bottom-nav::before{
-    content:"";
-    position:absolute;
-    inset:5px;
-    border:1px solid rgba(255,215,0,0.25);
-    border-radius:10px;
-    pointer-events:none;
-}
-
-/* ALL ITEMS SAME SIZE */
+/* ITEMS */
 .nav-item,
-.nav-center,
-.nav-right{
+.nav-center{
     flex:1;
     text-align:center;
 
-    font-size:13px;
     font-weight:700;
     letter-spacing:1px;
     white-space:nowrap;
-
-    position:relative;
-    z-index:2;
 }
 
 /* LEFT + RIGHT */
-.nav-item,
-.nav-right{
+.nav-item{
     color:#ff3b3b;
+    font-size:13px;
     cursor:pointer;
     transition:0.2s ease;
 }
 
-/* CENTER ANIMATION */
+/* CENTER */
 .nav-center{
     color:#ffd700;
     font-size:12px;
-    cursor:default;
-
-    animation:softBreath 3.5s ease-in-out infinite;
 }
 
-/* TOUCH GOLD EFFECT */
-.nav-item:active,
-.nav-right:active{
+/* TOUCH EFFECT */
+.nav-item:active{
     color:#ffd700;
-    transform:scale(0.94);
-    opacity:1;
+    transform:scale(0.95);
 }
 
 /* ANIMATION */
-@keyframes softBreath{
-    0%{
-        transform:scale(1);
-        opacity:0.85;
-    }
-    50%{
-        transform:scale(1.04);
-        opacity:1;
-    }
-    100%{
-        transform:scale(1);
-        opacity:0.85;
-    }
-}
-
-/* SHINE FRAME */
 @keyframes shine{
     0%{background-position:0%;}
     100%{background-position:200%;}
@@ -207,22 +191,25 @@ body{
 
 <body>
 
+<!-- FRAME -->
 <div class="frame">
 
-<div class="title">WRITING SYSTEM</div>
-<div class="line"></div>
+    <div class="title">WRITING SYSTEM</div>
+    <div class="line"></div>
 
-<div class="grid">
+    <div class="grid">
 
-    <div class="btn" onclick="location.href='hiragana.html'">Hiragana</div>
-    <div class="btn" onclick="location.href='katakana.html'">Katakana</div>
-    <div class="btn" onclick="location.href='kanji.html'">Kanji</div>
-    <div class="btn" onclick="location.href='hiragana-special.html'">Hiragana Special</div>
-    <div class="btn" onclick="location.href='katakana-special.html'">Katakana Special</div>
+        <div class="btn" onclick="location.href='hiragana.html'">Hiragana</div>
+        <div class="btn" onclick="location.href='katakana.html'">Katakana</div>
+        <div class="btn" onclick="location.href='kanji.html'">Kanji</div>
+        <div class="btn" onclick="location.href='hiragana-special.html'">Hiragana Special</div>
+        <div class="btn" onclick="location.href='katakana-special.html'">Katakana Special</div>
+
+    </div>
 
 </div>
 
-<!-- NEW NAV (REPLACED) -->
+<!-- OUTSIDE NAV (LOCKED SYSTEM) -->
 <div class="bottom-nav">
 
     <div class="nav-item" onclick="history.back()">
@@ -233,11 +220,9 @@ body{
         ← EWONZ LINGUA →
     </div>
 
-    <div class="nav-right" onclick="location.href='index.html'">
+    <div class="nav-item" onclick="location.href='index.html'">
         HOME
     </div>
-
-</div>
 
 </div>
 
