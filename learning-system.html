@@ -9,11 +9,12 @@
 
 <style>
 
-/* 🚫 COPY BLOCK */
+/* RESET */
 *{
     -webkit-user-select:none;
     user-select:none;
     -webkit-touch-callout:none;
+    -webkit-tap-highlight-color:transparent;
 }
 
 body{
@@ -25,6 +26,7 @@ body{
     align-items:center;
     height:100vh;
     flex-direction:column;
+    gap:10px;
 }
 
 /* FRAME */
@@ -49,14 +51,13 @@ body{
 
     background:linear-gradient(90deg,#b8860b,#ffd700,#b8860b,#8b6508,#ffd700);
     background-size:300% 100%;
-    animation:shine 5s linear infinite; /* 🔥 SLOW SPEED */
+    animation:shine 5s linear infinite;
 
     -webkit-mask:
     linear-gradient(#000 0 0) content-box,
     linear-gradient(#000 0 0);
     -webkit-mask-composite:xor;
     mask-composite:exclude;
-    pointer-events:none;
 }
 
 /* TITLE */
@@ -78,14 +79,15 @@ body{
 
 /* GRID */
 .grid{
+    flex:1;
+    overflow-y:auto;
     display:flex;
     flex-direction:column;
     gap:10px;
     padding:15px;
-    flex:1;
 }
 
-/* 🔥 BUTTON FULL BORDER */
+/* BUTTON */
 .btn{
     padding:11px;
     border-radius:10px;
@@ -104,7 +106,7 @@ body{
     overflow:hidden;
 }
 
-/* 🌟 SLOW GOLD BORDER ANIMATION */
+/* BUTTON BORDER ANIMATION */
 .btn::before{
     content:"";
     position:absolute;
@@ -121,7 +123,7 @@ body{
     );
 
     background-size:200% 100%;
-    animation:move 5s linear infinite; /* 🔥 SLOW SPEED */
+    animation:move 5s linear infinite;
 
     -webkit-mask:
     linear-gradient(#000 0 0) content-box,
@@ -132,54 +134,54 @@ body{
     pointer-events:none;
 }
 
-/* NAV */
+/* =========================
+LOCKED NAV SYSTEM
+========================= */
 .bottom-nav{
-    width:100%;
+    width:360px;
+    height:55px;
+
     display:flex;
-    justify-content:center;
+    justify-content:space-between;
     align-items:center;
-    gap:14px;
-    padding:10px 0;
-    font-size:13px;
 
-    position:relative;
-    border-top:1px solid rgba(255,215,0,0.15);
+    padding:0 15px;
+
+    background:#0a0a0a;
+    border-radius:12px;
+
+    border:1px solid rgba(255,215,0,0.15);
 }
 
-/* NAV LINE */
-.bottom-nav::after{
-    content:"";
-    position:absolute;
-    top:0;
-    left:0;
-    width:100%;
-    height:2px;
+/* ITEMS */
+.nav-item,
+.nav-center{
+    flex:1;
+    text-align:center;
 
-    background:linear-gradient(90deg,
-        transparent,
-        #b8860b,
-        #ffd700,
-        #b8860b,
-        transparent
-    );
-
-    background-size:200% 100%;
-    animation:move 5s linear infinite; /* 🔥 SLOW SPEED */
-}
-
-/* NAV TEXT */
-.nav-text{
-    color:red;
     font-weight:700;
-    cursor:pointer;
+    letter-spacing:1px;
     white-space:nowrap;
+}
+
+/* SIDE BUTTONS */
+.nav-item{
+    color:#ff3b3b;
+    font-size:13px;
+    cursor:pointer;
+    transition:0.2s ease;
 }
 
 /* CENTER */
-.center{
-    color:#b8860b;
-    font-weight:700;
-    white-space:nowrap;
+.nav-center{
+    color:#ffd700;
+    font-size:12px;
+}
+
+/* TOUCH EFFECT */
+.nav-item:active{
+    color:#ffd700;
+    transform:scale(0.95);
 }
 
 /* ANIMATIONS */
@@ -198,32 +200,38 @@ body{
 
 <body>
 
+<!-- FRAME -->
 <div class="frame">
 
-<div class="title">LEARNING SYSTEM</div>
+    <div class="title">LEARNING SYSTEM</div>
+    <div class="line"></div>
 
-<div class="line"></div>
+    <div class="grid">
 
-<div class="grid">
+        <div class="btn">Japanese Roadmap</div>
+        <div class="btn">Beginner Guide</div>
+        <div class="btn">Study Plan</div>
+        <div class="btn">Learning Tips</div>
+        <div class="btn">Daily Practice</div>
 
-    <div class="btn">Japanese Roadmap</div>
-    <div class="btn">Beginner Guide</div>
-    <div class="btn">Study Plan</div>
-    <div class="btn">Learning Tips</div>
-    <div class="btn">Daily Practice</div>
+    </div>
 
 </div>
 
-</div>
-
-<!-- NAV -->
+<!-- OUTSIDE NAV -->
 <div class="bottom-nav">
 
-    <div class="nav-text">← BACK →</div>
+    <div class="nav-item" onclick="history.back()">
+        BACK
+    </div>
 
-    <div class="center">EWONZ LINGUA</div>
+    <div class="nav-center">
+        ← EWONZ LINGUA →
+    </div>
 
-    <div class="nav-text">→ HOME →</div>
+    <div class="nav-item" onclick="location.href='index.html'">
+        HOME
+    </div>
 
 </div>
 
