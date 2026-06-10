@@ -25,7 +25,10 @@ body{
     display:flex;
     justify-content:center;
     align-items:center;
-    background: radial-gradient(circle at top left, #1a1a1a, #000000 60%);
+
+    /* ✅ BACKGROUND IMAGE ADDED ONLY */
+    background: url("1781096123066_edit_71005599869154.png") center/cover no-repeat fixed;
+
     overflow:hidden;
 
     -webkit-touch-callout:none;
@@ -82,32 +85,12 @@ body::after{
     text-align:center;
 }
 
-/* 🔥 ANIMATIONS */
-@keyframes fadeUp{
-    from{
-        opacity:0;
-        transform:translateY(20px);
-    }
-    to{
-        opacity:1;
-        transform:translateY(0);
-    }
-}
-
-@keyframes glowText{
-    0%{ text-shadow:0 0 5px rgba(255,215,0,0.2); }
-    50%{ text-shadow:0 0 12px rgba(255,215,0,0.6); }
-    100%{ text-shadow:0 0 5px rgba(255,215,0,0.2); }
-}
-
 /* TITLE */
 .title{
     font-size:24px;
     font-weight:700;
     letter-spacing:3px;
     margin-top:10px;
-
-    animation:fadeUp 0.8s ease-out, glowText 3s infinite;
 }
 
 /* ABOUT */
@@ -118,8 +101,6 @@ body::after{
     max-width:320px;
     font-family:'Dancing Script', cursive;
     font-weight:600;
-
-    animation:fadeUp 1s ease-out;
 }
 
 /* GAP */
@@ -132,8 +113,6 @@ body::after{
     color:rgba(255,215,0,0.75);
     font-weight:600;
     letter-spacing:1px;
-
-    animation:fadeUp 1.2s ease-out;
 }
 
 /* TEXT */
@@ -142,13 +121,6 @@ body::after{
     color:#aaa;
     font-weight:500;
     letter-spacing:1px;
-
-    animation:fadeUp 1.4s ease-out;
-}
-
-/* STRONG */
-.text strong{
-    font-weight:600;
 }
 
 /* CONTACT */
@@ -158,49 +130,33 @@ body::after{
     cursor:pointer;
 }
 
-.contact:hover{
-    text-shadow:0 0 10px rgba(255,45,45,0.7);
-}
-
 /* BUTTON */
 .card{
     border:1px solid #ffd700;
     background:rgba(0,0,0,0.4);
-    backdrop-filter:blur(6px);
     padding:12px 18px;
     border-radius:10px;
     cursor:pointer;
-    transition:0.25s;
     color:white;
     font-weight:600;
     font-size:13px;
-    text-align:center;
     margin-top:auto;
     margin-bottom:10px;
-
-    animation:fadeUp 1.6s ease-out;
 }
 
-.card:hover{
-    box-shadow:0 0 12px #ffd700;
-    transform:scale(1.02);
-}
 </style>
 </head>
 
-<!-- 🚫 BLOCK RIGHT CLICK + COPY -->
 <body oncontextmenu="return false" oncopy="return false" oncut="return false" onpaste="return false">
 
 <div class="phone">
 
 <div class="content">
 
-    <!-- TITLE -->
     <div class="title">EWONZ LINGUA</div>
 
     <div class="big-gap"></div>
 
-    <!-- ABOUT -->
     <div class="about">
         Discover the world through language with Ewonz Lingua.  
         A modern learning platform designed to help you explore languages in a simple, clear, and structured way.
@@ -208,14 +164,12 @@ body::after{
 
     <div class="big-gap"></div>
 
-    <!-- SPECIAL THANKS -->
     <div class="gold">SPECIAL THANKS</div>
     <div class="gap"></div>
     <div class="text"><strong>JAPANESE - TSUKI SENSEI</strong></div>
 
     <div class="big-gap"></div>
 
-    <!-- UI DESIGN -->
     <div class="gold">UI DESIGN & DEVELOPMENT</div>
     <div class="gap"></div>
     <div class="text">
@@ -225,7 +179,6 @@ body::after{
 
     <div style="flex:1"></div>
 
-    <!-- BUTTON -->
     <div class="card" onclick="goLang()">
         Start Learning Language
     </div>
@@ -242,17 +195,6 @@ function goLang(){
 function openWhatsApp(){
     window.open("https://wa.me/94778730530", "_blank");
 }
-
-/* 🚫 EXTRA KEYBOARD BLOCK */
-document.addEventListener('keydown', function(e){
-    if(
-        (e.ctrlKey && ['c','a','u','s'].includes(e.key)) ||
-        e.key === 'F12'
-    ){
-        e.preventDefault();
-        return false;
-    }
-});
 </script>
 
 </body>
