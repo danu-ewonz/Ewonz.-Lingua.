@@ -3,7 +3,6 @@
 <head>
 <meta charset="UTF-8">
 
-<!-- 🚫 ZOOM OFF -->
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
 <title>Katakana Chart</title>
@@ -12,12 +11,10 @@
 
 <style>
 
-/* 🚫 BLOCK ALL */
+/* RESET */
 *{
     user-select:none;
     -webkit-user-select:none;
-    -moz-user-select:none;
-    -ms-user-select:none;
     -webkit-tap-highlight-color:transparent;
 }
 
@@ -30,22 +27,21 @@ body{
     align-items:center;
     height:100vh;
     font-family:'Poppins', sans-serif;
-    -webkit-touch-callout:none;
 }
 
-/* 3:4 FRAME */
+/* FRAME */
 .frame{
     width:360px;
     height:480px;
     background:#0a0a0a;
     border-radius:20px;
-    position:relative;
-    overflow:hidden;
     display:flex;
     flex-direction:column;
+    overflow:hidden;
+    position:relative;
 }
 
-/* GOLD BORDER ANIMATION */
+/* GOLD BORDER */
 .frame::before{
     content:"";
     position:absolute;
@@ -62,16 +58,17 @@ body{
     linear-gradient(#000 0 0);
     -webkit-mask-composite:xor;
     mask-composite:exclude;
+
     pointer-events:none;
 }
 
-/* TITLE */
+/* TITLE (FIXED HEIGHT) */
 .title{
     text-align:center;
     color:#fff;
     font-size:18px;
     font-weight:700;
-    margin-top:15px;
+    padding-top:15px;
 }
 
 /* LINE */
@@ -82,10 +79,10 @@ body{
     background:linear-gradient(90deg,transparent,#b8860b,#ffd700,transparent);
 }
 
-/* SCROLL */
+/* ✅ SCROLL AREA FIXED */
 .content{
     flex:1;
-    overflow-y:auto;
+    overflow-y:auto;   /* 🔥 MAIN FIX */
     padding:10px;
 }
 
@@ -96,44 +93,77 @@ table{
     text-align:center;
 }
 
-/* CELL */
 td{
     border:1px solid rgba(184,134,11,0.6);
     padding:10px;
 }
 
-/* JAPANESE */
 .jp{
     font-size:20px;
     font-weight:700;
     color:#fff;
 }
 
-/* ROMAJI */
 .rm{
     font-size:10px;
     color:#b8860b;
 }
 
+/* SCROLLBAR */
+.content::-webkit-scrollbar{
+    width:4px;
+}
+
+.content::-webkit-scrollbar-thumb{
+    background:#b8860b;
+    border-radius:10px;
+}
+
 /* NAV */
 .bottom-nav{
     width:360px;
+    height:55px;
+
     display:flex;
     justify-content:space-between;
     align-items:center;
-    padding:10px 0;
+
+    padding:0 15px;
+
+    background:#0a0a0a;
+    border-radius:12px;
+
+    border:1px solid rgba(255,215,0,0.15);
+
+    white-space:nowrap;
 }
 
 .nav-btn{
+    flex:1;
+    text-align:center;
+
     color:red;
     font-weight:700;
-    cursor:pointer;
     font-size:13px;
+
+    cursor:pointer;
+    white-space:nowrap;
 }
 
 .center{
-    color:#b8860b;
+    flex:1;
+    text-align:center;
+
+    color:#ffd700;
     font-weight:700;
+    font-size:12px;
+
+    white-space:nowrap;
+}
+
+.nav-btn:active{
+    color:#ffd700;
+    transform:scale(0.95);
 }
 
 /* ANIMATION */
@@ -145,13 +175,14 @@ td{
 </style>
 </head>
 
-<body oncontextmenu="return false">
+<body>
 
 <div class="frame">
 
 <div class="title">KATAKANA CHART 🇯🇵</div>
 <div class="line"></div>
 
+<!-- 🔥 FIXED SCROLL AREA -->
 <div class="content">
 
 <table>
@@ -235,17 +266,16 @@ td{
 </table>
 
 </div>
-
 </div>
 
 <!-- NAV -->
 <div class="bottom-nav">
 
-<div class="nav-btn" onclick="history.back()">← BACK →</div>
+<div class="nav-btn" onclick="history.back()">BACK</div>
 
-<div class="center">EWONZ LINGUA</div>
+<div class="center">← EWONZ LINGUA →</div>
 
-<div class="nav-btn" onclick="location.href='index.html'">→ HOME →</div>
+<div class="nav-btn" onclick="location.href='index.html'">HOME</div>
 
 </div>
 
