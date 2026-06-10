@@ -9,62 +9,73 @@
 
 <style>
 
-/* 🚫 BLOCK COPY EVERYTHING */
+/* BLOCK COPY */
 *{
     -webkit-user-select:none;
-    -moz-user-select:none;
-    -ms-user-select:none;
     user-select:none;
 }
 
-/* BODY */
+/* BODY BACKGROUND (OUTSIDE BOX IMAGE) */
 body{
     margin:0;
-    font-family:'Poppins', sans-serif;
     height:100vh;
     display:flex;
     justify-content:center;
     align-items:center;
-    background: radial-gradient(circle at top left, #1a1a1a, #000000 60%);
     overflow:hidden;
+    font-family:'Poppins', sans-serif;
 
-    -webkit-touch-callout:none;
+    /* 🌟 OUTER BACKGROUND IMAGE */
+    background:
+    linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.75)),
+    url("1781098017405.png");
+
+    background-size:cover;
+    background-position:center;
+    background-repeat:no-repeat;
 }
 
-/* GLOW */
+/* OPTIONAL GLOW OVERLAY */
 body::before,
 body::after{
     content:"";
     position:absolute;
-    width:300px;
-    height:300px;
+    width:380px;
+    height:380px;
     border-radius:50%;
-    filter:blur(80px);
+    filter:blur(100px);
     z-index:0;
+    animation: floatGlow 6s infinite ease-in-out;
 }
 
 body::before{
     background:#ffd700;
     top:10%;
-    left:15%;
-    opacity:0.15;
+    left:10%;
+    opacity:0.12;
 }
 
 body::after{
     background:#3b82f6;
     bottom:10%;
-    right:15%;
-    opacity:0.15;
+    right:10%;
+    opacity:0.12;
+    animation-delay:3s;
 }
 
-/* FRAME */
+@keyframes floatGlow{
+    0%{ transform:translateY(0px) scale(1); }
+    50%{ transform:translateY(-20px) scale(1.1); }
+    100%{ transform:translateY(0px) scale(1); }
+}
+
+/* 3:4 BOX */
 .phone{
     width:360px;
     height:480px;
     border:2px solid #ffd700;
     border-radius:22px;
 
-    /* ✅ BACKGROUND IMAGE FIX */
     background:
     linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.65)),
     url("1781096123066_edit_71005599869154.png");
@@ -73,7 +84,7 @@ body::after{
     background-position:center;
     background-repeat:no-repeat;
 
-    box-shadow:0 0 10px rgba(255,215,0,0.3);
+    box-shadow:0 0 15px rgba(255,215,0,0.25);
     display:flex;
     flex-direction:column;
     overflow:hidden;
@@ -91,7 +102,7 @@ body::after{
     text-align:center;
 }
 
-/* ANIMATIONS */
+/* TEXT ANIMATION */
 @keyframes fadeUp{
     from{opacity:0; transform:translateY(20px);}
     to{opacity:1; transform:translateY(0);}
@@ -123,7 +134,7 @@ body::after{
     animation:fadeUp 1s ease-out;
 }
 
-/* GAP */
+/* SPACING */
 .big-gap{ height:22px; }
 .gap{ height:6px; }
 
@@ -133,31 +144,12 @@ body::after{
     color:rgba(255,215,0,0.75);
     font-weight:600;
     letter-spacing:1px;
-    animation:fadeUp 1.2s ease-out;
 }
 
 /* TEXT */
 .text{
     font-size:10px;
     color:#aaa;
-    font-weight:500;
-    letter-spacing:1px;
-    animation:fadeUp 1.4s ease-out;
-}
-
-.text strong{
-    font-weight:600;
-}
-
-/* CONTACT */
-.contact{
-    color:#ff2d2d;
-    font-weight:800;
-    cursor:pointer;
-}
-
-.contact:hover{
-    text-shadow:0 0 10px rgba(255,45,45,0.7);
 }
 
 /* BUTTON */
@@ -172,20 +164,19 @@ body::after{
     color:white;
     font-weight:600;
     font-size:13px;
-    text-align:center;
     margin-top:auto;
     margin-bottom:10px;
-    animation:fadeUp 1.6s ease-out;
 }
 
 .card:hover{
     box-shadow:0 0 12px #ffd700;
     transform:scale(1.02);
 }
+
 </style>
 </head>
 
-<body oncontextmenu="return false" oncopy="return false" oncut="return false" onpaste="return false">
+<body>
 
 <div class="phone">
 
@@ -196,8 +187,7 @@ body::after{
     <div class="big-gap"></div>
 
     <div class="about">
-        Discover the world through language with Ewonz Lingua.  
-        A modern learning platform designed to help you explore languages in a simple, clear, and structured way.
+        Discover the world through language with Ewonz Lingua.
     </div>
 
     <div class="big-gap"></div>
@@ -211,39 +201,18 @@ body::after{
     <div class="gold">UI DESIGN & DEVELOPMENT</div>
     <div class="gap"></div>
     <div class="text">
-        <strong>DANU EWONZ</strong> -
-        <span class="contact" onclick="openWhatsApp()">CONTACT</span>
+        <strong>DANU EWONZ</strong>
     </div>
 
     <div style="flex:1"></div>
 
-    <div class="card" onclick="goLang()">
+    <div class="card" onclick="window.location.href='./language.html'">
         Start Learning Language
     </div>
 
 </div>
 
 </div>
-
-<script>
-function goLang(){
-    window.location.href = "./language.html";
-}
-
-function openWhatsApp(){
-    window.open("https://wa.me/94778730530", "_blank");
-}
-
-document.addEventListener('keydown', function(e){
-    if(
-        (e.ctrlKey && ['c','a','u','s'].includes(e.key)) ||
-        e.key === 'F12'
-    ){
-        e.preventDefault();
-        return false;
-    }
-});
-</script>
 
 </body>
 </html>
