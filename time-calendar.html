@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Time & Calendar</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    user-select:none;
+}
+
+body{
+    background:#0b0b0b;
+    font-family:Poppins;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+    overflow:hidden;
+}
+
+/* FRAME */
+.frame{
+    width:360px;
+    height:480px;
+    background:#0a0a0a;
+    border-radius:20px;
+    position:relative;
+    overflow:hidden;
+    display:flex;
+    flex-direction:column;
+}
+
+/* BORDER */
+.frame::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    padding:2px;
+    border-radius:20px;
+    background:linear-gradient(90deg,#b8860b,#ffd700,#b8860b,#8b6508,#ffd700);
+    background-size:300% 100%;
+    animation:shine 3s linear infinite;
+
+    -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+    -webkit-mask-composite:xor;
+}
+
+/* TITLE */
+.title{
+    text-align:center;
+    font-size:18px;
+    font-weight:700;
+    color:#fff;
+    margin-top:14px;
+}
+
+.subtitle{
+    text-align:center;
+    font-size:12px;
+    color:#b8860b;
+}
+
+.line{
+    width:80%;
+    height:2px;
+    margin:8px auto;
+    background:linear-gradient(90deg,transparent,#b8860b,#ffd700,transparent);
+}
+
+/* SCROLL FIX */
+.content{
+    position:absolute;
+    top:90px;
+    bottom:70px;
+    left:0;
+    right:0;
+    overflow-y:auto;
+    padding:12px;
+    text-align:center;
+}
+
+/* CARD */
+.card{
+    background:#111;
+    border:1px solid rgba(184,134,11,0.4);
+    border-radius:10px;
+    padding:10px;
+    margin-bottom:8px;
+}
+
+.jp{color:#fff;font-weight:700;font-size:14px;}
+.rm{color:#b8860b;font-size:12px;margin-top:2px;}
+.si{color:#ffcc70;font-size:12px;margin-top:2px;}
+
+.bottom-nav{
+    position:absolute;
+    bottom:0;
+    left:0;
+    width:100%;
+    height:60px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:0 10px;
+    background:#0a0a0a;
+}
+
+.bottom-nav::before,
+.bottom-nav::after{
+    content:"";
+    position:absolute;
+    left:0;
+    width:100%;
+    height:2px;
+    background:linear-gradient(90deg,transparent,#ffd700,transparent);
+}
+.bottom-nav::before{top:0;}
+.bottom-nav::after{bottom:0;}
+
+.nav-btn{
+    width:60px;
+    text-align:center;
+    color:#ff3b3b;
+    font-weight:700;
+    font-size:12px;
+}
+
+.center{
+    flex:1;
+    text-align:center;
+    color:#ffd700;
+    font-weight:700;
+    font-size:12px;
+}
+
+@keyframes shine{
+    0%{background-position:0%;}
+    100%{background-position:100%;}
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="frame">
+
+<div class="title">Time & Calendar（時間・カレンダー）</div>
+<div class="subtitle">කාලය සහ දින දර්ශනය</div>
+
+<div class="line"></div>
+
+<div class="content">
+
+<!-- 50 ITEMS FULL -->
+
+<div class="card"><div class="jp">時間（じかん）</div><div class="rm">jikan</div><div class="si">කාලය</div></div>
+<div class="card"><div class="jp">今（いま）</div><div class="rm">ima</div><div class="si">දැන්</div></div>
+<div class="card"><div class="jp">朝（あさ）</div><div class="rm">asa</div><div class="si">උදෑසන</div></div>
+<div class="card"><div class="jp">昼（ひる）</div><div class="rm">hiru</div><div class="si">දවල්</div></div>
+<div class="card"><div class="jp">夕方（ゆうがた）</div><div class="rm">yuugata</div><div class="si">සවස</div></div>
+
+<div class="card"><div class="jp">夜（よる）</div><div class="rm">yoru</div><div class="si">රාත්‍රී</div></div>
+<div class="card"><div class="jp">真夜中（まよなか）</div><div class="rm">mayonaka</div><div class="si">මධ්‍යරැය</div></div>
+<div class="card"><div class="jp">午前（ごぜん）</div><div class="rm">gozen</div><div class="si">AM</div></div>
+<div class="card"><div class="jp">午後（ごご）</div><div class="rm">gogo</div><div class="si">PM</div></div>
+<div class="card"><div class="jp">時（じ）</div><div class="rm">ji</div><div class="si">පැය</div></div>
+
+<div class="card"><div class="jp">分（ふん）</div><div class="rm">fun/pun</div><div class="si">මිනිත්තු</div></div>
+<div class="card"><div class="jp">秒（びょう）</div><div class="rm">byou</div><div class="si">තත්පර</div></div>
+<div class="card"><div class="jp">半（はん）</div><div class="rm">han</div><div class="si">අර්ධ</div></div>
+
+<div class="card"><div class="jp">今日（きょう）</div><div class="rm">kyou</div><div class="si">අද</div></div>
+<div class="card"><div class="jp">明日（あした）</div><div class="rm">ashita</div><div class="si">හෙට</div></div>
+<div class="card"><div class="jp">明後日（あさって）</div><div class="rm">asatte</div><div class="si">පසුවෙයි දින</div></div>
+<div class="card"><div class="jp">昨日（きのう）</div><div class="rm">kinou</div><div class="si">ඊයේ</div></div>
+<div class="card"><div class="jp">一昨日（おととい）</div><div class="rm">ototoi</div><div class="si">පෙරේදා</div></div>
+
+<div class="card"><div class="jp">毎日（まいにち）</div><div class="rm">mainichi</div><div class="si">දිනපතා</div></div>
+<div class="card"><div class="jp">今週（こんしゅう）</div><div class="rm">konshuu</div><div class="si">මේ සතිය</div></div>
+<div class="card"><div class="jp">来週（らいしゅう）</div><div class="rm">raishuu</div><div class="si">ඊළඟ සතිය</div></div>
+<div class="card"><div class="jp">先週（せんしゅう）</div><div class="rm">senshuu</div><div class="si">පසුගිය සතිය</div></div>
+<div class="card"><div class="jp">毎週（まいしゅう）</div><div class="rm">maishuu</div><div class="si">සතිපතා</div></div>
+
+<div class="card"><div class="jp">今月（こんげつ）</div><div class="rm">kongetsu</div><div class="si">මේ මාසය</div></div>
+<div class="card"><div class="jp">来月（らいげつ）</div><div class="rm">raigetsu</div><div class="si">ඊළඟ මාසය</div></div>
+<div class="card"><div class="jp">先月（せんげつ）</div><div class="rm">sengetsu</div><div class="si">පසුගිය මාසය</div></div>
+<div class="card"><div class="jp">毎月（まいつき）</div><div class="rm">maitsuki</div><div class="si">මාසිකව</div></div>
+
+<div class="card"><div class="jp">今年（ことし）</div><div class="rm">kotoshi</div><div class="si">මේ අවුරුද්ද</div></div>
+<div class="card"><div class="jp">来年（らいねん）</div><div class="rm">rainen</div><div class="si">ඊළඟ අවුරුද්ද</div></div>
+<div class="card"><div class="jp">去年（きょねん）</div><div class="rm">kyonen</div><div class="si">පසුගිය අවුරුද්ද</div></div>
+<div class="card"><div class="jp">毎年（まいとし）</div><div class="rm">maitoshi</div><div class="si">වාර්ෂිකව</div></div>
+
+<div class="card"><div class="jp">日付（ひづけ）</div><div class="rm">hizuke</div><div class="si">දිනය</div></div>
+<div class="card"><div class="jp">カレンダー（かれんだー）</div><div class="rm">karendaa</div><div class="si">දින දර්ශනය</div></div>
+<div class="card"><div class="jp">曜日（ようび）</div><div class="rm">youbi</div><div class="si">සතියේ දින</div></div>
+
+<div class="card"><div class="jp">月曜日（げつようび）</div><div class="rm">getsuyoubi</div><div class="si">සඳුදා</div></div>
+<div class="card"><div class="jp">火曜日（かようび）</div><div class="rm">kayoubi</div><div class="si">අඟහරුවාදා</div></div>
+<div class="card"><div class="jp">水曜日（すいようび）</div><div class="rm">suiyoubi</div><div class="si">බදාදා</div></div>
+<div class="card"><div class="jp">木曜日（もくようび）</div><div class="rm">mokuyoubi</div><div class="si">බ්‍රහස්පතින්දා</div></div>
+<div class="card"><div class="jp">金曜日（きんようび）</div><div class="rm">kinyoubi</div><div class="si">සිකුරාදා</div></div>
+
+<div class="card"><div class="jp">土曜日（どようび）</div><div class="rm">doyoubi</div><div class="si">සෙනසුරාදා</div></div>
+<div class="card"><div class="jp">日曜日（にちようび）</div><div class="rm">nichiyoubi</div><div class="si">ඉරිදා</div></div>
+
+<div class="card"><div class="jp">平日（へいじつ）</div><div class="rm">heijitsu</div><div class="si">වැඩ දින</div></div>
+<div class="card"><div class="jp">週末（しゅうまつ）</div><div class="rm">shuumatsu</div><div class="si">සති අන්තය</div></div>
+<div class="card"><div class="jp">祝日（しゅくじつ）</div><div class="rm">shukujitsu</div><div class="si">නිවාඩු දිනය</div></div>
+
+<div class="card"><div class="jp">休み（やすみ）</div><div class="rm">yasumi</div><div class="si">නිවාඩු</div></div>
+<div class="card"><div class="jp">誕生日（たんじょうび）</div><div class="rm">tanjoubi</div><div class="si">උපන්දිනය</div></div>
+
+<div class="card"><div class="jp">春（はる）</div><div class="rm">haru</div><div class="si">වසන්තය</div></div>
+<div class="card"><div class="jp">夏（なつ）</div><div class="rm">natsu</div><div class="si">ගිම්හානය</div></div>
+<div class="card"><div class="jp">秋（あき）</div><div class="rm">aki</div><div class="si">සරත් කාලය</div></div>
+<div class="card"><div class="jp">冬（ふゆ）</div><div class="rm">fuyu</div><div class="si">ශීත කාලය</div></div>
+
+</div>
+
+<div class="bottom-nav">
+<div class="nav-btn" onclick="history.back()">BACK</div>
+<div class="center">← EWONZ LINGUA →</div>
+<div class="nav-btn" onclick="location.href='index.html'">HOME</div>
+</div>
+
+</div>
+
+</body>
+</html>
