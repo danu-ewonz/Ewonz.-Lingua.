@@ -3,58 +3,52 @@
 <head>
 <meta charset="UTF-8">
 
-<!-- 🚫 ZOOM DISABLE -->
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-<title>Hiragana Chart</title>
+<title>Hiragana Chart Fixed</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600;700&family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600;700&display=swap" rel="stylesheet">
 
 <style>
 
-/* 🚫 BLOCK EVERYTHING */
+/* RESET */
 *{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
     user-select:none;
     -webkit-user-select:none;
-    -moz-user-select:none;
-    -ms-user-select:none;
-    -webkit-tap-highlight-color:transparent;
 }
 
 body{
-    margin:0;
     background:#0b0b0b;
+    height:100vh;
     display:flex;
-    flex-direction:column;
     justify-content:center;
     align-items:center;
-    height:100vh;
+    flex-direction:column;
     font-family:'Poppins', sans-serif;
-
-    /* 🚫 mobile long press */
-    -webkit-touch-callout:none;
 }
 
-/* 3:4 FRAME */
+/* FRAME */
 .frame{
     width:360px;
     height:480px;
     background:#0a0a0a;
     border-radius:20px;
-    position:relative;
-    overflow:hidden;
     display:flex;
     flex-direction:column;
+    overflow:hidden;
+    position:relative;
 }
 
-/* GOLD BORDER ANIMATION */
+/* BORDER */
 .frame::before{
     content:"";
     position:absolute;
     inset:0;
     padding:2px;
     border-radius:20px;
-
     background:linear-gradient(90deg,#b8860b,#ffd700,#b8860b,#8b6508,#ffd700);
     background-size:300% 100%;
     animation:shine 3s linear infinite;
@@ -74,7 +68,7 @@ body{
     color:#fff;
     font-size:18px;
     font-weight:700;
-    margin-top:15px;
+    margin-top:14px;
 }
 
 /* LINE */
@@ -85,57 +79,79 @@ body{
     background:linear-gradient(90deg,transparent,#b8860b,#ffd700,transparent);
 }
 
-/* CONTENT */
+/* CONTENT FIX */
 .content{
     flex:1;
     overflow-y:auto;
     padding:10px;
 }
 
-/* TABLE */
+/* TABLE FIX (IMPORTANT) */
 table{
     width:100%;
     border-collapse:collapse;
     text-align:center;
+    table-layout:fixed;
 }
 
 td{
     border:1px solid rgba(184,134,11,0.6);
-    padding:10px;
+    padding:12px;
+    vertical-align:middle;
+    font-family: "Noto Sans JP", "Hiragino Kaku Gothic ProN", "Meiryo", sans-serif;
 }
 
-/* JAPANESE */
+/* JAPANESE CHARACTER FIX */
 .jp{
-    font-size:20px;
+    font-size:22px;
     font-weight:700;
-    color:#fff;
+    color:#ffffff;
+    font-family: "Noto Sans JP", "Hiragino Kaku Gothic ProN", "Meiryo", sans-serif;
+    display:block;
 }
 
 /* ROMAJI */
 .rm{
-    font-size:10px;
+    font-size:11px;
     color:#b8860b;
+    display:block;
+    margin-top:2px;
 }
 
-/* NAV */
-.bottom-nav{
+/* NAV OUTSIDE */
+.nav-container{
     width:360px;
+    margin-top:10px;
+}
+
+.nav-line{
+    height:1px;
+    background:rgba(255,215,0,0.3);
+}
+
+.bottom-nav{
     display:flex;
     justify-content:space-between;
     align-items:center;
-    padding:10px 0;
+    padding:10px 15px;
 }
 
 .nav-btn{
     color:red;
     font-weight:700;
-    cursor:pointer;
     font-size:13px;
+    cursor:pointer;
 }
 
 .center{
-    color:#b8860b;
+    color:#ffd700;
     font-weight:700;
+    font-size:12px;
+}
+
+.nav-line-bottom{
+    height:1px;
+    background:rgba(255,215,0,0.3);
 }
 
 /* ANIMATION */
@@ -147,9 +163,8 @@ td{
 </style>
 </head>
 
-<body oncontextmenu="return false">
+<body>
 
-<!-- FRAME -->
 <div class="frame">
 
 <div class="title">HIRAGANA CHART 🇯🇵</div>
@@ -160,114 +175,98 @@ td{
 <table>
 
 <tr>
-<td><div class="jp">あ</div><div class="rm">a</div></td>
-<td><div class="jp">い</div><div class="rm">i</div></td>
-<td><div class="jp">う</div><div class="rm">u</div></td>
-<td><div class="jp">え</div><div class="rm">e</div></td>
-<td><div class="jp">お</div><div class="rm">o</div></td>
+<td><span class="jp">あ</span><span class="rm">a</span></td>
+<td><span class="jp">い</span><span class="rm">i</span></td>
+<td><span class="jp">う</span><span class="rm">u</span></td>
+<td><span class="jp">え</span><span class="rm">e</span></td>
+<td><span class="jp">お</span><span class="rm">o</span></td>
 </tr>
 
 <tr>
-<td><div class="jp">か</div><div class="rm">ka</div></td>
-<td><div class="jp">き</div><div class="rm">ki</div></td>
-<td><div class="jp">く</div><div class="rm">ku</div></td>
-<td><div class="jp">け</div><div class="rm">ke</div></td>
-<td><div class="jp">こ</div><div class="rm">ko</div></td>
+<td><span class="jp">か</span><span class="rm">ka</span></td>
+<td><span class="jp">き</span><span class="rm">ki</span></td>
+<td><span class="jp">く</span><span class="rm">ku</span></td>
+<td><span class="jp">け</span><span class="rm">ke</span></td>
+<td><span class="jp">こ</span><span class="rm">ko</span></td>
 </tr>
 
 <tr>
-<td><div class="jp">さ</div><div class="rm">sa</div></td>
-<td><div class="jp">し</div><div class="rm">shi</div></td>
-<td><div class="jp">す</div><div class="rm">su</div></td>
-<td><div class="jp">せ</div><div class="rm">se</div></td>
-<td><div class="jp">そ</div><div class="rm">so</div></td>
+<td><span class="jp">さ</span><span class="rm">sa</span></td>
+<td><span class="jp">し</span><span class="rm">shi</span></td>
+<td><span class="jp">す</span><span class="rm">su</span></td>
+<td><span class="jp">せ</span><span class="rm">se</span></td>
+<td><span class="jp">そ</span><span class="rm">so</span></td>
 </tr>
 
 <tr>
-<td><div class="jp">た</div><div class="rm">ta</div></td>
-<td><div class="jp">ち</div><div class="rm">chi</div></td>
-<td><div class="jp">つ</div><div class="rm">tsu</div></td>
-<td><div class="jp">て</div><div class="rm">te</div></td>
-<td><div class="jp">と</div><div class="rm">to</div></td>
+<td><span class="jp">た</span><span class="rm">ta</span></td>
+<td><span class="jp">ち</span><span class="rm">chi</span></td>
+<td><span class="jp">つ</span><span class="rm">tsu</span></td>
+<td><span class="jp">て</span><span class="rm">te</span></td>
+<td><span class="jp">と</span><span class="rm">to</span></td>
 </tr>
 
 <tr>
-<td><div class="jp">な</div><div class="rm">na</div></td>
-<td><div class="jp">に</div><div class="rm">ni</div></td>
-<td><div class="jp">ぬ</div><div class="rm">nu</div></td>
-<td><div class="jp">ね</div><div class="rm">ne</div></td>
-<td><div class="jp">の</div><div class="rm">no</div></td>
+<td><span class="jp">な</span><span class="rm">na</span></td>
+<td><span class="jp">に</span><span class="rm">ni</span></td>
+<td><span class="jp">ぬ</span><span class="rm">nu</span></td>
+<td><span class="jp">ね</span><span class="rm">ne</span></td>
+<td><span class="jp">の</span><span class="rm">no</span></td>
 </tr>
 
 <tr>
-<td><div class="jp">は</div><div class="rm">ha</div></td>
-<td><div class="jp">ひ</div><div class="rm">hi</div></td>
-<td><div class="jp">ふ</div><div class="rm">fu</div></td>
-<td><div class="jp">へ</div><div class="rm">he</div></td>
-<td><div class="jp">ほ</div><div class="rm">ho</div></td>
+<td><span class="jp">は</span><span class="rm">ha</span></td>
+<td><span class="jp">ひ</span><span class="rm">hi</span></td>
+<td><span class="jp">ふ</span><span class="rm">fu</span></td>
+<td><span class="jp">へ</span><span class="rm">he</span></td>
+<td><span class="jp">ほ</span><span class="rm">ho</span></td>
 </tr>
 
 <tr>
-<td><div class="jp">ま</div><div class="rm">ma</div></td>
-<td><div class="jp">み</div><div class="rm">mi</div></td>
-<td><div class="jp">む</div><div class="rm">mu</div></td>
-<td><div class="jp">め</div><div class="rm">me</div></td>
-<td><div class="jp">も</div><div class="rm">mo</div></td>
+<td><span class="jp">ま</span><span class="rm">ma</span></td>
+<td><span class="jp">み</span><span class="rm">mi</span></td>
+<td><span class="jp">む</span><span class="rm">mu</span></td>
+<td><span class="jp">め</span><span class="rm">me</span></td>
+<td><span class="jp">も</span><span class="rm">mo</span></td>
 </tr>
 
 <tr>
-<td><div class="jp">や</div><div class="rm">ya</div></td>
-<td><div class="jp">ゆ</div><div class="rm">yu</div></td>
-<td><div class="jp">よ</div><div class="rm">yo</div></td>
+<td><span class="jp">や</span><span class="rm">ya</span></td>
+<td><span class="jp">ゆ</span><span class="rm">yu</span></td>
+<td><span class="jp">よ</span><span class="rm">yo</span></td>
 </tr>
 
 <tr>
-<td><div class="jp">ら</div><div class="rm">ra</div></td>
-<td><div class="jp">り</div><div class="rm">ri</div></td>
-<td><div class="jp">る</div><div class="rm">ru</div></td>
-<td><div class="jp">れ</div><div class="rm">re</div></td>
-<td><div class="jp">ろ</div><div class="rm">ro</div></td>
+<td><span class="jp">ら</span><span class="rm">ra</span></td>
+<td><span class="jp">り</span><span class="rm">ri</span></td>
+<td><span class="jp">る</span><span class="rm">ru</span></td>
+<td><span class="jp">れ</span><span class="rm">re</span></td>
+<td><span class="jp">ろ</span><span class="rm">ro</span></td>
 </tr>
 
 <tr>
-<td><div class="jp">わ</div><div class="rm">wa</div></td>
-<td><div class="jp">を</div><div class="rm">wo</div></td>
-<td><div class="jp">ん</div><div class="rm">n</div></td>
+<td><span class="jp">わ</span><span class="rm">wa</span></td>
+<td><span class="jp">を</span><span class="rm">wo</span></td>
+<td><span class="jp">ん</span><span class="rm">n</span></td>
 </tr>
 
 </table>
 
 </div>
-
 </div>
 
 <!-- NAV -->
+<div class="nav-container">
+<div class="nav-line"></div>
+
 <div class="bottom-nav">
-
-<div class="nav-btn" onclick="history.back()">← BACK →</div>
-
-<div class="center">EWONZ LINGUA</div>
-
-<div class="nav-btn" onclick="location.href='index.html'">→ HOME →</div>
-
+<div class="nav-btn" onclick="history.back()">BACK</div>
+<div class="center">← EWONZ LINGUA →</div>
+<div class="nav-btn" onclick="location.href='index.html'">HOME</div>
 </div>
 
-<!-- 🚫 SECURITY SCRIPT -->
-<script>
-
-// right click block
-document.addEventListener("contextmenu", e => e.preventDefault());
-
-// copy block
-document.addEventListener("copy", e => e.preventDefault());
-
-// cut block
-document.addEventListener("cut", e => e.preventDefault());
-
-// paste block
-document.addEventListener("paste", e => e.preventDefault());
-
-</script>
+<div class="nav-line-bottom"></div>
+</div>
 
 </body>
 </html>
