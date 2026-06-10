@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-<title>Japanese Language LOCK FIX</title>
+<title>Japanese Language</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600;700&family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
 
@@ -25,12 +25,14 @@ html,body{
 }
 
 body{
-    background:#0b0b0b;
+    background:url("1781114527894_edit_88470794753272.png") center center no-repeat;
+    background-size:cover;
+
     display:flex;
     justify-content:center;
     align-items:center;
     flex-direction:column;
-    font-family:Poppins;
+    font-family:Poppins,sans-serif;
     gap:10px;
 }
 
@@ -38,43 +40,87 @@ body{
 .frame{
     width:360px;
     height:480px;
-    background:#0a0a0a;
+
+    background:url("1781114438549_edit_88446487271732.png") center center no-repeat;
+    background-size:cover;
+
     border-radius:20px;
     position:relative;
     overflow:hidden;
 }
 
-/* BORDER */
+/* DARK OVERLAY */
+.frame::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:rgba(0,0,0,0.55);
+    border-radius:20px;
+    pointer-events:none;
+    z-index:1;
+}
+
+/* GOLD BORDER */
 .frame::before{
     content:"";
     position:absolute;
     inset:0;
     padding:2px;
     border-radius:20px;
-    background:linear-gradient(90deg,#b8860b,#ffd700,#b8860b,#8b6508,#ffd700);
+
+    background:linear-gradient(
+        90deg,
+        #b8860b,
+        #ffd700,
+        #b8860b,
+        #8b6508,
+        #ffd700
+    );
+
     background-size:300% 100%;
     animation:shine 3s linear infinite;
 
     -webkit-mask:
     linear-gradient(#000 0 0) content-box,
     linear-gradient(#000 0 0);
+
     -webkit-mask-composite:xor;
+    mask-composite:exclude;
+
+    z-index:3;
+    pointer-events:none;
+}
+
+/* CONTENT ABOVE OVERLAY */
+.title,
+.line,
+.grid{
+    position:relative;
+    z-index:2;
 }
 
 /* TITLE */
 .title{
     text-align:center;
-    font-size:18px;
+    font-size:20px;
     font-weight:700;
     color:#fff;
     margin-top:16px;
+    letter-spacing:1px;
 }
 
+/* LINE */
 .line{
     width:85%;
     height:2px;
     margin:8px auto;
-    background:linear-gradient(90deg,transparent,#b8860b,#ffd700,transparent);
+    background:linear-gradient(
+        90deg,
+        transparent,
+        #b8860b,
+        #ffd700,
+        transparent
+    );
 }
 
 /* SCROLL AREA */
@@ -91,18 +137,35 @@ body{
 
 /* BUTTON */
 .btn{
-    padding:12px;
+    padding:14px;
     margin-bottom:10px;
+
     border-radius:10px;
-    background:#111;
+
+    background:rgba(0,0,0,0.60);
     border:2px solid #b8860b;
+
     color:#fff;
 
     text-align:center;
-    font-size:12px;
-    font-weight:600;
+
+    font-family:'Montserrat',sans-serif;
+    font-size:15px;
+    font-weight:700;
+
     text-transform:uppercase;
+    letter-spacing:1px;
+
     position:relative;
+    cursor:pointer;
+
+    transition:.2s;
+}
+
+.btn:active{
+    background:#b8860b;
+    color:#000;
+    transform:scale(.98);
 }
 
 /* LOCK TAG */
@@ -110,9 +173,11 @@ body{
     position:absolute;
     right:10px;
     top:8px;
+
     font-size:9px;
     background:red;
     color:#fff;
+
     padding:2px 6px;
     border-radius:4px;
     font-weight:700;
@@ -134,27 +199,77 @@ body{
     border-radius:12px;
 }
 
-/* RED SIDE BUTTONS */
+/* SIDE BUTTONS */
 .nav-btn{
     width:70px;
     text-align:center;
+
     color:#ff3b3b;
     font-weight:700;
     font-size:13px;
+
+    cursor:pointer;
 }
 
-/* CENTER TEXT */
+.nav-btn:active{
+    color:#ffd700;
+    transform:scale(.95);
+}
+
+/* CENTER */
 .nav-center{
     flex:1;
     text-align:center;
+
     color:#ffd700;
     font-weight:700;
     font-size:13px;
 }
 
-/* ACTIVE CLICK */
-.nav-btn:active{
-    transform:scale(0.95);
+/* POPUP */
+.popup{
+    display:none;
+    position:fixed;
+    inset:0;
+
+    background:rgba(0,0,0,0.85);
+
+    justify-content:center;
+    align-items:center;
+
+    z-index:999;
+}
+
+.popup-box{
+    width:290px;
+
+    background:#111;
+    padding:18px;
+
+    border-radius:12px;
+    border:2px solid #b8860b;
+
+    text-align:center;
+}
+
+.popup-box h3{
+    color:red;
+    margin-bottom:8px;
+}
+
+.popup-box p{
+    color:#b8860b;
+}
+
+.close-btn{
+    margin-top:12px;
+    padding:8px 14px;
+
+    background:#b8860b;
+    border:none;
+
+    font-weight:700;
+    cursor:pointer;
 }
 
 /* ANIMATION */
@@ -170,68 +285,74 @@ body{
 
 <div class="frame">
 
-<div class="title">JAPANESE 🇯🇵</div>
-<div class="line"></div>
+    <div class="title">JAPANESE LANGUAGE</div>
 
-<div class="grid">
+    <div class="line"></div>
 
-    <!-- UNLOCKED -->
-    <div class="btn" onclick="go('learning-system.html')">
-        Writing System
+    <div class="grid">
+
+        <div class="btn" onclick="go('learning-system.html')">
+            Writing System
+        </div>
+
+        <div class="btn" onclick="go('vocabulary.html')">
+            Vocabulary
+        </div>
+
+        <div class="btn" onclick="openPopup()">
+            Learning System
+            <div class="lock-tag">LOCK</div>
+        </div>
+
+        <div class="btn" onclick="openPopup()">
+            Grammar
+            <div class="lock-tag">LOCK</div>
+        </div>
+
+        <div class="btn" onclick="openPopup()">
+            Reading Practice
+            <div class="lock-tag">LOCK</div>
+        </div>
+
+        <div class="btn" onclick="go('exam.html')">
+            Exam
+        </div>
+
+        <div class="btn" onclick="go('quiz.html')">
+            Quiz Center
+        </div>
+
     </div>
-
-    <div class="btn" onclick="go('vocabulary.html')">
-        Vocabulary
-    </div>
-
-    <!-- 🔴 LOCKED LEARNING SYSTEM -->
-    <div class="btn" onclick="openPopup()">
-        Learning System
-        <div class="lock-tag">LOCK</div>
-    </div>
-
-    <div class="btn" onclick="openPopup()">
-        Grammar
-        <div class="lock-tag">LOCK</div>
-    </div>
-
-    <div class="btn" onclick="openPopup()">
-        Reading Practice
-        <div class="lock-tag">LOCK</div>
-    </div>
-
-    <div class="btn" onclick="go('exam.html')">
-        Exam
-    </div>
-
-    <div class="btn" onclick="go('quiz.html')">
-        Quiz Center
-    </div>
-
-</div>
 
 </div>
 
 <!-- NAV -->
 <div class="bottom-nav">
 
-<div class="nav-btn" onclick="history.back()">BACK</div>
+    <div class="nav-btn" onclick="history.back()">
+        BACK
+    </div>
 
-<div class="nav-center">← EWONZ LINGUA →</div>
+    <div class="nav-center">
+        ← EWONZ LINGUA →
+    </div>
 
-<div class="nav-btn" onclick="location.href='index.html'">HOME</div>
+    <div class="nav-btn" onclick="location.href='index.html'">
+        HOME
+    </div>
 
 </div>
 
 <!-- POPUP -->
-<div id="popup" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.85);justify-content:center;align-items:center;">
+<div class="popup" id="popup">
 
-    <div style="background:#111;padding:18px;border-radius:12px;border:2px solid #b8860b;text-align:center;width:290px;">
+    <div class="popup-box">
 
-        <h3 style="color:red;">🔴 LOCKED</h3>
-        <p style="color:#b8860b;">This feature is currently locked</p>
+        <h3>🔴 LOCKED</h3>
 
-        <button onclick="closePopup()" style="margin-top:12px;padding:8px 14px;background:#b8860b;border:none;font-weight:700;">
+        <p>This feature is currently locked</p>
+
+        <button class="close-btn" onclick="closePopup()">
             CLOSE
         </button>
 
