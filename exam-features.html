@@ -2,7 +2,8 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
 <title>Exam Features</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600;700&display=swap" rel="stylesheet">
@@ -15,16 +16,24 @@
     padding:0;
     box-sizing:border-box;
     user-select:none;
+    -webkit-user-select:none;
 }
 
 body{
     background:#0b0b0b;
     font-family:Poppins;
+    height:100vh;
     display:flex;
     justify-content:center;
     align-items:center;
-    height:100vh;
     flex-direction:column;
+}
+
+/* WRAPPER FIX */
+.wrapper{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
 }
 
 /* FRAME */
@@ -39,14 +48,13 @@ body{
     flex-direction:column;
 }
 
-/* GOLD BORDER ANIMATION */
+/* BORDER */
 .frame::before{
     content:"";
     position:absolute;
     inset:0;
     padding:2px;
     border-radius:20px;
-
     background:linear-gradient(90deg,#b8860b,#ffd700,#b8860b,#8b6508,#ffd700);
     background-size:300% 100%;
     animation:borderMove 3s linear infinite;
@@ -78,31 +86,25 @@ body{
     font-weight:700;
     color:#fff;
     margin-top:18px;
-    letter-spacing:1px;
     text-transform:uppercase;
 }
 
-/* SUB TITLE */
 .subtitle{
     text-align:center;
     font-size:12px;
     color:#b8860b;
     margin-top:5px;
-    font-weight:600;
     text-transform:uppercase;
 }
 
-/* LINE */
 .line{
     width:80%;
     height:2px;
     margin:10px auto;
     background:linear-gradient(90deg,transparent,#b8860b,#ffd700,transparent);
-    background-size:200% 100%;
-    animation:lineMove 2s linear infinite;
 }
 
-/* SCROLL AREA */
+/* GRID */
 .grid{
     flex:1;
     overflow-y:auto;
@@ -115,67 +117,65 @@ body{
 /* BUTTON */
 .btn{
     padding:15px;
-    border-radius:10px;
     background:#111;
-    color:#fff;
-
-    font-size:13px;
-    font-weight:600;
-
-    display:flex;
-    justify-content:center;
-    align-items:center;
-
     border:2px solid #b8860b;
+    color:#fff;
+    font-weight:600;
+    font-size:13px;
+    text-align:center;
+    border-radius:10px;
     cursor:pointer;
-    transition:0.25s;
-    letter-spacing:1px;
+    text-transform:uppercase;
 }
 
 .btn:active{
     background:#ffd700;
     color:#000;
     transform:scale(0.97);
-    box-shadow:0 0 12px #ffd700;
 }
 
-.btn:hover{
-    border-color:#ffd700;
-}
+/* ================= NAV FIX ================= */
 
-/* SCROLLBAR */
-.grid::-webkit-scrollbar{
-    width:3px;
-}
-
-.grid::-webkit-scrollbar-thumb{
-    background:#b8860b;
-}
-
-/* NAV */
 .bottom-nav{
     width:360px;
+    margin-top:10px;
+
     display:flex;
     justify-content:space-between;
     align-items:center;
-    padding:8px 10px;
+
+    padding:8px 12px;
+
+    border-top:2px solid rgba(255,215,0,0.3);
+    border-bottom:2px solid rgba(255,215,0,0.3);
+
+    white-space:nowrap;
+}
+
+/* 3 PARTS SAME LINE */
+.nav-btn,
+.center{
+    flex:1;
+    text-align:center;
+    font-weight:700;
+    white-space:nowrap;
 }
 
 .nav-btn{
     color:red;
     font-size:13px;
-    font-weight:700;
     cursor:pointer;
-}
-
-.nav-btn:hover{
-    color:#ffd700;
 }
 
 .center{
     color:#ffd700;
-    font-weight:700;
-    letter-spacing:1px;
+    font-size:12px;
+}
+
+/* TOUCH */
+.nav-btn:active{
+    color:#ffd700;
+    transform:scale(1.05);
 }
 
 /* ANIMATION */
@@ -184,15 +184,12 @@ body{
     100%{background-position:100%;}
 }
 
-@keyframes lineMove{
-    0%{background-position:0%;}
-    100%{background-position:200%;}
-}
-
 </style>
 </head>
 
 <body>
+
+<div class="wrapper">
 
 <div class="frame">
 
@@ -221,14 +218,16 @@ body{
 
 </div>
 
-<!-- NAV -->
+<!-- NAV FIXED SINGLE LINE -->
 <div class="bottom-nav">
 
-    <div class="nav-btn" onclick="history.back()">← BACK</div>
+    <div class="nav-btn" onclick="history.back()">BACK</div>
 
-    <div class="center">EWONZ LINGUA</div>
+    <div class="center">← EWONZ LINGUA →</div>
 
-    <div class="nav-btn" onclick="location.href='index.html'">HOME →</div>
+    <div class="nav-btn" onclick="location.href='index.html'">HOME</div>
+
+</div>
 
 </div>
 
