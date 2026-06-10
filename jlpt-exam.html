@@ -2,29 +2,36 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>JLPT Exam</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+<title>JLPT FIX</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600;700&display=swap" rel="stylesheet">
 
 <style>
 
-/* RESET */
 *{
     margin:0;
     padding:0;
     box-sizing:border-box;
     user-select:none;
+    -webkit-user-select:none;
+    -webkit-tap-highlight-color:transparent;
 }
 
+html,body{
+    height:100%;
+    overflow:hidden;
+}
+
+/* BODY */
 body{
     background:#0b0b0b;
-    font-family:Poppins;
     display:flex;
-    flex-direction:column;
     justify-content:center;
     align-items:center;
-    height:100vh;
+    flex-direction:column;
+    font-family:Poppins;
     gap:10px;
 }
 
@@ -36,162 +43,126 @@ body{
     border-radius:20px;
     position:relative;
     overflow:hidden;
-    display:flex;
-    flex-direction:column;
 }
 
-/* GOLD BORDER ANIMATION */
+/* BORDER */
 .frame::before{
     content:"";
     position:absolute;
     inset:0;
     padding:2px;
     border-radius:20px;
-
     background:linear-gradient(90deg,#b8860b,#ffd700,#b8860b,#8b6508,#ffd700);
     background-size:300% 100%;
     animation:borderMove 3s linear infinite;
-    z-index:0;
+
+    -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+    -webkit-mask-composite:xor;
 }
 
-.frame::after{
-    content:"";
-    position:absolute;
-    inset:2px;
-    background:#0a0a0a;
-    border-radius:18px;
-    z-index:1;
-}
-
-/* CONTENT */
-.content{
-    position:relative;
-    z-index:2;
-    display:flex;
-    flex-direction:column;
-    height:100%;
-}
-
-/* TITLE */
-.title{
+/* HEADER */
+.header{
     text-align:center;
+    padding-top:14px;
+    color:#fff;
     font-size:18px;
     font-weight:700;
-    color:#fff;
-    margin-top:18px;
-    letter-spacing:1px;
-    text-transform:uppercase;
 }
 
-/* SUB TITLE */
-.subtitle{
+.sub{
     text-align:center;
-    font-size:12px;
     color:#b8860b;
-    margin-top:5px;
+    font-size:12px;
+    margin-top:4px;
     font-weight:600;
-    text-transform:uppercase;
 }
 
-/* ANIMATED LINE */
+/* LINE */
 .line{
-    width:80%;
+    width:85%;
     height:2px;
-    margin:10px auto;
+    margin:8px auto;
     background:linear-gradient(90deg,transparent,#b8860b,#ffd700,transparent);
-    background-size:200% 100%;
-    animation:lineMove 2s linear infinite;
 }
 
-/* BUTTON AREA */
+/* SCROLL AREA */
 .grid{
-    flex:1;
+    position:absolute;
+    top:80px;
+    bottom:0;
+    left:0;
+    right:0;
+
     overflow-y:auto;
-    display:flex;
-    flex-direction:column;
-    gap:10px;
-    padding:15px;
+    -webkit-overflow-scrolling:touch;
+
+    padding:10px;
 }
 
 /* BUTTON */
 .btn{
-    padding:15px;
+    padding:14px;
+    margin-bottom:10px;
     border-radius:10px;
     background:#111;
+    border:2px solid #b8860b;
     color:#fff;
 
+    text-align:center;
     font-size:13px;
     font-weight:600;
-
-    display:flex;
-    justify-content:center;
-    align-items:center;
-
-    border:2px solid #b8860b;
-    cursor:pointer;
-    transition:0.25s;
-    letter-spacing:1px;
 }
 
+/* TOUCH */
 .btn:active{
     background:#ffd700;
     color:#000;
     transform:scale(0.97);
-    box-shadow:0 0 15px #ffd700;
 }
 
-.btn:hover{
-    border-color:#ffd700;
-}
-
-/* SCROLLBAR */
-.grid::-webkit-scrollbar{
-    width:3px;
-}
-
-.grid::-webkit-scrollbar-thumb{
-    background:#b8860b;
-}
-
-/* =========================
-BOTTOM NAV (NO BORDER LINE)
-========================= */
+/* NAV */
 .bottom-nav{
     width:360px;
+    height:55px;
+
     display:flex;
     justify-content:space-between;
     align-items:center;
-    padding:8px 10px;
+
+    padding:0 14px;
+
+    background:#0a0a0a;
+    border:1px solid rgba(255,215,0,0.2);
+    border-radius:12px;
 }
 
-/* 🔥 NO BORDER HERE */
+/* NAV BUTTONS */
 .nav-btn{
-    color:red;
+    width:70px;
+    text-align:center;
+    color:#ff3b3b;
+    font-weight:700;
     font-size:13px;
-    font-weight:700;
-    cursor:pointer;
-    transition:0.2s;
 }
 
-/* HOVER EFFECT */
-.nav-btn:hover{
-    color:#ffd700;
-}
-
-/* CENTER TEXT */
-.center{
+/* CENTER */
+.nav-center{
+    flex:1;
+    text-align:center;
     color:#ffd700;
     font-weight:700;
-    letter-spacing:1px;
+    font-size:13px;
 }
 
-/* ANIMATIONS */
+/* TOUCH */
+.nav-btn:active{
+    transform:scale(0.95);
+}
+
+/* ANIMATION */
 @keyframes borderMove{
-    0%{background-position:0%;}
-    100%{background-position:100%;}
-}
-
-@keyframes lineMove{
     0%{background-position:0%;}
     100%{background-position:200%;}
 }
@@ -201,38 +172,32 @@ BOTTOM NAV (NO BORDER LINE)
 
 <body>
 
-<!-- FRAME -->
 <div class="frame">
 
-<div class="content">
+<div class="header">JLPT EXAM</div>
+<div class="sub">SELECT YOUR LEVEL</div>
+<div class="line"></div>
 
-    <div class="title">JLPT EXAM</div>
-    <div class="subtitle">SELECT JLPT EXAM LEVEL</div>
+<div class="grid">
 
-    <div class="line"></div>
-
-    <div class="grid">
-
-        <div class="btn" onclick="location.href='n5.html'">JLPT - N5</div>
-        <div class="btn" onclick="location.href='n4.html'">JLPT - N4</div>
-        <div class="btn" onclick="location.href='n3.html'">JLPT - N3</div>
-        <div class="btn" onclick="location.href='n2.html'">JLPT - N2</div>
-        <div class="btn" onclick="location.href='n1.html'">JLPT - N1</div>
-
-    </div>
+    <div class="btn" onclick="location.href='n5.html'">JLPT - N5</div>
+    <div class="btn" onclick="location.href='n4.html'">JLPT - N4</div>
+    <div class="btn" onclick="location.href='n3.html'">JLPT - N3</div>
+    <div class="btn" onclick="location.href='n2.html'">JLPT - N2</div>
+    <div class="btn" onclick="location.href='n1.html'">JLPT - N1</div>
 
 </div>
 
 </div>
 
-<!-- OUTSIDE NAV -->
+<!-- NAV (OUTSIDE FIXED) -->
 <div class="bottom-nav">
 
-    <div class="nav-btn" onclick="history.back()">← BACK</div>
+<div class="nav-btn" onclick="history.back()">BACK</div>
 
-    <div class="center">EWONZ LINGUA</div>
+<div class="nav-center">← EWONZ LINGUA →</div>
 
-    <div class="nav-btn" onclick="location.href='index.html'">HOME →</div>
+<div class="nav-btn" onclick="location.href='index.html'">HOME</div>
 
 </div>
 
