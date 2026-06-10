@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Clothes</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    user-select:none;
+}
+
+body{
+    background:#0b0b0b;
+    font-family:Poppins;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+    overflow:hidden;
+}
+
+/* FRAME */
+.frame{
+    width:360px;
+    height:480px;
+    background:#0a0a0a;
+    border-radius:20px;
+    position:relative;
+    overflow:hidden;
+    display:flex;
+    flex-direction:column;
+}
+
+/* BORDER */
+.frame::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    padding:2px;
+    border-radius:20px;
+    background:linear-gradient(90deg,#b8860b,#ffd700,#b8860b,#8b6508,#ffd700);
+    background-size:300% 100%;
+    animation:shine 3s linear infinite;
+
+    -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+    -webkit-mask-composite:xor;
+}
+
+/* TITLE */
+.title{
+    text-align:center;
+    font-size:18px;
+    font-weight:700;
+    color:#fff;
+    margin-top:14px;
+}
+
+.subtitle{
+    text-align:center;
+    font-size:12px;
+    color:#b8860b;
+}
+
+.line{
+    width:80%;
+    height:2px;
+    margin:8px auto;
+    background:linear-gradient(90deg,transparent,#b8860b,#ffd700,transparent);
+}
+
+/* SCROLL */
+.content{
+    position:absolute;
+    top:90px;
+    bottom:70px;
+    left:0;
+    right:0;
+    overflow-y:auto;
+    padding:12px;
+    text-align:center;
+}
+
+/* CARD */
+.card{
+    background:#111;
+    border:1px solid rgba(184,134,11,0.4);
+    border-radius:10px;
+    padding:10px;
+    margin-bottom:8px;
+}
+
+.jp{color:#fff;font-weight:700;font-size:14px;}
+.rm{color:#b8860b;font-size:12px;margin-top:2px;}
+.si{color:#ffcc70;font-size:12px;margin-top:2px;}
+
+/* NAV */
+.bottom-nav{
+    position:absolute;
+    bottom:0;
+    left:0;
+    width:100%;
+    height:60px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:0 10px;
+    background:#0a0a0a;
+}
+
+.bottom-nav::before,
+.bottom-nav::after{
+    content:"";
+    position:absolute;
+    left:0;
+    width:100%;
+    height:2px;
+    background:linear-gradient(90deg,transparent,#ffd700,transparent);
+}
+
+.bottom-nav::before{top:0;}
+.bottom-nav::after{bottom:0;}
+
+.nav-btn{
+    width:60px;
+    text-align:center;
+    color:#ff3b3b;
+    font-weight:700;
+    font-size:12px;
+}
+
+.center{
+    flex:1;
+    text-align:center;
+    color:#ffd700;
+    font-weight:700;
+    font-size:12px;
+}
+
+@keyframes shine{
+    0%{background-position:0%;}
+    100%{background-position:100%;}
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="frame">
+
+<div class="title">Clothes（服）</div>
+<div class="subtitle">ඇඳුම් සහ විලාසිතා</div>
+
+<div class="line"></div>
+
+<div class="content">
+
+<div class="card"><div class="jp">服（ふく）</div><div class="rm">fuku</div><div class="si">ඇඳුම්</div></div>
+<div class="card"><div class="jp">洋服（ようふく）</div><div class="rm">youfuku</div><div class="si">බටහිර ඇඳුම්</div></div>
+<div class="card"><div class="jp">和服 / 着物（わふく / きもの）</div><div class="rm">wafuku / kimono</div><div class="si">කිමෝනෝ</div></div>
+<div class="card"><div class="jp">シャツ（しゃつ）</div><div class="rm">shatsu</div><div class="si">ශර්ට්</div></div>
+<div class="card"><div class="jp">Tシャツ（てぃーしゃつ）</div><div class="rm">tii shatsu</div><div class="si">ටි-ශර්ට්</div></div>
+
+<div class="card"><div class="jp">ワイシャツ（わいしゃつ）</div><div class="rm">wai shatsu</div><div class="si">ඩ්‍රෙස් ශර්ට්</div></div>
+<div class="card"><div class="jp">ブラウス（ぶらうす）</div><div class="rm">burausu</div><div class="si">බ්ලවුස්</div></div>
+<div class="card"><div class="jp">セーター（せーたー）</div><div class="rm">seetaa</div><div class="si">ස්වීටර්</div></div>
+<div class="card"><div class="jp">パーカー（ぱーかー）</div><div class="rm">paakaa</div><div class="si">හුඩි</div></div>
+<div class="card"><div class="jp">ジャケット（じゃけっと）</div><div class="rm">jaketto</div><div class="si">ජැකට්</div></div>
+
+<div class="card"><div class="jp">コート（こーと）</div><div class="rm">kooto</div><div class="si">කෝට්</div></div>
+<div class="card"><div class="jp">スーツ（すーつ）</div><div class="rm">suutsu</div><div class="si">සූට්</div></div>
+<div class="card"><div class="jp">ズボン（ずぼん）</div><div class="rm">zubon</div><div class="si">කලිසම</div></div>
+<div class="card"><div class="jp">ジーンズ（じーんず）</div><div class="rm">jiinzu</div><div class="si">ජීන්ස්</div></div>
+<div class="card"><div class="jp">スカート（すかーと）</div><div class="rm">sukaato</div><div class="si">ස්කර්ට්</div></div>
+
+<div class="card"><div class="jp">ワンピース（わんぴーす）</div><div class="rm">wanpiisu</div><div class="si">ඩ්‍රෙස්</div></div>
+<div class="card"><div class="jp">ショートパンツ（しょーとぱんつ）</div><div class="rm">shooto pantsu</div><div class="si">ශෝර්ට්ස්</div></div>
+<div class="card"><div class="jp">下着（したぎ）</div><div class="rm">shitagi</div><div class="si">ඇතුල් ඇඳුම්</div></div>
+<div class="card"><div class="jp">パンツ（ぱんつ）</div><div class="rm">pantsu</div><div class="si">අන්ඩර්වෙයාර්</div></div>
+<div class="card"><div class="jp">ブラジャー（ぶらじゃー）</div><div class="rm">burajaa</div><div class="si">බ්‍රා</div></div>
+
+<div class="card"><div class="jp">靴下（くつした）</div><div class="rm">kutsushita</div><div class="si">සොක්ස්</div></div>
+<div class="card"><div class="jp">靴（くつ）</div><div class="rm">kutsu</div><div class="si">සපත්තු</div></div>
+<div class="card"><div class="jp">スニーカー（すにーかー）</div><div class="rm">suniikaa</div><div class="si">ස්නීකර්ස්</div></div>
+<div class="card"><div class="jp">ブーツ（ぶーつ）</div><div class="rm">buutsu</div><div class="si">බූට්ස්</div></div>
+<div class="card"><div class="jp">サンダル（さんだる）</div><div class="rm">sandaru</div><div class="si">සැන්ඩල්</div></div>
+
+<div class="card"><div class="jp">ハイヒール（はいひーる）</div><div class="rm">hai hiiru</div><div class="si">හයි හීල්</div></div>
+<div class="card"><div class="jp">帽子（ぼうし）</div><div class="rm">boushi</div><div class="si">තොප්පි</div></div>
+<div class="card"><div class="jp">手袋（てぶくろ）</div><div class="rm">tebukuro</div><div class="si">අත් ගවන්</div></div>
+<div class="card"><div class="jp">マフラー（まふらー）</div><div class="rm">mafuraa</div><div class="si">ස්කාෆ්</div></div>
+<div class="card"><div class="jp">ネクタイ（ねくたい）</div><div class="rm">nekutai</div><div class="si">නෙක්ටයි</div></div>
+
+<div class="card"><div class="jp">ベルト（べると）</div><div class="rm">beruto</div><div class="si">බෙල්ට්</div></div>
+<div class="card"><div class="jp">めがね（めがね）</div><div class="rm">megane</div><div class="si">කණ්නාඩි</div></div>
+<div class="card"><div class="jp">かばん（かばん）</div><div class="rm">kaban</div><div class="si">බෑග්</div></div>
+<div class="card"><div class="jp">リュック（りゅっく）</div><div class="rm">ryukku</div><div class="si">බැක්පැක්</div></div>
+<div class="card"><div class="jp">財布（さいふ）</div><div class="rm">saifu</div><div class="si">වොලට්</div></div>
+
+<div class="card"><div class="jp">指輪（ゆびわ）</div><div class="rm">yubiwa</div><div class="si">මුද්ද</div></div>
+<div class="card"><div class="jp">ネックレス（ねっくれす）</div><div class="rm">nekkuresu</div><div class="si">නෙක්ලස්</div></div>
+<div class="card"><div class="jp">イヤリング（いやりんぐ）</div><div class="rm">iyaringu</div><div class="si">කන ආභරණ</div></div>
+
+<div class="card"><div class="jp">時計（とけい）</div><div class="rm">tokei</div><div class="si">ඔරලෝසු</div></div>
+<div class="card"><div class="jp">傘（かさ）</div><div class="rm">kasa</div><div class="si">ඇම්බ්‍රෙල්ලා</div></div>
+<div class="card"><div class="jp">パジャマ（ぱじゃま）</div><div class="rm">pajama</div><div class="si">නින්ද ඇඳුම්</div></div>
+<div class="card"><div class="jp">制服（せいふく）</div><div class="rm">seifuku</div><div class="si">යුනිෆෝම්</div></div>
+<div class="card"><div class="jp">試着する（しちゃくする）</div><div class="rm">shichaku suru</div><div class="si">අත්හදා බැලීම</div></div>
+
+</div>
+
+<div class="bottom-nav">
+<div class="nav-btn" onclick="history.back()">BACK</div>
+<div class="center">← EWONZ LINGUA →</div>
+<div class="nav-btn" onclick="location.href='index.html'">HOME</div>
+</div>
+
+</div>
+
+</body>
+  </html>
