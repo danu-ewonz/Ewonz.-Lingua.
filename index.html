@@ -15,7 +15,7 @@
     user-select:none;
 }
 
-/* BODY BACKGROUND (OUTSIDE BOX IMAGE) */
+/* BODY */
 body{
     margin:0;
     height:100vh;
@@ -25,7 +25,16 @@ body{
     overflow:hidden;
     font-family:'Poppins', sans-serif;
 
-    /* 🌟 OUTER BACKGROUND IMAGE */
+    /* ⚡ instant fallback (NO BLACK FLASH) */
+    background: linear-gradient(135deg, #0a0a0a, #111);
+}
+
+/* BACKGROUND IMAGE LAYER (NEW FIX) */
+body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+
     background:
     linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.75)),
     url("1781098017405.png");
@@ -33,10 +42,21 @@ body{
     background-size:cover;
     background-position:center;
     background-repeat:no-repeat;
+
+    opacity:0;
+    transform:scale(1.05);
+    transition:opacity 0.8s ease, transform 1s ease;
+
+    z-index:-2;
+}
+
+/* when loaded */
+body.loaded::before{
+    opacity:1;
+    transform:scale(1);
 }
 
 /* OPTIONAL GLOW OVERLAY */
-body::before,
 body::after{
     content:"";
     position:absolute;
@@ -46,21 +66,10 @@ body::after{
     filter:blur(100px);
     z-index:0;
     animation: floatGlow 6s infinite ease-in-out;
-}
-
-body::before{
     background:#ffd700;
     top:10%;
     left:10%;
     opacity:0.12;
-}
-
-body::after{
-    background:#3b82f6;
-    bottom:10%;
-    right:10%;
-    opacity:0.12;
-    animation-delay:3s;
 }
 
 @keyframes floatGlow{
@@ -213,6 +222,13 @@ body::after{
 </div>
 
 </div>
+
+<script>
+/* ⚡ smooth background load trigger */
+window.addEventListener("load", () => {
+    document.body.classList.add("loaded");
+});
+</script>
 
 </body>
 </html>
