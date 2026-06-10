@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Food & Drinks</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    user-select:none;
+}
+
+body{
+    background:#0b0b0b;
+    font-family:Poppins;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+    overflow:hidden;
+}
+
+/* FRAME */
+.frame{
+    width:360px;
+    height:480px;
+    background:#0a0a0a;
+    border-radius:20px;
+    position:relative;
+    overflow:hidden;
+    display:flex;
+    flex-direction:column;
+}
+
+/* BORDER */
+.frame::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    padding:2px;
+    border-radius:20px;
+    background:linear-gradient(90deg,#b8860b,#ffd700,#b8860b,#8b6508,#ffd700);
+    background-size:300% 100%;
+    animation:shine 3s linear infinite;
+
+    -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+    -webkit-mask-composite:xor;
+}
+
+/* TITLE */
+.title{
+    text-align:center;
+    font-size:18px;
+    font-weight:700;
+    color:#fff;
+    margin-top:14px;
+}
+
+.subtitle{
+    text-align:center;
+    font-size:12px;
+    color:#b8860b;
+}
+
+.line{
+    width:80%;
+    height:2px;
+    margin:8px auto;
+    background:linear-gradient(90deg,transparent,#b8860b,#ffd700,transparent);
+}
+
+/* SCROLL */
+.content{
+    position:absolute;
+    top:90px;
+    bottom:70px;
+    left:0;
+    right:0;
+    overflow-y:auto;
+    padding:12px;
+    text-align:center;
+}
+
+/* GROUP */
+.group{
+    color:#ffd700;
+    font-weight:700;
+    font-size:13px;
+    margin:18px 0 10px;
+}
+
+/* CARD */
+.card{
+    background:#111;
+    border:1px solid rgba(184,134,11,0.4);
+    border-radius:10px;
+    padding:10px;
+    margin-bottom:8px;
+}
+
+/* TEXT COLORS */
+.jp{color:#fff;font-weight:700;font-size:14px;}
+.rm{color:#b8860b;font-size:12px;margin-top:2px;}
+.si{color:#ffcc70;font-size:12px;margin-top:2px;}
+
+.bottom-nav{
+    position:absolute;
+    bottom:0;
+    left:0;
+    width:100%;
+    height:60px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:0 10px;
+    background:#0a0a0a;
+}
+
+.bottom-nav::before,
+.bottom-nav::after{
+    content:"";
+    position:absolute;
+    left:0;
+    width:100%;
+    height:2px;
+    background:linear-gradient(90deg,transparent,#ffd700,transparent);
+}
+
+.bottom-nav::before{top:0;}
+.bottom-nav::after{bottom:0;}
+
+.nav-btn{
+    width:60px;
+    text-align:center;
+    color:#ff3b3b;
+    font-weight:700;
+    font-size:12px;
+}
+
+.center{
+    flex:1;
+    text-align:center;
+    color:#ffd700;
+    font-weight:700;
+    font-size:12px;
+}
+
+@keyframes shine{
+    0%{background-position:0%;}
+    100%{background-position:100%;}
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="frame">
+
+<div class="title">Food & Drinks（食べ物と飲み物）</div>
+<div class="subtitle">ආහාර සහ පාන වර්ග</div>
+
+<div class="line"></div>
+
+<div class="content">
+
+<!-- DRINKS -->
+<div class="group">Drinks (පාන වර්ග)</div>
+
+<div class="card"><div class="jp">水（みず）</div><div class="rm">mizu</div><div class="si">වතුර</div></div>
+<div class="card"><div class="jp">お茶（おちゃ）</div><div class="rm">ocha</div><div class="si">තේ</div></div>
+<div class="card"><div class="jp">緑茶（りょくちゃ）</div><div class="rm">ryokucha</div><div class="si">කොළ තේ</div></div>
+<div class="card"><div class="jp">紅茶（こうちゃ）</div><div class="rm">koucha</div><div class="si">කළු තේ</div></div>
+<div class="card"><div class="jp">麦茶（むぎちゃ）</div><div class="rm">mugicha</div><div class="si">බාර්ලි තේ</div></div>
+<div class="card"><div class="jp">ウーロン茶</div><div class="rm">uuroncha</div><div class="si">උලොන් තේ</div></div>
+<div class="card"><div class="jp">コーヒー</div><div class="rm">koohii</div><div class="si">කෝපි</div></div>
+<div class="card"><div class="jp">アイスコーヒー</div><div class="rm">aisu koohii</div><div class="si">අයිස් කෝපි</div></div>
+<div class="card"><div class="jp">カフェラテ</div><div class="rm">kafe rate</div><div class="si">කැෆේ ලැටේ</div></div>
+<div class="card"><div class="jp">ココア</div><div class="rm">kokoa</div><div class="si">කොකෝවා</div></div>
+<div class="card"><div class="jp">牛乳（ぎゅうにゅう）</div><div class="rm">gyuunyuu</div><div class="si">කිරි</div></div>
+<div class="card"><div class="jp">豆乳（とうにゅう）</div><div class="rm">tounyuu</div><div class="si">සෝයා කිරි</div></div>
+<div class="card"><div class="jp">ジュース</div><div class="rm">juusu</div><div class="si">ජූස්</div></div>
+<div class="card"><div class="jp">オレンジジュース</div><div class="rm">orenji juusu</div><div class="si">දොඩම් ජූස්</div></div>
+<div class="card"><div class="jp">リンゴジュース</div><div class="rm">ringo juusu</div><div class="si">ඇපල් ජූස්</div></div>
+<div class="card"><div class="jp">コーラ</div><div class="rm">koora</div><div class="si">කෝලා</div></div>
+<div class="card"><div class="jp">ソーダ</div><div class="rm">sooda</div><div class="si">සෝඩා</div></div>
+<div class="card"><div class="jp">炭酸水（たんさんすい）</div><div class="rm">tansansui</div><div class="si">ස්පාක්ලින් වතුර</div></div>
+<div class="card"><div class="jp">スポーツドリンク</div><div class="rm">supootsu dorinku</div><div class="si">ස්පෝර්ට්ස් ඩ්‍රින්ක්</div></div>
+<div class="card"><div class="jp">エナジードリンク</div><div class="rm">enajii dorinku</div><div class="si">එනර්ජි ඩ්‍රින්ක්</div></div>
+<div class="card"><div class="jp">ビール</div><div class="rm">biiru</div><div class="si">බියර්</div></div>
+<div class="card"><div class="jp">酒（さけ）</div><div class="rm">sake</div><div class="si">සාකේ</div></div>
+<div class="card"><div class="jp">ワイン</div><div class="rm">wain</div><div class="si">වයින්</div></div>
+<div class="card"><div class="jp">ウイスキー</div><div class="rm">uisukii</div><div class="si">විස්කි</div></div>
+<div class="card"><div class="jp">タピオカ</div><div class="rm">tapioka</div><div class="si">ටැපියෝකා</div></div>
+
+<!-- FOOD -->
+<div class="group">Food (ආහාර)</div>
+
+<div class="card"><div class="jp">ご飯（ごはん）</div><div class="rm">gohan</div><div class="si">බත්</div></div>
+<div class="card"><div class="jp">パン</div><div class="rm">pan</div><div class="si">පාන්</div></div>
+<div class="card"><div class="jp">麺（めん）</div><div class="rm">men</div><div class="si">නූඩ්ල්ස්</div></div>
+<div class="card"><div class="jp">肉（にく）</div><div class="rm">niku</div><div class="si">මස්</div></div>
+<div class="card"><div class="jp">牛肉（ぎゅうにく）</div><div class="rm">gyuuniku</div><div class="si">ගෝ මස්</div></div>
+<div class="card"><div class="jp">豚肉（ぶたにく）</div><div class="rm">butaniku</div><div class="si">ඌරු මස්</div></div>
+<div class="card"><div class="jp">鶏肉（とりにく）</div><div class="rm">toriniku</div><div class="si">කුකුල් මස්</div></div>
+<div class="card"><div class="jp">魚（さかな）</div><div class="rm">sakana</div><div class="si">මාළු</div></div>
+<div class="card"><div class="jp">卵（たまご）</div><div class="rm">tamago</div><div class="si">බිත්තර</div></div>
+<div class="card"><div class="jp">野菜（やさい）</div><div class="rm">yasai</div><div class="si">එළවළු</div></div>
+<div class="card"><div class="jp">果物（くだもの）</div><div class="rm">kudamono</div><div class="si">පළතුරු</div></div>
+<div class="card"><div class="jp">チーズ</div><div class="rm">chiizu</div><div class="si">චීස්</div></div>
+<div class="card"><div class="jp">スープ</div><div class="rm">suupu</div><div class="si">සුප්</div></div>
+<div class="card"><div class="jp">サラダ</div><div class="rm">sarada</div><div class="si">සැලඩ්</div></div>
+<div class="card"><div class="jp">カレー</div><div class="rm">karee</div><div class="si">කරී</div></div>
+<div class="card"><div class="jp">ラーメン</div><div class="rm">raamen</div><div class="si">රාමෙන්</div></div>
+<div class="card"><div class="jp">寿司（すし）</div><div class="rm">sushi</div><div class="si">සුෂි</div></div>
+<div class="card"><div class="jp">うどん</div><div class="rm">udon</div><div class="si">උඩොන්</div></div>
+<div class="card"><div class="jp">そば</div><div class="rm">soba</div><div class="si">සෝබා</div></div>
+<div class="card"><div class="jp">天ぷら（てんぷら）</div><div class="rm">tempura</div><div class="si">ටෙම්පුරා</div></div>
+<div class="card"><div class="jp">焼肉（やきにく）</div><div class="rm">yakiniku</div><div class="si">ග්‍රිල් මස්</div></div>
+<div class="card"><div class="jp">ピザ</div><div class="rm">piza</div><div class="si">පීසා</div></div>
+<div class="card"><div class="jp">ハンバーガー</div><div class="rm">hanbaagaa</div><div class="si">හැම්බර්ගර්</div></div>
+<div class="card"><div class="jp">ケーキ</div><div class="rm">keeki</div><div class="si">කේක්</div></div>
+<div class="card"><div class="jp">アイスクリーム</div><div class="rm">aisukuriimu</div><div class="si">අයිස්ක්‍රීම්</div></div>
+
+</div>
+
+<!-- NAV -->
+<div class="bottom-nav">
+<div class="nav-btn" onclick="history.back()">BACK</div>
+<div class="center">← EWONZ LINGUA →</div>
+<div class="nav-btn" onclick="location.href='index.html'">HOME</div>
+</div>
+
+</div>
+
+</body>
+  </html>
