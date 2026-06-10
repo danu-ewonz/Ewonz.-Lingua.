@@ -104,12 +104,10 @@ body{
 
     border:2px solid #b8860b;
     cursor:pointer;
-
     position:relative;
-    overflow:hidden;
 }
 
-/* BUTTON HOVER GLOW */
+/* BUTTON ACTIVE */
 .btn:active{
     background:#b8860b;
     color:#000;
@@ -117,27 +115,88 @@ body{
 
 /* NAV */
 .bottom-nav{
+    position:absolute;
+    bottom:0;
+    left:0;
     width:100%;
+
     display:flex;
-    justify-content:center;
+    justify-content:space-between;
     align-items:center;
-    gap:14px;
-    padding:10px 0;
+
+    padding:10px 14px;
+    background:#0a0a0a;
     border-top:1px solid rgba(255,215,0,0.15);
 }
 
-.nav-text{
-    color:red;
-    font-weight:700;
-    cursor:pointer;
+/* INNER BORDER BOX */
+.bottom-nav::before{
+    content:"";
+    position:absolute;
+    inset:5px;
+    border:1px solid rgba(255,215,0,0.25);
+    border-radius:10px;
+    pointer-events:none;
 }
 
-.center{
-    color:#b8860b;
+/* ALL ITEMS SAME SIZE */
+.nav-item,
+.nav-center,
+.nav-right{
+    flex:1;
+    text-align:center;
+
+    font-size:13px;
     font-weight:700;
+    letter-spacing:1px;
+    white-space:nowrap;
+
+    position:relative;
+    z-index:2;
+}
+
+/* LEFT + RIGHT */
+.nav-item,
+.nav-right{
+    color:#ff3b3b;
+    cursor:pointer;
+    transition:0.2s ease;
+}
+
+/* CENTER ANIMATION */
+.nav-center{
+    color:#ffd700;
+    font-size:12px;
+    cursor:default;
+
+    animation:softBreath 3.5s ease-in-out infinite;
+}
+
+/* TOUCH GOLD EFFECT */
+.nav-item:active,
+.nav-right:active{
+    color:#ffd700;
+    transform:scale(0.94);
+    opacity:1;
 }
 
 /* ANIMATION */
+@keyframes softBreath{
+    0%{
+        transform:scale(1);
+        opacity:0.85;
+    }
+    50%{
+        transform:scale(1.04);
+        opacity:1;
+    }
+    100%{
+        transform:scale(1);
+        opacity:0.85;
+    }
+}
+
+/* SHINE FRAME */
 @keyframes shine{
     0%{background-position:0%;}
     100%{background-position:200%;}
@@ -156,25 +215,27 @@ body{
 <div class="grid">
 
     <div class="btn" onclick="location.href='hiragana.html'">Hiragana</div>
-
     <div class="btn" onclick="location.href='katakana.html'">Katakana</div>
-
     <div class="btn" onclick="location.href='kanji.html'">Kanji</div>
-
     <div class="btn" onclick="location.href='hiragana-special.html'">Hiragana Special</div>
-
     <div class="btn" onclick="location.href='katakana-special.html'">Katakana Special</div>
 
 </div>
 
-<!-- NAV -->
+<!-- NEW NAV (REPLACED) -->
 <div class="bottom-nav">
 
-    <div class="nav-text" onclick="history.back()">← BACK →</div>
+    <div class="nav-item" onclick="history.back()">
+        BACK
+    </div>
 
-    <div class="center">EWONZ LINGUA</div>
+    <div class="nav-center">
+        ← EWONZ LINGUA →
+    </div>
 
-    <div class="nav-text" onclick="location.href='index.html'">→ HOME →</div>
+    <div class="nav-right" onclick="location.href='index.html'">
+        HOME
+    </div>
 
 </div>
 
