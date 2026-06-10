@@ -4,25 +4,35 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-<title>Katakana Choon</title>
+<title>Katakana Choon FIX</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600;700&family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600;700&display=swap" rel="stylesheet">
 
 <style>
 
 *{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
     user-select:none;
     -webkit-user-select:none;
+    -webkit-tap-highlight-color:transparent;
 }
 
+html,body{
+    height:100%;
+    overflow:hidden;
+}
+
+/* BODY */
 body{
-    margin:0;
     background:#0b0b0b;
     display:flex;
     justify-content:center;
     align-items:center;
-    height:100vh;
-    font-family:'Poppins', sans-serif;
+    flex-direction:column;
+    font-family:Poppins;
+    gap:10px;
 }
 
 /* FRAME */
@@ -31,20 +41,17 @@ body{
     height:480px;
     background:#0a0a0a;
     border-radius:20px;
-    display:flex;
-    flex-direction:column;
-    overflow:hidden;
     position:relative;
+    overflow:hidden;
 }
 
-/* GOLD BORDER */
+/* BORDER */
 .frame::before{
     content:"";
     position:absolute;
     inset:0;
     padding:2px;
     border-radius:20px;
-
     background:linear-gradient(90deg,#b8860b,#ffd700,#b8860b,#8b6508,#ffd700);
     background-size:300% 100%;
     animation:shine 3s linear infinite;
@@ -53,9 +60,6 @@ body{
     linear-gradient(#000 0 0) content-box,
     linear-gradient(#000 0 0);
     -webkit-mask-composite:xor;
-    mask-composite:exclude;
-
-    pointer-events:none;
 }
 
 /* TITLE */
@@ -64,25 +68,29 @@ body{
     color:#fff;
     font-size:18px;
     font-weight:700;
-    margin-top:15px;
+    padding-top:14px;
 }
 
 /* LINE */
 .line{
-    width:80%;
+    width:85%;
     height:2px;
-    margin:8px auto;
+    margin:6px auto;
     background:linear-gradient(90deg,transparent,#b8860b,#ffd700,transparent);
 }
 
-/* GRID */
+/* SCROLL AREA */
 .grid{
-    flex:1;
-    padding:12px;
+    position:absolute;
+    top:70px;
+    bottom:0;
+    left:0;
+    right:0;
+
     overflow-y:auto;
-    display:grid;
-    grid-template-columns:1fr;
-    gap:10px;
+    -webkit-overflow-scrolling:touch;
+
+    padding:10px;
 }
 
 /* CARD */
@@ -92,9 +100,10 @@ body{
     border-radius:10px;
     padding:12px;
     text-align:center;
+    margin-bottom:10px;
 }
 
-/* MAIN */
+/* KANA */
 .kana{
     color:#fff;
     font-size:18px;
@@ -116,24 +125,41 @@ body{
 
 /* NAV */
 .bottom-nav{
-    width:100%;
+    width:360px;
+    height:55px;
+
     display:flex;
-    justify-content:center;
+    justify-content:space-between;
     align-items:center;
-    gap:14px;
-    padding:10px 0;
-    border-top:1px solid rgba(255,215,0,0.15);
+
+    padding:0 14px;
+
+    background:#0a0a0a;
+    border:1px solid rgba(255,215,0,0.2);
+    border-radius:12px;
 }
 
-.nav-text{
-    color:red;
+/* NAV BUTTONS */
+.nav-btn{
+    width:70px;
+    text-align:center;
+    color:#ff3b3b;
     font-weight:700;
-    cursor:pointer;
+    font-size:13px;
 }
 
-.center{
-    color:#b8860b;
+/* CENTER */
+.nav-center{
+    flex:1;
+    text-align:center;
+    color:#ffd700;
     font-weight:700;
+    font-size:13px;
+}
+
+/* TOUCH */
+.nav-btn:active{
+    transform:scale(0.95);
 }
 
 /* ANIMATION */
@@ -149,7 +175,7 @@ body{
 
 <div class="frame">
 
-<div class="title">CHŌON (ー LONG VOWEL)</div>
+<div class="title">CHŌON (LONG VOWELS)</div>
 <div class="line"></div>
 
 <div class="grid">
@@ -186,16 +212,16 @@ body{
 
 </div>
 
-<!-- NAV -->
+</div>
+
+<!-- NAV (OUTSIDE FRAME FIXED) -->
 <div class="bottom-nav">
 
-    <div class="nav-text" onclick="history.back()">← BACK →</div>
+<div class="nav-btn" onclick="history.back()">BACK</div>
 
-    <div class="center">EWONZ LINGUA</div>
+<div class="nav-center">← EWONZ LINGUA →</div>
 
-    <div class="nav-text" onclick="location.href='index.html'">→ HOME →</div>
-
-</div>
+<div class="nav-btn" onclick="location.href='index.html'">HOME</div>
 
 </div>
 
