@@ -19,15 +19,18 @@
 
 body{
     background:#0b0b0b;
-    font-family:Poppins;
+    font-family:'Poppins', sans-serif;
     display:flex;
     flex-direction:column;
     justify-content:center;
     align-items:center;
     height:100vh;
+    gap:10px;
 }
 
-/* FRAME (OLD STYLE BACK) */
+/* =========================
+FRAME (3:4 BOX)
+========================= */
 .frame{
     width:360px;
     height:480px;
@@ -39,7 +42,7 @@ body{
     overflow:hidden;
 }
 
-/* GOLD BORDER ANIMATION (OLD PREMIUM) */
+/* GOLD BORDER */
 .frame::before{
     content:"";
     position:absolute;
@@ -47,28 +50,18 @@ body{
     padding:2px;
     border-radius:20px;
 
-    background:linear-gradient(
-        90deg,
-        #b8860b,
-        #ffd700,
-        #b8860b,
-        #8b6508,
-        #ffd700
-    );
-
+    background:linear-gradient(90deg,#b8860b,#ffd700,#b8860b,#8b6508,#ffd700);
     background-size:300% 100%;
     animation:borderMove 3s linear infinite;
-
-    z-index:0;
 }
 
+/* INNER BACKGROUND */
 .frame::after{
     content:"";
     position:absolute;
     inset:2px;
     background:#0a0a0a;
     border-radius:18px;
-    z-index:1;
 }
 
 /* CONTENT */
@@ -89,7 +82,7 @@ body{
     margin-top:18px;
 }
 
-/* LINE (OLD GOLD LINE) */
+/* LINE */
 .line{
     width:80%;
     height:2px;
@@ -97,7 +90,9 @@ body{
     background:linear-gradient(90deg,transparent,#b8860b,#ffd700,transparent);
 }
 
-/* SCROLL AREA */
+/* =========================
+SCROLL AREA
+========================= */
 .grid{
     flex:1;
     overflow-y:auto;
@@ -107,21 +102,18 @@ body{
     padding:15px;
 }
 
-/* BUTTON (OLD PREMIUM STYLE) */
+/* BUTTON */
 .btn{
     padding:14px;
     border-radius:10px;
     background:#111;
     color:#fff;
 
-    font-family:Montserrat;
+    font-family:'Montserrat', sans-serif;
     font-size:12px;
     font-weight:600;
 
-    display:flex;
-    justify-content:center;
-    align-items:center;
-
+    text-align:center;
     text-transform:uppercase;
     letter-spacing:1px;
 
@@ -130,15 +122,10 @@ body{
     transition:0.2s;
 }
 
-/* TOUCH GOLD EFFECT ONLY */
 .btn:active{
     background:#b8860b;
     color:#000;
     transform:scale(0.98);
-}
-
-.btn:hover{
-    border-color:#ffd700;
 }
 
 /* SCROLLBAR */
@@ -152,44 +139,59 @@ body{
 }
 
 /* =========================
-BOTTOM NAV (RESTORED OLD STYLE)
+OUTSIDE NAV (FINAL)
 ========================= */
 .bottom-nav{
     width:360px;
-    height:60px;
+    height:55px;
 
     display:flex;
     justify-content:space-between;
     align-items:center;
 
-    padding:0 20px;
+    padding:0 15px;
 
-    margin-top:10px;
+    background:#0a0a0a;
+    border-radius:12px;
+
+    border:1px solid rgba(255,215,0,0.15);
 }
 
-/* OLD RED STYLE */
-.nav-btn{
-    color:red;
-    font-weight:700;
-    cursor:pointer;
-    font-size:13px;
-}
+/* ALL ITEMS */
+.nav-item,
+.nav-center{
+    flex:1;
+    text-align:center;
 
-.nav-btn:hover{
-    color:#ffd700;
-}
-
-/* CENTER TITLE */
-.center{
-    color:#b8860b;
     font-weight:700;
     letter-spacing:1px;
+    white-space:nowrap;
 }
 
-/* ANIMATION */
+/* SIDE BUTTONS */
+.nav-item{
+    color:#ff3b3b;
+    font-size:13px;
+    cursor:pointer;
+    transition:0.2s;
+}
+
+/* CENTER TEXT */
+.nav-center{
+    color:#ffd700;
+    font-size:12px;
+}
+
+/* TOUCH EFFECT */
+.nav-item:active{
+    color:#ffd700;
+    transform:scale(0.95);
+}
+
+/* BORDER ANIMATION */
 @keyframes borderMove{
     0%{background-position:0%;}
-    100%{background-position:100%;}
+    100%{background-position:200%;}
 }
 
 </style>
@@ -205,32 +207,22 @@ BOTTOM NAV (RESTORED OLD STYLE)
     <div class="title">VOCABULARY</div>
     <div class="line"></div>
 
+    <!-- SCROLL BUTTONS -->
     <div class="grid">
 
-        <div class="btn">Greetings & Aisatsu (挨拶)</div>
+        <div class="btn">Greetings & Aisatsu</div>
         <div class="btn">People & Relationships</div>
-        <div class="btn">Home & Living (家・生活)</div>
-        <div class="btn">Food & Drinks (食べ物)</div>
-        <div class="btn">Daily Activities (日常生活)</div>
-        <div class="btn">Time & Calendar (時間・日付)</div>
-        <div class="btn">Numbers & Counting (数字)</div>
-        <div class="btn">Colors & Shapes (色・形)</div>
-        <div class="btn">Clothing & Accessories (服)</div>
-        <div class="btn">Transportation (乗り物)</div>
-        <div class="btn">Weather & Nature (天気・自然)</div>
-        <div class="btn">Animals (動物)</div>
-        <div class="btn">School & Education (学校)</div>
-        <div class="btn">Shopping & Money (買い物)</div>
-        <div class="btn">Emotions & Feelings (感情)</div>
-        <div class="btn">Basic Expressions (基本表現)</div>
-        <div class="btn">Body Parts (体)</div>
-        <div class="btn">Places & Locations (場所)</div>
-        <div class="btn">Directions (方向)</div>
-        <div class="btn">Technology & Internet</div>
-        <div class="btn">Hobbies & Entertainment</div>
-        <div class="btn">Actions & Verbs (動詞)</div>
-        <div class="btn">Travel & Abroad</div>
-        <div class="btn">Emergency & Health</div>
+        <div class="btn">Home & Living</div>
+        <div class="btn">Food & Drinks</div>
+        <div class="btn">Daily Activities</div>
+        <div class="btn">Time & Calendar</div>
+        <div class="btn">Numbers</div>
+        <div class="btn">Colors</div>
+        <div class="btn">Clothing</div>
+        <div class="btn">Transportation</div>
+        <div class="btn">Weather</div>
+        <div class="btn">Animals</div>
+        <div class="btn">School</div>
 
     </div>
 
@@ -238,14 +230,20 @@ BOTTOM NAV (RESTORED OLD STYLE)
 
 </div>
 
-<!-- BOTTOM NAV (OLD DESIGN RESTORED) -->
+<!-- OUTSIDE NAV -->
 <div class="bottom-nav">
 
-    <div class="nav-btn" onclick="history.back()">← BACK</div>
+    <div class="nav-item" onclick="history.back()">
+        BACK
+    </div>
 
-    <div class="center">EWONZ LINGUA</div>
+    <div class="nav-center">
+        ← EWONZ LINGUA →
+    </div>
 
-    <div class="nav-btn" onclick="location.href='index.html'">HOME →</div>
+    <div class="nav-item" onclick="location.href='index.html'">
+        HOME
+    </div>
 
 </div>
 
