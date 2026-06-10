@@ -2,7 +2,8 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
 <title>Exam Page</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600;700&display=swap" rel="stylesheet">
@@ -14,16 +15,24 @@
     padding:0;
     box-sizing:border-box;
     user-select:none;
+    -webkit-user-select:none;
 }
 
 body{
     background:#0b0b0b;
     font-family:Poppins;
+    height:100vh;
     display:flex;
     justify-content:center;
     align-items:center;
-    height:100vh;
     flex-direction:column;
+}
+
+/* WRAPPER FIX (IMPORTANT) */
+.wrapper{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
 }
 
 /* FRAME */
@@ -79,7 +88,6 @@ body{
     text-transform:uppercase;
 }
 
-/* SUBTITLE */
 .subtitle{
     text-align:center;
     font-size:12px;
@@ -88,7 +96,6 @@ body{
     text-transform:uppercase;
 }
 
-/* LINE */
 .line{
     width:80%;
     height:2px;
@@ -116,7 +123,6 @@ body{
     text-align:center;
     border-radius:10px;
     cursor:pointer;
-    transition:0.2s;
     text-transform:uppercase;
 }
 
@@ -126,32 +132,48 @@ body{
     transform:scale(0.97);
 }
 
-.btn:hover{
-    border-color:#ffd700;
-}
+/* ================= NAV FIXED ================= */
 
-/* BOTTOM NAV */
 .bottom-nav{
     width:360px;
+    margin-top:10px;
+
     display:flex;
     justify-content:space-between;
     align-items:center;
-    padding:8px 10px;
+
+    padding:8px 12px;
+
+    border-top:2px solid rgba(255,215,0,0.3);
+    border-bottom:2px solid rgba(255,215,0,0.3);
+
+    white-space:nowrap;
+}
+
+/* 3 PARTS SAME LINE */
+.nav-btn,
+.center{
+    flex:1;
+    text-align:center;
+    font-weight:700;
+    white-space:nowrap;
 }
 
 .nav-btn{
     color:red;
-    font-weight:700;
+    font-size:13px;
     cursor:pointer;
-}
-
-.nav-btn:hover{
-    color:#ffd700;
 }
 
 .center{
     color:#ffd700;
-    font-weight:700;
+    font-size:12px;
+}
+
+/* TOUCH */
+.nav-btn:active{
+    color:#ffd700;
+    transform:scale(1.05);
 }
 
 /* ANIMATION */
@@ -165,6 +187,8 @@ body{
 
 <body>
 
+<div class="wrapper">
+
 <div class="frame">
 
 <div class="content">
@@ -176,7 +200,6 @@ body{
 
     <div class="grid">
 
-        <!-- 🔥 FIXED LINKS -->
         <div class="btn" onclick="location.href='jlpt-exam.html'">JLPT EXAM</div>
         <div class="btn" onclick="location.href='nat-exam.html'">NAT-TEST EXAM</div>
         <div class="btn" onclick="location.href='jft-exam.html'">JFT-BASIC EXAM</div>
@@ -188,14 +211,16 @@ body{
 
 </div>
 
-<!-- NAV -->
+<!-- FIXED NAV -->
 <div class="bottom-nav">
 
-    <div class="nav-btn" onclick="history.back()">← BACK</div>
+    <div class="nav-btn" onclick="history.back()">BACK</div>
 
-    <div class="center">EWONZ LINGUA</div>
+    <div class="center">← EWONZ LINGUA →</div>
 
-    <div class="nav-btn" onclick="location.href='index.html'">HOME →</div>
+    <div class="nav-btn" onclick="location.href='index.html'">HOME</div>
+
+</div>
 
 </div>
 
