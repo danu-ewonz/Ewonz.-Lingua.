@@ -1,296 +1,321 @@
-<!DOCTYPE html>  <html lang="en">  
-<head>  
-<meta charset="UTF-8">  
-<meta name="viewport" content="width=device-width, initial-scale=1.0">  
-<title>Language Learning</title>  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">  <style>  
-  
-/* 🔥 BLOCK COPY FULL SYSTEM */  
-*{  
-    -webkit-user-select:none;  
-    -moz-user-select:none;  
-    -ms-user-select:none;  
-    user-select:none;  
-}  
-  
-body{  
-    margin:0;  
-    font-family:'Poppins', sans-serif;  
-    background:#0b0b0b;  
-    display:flex;  
-    justify-content:center;  
-    align-items:center;  
-    height:100vh;  
-    flex-direction:column;  
-  
-    /* mobile long press block */  
-    -webkit-touch-callout:none;  
-}  
-  
-/* FRAME */  
-.frame{  
-    width:360px;  
-    height:480px;  
-    border-radius:20px;  
-    background:#0a0a0a;  
-    position:relative;  
-    overflow:hidden;  
-    display:flex;  
-    flex-direction:column;  
-}  
-  
-/* GOLD BORDER */  
-.frame::before{  
-    content:"";  
-    position:absolute;  
-    inset:0;  
-    padding:2px;  
-    border-radius:20px;  
-  
-    background:linear-gradient(90deg,#b8860b,#ffd700,#b8860b,#8b6508,#ffd700);  
-    background-size:300% 100%;  
-    animation:shine 3s linear infinite;  
-  
-    -webkit-mask:  
-    linear-gradient(#000 0 0) content-box,  
-    linear-gradient(#000 0 0);  
-    -webkit-mask-composite:xor;  
-    mask-composite:exclude;  
-  
-    pointer-events:none;  
-}  
-  
-/* TITLE */  
-.title{  
-    text-align:center;  
-    font-size:20px;  
-    font-weight:700;  
-    color:#e6e6e6;  
-    margin-top:18px;  
-}  
-  
-/* LINE */  
-.title-line{  
-    width:80%;  
-    height:2px;  
-    margin:8px auto;  
-    background:linear-gradient(90deg,transparent,#b8860b,#ffd700,transparent);  
-}  
-  
-/* GRID */  
-.grid{  
-    display:flex;  
-    flex-direction:column;  
-    gap:10px;  
-    padding:15px;  
-    flex:1;  
-}  
-  
-/* BUTTON */  
-.btn{  
-    padding:12px;  
-    border-radius:10px;  
-    background:#111;  
-    color:#fff;  
-  
-    font-family:'Montserrat', sans-serif;  
-  
-    font-size:11px;  
-    font-weight:600;  
-  
-    text-align:center;  
-    border:2px solid #b8860b;  
-    cursor:pointer;  
-  
-    text-transform:uppercase;  
-    letter-spacing:1px;  
-}  
-  
-/* LOCK */  
-.locked{  
-    opacity:0.6;  
-    position:relative;  
-}  
-  
-.lock-tag{  
-    position:absolute;  
-    right:10px;  
-    top:8px;  
-    font-size:9px;  
-    background:red;  
-    color:white;  
-    padding:2px 6px;  
-    border-radius:4px;  
-    font-weight:700;  
-}  
-  
-/* POPUP */  
-.popup{  
-    position:fixed;  
-    top:0;  
-    left:0;  
-    width:100%;  
-    height:100%;  
-    background:rgba(0,0,0,0.7);  
-    display:none;  
-    justify-content:center;  
-    align-items:center;  
-}  
-  
-.popup-box{  
-    background:#fff;  
-    padding:18px;  
-    border-radius:12px;  
-    text-align:center;  
-    width:290px;  
-}  
-  
-.popup-box h3{ margin:0; color:#111; }  
-.popup-box p{ color:#444; }  
-  
-.space{ height:10px; }  
-  
-.countdown{  
-    color:#b8860b;  
-    font-weight:700;  
-}  
-  
-/* NAV */  
-.bottom-nav{  
-    width:360px;  
-    display:flex;  
-    justify-content:center;  
-    align-items:center;  
-    gap:12px;  
-    padding:8px 0;  
-    font-size:13px;  
-}  
-  
-.nav-text{  
-    color:red;  
-    font-weight:700;  
-    cursor:pointer;  
-    white-space:nowrap;  
-  
-    /* 🔥 EXTRA BLOCK */  
-    user-select:none;  
-    -webkit-user-select:none;  
-    -webkit-touch-callout:none;  
-}  
-  
-.center{  
-    color:#b8860b;  
-    font-weight:700;  
-    letter-spacing:1px;  
-  
-    /* 🔥 EXTRA BLOCK */  
-    user-select:none;  
-    -webkit-user-select:none;  
-    -webkit-touch-callout:none;  
-}  
-  
-/* ANIMATION */  
-@keyframes shine{  
-    0%{background-position:0%;}  
-    100%{background-position:100%;}  
-}  
-  
-</style>  </head>  <body oncontextmenu="return false">  <div class="frame">  <div class="title">LANGUAGE LEARNING</div>  
-<div class="title-line"></div>  <div class="grid">  <div class="btn" onclick="openLang('japanese-index.html')">  
-    Japanese Language 🇯🇵  
-</div>  
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Language Learning</title>
 
-<div class="btn locked" onclick="showPopup()">  
-    Chinese Language 🇨🇳  
-    <div class="lock-tag">LOCK</div>  
-</div>  
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
 
-<div class="btn locked" onclick="showPopup()">  
-    Korean Language 🇰🇷  
-    <div class="lock-tag">LOCK</div>  
-</div>  
+<style>
 
-<div class="btn locked" onclick="showPopup()">  
-    Russian Language 🇷🇺  
-    <div class="lock-tag">LOCK</div>  
-</div>  
+/* RESET */
+*{
+    -webkit-user-select:none;
+    -moz-user-select:none;
+    -ms-user-select:none;
+    user-select:none;
+    -webkit-touch-callout:none;
+}
 
-<div class="btn locked" onclick="showPopup()">  
-    French Language 🇫🇷  
-    <div class="lock-tag">LOCK</div>  
-</div>  
+body{
+    margin:0;
+    font-family:'Poppins', sans-serif;
+    background:#0b0b0b;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+    flex-direction:column;
+    gap:10px;
+}
 
-<div class="btn locked" onclick="showPopup()">  
-    German Language 🇩🇪  
-    <div class="lock-tag">LOCK</div>  
-</div>  
+/* FRAME */
+.frame{
+    width:360px;
+    height:480px;
+    border-radius:20px;
+    background:#0a0a0a;
+    position:relative;
+    overflow:hidden;
+    display:flex;
+    flex-direction:column;
+}
 
-<div class="btn locked" onclick="showPopup()">  
-    Italian Language 🇮🇹  
-    <div class="lock-tag">LOCK</div>  
+/* GOLD BORDER */
+.frame::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    padding:2px;
+    border-radius:20px;
+
+    background:linear-gradient(90deg,#b8860b,#ffd700,#b8860b,#8b6508,#ffd700);
+    background-size:300% 100%;
+    animation:shine 3s linear infinite;
+
+    -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+    -webkit-mask-composite:xor;
+    mask-composite:exclude;
+
+    pointer-events:none;
+}
+
+/* TITLE */
+.title{
+    text-align:center;
+    font-size:20px;
+    font-weight:700;
+    color:#e6e6e6;
+    margin-top:18px;
+}
+
+/* LINE */
+.title-line{
+    width:80%;
+    height:2px;
+    margin:8px auto;
+    background:linear-gradient(90deg,transparent,#b8860b,#ffd700,transparent);
+}
+
+/* GRID */
+.grid{
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+    padding:15px;
+    flex:1;
+}
+
+/* BUTTON */
+.btn{
+    padding:12px;
+    border-radius:10px;
+    background:#111;
+    color:#fff;
+
+    font-family:'Montserrat', sans-serif;
+    font-size:11px;
+    font-weight:600;
+
+    text-align:center;
+    border:2px solid #b8860b;
+    cursor:pointer;
+
+    text-transform:uppercase;
+    letter-spacing:1px;
+}
+
+/* LOCK */
+.locked{
+    opacity:0.6;
+    position:relative;
+}
+
+.lock-tag{
+    position:absolute;
+    right:10px;
+    top:8px;
+    font-size:9px;
+    background:red;
+    color:white;
+    padding:2px 6px;
+    border-radius:4px;
+    font-weight:700;
+}
+
+/* POPUP */
+.popup{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.7);
+    display:none;
+    justify-content:center;
+    align-items:center;
+}
+
+.popup-box{
+    background:#fff;
+    padding:18px;
+    border-radius:12px;
+    text-align:center;
+    width:290px;
+}
+
+.countdown{
+    color:#b8860b;
+    font-weight:700;
+}
+
+/* =========================
+LOCKED NAV SYSTEM
+========================= */
+.bottom-nav{
+    width:360px;
+    height:55px;
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    padding:0 15px;
+
+    background:#0a0a0a;
+    border-radius:12px;
+
+    border:1px solid rgba(255,215,0,0.15);
+}
+
+/* ITEMS */
+.nav-item,
+.nav-center{
+    flex:1;
+    text-align:center;
+
+    font-weight:700;
+    letter-spacing:1px;
+    white-space:nowrap;
+}
+
+/* SIDE */
+.nav-item{
+    color:#ff3b3b;
+    font-size:13px;
+    cursor:pointer;
+    transition:0.2s;
+}
+
+/* CENTER */
+.nav-center{
+    color:#ffd700;
+    font-size:12px;
+}
+
+/* TOUCH */
+.nav-item:active{
+    color:#ffd700;
+    transform:scale(0.95);
+}
+
+/* ANIMATION */
+@keyframes shine{
+    0%{background-position:0%;}
+    100%{background-position:200%;}
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- FRAME -->
+<div class="frame">
+
+<div class="title">LANGUAGE LEARNING</div>
+<div class="title-line"></div>
+
+<div class="grid">
+
+    <div class="btn" onclick="openLang('japanese-index.html')">Japanese Language 🇯🇵</div>
+
+    <div class="btn locked" onclick="showPopup()">Chinese Language 🇨🇳
+        <div class="lock-tag">LOCK</div>
+    </div>
+
+    <div class="btn locked" onclick="showPopup()">Korean Language 🇰🇷
+        <div class="lock-tag">LOCK</div>
+    </div>
+
+    <div class="btn locked" onclick="showPopup()">Russian Language 🇷🇺
+        <div class="lock-tag">LOCK</div>
+    </div>
+
+    <div class="btn locked" onclick="showPopup()">French Language 🇫🇷
+        <div class="lock-tag">LOCK</div>
+    </div>
+
+    <div class="btn locked" onclick="showPopup()">German Language 🇩🇪
+        <div class="lock-tag">LOCK</div>
+    </div>
+
+    <div class="btn locked" onclick="showPopup()">Italian Language 🇮🇹
+        <div class="lock-tag">LOCK</div>
+    </div>
+
 </div>
 
-</div>  </div>  <!-- POPUP -->  <div class="popup" id="popup">  
-    <div class="popup-box">  <h3>Coming Soon</h3>  
+</div>
 
-    <div class="space"></div>  
-    <p>2026.11.28</p>  
+<!-- POPUP -->
+<div class="popup" id="popup">
+    <div class="popup-box">
+        <h3>Coming Soon</h3>
+        <div class="countdown" id="countdown"></div>
+        <button onclick="closePopup()">Close</button>
+    </div>
+</div>
 
-    <div class="space"></div>  
+<!-- OUTSIDE NAV -->
+<div class="bottom-nav">
 
-    <div id="countdown" class="countdown"></div>  
+    <div class="nav-item" onclick="goBack()">
+        BACK
+    </div>
 
-    <div class="space"></div>  
+    <div class="nav-center">
+        ← EWONZ LINGUA →
+    </div>
 
-    <button onclick="closePopup()">Close</button>  
+    <div class="nav-item" onclick="goHome()">
+        HOME
+    </div>
 
 </div>
 
-</div>  <!-- NAV -->  <div class="bottom-nav">  <div class="nav-text" onclick="goBack()">← Back →</div>  
+<script>
 
-<div class="center">EWONZ LINGUA</div>  
+function openLang(url){
+    window.location.href = url;
+}
 
-<div class="nav-text" onclick="goHome()">← Home →</div>
+function goBack(){
+    history.back();
+}
 
-</div>  <script>  
-  
-function openLang(url){  
-    window.location.href = url;  
-}  
-  
-function goBack(){  
-    window.history.back();  
-}  
-  
-function goHome(){  
-    window.location.href = "index.html";  
-}  
-  
-function showPopup(){  
-    document.getElementById("popup").style.display="flex";  
-    startCountdown();  
-}  
-  
-function closePopup(){  
-    document.getElementById("popup").style.display="none";  
-}  
-  
-function startCountdown(){  
-    let target = new Date("2026-11-28").getTime();  
-  
-    setInterval(()=>{  
-        let now = new Date().getTime();  
-        let diff = target - now;  
-  
-        let d = Math.floor(diff/(1000*60*60*24));  
-        let h = Math.floor((diff%(1000*60*60*24))/(1000*60*60));  
-        let m = Math.floor((diff%(1000*60*60))/(1000*60));  
-        let s = Math.floor((diff%(1000*60))/1000);  
-  
-        document.getElementById("countdown").innerHTML =  
-        d+"d : "+h+"h : "+m+"m : "+s+"s";  
-  
-    },1000);  
-}  
-  
-</script>  </body>  
-</html>   
+function goHome(){
+    location.href = "index.html";
+}
+
+function showPopup(){
+    document.getElementById("popup").style.display="flex";
+
+    let target = new Date("2026-11-28").getTime();
+
+    setInterval(()=>{
+        let now = new Date().getTime();
+        let diff = target - now;
+
+        let d = Math.floor(diff/(1000*60*60*24));
+        let h = Math.floor((diff%(1000*60*60*24))/(1000*60*60));
+        let m = Math.floor((diff%(1000*60*60))/(1000*60));
+        let s = Math.floor((diff%(1000*60))/1000);
+
+        document.getElementById("countdown").innerHTML =
+        d+"d : "+h+"h : "+m+"m : "+s+"s";
+
+    },1000);
+}
+
+function closePopup(){
+    document.getElementById("popup").style.display="none";
+}
+
+</script>
+
+</body>
+</html>
