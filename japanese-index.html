@@ -2,29 +2,39 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Japanese Language</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+<title>Japanese Language LOCK FIX</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600;700&family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
 
 <style>
 
 *{
-    -webkit-user-select:none;
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
     user-select:none;
+    -webkit-user-select:none;
+    -webkit-tap-highlight-color:transparent;
+}
+
+html,body{
+    height:100%;
+    overflow:hidden;
 }
 
 body{
-    margin:0;
-    font-family:'Poppins', sans-serif;
     background:#0b0b0b;
     display:flex;
     justify-content:center;
     align-items:center;
-    height:100vh;
     flex-direction:column;
+    font-family:Poppins;
+    gap:10px;
 }
 
+/* FRAME */
 .frame{
     width:360px;
     height:480px;
@@ -32,10 +42,9 @@ body{
     border-radius:20px;
     position:relative;
     overflow:hidden;
-    display:flex;
-    flex-direction:column;
 }
 
+/* BORDER */
 .frame::before{
     content:"";
     position:absolute;
@@ -50,141 +59,108 @@ body{
     linear-gradient(#000 0 0) content-box,
     linear-gradient(#000 0 0);
     -webkit-mask-composite:xor;
-    mask-composite:exclude;
-    pointer-events:none;
 }
 
+/* TITLE */
 .title{
     text-align:center;
     font-size:18px;
     font-weight:700;
-    color:#e6e6e6;
-    margin-top:18px;
+    color:#fff;
+    margin-top:16px;
 }
 
 .line{
-    width:80%;
+    width:85%;
     height:2px;
     margin:8px auto;
     background:linear-gradient(90deg,transparent,#b8860b,#ffd700,transparent);
 }
 
+/* SCROLL AREA */
 .grid{
-    display:flex;
-    flex-direction:column;
-    gap:10px;
-    padding:15px;
-    flex:1;
+    position:absolute;
+    top:80px;
+    bottom:0;
+    left:0;
+    right:0;
+
+    overflow-y:auto;
+    padding:12px;
 }
 
+/* BUTTON */
 .btn{
-    padding:11px;
+    padding:12px;
+    margin-bottom:10px;
     border-radius:10px;
     background:#111;
+    border:2px solid #b8860b;
     color:#fff;
 
-    font-family:'Montserrat', sans-serif;
+    text-align:center;
     font-size:12px;
     font-weight:600;
-
-    text-align:center;
-    border:2px solid #b8860b;
-    cursor:pointer;
     text-transform:uppercase;
-    letter-spacing:1px;
-
     position:relative;
 }
 
-/* 🔴 LOCK TAG (ORIGINAL STYLE) */
+/* LOCK TAG */
 .lock-tag{
     position:absolute;
     right:10px;
     top:8px;
-
     font-size:9px;
     background:red;
-    color:white;
-
+    color:#fff;
     padding:2px 6px;
     border-radius:4px;
     font-weight:700;
 }
 
-/* NAV */
+/* NAV SYSTEM */
 .bottom-nav{
     width:360px;
+    height:55px;
+
     display:flex;
     justify-content:space-between;
     align-items:center;
-    padding:10px 5px;
+
+    padding:0 14px;
+
+    background:#0a0a0a;
+    border:1px solid rgba(255,215,0,0.2);
+    border-radius:12px;
+}
+
+/* RED SIDE BUTTONS */
+.nav-btn{
+    width:70px;
+    text-align:center;
+    color:#ff3b3b;
+    font-weight:700;
     font-size:13px;
 }
 
-.nav-btn{
-    color:red;
-    font-weight:700;
-    cursor:pointer;
-    white-space:nowrap;
-}
-
-.center{
-    color:#b8860b;
-    font-weight:700;
-}
-
-/* POPUP */
-.popup{
-    display:none;
-    position:fixed;
-    top:0;
-    left:0;
-    width:100%;
-    height:100%;
-    background:rgba(0,0,0,0.85);
-    justify-content:center;
-    align-items:center;
-    z-index:999;
-}
-
-.popup-box{
-    background:#111;
-    padding:18px;
-    border-radius:12px;
+/* CENTER TEXT */
+.nav-center{
+    flex:1;
     text-align:center;
-    width:290px;
-    border:2px solid #b8860b;
-}
-
-.popup-box h3{
-    margin:0;
-    color:#ff0000;
-}
-
-.popup-box p{
-    color:#b8860b;
-}
-
-.countdown{
     color:#ffd700;
     font-weight:700;
-    margin-top:10px;
+    font-size:13px;
 }
 
-.close-btn{
-    margin-top:15px;
-    padding:8px 15px;
-    border:none;
-    background:#b8860b;
-    color:#000;
-    font-weight:700;
-    border-radius:8px;
-    cursor:pointer;
+/* ACTIVE CLICK */
+.nav-btn:active{
+    transform:scale(0.95);
 }
 
+/* ANIMATION */
 @keyframes shine{
     0%{background-position:0%;}
-    100%{background-position:100%;}
+    100%{background-position:200%;}
 }
 
 </style>
@@ -199,24 +175,38 @@ body{
 
 <div class="grid">
 
-    <div class="btn" onclick="go('learning-system.html')">Learning System</div>
-    <div class="btn" onclick="go('writing-system.html')">Writing System</div>
-    <div class="btn" onclick="go('vocabulary.html')">Vocabulary</div>
+    <!-- UNLOCKED -->
+    <div class="btn" onclick="go('learning-system.html')">
+        Writing System
+    </div>
 
-    <!-- 🔴 LOCKED 1 -->
+    <div class="btn" onclick="go('vocabulary.html')">
+        Vocabulary
+    </div>
+
+    <!-- 🔴 LOCKED LEARNING SYSTEM -->
+    <div class="btn" onclick="openPopup()">
+        Learning System
+        <div class="lock-tag">LOCK</div>
+    </div>
+
     <div class="btn" onclick="openPopup()">
         Grammar
         <div class="lock-tag">LOCK</div>
     </div>
 
-    <!-- 🔴 LOCKED 2 -->
     <div class="btn" onclick="openPopup()">
         Reading Practice
         <div class="lock-tag">LOCK</div>
     </div>
 
-    <div class="btn" onclick="go('exam.html')">Exam</div>
-    <div class="btn" onclick="go('quiz.html')">Quiz Center</div>
+    <div class="btn" onclick="go('exam.html')">
+        Exam
+    </div>
+
+    <div class="btn" onclick="go('quiz.html')">
+        Quiz Center
+    </div>
 
 </div>
 
@@ -225,58 +215,42 @@ body{
 <!-- NAV -->
 <div class="bottom-nav">
 
-    <div class="nav-btn" onclick="history.back()">← BACK →</div>
+<div class="nav-btn" onclick="history.back()">BACK</div>
 
-    <div class="center">EWONZ LINGUA</div>
+<div class="nav-center">← EWONZ LINGUA →</div>
 
-    <div class="nav-btn" onclick="location.href='index.html'">→ HOME →</div>
+<div class="nav-btn" onclick="location.href='index.html'">HOME</div>
 
 </div>
 
 <!-- POPUP -->
-<div class="popup" id="popup">
-    <div class="popup-box">
+<div id="popup" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.85);justify-content:center;align-items:center;">
 
-        <h3>🔴 COMING SOON</h3>
-        <p>Release Date: 2026.11.28</p>
+    <div style="background:#111;padding:18px;border-radius:12px;border:2px solid #b8860b;text-align:center;width:290px;">
 
-        <div class="countdown" id="countdown">Loading...</div>
+        <h3 style="color:red;">🔴 LOCKED</h3>
+        <p style="color:#b8860b;">This feature is currently locked</p>
 
-        <button class="close-btn" onclick="closePopup()">CLOSE</button>
+        <button onclick="closePopup()" style="margin-top:12px;padding:8px 14px;background:#b8860b;border:none;font-weight:700;">
+            CLOSE
+        </button>
 
     </div>
+
 </div>
 
 <script>
 
 function go(url){
-    window.location.href = url;
+    location.href = url;
 }
 
 function openPopup(){
-    document.getElementById("popup").style.display="flex";
-    startCountdown();
+    document.getElementById("popup").style.display = "flex";
 }
 
 function closePopup(){
-    document.getElementById("popup").style.display="none";
-}
-
-const targetDate = new Date("2026-11-28T00:00:00").getTime();
-
-function startCountdown(){
-    setInterval(function(){
-        let now = new Date().getTime();
-        let diff = targetDate - now;
-
-        let d = Math.floor(diff/(1000*60*60*24));
-        let h = Math.floor((diff%(1000*60*60*24))/(1000*60*60));
-        let m = Math.floor((diff%(1000*60*60))/(1000*60));
-        let s = Math.floor((diff%(1000*60))/1000);
-
-        document.getElementById("countdown").innerHTML =
-        d+"d : "+h+"h : "+m+"m : "+s+"s";
-    },1000);
+    document.getElementById("popup").style.display = "none";
 }
 
 </script>
