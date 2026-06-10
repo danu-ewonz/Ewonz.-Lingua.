@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>People & Relationship</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    user-select:none;
+}
+
+body{
+    background:#0b0b0b;
+    font-family:Poppins;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+    overflow:hidden;
+}
+
+/* FRAME */
+.frame{
+    width:360px;
+    height:480px;
+    background:#0a0a0a;
+    border-radius:20px;
+    position:relative;
+    overflow:hidden;
+    display:flex;
+    flex-direction:column;
+}
+
+/* BORDER */
+.frame::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    padding:2px;
+    border-radius:20px;
+    background:linear-gradient(90deg,#b8860b,#ffd700,#b8860b,#8b6508,#ffd700);
+    background-size:300% 100%;
+    animation:shine 3s linear infinite;
+
+    -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+    -webkit-mask-composite:xor;
+}
+
+/* TITLE */
+.title{
+    text-align:center;
+    font-size:18px;
+    font-weight:700;
+    color:#fff;
+    margin-top:14px;
+}
+
+.subtitle{
+    text-align:center;
+    font-size:12px;
+    color:#b8860b;
+}
+
+.line{
+    width:80%;
+    height:2px;
+    margin:8px auto;
+    background:linear-gradient(90deg,transparent,#b8860b,#ffd700,transparent);
+}
+
+/* SCROLL */
+.content{
+    position:absolute;
+    top:90px;
+    bottom:70px;
+    left:0;
+    right:0;
+    overflow-y:auto;
+    padding:12px;
+    text-align:center;
+}
+
+/* GROUP */
+.group{
+    color:#ffd700;
+    font-weight:700;
+    font-size:13px;
+    margin:18px 0 10px;
+}
+
+/* CARD */
+.card{
+    background:#111;
+    border:1px solid rgba(184,134,11,0.4);
+    border-radius:10px;
+    padding:10px;
+    margin-bottom:8px;
+}
+
+.jp{color:#fff;font-weight:700;font-size:14px;}
+.rm{color:#b8860b;font-size:12px;margin-top:2px;}
+.si{color:#ffcc70;font-size:12px;margin-top:2px;}
+
+/* NAV */
+.bottom-nav{
+    position:absolute;
+    bottom:0;
+    left:0;
+    width:100%;
+    height:60px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:0 10px;
+    background:#0a0a0a;
+}
+
+.bottom-nav::before,
+.bottom-nav::after{
+    content:"";
+    position:absolute;
+    left:0;
+    width:100%;
+    height:2px;
+    background:linear-gradient(90deg,transparent,#ffd700,transparent);
+}
+.bottom-nav::before{top:0;}
+.bottom-nav::after{bottom:0;}
+
+.nav-btn{
+    width:60px;
+    text-align:center;
+    color:#ff3b3b;
+    font-weight:700;
+    font-size:12px;
+}
+
+.center{
+    flex:1;
+    text-align:center;
+    color:#ffd700;
+    font-weight:700;
+    font-size:12px;
+}
+
+@keyframes shine{
+    0%{background-position:0%;}
+    100%{background-position:100%;}
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="frame">
+
+<div class="title">People & Relationship（人間関係）</div>
+<div class="subtitle">රැකියාවන් සහ මිනිස් සම්බන්ධතා</div>
+
+<div class="line"></div>
+
+<div class="content">
+
+<!-- FAMILY -->
+<div class="group">Family (පවුල)</div>
+
+<div class="card"><div class="jp">父 (ちち)</div><div class="rm">chichi</div><div class="si">තාත්තා</div></div>
+<div class="card"><div class="jp">母 (はは)</div><div class="rm">haha</div><div class="si">අම්මා</div></div>
+<div class="card"><div class="jp">両親 (りょうしん)</div><div class="rm">ryoushin</div><div class="si">දෙමව්පියෝ</div></div>
+<div class="card"><div class="jp">兄 (あに)</div><div class="rm">ani</div><div class="si">අයියා</div></div>
+<div class="card"><div class="jp">姉 (あね)</div><div class="rm">ane</div><div class="si">අක්කා</div></div>
+<div class="card"><div class="jp">弟 (おとうと)</div><div class="rm">otouto</div><div class="si">මල්ලි</div></div>
+<div class="card"><div class="jp">妹 (いもうと)</div><div class="rm">imouto</div><div class="si">නංගි</div></div>
+<div class="card"><div class="jp">兄弟 (きょうだい)</div><div class="rm">kyoudai</div><div class="si">සහෝදරයෝ</div></div>
+<div class="card"><div class="jp">姉妹 (しまい)</div><div class="rm">shimai</div><div class="si">සහෝදරියෝ</div></div>
+<div class="card"><div class="jp">祖父 (そふ)</div><div class="rm">sofu</div><div class="si">සීයා</div></div>
+<div class="card"><div class="jp">祖母 (そぼ)</div><div class="rm">sobo</div><div class="si">ආච්චි</div></div>
+<div class="card"><div class="jp">叔父 (おじ)</div><div class="rm">oji</div><div class="si">මාමා</div></div>
+<div class="card"><div class="jp">叔母 (おば)</div><div class="rm">oba</div><div class="si">නැන්දා</div></div>
+<div class="card"><div class="jp">いとこ</div><div class="rm">itoko</div><div class="si">කසින්</div></div>
+<div class="card"><div class="jp">夫 (おっと)</div><div class="rm">otto</div><div class="si">සැමියා</div></div>
+<div class="card"><div class="jp">妻 (つま)</div><div class="rm">tsuma</div><div class="si">බිරිඳ</div></div>
+<div class="card"><div class="jp">息子 (むすこ)</div><div class="rm">musuko</div><div class="si">පුතා</div></div>
+<div class="card"><div class="jp">娘 (むすめ)</div><div class="rm">musume</div><div class="si">දුව</div></div>
+<div class="card"><div class="jp">孫 (まご)</div><div class="rm">mago</div><div class="si">මුණුබුරා</div></div>
+
+<!-- IN-LAWS -->
+<div class="group">In-laws (විවාහයෙන් පසු)</div>
+
+<div class="card"><div class="jp">義父 (ぎふ)</div><div class="rm">gifu</div><div class="si">මාමණ්ඩි</div></div>
+<div class="card"><div class="jp">義母 (ぎぼ)</div><div class="rm">gibo</div><div class="si">නැන්දම්මා</div></div>
+<div class="card"><div class="jp">舅 (しゅうと)</div><div class="rm">shuto</div><div class="si">මාමණ්ඩි</div></div>
+<div class="card"><div class="jp">姑 (しゅうとめ)</div><div class="rm">shuutome</div><div class="si">නැන්දම්මා</div></div>
+<div class="card"><div class="jp">義兄 (ぎけい)</div><div class="rm">gikei</div><div class="si">අයියා</div></div>
+<div class="card"><div class="jp">義姉 (ぎし)</div><div class="rm">gishi</div><div class="si">අක්කා</div></div>
+
+<!-- SOCIAL -->
+<div class="group">Social (සමාජ සම්බන්ධතා)</div>
+
+<div class="card"><div class="jp">友達 (ともだち)</div><div class="rm">tomodachi</div><div class="si">යාළුවා</div></div>
+<div class="card"><div class="jp">親友 (しんゆう)</div><div class="rm">shin'yu</div><div class="si">හොඳම යාළුවා</div></div>
+<div class="card"><div class="jp">知り合い (しりあい)</div><div class="rm">shiriai</div><div class="si">අඳුනන කෙනා</div></div>
+<div class="card"><div class="jp">仲間 (なかま)</div><div class="rm">nakama</div><div class="si">කණ්ඩායම් යාළුවා</div></div>
+<div class="card"><div class="jp">恋人 (こいびと)</div><div class="rm">koibito</div><div class="si">Boy/Girl</div></div>
+
+<!-- WORK (FULL EXPANDED) -->
+<div class="group">Work (රැකියා)</div>
+
+<div class="card"><div class="jp">先生 (せんせい)</div><div class="rm">sensei</div><div class="si">ගුරු / doctor</div></div>
+<div class="card"><div class="jp">生徒 (せいと)</div><div class="rm">seito</div><div class="si">ශිෂ්‍යයා</div></div>
+<div class="card"><div class="jp">学生 (がくせい)</div><div class="rm">gakusei</div><div class="si">ශිෂ්‍යයා</div></div>
+<div class="card"><div class="jp">会社員 (かいしゃいん)</div><div class="rm">kaishain</div><div class="si">කම්පැනි සේවකයා</div></div>
+<div class="card"><div class="jp">上司 (じょうし)</div><div class="rm">joushi</div><div class="si">බොස්</div></div>
+<div class="card"><div class="jp">部下 (ぶか)</div><div class="rm">buka</div><div class="si">යටත් සේවකයා</div></div>
+<div class="card"><div class="jp">社長 (しゃちょう)</div><div class="rm">shachou</div><div class="si">CEO</div></div>
+<div class="card"><div class="jp">同僚 (どうりょう)</div><div class="rm">douryou</div><div class="si">සහකරු</div></div>
+<div class="card"><div class="jp">先輩 (せんぱい)</div><div class="rm">senpai</div><div class="si">ජ්‍යෙෂ්ඨයා</div></div>
+<div class="card"><div class="jp">後輩 (こうはい)</div><div class="rm">kouhai</div><div class="si">කනිෂ්ඨයා</div></div>
+<div class="card"><div class="jp">同級生 (どうきゅうせい)</div><div class="rm">doukyuusei</div><div class="si">එකම පන්තිය</div></div>
+
+<!-- GENERAL -->
+<div class="group">General (මිනිස්සු)</div>
+
+<div class="card"><div class="jp">人 (ひと)</div><div class="rm">hito</div><div class="si">පුද්ගලයා</div></div>
+<div class="card"><div class="jp">男 (おとこ)</div><div class="rm">otoko</div><div class="si">පිරිමි</div></div>
+<div class="card"><div class="jp">女 (おんな)</div><div class="rm">onna</div><div class="si">ගැහැණු</div></div>
+
+</div>
+
+<!-- NAV -->
+<div class="bottom-nav">
+<div class="nav-btn" onclick="history.back()">BACK</div>
+<div class="center">← EWONZ LINGUA →</div>
+<div class="nav-btn" onclick="location.href='index.html'">HOME</div>
+</div>
+
+</div>
+
+</body>
+  </html>
