@@ -83,7 +83,7 @@ body{
     text-transform:uppercase;
 }
 
-/* SUB TITLE */
+/* SUBTITLE */
 .subtitle{
     text-align:center;
     font-size:12px;
@@ -99,11 +99,9 @@ body{
     height:2px;
     margin:10px auto;
     background:linear-gradient(90deg,transparent,#b8860b,#ffd700,transparent);
-    background-size:200% 100%;
-    animation:lineMove 2s linear infinite;
 }
 
-/* BUTTON AREA */
+/* SCROLL AREA */
 .grid{
     flex:1;
     overflow-y:auto;
@@ -137,11 +135,6 @@ body{
     background:#ffd700;
     color:#000;
     transform:scale(0.97);
-    box-shadow:0 0 15px #ffd700;
-}
-
-.btn:hover{
-    border-color:#ffd700;
 }
 
 /* SCROLLBAR */
@@ -154,43 +147,57 @@ body{
 }
 
 /* =========================
-BOTTOM NAV
+LOCKED NAV SYSTEM (STANDARD)
 ========================= */
 .bottom-nav{
     width:360px;
+    height:55px;
+
     display:flex;
     justify-content:space-between;
     align-items:center;
-    padding:8px 10px;
+
+    padding:0 15px;
+
+    background:#0a0a0a;
+    border-radius:12px;
+
+    border:1px solid rgba(255,215,0,0.15);
 }
 
-/* NO BORDER NAV */
-.nav-btn{
-    color:red;
-    font-size:13px;
+/* ITEMS */
+.nav-item,
+.nav-center{
+    flex:1;
+    text-align:center;
+
     font-weight:700;
+    letter-spacing:1px;
+    white-space:nowrap;
+}
+
+/* SIDE BUTTONS */
+.nav-item{
+    color:#ff3b3b;
+    font-size:13px;
     cursor:pointer;
     transition:0.2s;
 }
 
-.nav-btn:hover{
-    color:#ffd700;
-}
-
 /* CENTER */
-.center{
+.nav-center{
     color:#ffd700;
-    font-weight:700;
-    letter-spacing:1px;
+    font-size:12px;
 }
 
-/* ANIMATIONS */
+/* TOUCH EFFECT */
+.nav-item:active{
+    color:#ffd700;
+    transform:scale(0.95);
+}
+
+/* ANIMATION */
 @keyframes borderMove{
-    0%{background-position:0%;}
-    100%{background-position:100%;}
-}
-
-@keyframes lineMove{
     0%{background-position:0%;}
     100%{background-position:200%;}
 }
@@ -224,14 +231,20 @@ BOTTOM NAV
 
 </div>
 
-<!-- BOTTOM NAV -->
+<!-- OUTSIDE NAV (LOCKED SYSTEM) -->
 <div class="bottom-nav">
 
-    <div class="nav-btn" onclick="history.back()">← BACK</div>
+    <div class="nav-item" onclick="history.back()">
+        BACK
+    </div>
 
-    <div class="center">EWONZ LINGUA</div>
+    <div class="nav-center">
+        ← EWONZ LINGUA →
+    </div>
 
-    <div class="nav-btn" onclick="location.href='index.html'">HOME →</div>
+    <div class="nav-item" onclick="location.href='index.html'">
+        HOME
+    </div>
 
 </div>
 
