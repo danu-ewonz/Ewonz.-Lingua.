@@ -25,10 +25,7 @@ body{
     display:flex;
     justify-content:center;
     align-items:center;
-
-    /* ✅ BACKGROUND IMAGE ADDED ONLY */
-    background: url("1781096123066_edit_71005599869154.png") center/cover no-repeat fixed;
-
+    background: radial-gradient(circle at top left, #1a1a1a, #000000 60%);
     overflow:hidden;
 
     -webkit-touch-callout:none;
@@ -66,7 +63,16 @@ body::after{
     height:480px;
     border:2px solid #ffd700;
     border-radius:22px;
-    background:#0a0a0a;
+
+    /* ✅ BACKGROUND IMAGE FIX */
+    background:
+    linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.65)),
+    url("1781096123066_edit_71005599869154.png");
+
+    background-size:cover;
+    background-position:center;
+    background-repeat:no-repeat;
+
     box-shadow:0 0 10px rgba(255,215,0,0.3);
     display:flex;
     flex-direction:column;
@@ -85,12 +91,25 @@ body::after{
     text-align:center;
 }
 
+/* ANIMATIONS */
+@keyframes fadeUp{
+    from{opacity:0; transform:translateY(20px);}
+    to{opacity:1; transform:translateY(0);}
+}
+
+@keyframes glowText{
+    0%{ text-shadow:0 0 5px rgba(255,215,0,0.2); }
+    50%{ text-shadow:0 0 12px rgba(255,215,0,0.6); }
+    100%{ text-shadow:0 0 5px rgba(255,215,0,0.2); }
+}
+
 /* TITLE */
 .title{
     font-size:24px;
     font-weight:700;
     letter-spacing:3px;
     margin-top:10px;
+    animation:fadeUp 0.8s ease-out, glowText 3s infinite;
 }
 
 /* ABOUT */
@@ -101,6 +120,7 @@ body::after{
     max-width:320px;
     font-family:'Dancing Script', cursive;
     font-weight:600;
+    animation:fadeUp 1s ease-out;
 }
 
 /* GAP */
@@ -113,6 +133,7 @@ body::after{
     color:rgba(255,215,0,0.75);
     font-weight:600;
     letter-spacing:1px;
+    animation:fadeUp 1.2s ease-out;
 }
 
 /* TEXT */
@@ -121,6 +142,11 @@ body::after{
     color:#aaa;
     font-weight:500;
     letter-spacing:1px;
+    animation:fadeUp 1.4s ease-out;
+}
+
+.text strong{
+    font-weight:600;
 }
 
 /* CONTACT */
@@ -130,20 +156,32 @@ body::after{
     cursor:pointer;
 }
 
+.contact:hover{
+    text-shadow:0 0 10px rgba(255,45,45,0.7);
+}
+
 /* BUTTON */
 .card{
     border:1px solid #ffd700;
     background:rgba(0,0,0,0.4);
+    backdrop-filter:blur(6px);
     padding:12px 18px;
     border-radius:10px;
     cursor:pointer;
+    transition:0.25s;
     color:white;
     font-weight:600;
     font-size:13px;
+    text-align:center;
     margin-top:auto;
     margin-bottom:10px;
+    animation:fadeUp 1.6s ease-out;
 }
 
+.card:hover{
+    box-shadow:0 0 12px #ffd700;
+    transform:scale(1.02);
+}
 </style>
 </head>
 
@@ -195,6 +233,16 @@ function goLang(){
 function openWhatsApp(){
     window.open("https://wa.me/94778730530", "_blank");
 }
+
+document.addEventListener('keydown', function(e){
+    if(
+        (e.ctrlKey && ['c','a','u','s'].includes(e.key)) ||
+        e.key === 'F12'
+    ){
+        e.preventDefault();
+        return false;
+    }
+});
 </script>
 
 </body>
