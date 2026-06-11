@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+<title>Hiragana Dakuten</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+/* RESET */
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    user-select:none;
+    -webkit-user-select:none;
+    -webkit-tap-highlight-color:transparent;
+}
+
+html,body{
+    height:100%;
+    overflow:hidden;
+}
+
+body{
+    background:#0b0b0b;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
+    font-family:Poppins;
+    gap:10px;
+}
+
+/* FRAME */
+.frame{
+    width:360px;
+    height:480px;
+    background:#0a0a0a;
+    border-radius:20px;
+    position:relative;
+    overflow:hidden;
+}
+
+/* BORDER */
+.frame::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    padding:2px;
+    border-radius:20px;
+    background:linear-gradient(90deg,#b8860b,#ffd700,#b8860b,#8b6508,#ffd700);
+    background-size:300% 100%;
+    animation:shine 3s linear infinite;
+
+    -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+    -webkit-mask-composite:xor;
+}
+
+/* TITLE */
+.title{
+    text-align:center;
+    color:#fff;
+    font-size:18px;
+    font-weight:700;
+    padding-top:12px;
+}
+
+/* LINE */
+.line{
+    width:85%;
+    height:2px;
+    margin:6px auto;
+    background:linear-gradient(90deg,transparent,#b8860b,#ffd700,transparent);
+}
+
+/* SCROLL */
+.scroll{
+    position:absolute;
+    top:70px;
+    bottom:0;
+    left:0;
+    right:0;
+    overflow-y:auto;
+    padding:10px;
+}
+
+/* GROUP */
+.group{
+    text-align:center;
+    color:#ffd700;
+    font-size:11px;
+    font-weight:700;
+    margin:10px 0;
+}
+
+/* ROW */
+.row{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:10px;
+    padding:8px;
+    border-bottom:1px solid rgba(255,215,0,0.12);
+}
+
+/* BOX */
+.box{
+    background:#111;
+    border:1px solid #b8860b;
+    border-radius:8px;
+    padding:8px 10px;
+    min-width:60px;
+    text-align:center;
+    color:#fff;
+}
+
+/* ROMAJI */
+.romaji{
+    font-size:10px;
+    color:#aaa;
+}
+
+/* ARROW */
+.arrow{
+    color:#ffd700;
+    font-weight:800;
+}
+
+/* NAV */
+.bottom-nav{
+    width:360px;
+    height:55px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:0 14px;
+    background:#0a0a0a;
+    border:1px solid rgba(255,215,0,0.2);
+    border-radius:12px;
+}
+
+.nav-btn{
+    width:70px;
+    text-align:center;
+    color:#ff3b3b;
+    font-weight:700;
+    font-size:13px;
+    cursor:pointer;
+}
+
+.nav-center{
+    flex:1;
+    text-align:center;
+    color:#ffd700;
+    font-weight:700;
+    font-size:13px;
+}
+
+.nav-btn:active{
+    transform:scale(0.95);
+    color:#ffd700;
+}
+
+@keyframes shine{
+    0%{background-position:0%;}
+    100%{background-position:200%;}
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="frame">
+
+<div class="title">HIRAGANA DAKUTEN</div>
+<div class="line"></div>
+
+<div class="scroll">
+
+<!-- K → G -->
+<div class="group">K → G</div>
+
+<div class="row"><div class="box">か<div class="romaji">ka</div></div><div class="arrow">→</div><div class="box">が<div class="romaji">ga</div></div></div>
+<div class="row"><div class="box">き<div class="romaji">ki</div></div><div class="arrow">→</div><div class="box">ぎ<div class="romaji">gi</div></div></div>
+<div class="row"><div class="box">く<div class="romaji">ku</div></div><div class="arrow">→</div><div class="box">ぐ<div class="romaji">gu</div></div></div>
+<div class="row"><div class="box">け<div class="romaji">ke</div></div><div class="arrow">→</div><div class="box">げ<div class="romaji">ge</div></div></div>
+<div class="row"><div class="box">こ<div class="romaji">ko</div></div><div class="arrow">→</div><div class="box">ご<div class="romaji">go</div></div></div>
+
+<!-- S → Z -->
+<div class="group">S → Z</div>
+
+<div class="row"><div class="box">さ<div class="romaji">sa</div></div><div class="arrow">→</div><div class="box">ざ<div class="romaji">za</div></div></div>
+<div class="row"><div class="box">し<div class="romaji">shi</div></div><div class="arrow">→</div><div class="box">じ<div class="romaji">ji</div></div></div>
+<div class="row"><div class="box">す<div class="romaji">su</div></div><div class="arrow">→</div><div class="box">ず<div class="romaji">zu</div></div></div>
+<div class="row"><div class="box">せ<div class="romaji">se</div></div><div class="arrow">→</div><div class="box">ぜ<div class="romaji">ze</div></div></div>
+<div class="row"><div class="box">そ<div class="romaji">so</div></div><div class="arrow">→</div><div class="box">ぞ<div class="romaji">zo</div></div></div>
+
+<!-- T → D -->
+<div class="group">T → D</div>
+
+<div class="row"><div class="box">た<div class="romaji">ta</div></div><div class="arrow">→</div><div class="box">だ<div class="romaji">da</div></div></div>
+<div class="row"><div class="box">ち<div class="romaji">chi</div></div><div class="arrow">→</div><div class="box">ぢ<div class="romaji">ji</div></div></div>
+<div class="row"><div class="box">つ<div class="romaji">tsu</div></div><div class="arrow">→</div><div class="box">づ<div class="romaji">zu</div></div></div>
+<div class="row"><div class="box">て<div class="romaji">te</div></div><div class="arrow">→</div><div class="box">で<div class="romaji">de</div></div></div>
+<div class="row"><div class="box">と<div class="romaji">to</div></div><div class="arrow">→</div><div class="box">ど<div class="romaji">do</div></div></div>
+
+<!-- H → B -->
+<div class="group">H → B</div>
+
+<div class="row"><div class="box">は<div class="romaji">ha</div></div><div class="arrow">→</div><div class="box">ば<div class="romaji">ba</div></div></div>
+<div class="row"><div class="box">ひ<div class="romaji">hi</div></div><div class="arrow">→</div><div class="box">び<div class="romaji">bi</div></div></div>
+<div class="row"><div class="box">ふ<div class="romaji">fu</div></div><div class="arrow">→</div><div class="box">ぶ<div class="romaji">bu</div></div></div>
+<div class="row"><div class="box">へ<div class="romaji">he</div></div><div class="arrow">→</div><div class="box">べ<div class="romaji">be</div></div></div>
+<div class="row"><div class="box">ほ<div class="romaji">ho</div></div><div class="arrow">→</div><div class="box">ぼ<div class="romaji">bo</div></div></div>
+
+</div>
+
+</div>
+
+<!-- NAV -->
+<div class="bottom-nav">
+
+<div class="nav-btn" onclick="history.back()">BACK</div>
+
+<div class="nav-center">← EWONZ LINGUA →</div>
+
+<div class="nav-btn" onclick="location.href='index.html'">HOME</div>
+
+</div>
+
+</body>
+</html>
