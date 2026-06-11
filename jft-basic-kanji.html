@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>JFT-Basic Kanji - Ewonz</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+user-select:none;
+}
+
+html,body{
+height:100%;
+overflow:hidden;
+background:#0b0b0b;
+display:flex;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+font-family:Poppins;
+}
+
+/* FRAME */
+.frame{
+width:360px;
+height:480px;
+background:#0a0a0a;
+border-radius:20px;
+position:relative;
+overflow:hidden;
+}
+
+/* BORDER */
+.frame::before{
+content:"";
+position:absolute;
+inset:0;
+padding:2px;
+border-radius:20px;
+background:linear-gradient(90deg,#b8860b,#ffd700,#b8860b,#8b6508,#ffd700);
+background-size:300% 100%;
+animation:shine 3s linear infinite;
+
+-webkit-mask:
+linear-gradient(#000 0 0) content-box,
+linear-gradient(#000 0 0);
+
+-webkit-mask-composite:xor;
+}
+
+/* TITLE */
+.title{
+text-align:center;
+font-size:16px;
+font-weight:700;
+color:#fff;
+margin-top:14px;
+}
+
+.line{
+width:80%;
+height:2px;
+margin:8px auto;
+background:linear-gradient(90deg,transparent,#b8860b,#ffd700,transparent);
+}
+
+/* SCROLL */
+.content{
+position:absolute;
+top:60px;
+bottom:0;
+left:0;
+right:0;
+overflow-y:auto;
+padding:10px;
+}
+
+/* CARD */
+.card{
+background:#111;
+border:1px solid rgba(184,134,11,0.35);
+border-radius:10px;
+padding:10px;
+margin-bottom:8px;
+text-align:center;
+}
+
+.kanji{
+font-size:18px;
+font-weight:700;
+color:#fff;
+}
+
+.romaji{
+font-size:11px;
+color:#ffd700;
+margin-top:2px;
+}
+
+.meaning{
+font-size:11px;
+color:#b8860b;
+margin-top:2px;
+}
+
+/* NAV */
+.bottom-nav{
+width:360px;
+height:55px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:0 12px;
+background:#0a0a0a;
+border-top:1px solid rgba(255,215,0,0.25);
+border-radius:12px;
+}
+
+.nav-btn{
+width:70px;
+text-align:center;
+color:#ff3b3b;
+font-weight:700;
+font-size:12px;
+cursor:pointer;
+}
+
+.center{
+flex:1;
+text-align:center;
+color:#ffd700;
+font-weight:700;
+font-size:12px;
+}
+
+/* ANIMATION */
+@keyframes shine{
+0%{background-position:0%;}
+100%{background-position:100%;}
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="frame">
+
+<div class="title">JFT-BASIC KANJI</div>
+<div class="line"></div>
+
+<div class="content">
+<div id="list"></div>
+</div>
+
+</div>
+
+<!-- NAV -->
+<div class="bottom-nav">
+<div class="nav-btn" onclick="history.back()">BACK</div>
+<div class="center">← EWONZ LINGUA →</div>
+<div class="nav-btn" onclick="location.href='index.html'">HOME</div>
+</div>
+
+<script>
+
+const kanji = [
+["会","kai","a(u)","හමුවීම"],
+["何","nan","nani","කුමක්ද"],
+["家","ka","ie","නිවස"],
+["外","gai","soto","පිටත"],
+["間","kan","aida","අතර"],
+["帰","ki","kaeru","ආපසු යාම"],
+["記","ki","ki","සටහන්"],
+["休","kyuu","yasu(mu)","විවේකය"],
+["急","kyuu","iso(gu)","ඉක්මන්"],
+["牛","gyuu","ushi","ගවයා"],
+["兄","kei","ani","අයියා"],
+["京","kyou","kyou","අගනගරය"],
+["強","kyou","tsuyo(i)","ශක්තිමත්"],
+["教","kyou","oshi(eru)","ඉගැන්වීම"],
+["近","kin","chika(i)","ආසන්න"],
+["銀","gin","gin","රිදී"],
+["空","kuu","sora","අහස"],
+["月","getsu","tsuki","සඳ"],
+["犬","ken","inu","බල්ලා"],
+["見","ken","miru","බලන්න"],
+["言","gen","iu","කියන්න"],
+["古","ko","furu(i)","පැරණි"],
+["午","go","go","දහවල්"],
+["後","go","ato","පසුව"],
+["語","go","go","භාෂාව"],
+["公","kou","kou","පොදු"],
+["口","kou","kuchi","මුඛය"],
+["行","kou","iku","යන්න"],
+["高","kou","taka(i)","උස / මිල අධික"],
+["国","koku","kuni","රට"],
+["今","kon","ima","දැන්"],
+["左","sa","hidari","වම"],
+["仕","shi","shi","සේවය"],
+["使","shi","tsukau","භාවිතා"],
+["始","shi","hajimeru","ආරම්භය"],
+["時","ji","toki","කාලය"],
+["自","ji","mizukara","තමා"],
+["式","shiki","shiki","විලාසය"],
+["七","shichi","nana","හත"],
+["社","sha","sha","සමාගම"],
+["車","sha","kuruma","කාර්"],
+["手","shu","te","අත"],
+["出","shutsu","deru","පිටවීම"],
+["女","jo","onna","කාන්තාව"],
+["小","shou","chiisai","කුඩා"],
+["上","jou","ue","ඉහළ"],
+["食","shoku","taberu","කෑම"],
+["新","shin","atarashii","නව"],
+["人","jin","hito","මිනිසා"],
+["水","sui","mizu","ජලය"],
+["数","suu","kazu","ගණන"],
+["西","sei","nishi","බටහිර"],
+["青","sei","ao","නිල්"],
+["赤","seki","aka","රතු"],
+["切","setsu","kiru","කපන්න"],
+["前","zen","mae","ඉදිරිය"],
+["早","sou","haya(i)","ඉක්මන්"],
+["走","sou","hashiru","දුවන්න"],
+["足","soku","ashi","පාදය"],
+["村","son","mura","ගම"],
+["多","ta","oo(i)","බහුල"],
+["大","dai","oo(kii)","විශාල"],
+["男","dan","otoko","පිරිමි"],
+["地","chi","chi","පොළොව"],
+["中","chuu","naka","මැද"],
+["長","chou","naga(i)","දිග"],
+["昼","chuu","hiru","දහවල්"],
+["鳥","chou","tori","කුරුල්ලා"],
+["朝","chou","asa","උදෑසන"],
+["通","tsuu","tooru","ගමන්"],
+["店","ten","mise","කඩ"],
+["電","den","den","විදුලිය"],
+["土","do","tsuchi","පස්"],
+["東","tou","higashi","නැගෙනහිර"],
+["読","doku","yomu","කියවීම"],
+["南","nan","minami","දකුණ"],
+["肉","niku","niku","මස්"],
+["入","nyuu","hairu","ඇතුල්වීම"],
+["年","nen","toshi","වසර"],
+["買","bai","kau","මිලදී"],
+["白","haku","shiro","සුදු"],
+["八","hachi","hachi","අට"],
+["半","han","han","අර්ධ"],
+["百","hyaku","hyaku","සිය"],
+["病","byou","yamai","අසනීප"],
+["父","fu","chichi","පියා"],
+["分","fun","wakaru","විනාඩි / බෙදීම"],
+["聞","bun","kiku","ඇසීම"],
+["米","bei","kome","සහල්"],
+["歩","ho","aruku","ඇවිදීම"],
+["母","bo","haha","මව"],
+["方","hou","kata","දිශාව"],
+["北","hoku","kita","උතුර"],
+["毎","mai","mai","දිනපතා"],
+["万","man","man","දසදහස"],
+["名","mei","na","නම"],
+["明","mei","akarui","දීප්තිමත්"],
+["目","moku","me","ඇස"],
+["問","mon","tou","ප්‍රශ්නය"],
+["夜","ya","yoru","රාත්‍රිය"],
+["友","yuu","tomo","මිතුරා"],
+["有","yuu","aru","තිබීම"],
+["来","rai","kuru","එන්න"],
+["立","ritsu","tatsu","නැගී සිටීම"],
+["料","ryou","ryou","ගාස්තුව"],
+["話","wa","hanasu","කතා කිරීම"]
+];
+
+let html="";
+kanji.forEach(k=>{
+html+=`
+<div class="card">
+<div class="kanji">${k[0]}</div>
+<div class="romaji">${k[1]} / ${k[2]}</div>
+<div class="meaning">${k[3]}</div>
+</div>`;
+});
+
+document.getElementById("list").innerHTML=html;
+
+</script>
+
+</body>
+</html>
