@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Japanese Language</title>
 
@@ -10,6 +10,7 @@
 
 <style>
 
+/* RESET */
 *{
     margin:0;
     padding:0;
@@ -68,15 +69,7 @@ body{
     padding:2px;
     border-radius:20px;
 
-    background:linear-gradient(
-        90deg,
-        #b8860b,
-        #ffd700,
-        #b8860b,
-        #8b6508,
-        #ffd700
-    );
-
+    background:linear-gradient(90deg,#b8860b,#ffd700,#b8860b,#8b6508,#ffd700);
     background-size:300% 100%;
     animation:shine 3s linear infinite;
 
@@ -91,7 +84,7 @@ body{
     pointer-events:none;
 }
 
-/* CONTENT ABOVE OVERLAY */
+/* CONTENT */
 .title,
 .line,
 .grid{
@@ -114,16 +107,10 @@ body{
     width:85%;
     height:2px;
     margin:8px auto;
-    background:linear-gradient(
-        90deg,
-        transparent,
-        #b8860b,
-        #ffd700,
-        transparent
-    );
+    background:linear-gradient(90deg,transparent,#b8860b,#ffd700,transparent);
 }
 
-/* SCROLL AREA */
+/* SCROLL */
 .grid{
     position:absolute;
     top:80px;
@@ -141,12 +128,10 @@ body{
     margin-bottom:10px;
 
     border-radius:10px;
-
     background:rgba(0,0,0,0.60);
     border:2px solid #b8860b;
 
     color:#fff;
-
     text-align:center;
 
     font-family:'Montserrat',sans-serif;
@@ -183,7 +168,7 @@ body{
     font-weight:700;
 }
 
-/* NAV SYSTEM */
+/* NAV */
 .bottom-nav{
     width:360px;
     height:55px;
@@ -199,15 +184,13 @@ body{
     border-radius:12px;
 }
 
-/* SIDE BUTTONS */
+/* NAV BUTTONS */
 .nav-btn{
     width:70px;
     text-align:center;
-
     color:#ff3b3b;
     font-weight:700;
     font-size:13px;
-
     cursor:pointer;
 }
 
@@ -220,7 +203,6 @@ body{
 .nav-center{
     flex:1;
     text-align:center;
-
     color:#ffd700;
     font-weight:700;
     font-size:13px;
@@ -231,24 +213,18 @@ body{
     display:none;
     position:fixed;
     inset:0;
-
     background:rgba(0,0,0,0.85);
-
     justify-content:center;
     align-items:center;
-
     z-index:999;
 }
 
 .popup-box{
     width:290px;
-
     background:#111;
     padding:18px;
-
     border-radius:12px;
     border:2px solid #b8860b;
-
     text-align:center;
 }
 
@@ -264,10 +240,8 @@ body{
 .close-btn{
     margin-top:12px;
     padding:8px 14px;
-
     background:#b8860b;
     border:none;
-
     font-weight:700;
     cursor:pointer;
 }
@@ -286,21 +260,23 @@ body{
 <div class="frame">
 
     <div class="title">JAPANESE LANGUAGE</div>
-
     <div class="line"></div>
 
     <div class="grid">
-<div class="btn" onclick="openPopup()">
-    Writing System
-    <div class="lock-tag">LOCK</div>
-</div>
+
+        <!-- ✅ UNLOCKED -->
+        <div class="btn" onclick="go('writing-system.html')">
+            Writing System
+        </div>
+
+        <!-- 🔒 LOCKED -->
+        <div class="btn" onclick="openPopup()">
+            Learning System
+            <div class="lock-tag">LOCK</div>
+        </div>
 
         <div class="btn" onclick="go('vocabulary.html')">
             Vocabulary
-        </div>
-
-        <div class="btn" onclick="go('learning-system.html')">
-    Learning System
         </div>
 
         <div class="btn" onclick="openPopup()">
@@ -318,9 +294,10 @@ body{
         </div>
 
         <div class="btn" onclick="openPopup()">
-    Quiz Center
-    <div class="lock-tag">LOCK</div>
-</div>
+            Quiz Center
+            <div class="lock-tag">LOCK</div>
+        </div>
+
     </div>
 
 </div>
@@ -328,17 +305,11 @@ body{
 <!-- NAV -->
 <div class="bottom-nav">
 
-    <div class="nav-btn" onclick="history.back()">
-        BACK
-    </div>
+    <div class="nav-btn" onclick="history.back()">BACK</div>
 
-    <div class="nav-center">
-        ← EWONZ LINGUA →
-    </div>
+    <div class="nav-center">← EWONZ LINGUA →</div>
 
-    <div class="nav-btn" onclick="location.href='index.html'">
-        HOME
-    </div>
+    <div class="nav-btn" onclick="location.href='index.html'">HOME</div>
 
 </div>
 
@@ -348,12 +319,9 @@ body{
     <div class="popup-box">
 
         <h3>🔴 LOCKED</h3>
-
         <p>This feature is currently locked</p>
 
-        <button class="close-btn" onclick="closePopup()">
-            CLOSE
-        </button>
+        <button class="close-btn" onclick="closePopup()">CLOSE</button>
 
     </div>
 
