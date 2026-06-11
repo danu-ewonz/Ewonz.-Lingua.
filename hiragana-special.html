@@ -113,38 +113,19 @@ body{
     overflow:hidden;
 }
 
-/* TOUCH GOLD EFFECT */
+/* TOUCH */
 .btn:active{
     background:linear-gradient(90deg,#ffd700,#b8860b);
     color:#000;
     transform:scale(0.96);
-    box-shadow:0 0 15px rgba(255,215,0,0.9);
 }
 
-/* GOLD WAVE */
-.btn::after{
-    content:"";
-    position:absolute;
-    top:0;
-    left:-100%;
-    width:100%;
-    height:100%;
-    background:linear-gradient(120deg,transparent,rgba(255,215,0,0.6),transparent);
-}
-
-.btn:active::after{
-    left:100%;
-    transition:0.5s;
-}
-
-/* ================= NAV (FIXED SINGLE LINE) ================= */
-
+/* NAV */
 .bottom-nav{
     width:360px;
     margin-top:10px;
 
     display:flex;
-    flex-direction:row;
     justify-content:space-between;
     align-items:center;
 
@@ -152,11 +133,8 @@ body{
 
     border-top:2px solid rgba(255,215,0,0.3);
     border-bottom:2px solid rgba(255,215,0,0.3);
-
-    white-space:nowrap;
 }
 
-/* ALL 3 ITEMS SAME LINE BALANCE */
 .nav-btn,
 .center{
     flex:1;
@@ -166,7 +144,6 @@ body{
     white-space:nowrap;
 }
 
-/* COLORS */
 .nav-btn{
     color:red;
     cursor:pointer;
@@ -177,16 +154,9 @@ body{
     font-size:12px;
 }
 
-/* TOUCH EFFECT */
 .nav-btn:active{
     color:#ffd700;
     transform:scale(1.05);
-}
-
-/* ANIMATION */
-@keyframes shine{
-    0%{background-position:0%;}
-    100%{background-position:100%;}
 }
 
 </style>
@@ -196,7 +166,6 @@ body{
 
 <div class="wrapper">
 
-<!-- FRAME -->
 <div class="frame">
 
     <div class="title">HIRAGANA SPECIAL 🇯🇵</div>
@@ -204,18 +173,22 @@ body{
 
     <div class="content">
 
-        <div class="btn">Dakuten</div>
-        <div class="btn">Handakuten</div>
-        <div class="btn">Yōon</div>
-        <div class="btn">Sokuon</div>
-        <div class="btn">Chōon</div>
-        <div class="btn">Special Particle (は・へ・を)</div>
+        <div class="btn" onclick="location.href='hiragana-dakuten.html'">Dakuten</div>
+
+        <div class="btn" onclick="location.href='hiragana-handakuten.html'">Handakuten</div>
+
+        <div class="btn" onclick="location.href='hiragana-yoon.html'">Yōon</div>
+
+        <div class="btn" onclick="location.href='hiragana-sokuon.html'">Sokuon</div>
+
+        <div class="btn" onclick="location.href='hiragana-choon.html'">Chōon</div>
+
+        <div class="btn" onclick="location.href='hiragana-particles.html'">Special Particle (は・へ・を)</div>
 
     </div>
 
 </div>
 
-<!-- NAV FIXED SINGLE LINE -->
 <div class="bottom-nav">
 
     <div class="nav-btn" onclick="history.back()">BACK</div>
