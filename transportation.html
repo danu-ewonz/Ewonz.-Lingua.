@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Transportation</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    user-select:none;
+}
+
+body{
+    background:#0b0b0b;
+    font-family:Poppins;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+    overflow:hidden;
+}
+
+/* FRAME */
+.frame{
+    width:360px;
+    height:480px;
+    background:#0a0a0a;
+    border-radius:20px;
+    position:relative;
+    overflow:hidden;
+    display:flex;
+    flex-direction:column;
+}
+
+/* BORDER */
+.frame::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    padding:2px;
+    border-radius:20px;
+    background:linear-gradient(90deg,#b8860b,#ffd700,#b8860b,#8b6508,#ffd700);
+    background-size:300% 100%;
+    animation:shine 3s linear infinite;
+
+    -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+    -webkit-mask-composite:xor;
+}
+
+/* TITLE */
+.title{
+    text-align:center;
+    font-size:18px;
+    font-weight:700;
+    color:#fff;
+    margin-top:14px;
+}
+
+.subtitle{
+    text-align:center;
+    font-size:12px;
+    color:#b8860b;
+}
+
+.line{
+    width:80%;
+    height:2px;
+    margin:8px auto;
+    background:linear-gradient(90deg,transparent,#b8860b,#ffd700,transparent);
+}
+
+/* SCROLL */
+.content{
+    position:absolute;
+    top:90px;
+    bottom:70px;
+    left:0;
+    right:0;
+    overflow-y:auto;
+    padding:12px;
+    text-align:center;
+}
+
+/* GROUP */
+.group{
+    color:#ffd700;
+    font-weight:700;
+    font-size:13px;
+    margin:18px 0 10px;
+}
+
+/* CARD */
+.card{
+    background:#111;
+    border:1px solid rgba(184,134,11,0.4);
+    border-radius:10px;
+    padding:10px;
+    margin-bottom:8px;
+}
+
+.jp{color:#fff;font-weight:700;font-size:14px;}
+.rm{color:#b8860b;font-size:12px;margin-top:2px;}
+.si{color:#ffcc70;font-size:12px;margin-top:2px;}
+
+.bottom-nav{
+    position:absolute;
+    bottom:0;
+    left:0;
+    width:100%;
+    height:60px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:0 10px;
+    background:#0a0a0a;
+}
+
+.bottom-nav::before,
+.bottom-nav::after{
+    content:"";
+    position:absolute;
+    left:0;
+    width:100%;
+    height:2px;
+    background:linear-gradient(90deg,transparent,#ffd700,transparent);
+}
+.bottom-nav::before{top:0;}
+.bottom-nav::after{bottom:0;}
+
+.nav-btn{
+    width:60px;
+    text-align:center;
+    color:#ff3b3b;
+    font-weight:700;
+    font-size:12px;
+}
+
+.center{
+    flex:1;
+    text-align:center;
+    color:#ffd700;
+    font-weight:700;
+    font-size:12px;
+}
+
+@keyframes shine{
+    0%{background-position:0%;}
+    100%{background-position:100%;}
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="frame">
+
+<div class="title">Transportation（交通）</div>
+<div class="subtitle">ප්‍රවාහන සහ ගමනාගමන</div>
+
+<div class="line"></div>
+
+<div class="content">
+
+<div class="group">Transport</div>
+
+<div class="card"><div class="jp">交通 (こうつう)</div><div class="rm">koutsuu</div><div class="si">ප්‍රවාහනය</div></div>
+<div class="card"><div class="jp">乗り物 (のりもの)</div><div class="rm">norimono</div><div class="si">වාහනය</div></div>
+<div class="card"><div class="jp">車 (くるま)</div><div class="rm">kuruma</div><div class="si">කාර්</div></div>
+<div class="card"><div class="jp">タクシー</div><div class="rm">takushii</div><div class="si">ටැක්සි</div></div>
+<div class="card"><div class="jp">バス</div><div class="rm">basu</div><div class="si">බස්</div></div>
+<div class="card"><div class="jp">電車 (でんしゃ)</div><div class="rm">densha</div><div class="si">දුම්රිය</div></div>
+<div class="card"><div class="jp">新幹線 (しんかんせん)</div><div class="rm">shinkansen</div><div class="si">බුලට් දුම්රිය</div></div>
+<div class="card"><div class="jp">地下鉄 (ちかてつ)</div><div class="rm">chikatetsu</div><div class="si">භූගත දුම්රිය</div></div>
+<div class="card"><div class="jp">自転車 (じてんしゃ)</div><div class="rm">jitensha</div><div class="si">බයිසිකලය</div></div>
+<div class="card"><div class="jp">バイク</div><div class="rm">baiku</div><div class="si">මෝටර් බයික්</div></div>
+<div class="card"><div class="jp">トラック</div><div class="rm">torakku</div><div class="si">ලොරි</div></div>
+<div class="card"><div class="jp">救急車 (きゅうきゅうしゃ)</div><div class="rm">kyuukyuusha</div><div class="si">ගිලන් රථය</div></div>
+<div class="card"><div class="jp">消防車 (しょうぼうしゃ)</div><div class="rm">shoubousha</div><div class="si">ගිනි නිවන රථය</div></div>
+<div class="card"><div class="jp">パトカー</div><div class="rm">patokaa</div><div class="si">පොලිස් රථය</div></div>
+<div class="card"><div class="jp">飛行機 (ひこうき)</div><div class="rm">hikouki</div><div class="si">ගුවන් යානය</div></div>
+<div class="card"><div class="jp">ヘリコプター</div><div class="rm">herikoputaa</div><div class="si">හෙලිකොප්ටරය</div></div>
+<div class="card"><div class="jp">船 (ふね)</div><div class="rm">fune</div><div class="si">නැව</div></div>
+<div class="card"><div class="jp">フェリー</div><div class="rm">ferii</div><div class="si">පාරු</div></div>
+<div class="card"><div class="jp">ボート</div><div class="rm">booto</div><div class="si">බෝට්ටුව</div></div>
+<div class="card"><div class="jp">駅 (えき)</div><div class="rm">eki</div><div class="si">දුම්රිය ස්ථානය</div></div>
+<div class="card"><div class="jp">空港 (くうこう)</div><div class="rm">kuukou</div><div class="si">ගුවන් තොටුපළ</div></div>
+
+<div class="card"><div class="jp">バス停 (ばすてい)</div><div class="rm">basutei</div><div class="si">බස් නැවතුම</div></div>
+<div class="card"><div class="jp">駐車場 (ちゅうしゃじょう)</div><div class="rm">chuushajou</div><div class="si">වාහන නවතා තැබීම</div></div>
+<div class="card"><div class="jp">道路 (どうろ)</div><div class="rm">douro</div><div class="si">මාර්ගය</div></div>
+<div class="card"><div class="jp">信号 (しんごう)</div><div class="rm">shingou</div><div class="si">සංඥාව</div></div>
+<div class="card"><div class="jp">橋 (はし)</div><div class="rm">hashi</div><div class="si">පාලම</div></div>
+
+<div class="card"><div class="jp">切符 (きっぷ)</div><div class="rm">kippu</div><div class="si">ටිකට්</div></div>
+<div class="card"><div class="jp">運賃 (うんちん)</div><div class="rm">unchin</div><div class="si">ගාස්තුව</div></div>
+<div class="card"><div class="jp">出発 (しゅっぱつ)</div><div class="rm">shuppatsu</div><div class="si">පිටත්වීම</div></div>
+<div class="card"><div class="jp">到着 (とうちゃく)</div><div class="rm">touchaku</div><div class="si">පැමිණීම</div></div>
+<div class="card"><div class="jp">乗る (のる)</div><div class="rm">noru</div><div class="si">නැගීම</div></div>
+<div class="card"><div class="jp">降りる (おりる)</div><div class="rm">oriru</div><div class="si">බැසීම</div></div>
+
+<div class="card"><div class="jp">運転する (うんてんする)</div><div class="rm">unten suru</div><div class="si">ධාවනය</div></div>
+<div class="card"><div class="jp">歩く (あるく)</div><div class="rm">aruku</div><div class="si">ඇවිදීම</div></div>
+<div class="card"><div class="jp">通勤 (つうきん)</div><div class="rm">tsuukin</div><div class="si">රැකියාවට යාම</div></div>
+<div class="card"><div class="jp">渋滞 (じゅうたい)</div><div class="rm">juutai</div><div class="si">ට‍්‍රැෆික්</div></div>
+
+</div>
+
+<div class="bottom-nav">
+<div class="nav-btn" onclick="history.back()">BACK</div>
+<div class="center">← EWONZ LINGUA →</div>
+<div class="nav-btn" onclick="location.href='index.html'">HOME</div>
+</div>
+
+</div>
+
+</body>
+  </html>
