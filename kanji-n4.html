@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>N4 Kanji EWONZ</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+user-select:none;
+}
+
+html,body{
+height:100%;
+overflow:hidden;
+background:#0b0b0b;
+display:flex;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+font-family:Poppins;
+}
+
+/* FRAME */
+.frame{
+width:360px;
+height:480px;
+background:#0a0a0a;
+border-radius:20px;
+position:relative;
+overflow:hidden;
+}
+
+/* BORDER */
+.frame::before{
+content:"";
+position:absolute;
+inset:0;
+padding:2px;
+border-radius:20px;
+background:linear-gradient(90deg,#b8860b,#ffd700,#b8860b,#8b6508,#ffd700);
+background-size:300% 100%;
+animation:shine 3s linear infinite;
+
+-webkit-mask:
+linear-gradient(#000 0 0) content-box,
+linear-gradient(#000 0 0);
+
+-webkit-mask-composite:xor;
+}
+
+/* TITLE */
+.title{
+text-align:center;
+font-size:16px;
+font-weight:700;
+color:#fff;
+margin-top:14px;
+}
+
+.line{
+width:80%;
+height:2px;
+margin:8px auto;
+background:linear-gradient(90deg,transparent,#b8860b,#ffd700,transparent);
+}
+
+/* SCROLL */
+.content{
+position:absolute;
+top:60px;
+bottom:0;
+left:0;
+right:0;
+overflow-y:auto;
+padding:10px;
+}
+
+/* CARD */
+.card{
+background:#111;
+border:1px solid rgba(184,134,11,0.35);
+border-radius:10px;
+padding:10px;
+margin-bottom:8px;
+text-align:center;
+}
+
+.kanji{
+font-size:18px;
+font-weight:700;
+color:#fff;
+}
+
+.romaji{
+font-size:11px;
+color:#ffd700;
+margin-top:2px;
+}
+
+.meaning{
+font-size:11px;
+color:#b8860b;
+margin-top:2px;
+}
+
+/* NAV */
+.bottom-nav{
+width:360px;
+height:55px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:0 12px;
+background:#0a0a0a;
+border-top:1px solid rgba(255,215,0,0.25);
+border-radius:12px;
+}
+
+.nav-btn{
+width:70px;
+text-align:center;
+color:#ff3b3b;
+font-weight:700;
+font-size:12px;
+cursor:pointer;
+}
+
+.center{
+flex:1;
+text-align:center;
+color:#ffd700;
+font-weight:700;
+font-size:12px;
+}
+
+@keyframes shine{
+0%{background-position:0%;}
+100%{background-position:100%;}
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="frame">
+
+<div class="title">JLPT N4 KANJI</div>
+<div class="line"></div>
+
+<div class="content">
+<div id="list"></div>
+</div>
+
+</div>
+
+<!-- NAV -->
+<div class="bottom-nav">
+<div class="nav-btn" onclick="history.back()">BACK</div>
+<div class="center">← EWONZ LINGUA →</div>
+<div class="nav-btn" onclick="location.href='index.html'">HOME</div>
+</div>
+
+<script>
+
+const kanji = [
+["悪","aku","warui","නරක"],
+["安","an","yasu(i)","ලාභ / සාමය"],
+["暗","an","kura(i)","අඳුරු"],
+["医","i","i","වෛද්‍ය"],
+["意","i","i","අර්ථය"],
+["育","iku","soda(tsu)","වර්ධනය"],
+["員","in","in","සාමාජික"],
+["院","in","in","ආයතනය"],
+["運","un","hako(bu)","වාසනාව"],
+["映","ei","utsu(ru)","ප්‍රතිබිම්බ"],
+["泳","ei","oyo(gu)","පිහිනීම"],
+["英","ei","ei","විශිෂ්ට"],
+["音","on","oto","ශබ්ද"],
+["歌","ka","uta","ගීතය"],
+["館","kan","kan","ගොඩනැගිල්ල"],
+["勉","ben","ben","උත්සාහය"],
+["急","kyuu","iso(gu)","ඉක්මන්"],
+["牛","gyuu","ushi","ගවයා"],
+["去","kyo","saru","යෑම"],
+["兄","kei","ani","අයියා"],
+["京","kyou","kyou","අගනගරය"],
+["強","kyou","tsuyo(i)","ශක්තිමත්"],
+["教","kyou","oshi(eru)","ඉගැන්වීම"],
+["近","kin","chika(i)","ආසන්න"],
+["銀","gin","gin","රිදී"],
+["区","ku","ku","ප්‍රදේශය"],
+["軽","kei","karu(i)","සැහැල්ලු"],
+["決","ketsu","kimeru","තීරණය"],
+["研","ken","ken","පර්යේෂණ"],
+["県","ken","ken","ප්‍රාන්තය"],
+["建","ken","tateru","ගොඩනැගීම"],
+["健","ken","ken","සෞඛ්‍යය"],
+["験","ken","ken","පරීක්ෂණය"],
+["固","ko","kata(i)","දැඩි"],
+["功","kou","kou","සාර්ථකත්වය"],
+["好","kou","suki","කැමති"],
+["広","kou","hiro(i)","පුළුල්"],
+["工","kou","kou","ඉංජිනේරු"],
+["港","kou","minato","වරාය"],
+["考","kou","kangaeru","සිතීම"],
+["合","gou","au","එකතු"],
+["黒","koku","kuro","කලු"],
+["今","kon","ima","දැන්"],
+["止","shi","tomaru","නවත්වන්න"],
+["死","shi","shinu","මරණය"],
+["使","shi","tsukau","භාවිතය"],
+["始","shi","hajimeru","ආරම්භය"],
+["指","shi","yubi","ඇඟිල්ල"],
+["次","ji","tsugi","ඊළඟ"],
+["事","ji","koto","දේ"],
+["字","ji","ji","අකුර"],
+["自","ji","mizukara","තමා"],
+["持","ji","motsu","තබාගන්න"],
+["式","shiki","shiki","විලාසය"],
+["失","shitsu","ushinau","අහිමි"],
+["実","jitsu","jitsu","සත්‍යය"],
+["主","shu","nushi","ප්‍රධාන"],
+["守","shu","mamoru","ආරක්ෂා"],
+["住","juu","sumu","ජීවත් වීම"],
+["助","jo","tasukeru","උදව්"],
+["場","jou","ba","ස්ථානය"],
+["乗","jou","noru","ගමන්"],
+["進","shin","susu(mu)","ඉදිරියට"],
+["親","shin","oya","දෙමාපිය"],
+["身","shin","mi","ශරීරය"],
+["世","se","yo","ලෝකය"],
+["性","sei","sei","ස්වභාවය"],
+["青","sei","ao","නිල්"],
+["切","setsu","kiru","කපන්න"],
+["雪","setsu","yuki","හිම"],
+["船","sen","fune","නැව"],
+["線","sen","sen","රේඛාව"],
+["戦","sen","tataka(u)","යුද්ධය"],
+["組","so","kumu","කණ්ඩායම"],
+["早","sou","haya(i)","ඉක්මන්"],
+["走","sou","hashiru","දුවන්න"],
+["送","sou","okuru","යවන්න"],
+["村","son","mura","ගම"],
+["太","ta","futo(i)","මෝට"],
+["体","tai","karada","ශරීරය"],
+["台","dai","dai","පදනම"],
+["第","dai","dai","අනුක්‍රමය"],
+["題","dai","dai","මාතෘකාව"],
+["知","chi","shiru","දැනගන්න"],
+["茶","cha","cha","තේ"],
+["昼","chuu","hiru","දහවල"],
+["鳥","chou","tori","කුරුල්ලා"],
+["朝","chou","asa","උදෑසන"],
+["通","tsuu","tooru","ගමන්"],
+["転","ten","korobu","පෙරළීම"],
+["都","to","miyako","නගරය"],
+["度","do","tabi","වර"],
+["島","tou","shima","දූපත"],
+["堂","dou","dou","හෝල්"],
+["動","dou","ugoku","චලනය"],
+["冬","tou","fuyu","ශීත"],
+["答","tou","kotaeru","පිළිතුර"],
+["同","dou","onaji","එකම"],
+["頭","tou","atama","හිස"],
+["肉","niku","niku","මස්"],
+["売","bai","uru","විකිණීම"],
+["発","hatsu","hatsu","ආරම්භය"],
+["病","byou","yamai","අසනීප"],
+["品","hin","shina","භාණ්ඩ"],
+["負","fu","makeru","පරාජය"],
+["服","fuku","fuku","ඇඳුම්"],
+["物","butsu","mono","දේ"],
+["文","bun","bun","වචන"],
+["別","betsu","wakeru","වෙන්වීම"],
+["便","ben","ben","පහසුව"],
+["方","hou","kata","දිශාව"],
+["味","mi","aji","රස"],
+["妹","mai","imouto","නංගි"],
+["姉","shi","ane","අක්කා"],
+["弟","tei","otouto","මල්ලි"],
+["門","mon","mon","දොරටුව"],
+["夜","ya","yoru","රාත්‍රිය"],
+["野","ya","no","පිට්ටනි"],
+["有","yuu","aru","තිබීම"],
+["用","you","you","භාවිතය"],
+["洋","you","you","බටහිර"],
+["理","ri","ri","හේතුව"],
+["旅","ryo","tabi","ගමන්"],
+["力","ryoku","chikara","ශක්තිය"],
+["林","rin","hayashi","වනය"],
+["六","roku","roku","හය"]
+];
+
+let html="";
+kanji.forEach(k=>{
+html+=`
+<div class="card">
+<div class="kanji">${k[0]}</div>
+<div class="romaji">${k[1]} / ${k[2]}</div>
+<div class="meaning">${k[3]}</div>
+</div>`;
+});
+
+document.getElementById("list").innerHTML=html;
+
+</script>
+
+</body>
+  </html>
