@@ -34,9 +34,7 @@ body{
     gap:10px;
 }
 
-/* =========================
-FIXED 3:4 FRAME (NO SHRINK)
-========================= */
+/* FRAME */
 .frame{
     width:360px;
     height:480px;
@@ -124,9 +122,7 @@ FIXED 3:4 FRAME (NO SHRINK)
     color:#000;
 }
 
-/* =========================
-BOTTOM NAV (FIXED STABLE CENTER)
-========================= */
+/* NAV */
 .bottom-nav{
     width:360px;
     height:55px;
@@ -197,17 +193,21 @@ BOTTOM NAV (FIXED STABLE CENTER)
 
 <div class="grid">
 
-    <div class="btn">Dakuten</div>
-    <div class="btn">Handakuten</div>
-    <div class="btn">Yōon</div>
-    <div class="btn">Sokuon</div>
-    <div class="btn">Chōonpu</div>
+    <div class="btn" onclick="location.href='katakana-dakuten.html'">Dakuten</div>
+
+    <div class="btn" onclick="location.href='katakana-handakuten.html'">Handakuten</div>
+
+    <div class="btn" onclick="location.href='katakana-yoon.html'">Yōon</div>
+
+    <div class="btn" onclick="location.href='katakana-sokuon.html'">Sokuon</div>
+
+    <div class="btn" onclick="location.href='katakana-choonpu.html'">Chōonpu</div>
 
 </div>
 
 </div>
 
-<!-- OUTSIDE NAV (STABLE) -->
+<!-- OUTSIDE NAV -->
 <div class="bottom-nav">
 
 <div class="nav-left" onclick="history.back()">BACK</div>
