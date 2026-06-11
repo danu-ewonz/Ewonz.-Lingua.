@@ -117,6 +117,20 @@ font-size:16px;
 font-weight:700;
 }
 
+/* ROMAJI */
+.romaji{
+font-size:10px;
+color:#aaa;
+margin-top:3px;
+}
+
+/* STACK */
+.stack{
+display:flex;
+flex-direction:column;
+align-items:center;
+}
+
 /* ARROW */
 .arrow{
 color:#ffd700;
@@ -177,11 +191,75 @@ color:#ffd700;
 
 <div class="group">H → P ONLY</div>
 
-<div class="row"><div class="box">は</div><div class="arrow">→</div><div class="box">ぱ</div></div>
-<div class="row"><div class="box">ひ</div><div class="arrow">→</div><div class="box">ぴ</div></div>
-<div class="row"><div class="box">ふ</div><div class="arrow">→</div><div class="box">ぷ</div></div>
-<div class="row"><div class="box">へ</div><div class="arrow">→</div><div class="box">ぺ</div></div>
-<div class="row"><div class="box">ほ</div><div class="arrow">→</div><div class="box">ぽ</div></div>
+<div class="row">
+  <div class="stack">
+    <div class="box">は</div>
+    <div class="romaji">ha</div>
+  </div>
+
+  <div class="arrow">→</div>
+
+  <div class="stack">
+    <div class="box">ぱ</div>
+    <div class="romaji">pa</div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="stack">
+    <div class="box">ひ</div>
+    <div class="romaji">hi</div>
+  </div>
+
+  <div class="arrow">→</div>
+
+  <div class="stack">
+    <div class="box">ぴ</div>
+    <div class="romaji">pi</div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="stack">
+    <div class="box">ふ</div>
+    <div class="romaji">fu</div>
+  </div>
+
+  <div class="arrow">→</div>
+
+  <div class="stack">
+    <div class="box">ぷ</div>
+    <div class="romaji">pu</div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="stack">
+    <div class="box">へ</div>
+    <div class="romaji">he</div>
+  </div>
+
+  <div class="arrow">→</div>
+
+  <div class="stack">
+    <div class="box">ぺ</div>
+    <div class="romaji">pe</div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="stack">
+    <div class="box">ほ</div>
+    <div class="romaji">ho</div>
+  </div>
+
+  <div class="arrow">→</div>
+
+  <div class="stack">
+    <div class="box">ぽ</div>
+    <div class="romaji">po</div>
+  </div>
+</div>
 
 </div>
 
