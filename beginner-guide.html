@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="si">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Beginner Guide - Ewonz Lingua</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+/* GLOBAL LOCK */
+html, body{
+    margin:0;
+    padding:0;
+    height:100%;
+    overflow:hidden;
+    background: radial-gradient(circle at top, #111, #000);
+    font-family:'Poppins', sans-serif;
+    color:white;
+}
+
+/* WRAPPER */
+.wrapper{
+    width:100%;
+    height:100%;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    gap:10px;
+}
+
+/* 🔥 3:4 FRAME LOCKED */
+.frame{
+    width:90vw;
+    max-width:360px;
+    aspect-ratio: 3 / 4;
+
+    display:flex;
+    flex-direction:column;
+
+    overflow:hidden;
+
+    border-radius:18px;
+    position:relative;
+
+    background: rgba(20,20,20,0.92);
+
+    box-shadow:
+    0 0 12px rgba(255,215,0,0.25),
+    inset 0 0 10px rgba(255,215,0,0.08);
+}
+
+/* GOLD ANIMATED BORDER */
+.frame::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    border-radius:18px;
+    padding:2px;
+
+    background: linear-gradient(
+        120deg,
+        transparent,
+        #ffd700,
+        #b8860b,
+        #ffd700,
+        transparent
+    );
+
+    background-size:300% 300%;
+    animation: borderMove 4s linear infinite;
+
+    -webkit-mask:
+        linear-gradient(#000 0 0) content-box,
+        linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+            mask-composite: exclude;
+
+    pointer-events:none;
+}
+
+@keyframes borderMove{
+    0%{background-position:0% 50%;}
+    50%{background-position:100% 50%;}
+    100%{background-position:0% 50%;}
+}
+
+/* TITLE */
+.title{
+    text-align:center;
+    font-size:18px;
+    font-weight:700;
+    color:#ffd700;
+    padding:14px 10px 8px 10px;
+    position:relative;
+    flex-shrink:0;
+}
+
+/* TITLE LINE */
+.title::after{
+    content:"";
+    position:absolute;
+    left:50%;
+    bottom:4px;
+    transform:translateX(-50%);
+
+    width:60%;
+    height:2px;
+
+    background:linear-gradient(to right, transparent, #ffd700, #b8860b, #ffd700, transparent);
+
+    animation:titleLine 3s infinite;
+}
+
+@keyframes titleLine{
+    0%{opacity:0.3; width:40%;}
+    50%{opacity:1; width:60%;}
+    100%{opacity:0.3; width:40%;}
+}
+
+/* CONTENT SCROLL ONLY */
+.content{
+    padding:15px;
+    font-size:13px;
+    line-height:1.6;
+
+    overflow-y:auto;
+    flex:1;
+}
+
+.content::-webkit-scrollbar{
+    width:4px;
+}
+
+.content::-webkit-scrollbar-thumb{
+    background:gold;
+    border-radius:10px;
+}
+
+/* SECTION */
+.section{
+    margin-bottom:14px;
+    padding:12px;
+    border-left:2px solid #b8860b;
+    background:rgba(255,255,255,0.03);
+    border-radius:8px;
+}
+
+.section h3{
+    margin:0 0 6px 0;
+    color:#ffd700;
+    font-size:14px;
+}
+
+/* NAV */
+.nav{
+    width:90%;
+    max-width:360px;
+
+    height:55px;
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    padding:0 10px;
+
+    border:2px solid #b8860b;
+    border-radius:12px;
+
+    background: rgba(0,0,0,0.6);
+
+    box-shadow:0 0 10px rgba(255,215,0,0.15);
+}
+
+/* BACK / HOME RED */
+.nav span{
+    font-size:12px;
+    font-weight:800;
+    color:red;
+    cursor:pointer;
+}
+
+/* CENTER */
+.center-title{
+    color:#ffd700;
+    font-weight:900;
+    font-size:14px;
+    letter-spacing:1px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="wrapper">
+
+    <!-- 3:4 FRAME -->
+    <div class="frame">
+
+        <div class="title">BEGINNER GUIDE</div>
+
+        <div class="content">
+
+            <div class="section">
+                <h3>ආරම්භක මාර්ගෝපදේශය</h3>
+                ජපන් භාෂාව ඉගෙනීම ආරම්භ කරන ඔබට සාදරයෙන් පිළිගනිමු! 🇯🇵
+            </div>
+
+            <div class="section">
+                <h3>🌱 මුලින්ම කරන්න ඕන දේ</h3>
+                දිනපතා කුඩා දේවල් වලින් ඉගෙනීම පටන් ගන්න.
+            </div>
+
+            <div class="section">
+                <h3>🧠 ඉගෙනීමේ ක්‍රමය</h3>
+                Practice + Revision + Consistency.
+            </div>
+
+            <div class="section">
+                <h3>🗓️ දිනපතා පුරුද්ද</h3>
+                20–30 minutes daily practice.
+            </div>
+
+            <div class="section">
+                <h3>🎯 ඉලක්කය</h3>
+                Basic → N5 readiness.
+            </div>
+
+            <div class="section">
+                <h3>💡 වැදගත් සටහන</h3>
+                “Small daily progress = big success.” ✨
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- NAV -->
+    <div class="nav">
+
+        <span onclick="history.back()">BACK</span>
+
+        <div class="center-title">← EWONZ LINGUA →</div>
+
+        <span onclick="location.href='index.html'">HOME</span>
+
+    </div>
+
+</div>
+
+</body>
+      </html>
