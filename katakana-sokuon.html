@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-<title>Sokuon Katakana</title>
+<title>Katakana Sokuon - Ewonz</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600;700&display=swap" rel="stylesheet">
 
@@ -18,6 +18,7 @@ box-sizing:border-box;
 user-select:none;
 }
 
+/* BODY */
 body{
 background:#0b0b0b;
 height:100vh;
@@ -39,7 +40,7 @@ position:relative;
 overflow:hidden;
 }
 
-/* BORDER */
+/* GOLD BORDER */
 .frame::before{
 content:"";
 position:absolute;
@@ -55,7 +56,6 @@ linear-gradient(#000 0 0) content-box,
 linear-gradient(#000 0 0);
 -webkit-mask-composite:xor;
 mask-composite:exclude;
-pointer-events:none;
 }
 
 /* TITLE */
@@ -64,64 +64,59 @@ text-align:center;
 color:#fff;
 font-size:18px;
 font-weight:700;
-margin-top:14px;
+padding-top:12px;
 }
 
 /* LINE */
 .line{
-width:80%;
+width:85%;
 height:2px;
-margin:8px auto;
+margin:6px auto;
 background:linear-gradient(90deg,transparent,#b8860b,#ffd700,transparent);
 }
 
 /* SCROLL */
-.content{
+.scroll{
 position:absolute;
-top:60px;
+top:70px;
 bottom:0;
 left:0;
 right:0;
 overflow-y:auto;
-padding:10px;
-display:flex;
-flex-direction:column;
-gap:8px;
+padding:12px;
 }
 
 /* CARD */
 .card{
 background:#111;
-border:1px solid rgba(184,134,11,0.35);
+border:1px solid #b8860b;
 border-radius:10px;
-padding:10px;
-text-align:center;
-}
-
-.jp{
-font-size:16px;
+padding:12px;
+margin-bottom:10px;
 color:#fff;
+}
+
+/* WORD */
+.word{
+font-size:14px;
 font-weight:700;
+margin-bottom:4px;
 }
 
-.rm{
+/* ROMAJI */
+.romaji{
 font-size:11px;
-color:#ffd700;
-}
-
-.en{
-font-size:11px;
-color:#b8860b;
+color:#aaa;
 }
 
 /* RULE BOX */
 .rule{
-background:#0f0f0f;
-border:1px solid #b8860b;
+background:#0d0d0d;
+border-left:3px solid #ffd700;
 padding:10px;
-border-radius:10px;
-color:#fff;
-font-size:11px;
+margin-top:10px;
+font-size:12px;
+color:#ccc;
 line-height:1.4;
 }
 
@@ -154,10 +149,11 @@ font-size:12px;
 }
 
 .nav-left:active,.nav-right:active{
-color:#ffd700;
 transform:scale(0.95);
+color:#ffd700;
 }
 
+/* ANIMATION */
 @keyframes shine{
 0%{background-position:0%;}
 100%{background-position:200%;}
@@ -170,45 +166,52 @@ transform:scale(0.95);
 
 <div class="frame">
 
-<div class="title">SOKUON (ッ RULES)</div>
+<div class="title">KATAKANA SOKUON (ッ)</div>
 <div class="line"></div>
 
-<div class="content">
+<div class="scroll">
 
-<!-- RULES -->
-<div class="rule">
-<b>Sokuon Rules:</b><br>
-ッ + k/s/t/p = double sound (kk, ss, tt, pp)<br>
-ッ + ch = tch sound<br>
-No ッ with n/m/r/w/y<br>
-Examples: バッグ, ベッド, マッチ
+<div class="card">
+<div class="word">Meaning</div>
+<div class="romaji">Small ッ = double consonant sound</div>
 </div>
 
-<!-- WORDS -->
-<div class="card"><div class="jp">カップ</div><div class="rm">kappu</div><div class="en">Cup</div></div>
-<div class="card"><div class="jp">コップ</div><div class="rm">koppu</div><div class="en">Glass</div></div>
-<div class="card"><div class="jp">ベッド</div><div class="rm">beddo</div><div class="en">Bed</div></div>
-<div class="card"><div class="jp">バッグ</div><div class="rm">baggu</div><div class="en">Bag</div></div>
-<div class="card"><div class="jp">サッカー</div><div class="rm">sakkaa</div><div class="en">Soccer</div></div>
-<div class="card"><div class="jp">ハッピー</div><div class="rm">happii</div><div class="en">Happy</div></div>
-<div class="card"><div class="jp">ポケット</div><div class="rm">poketto</div><div class="en">Pocket</div></div>
-<div class="card"><div class="jp">チケット</div><div class="rm">chiketto</div><div class="en">Ticket</div></div>
-<div class="card"><div class="jp">ロケット</div><div class="rm">roketto</div><div class="en">Rocket</div></div>
-<div class="card"><div class="jp">ジャケット</div><div class="rm">jaketto</div><div class="en">Jacket</div></div>
+<div class="card">
+<div class="word">Core Idea</div>
+<div class="romaji">Pause → then double next consonant</div>
+</div>
 
-<div class="card"><div class="jp">ラッキー</div><div class="rm">rakkii</div><div class="en">Lucky</div></div>
-<div class="card"><div class="jp">クッキー</div><div class="rm">kukkii</div><div class="en">Cookie</div></div>
-<div class="card"><div class="jp">ノック</div><div class="rm">nokku</div><div class="en">Knock</div></div>
-<div class="card"><div class="jp">ロック</div><div class="rm">rokku</div><div class="en">Rock</div></div>
-<div class="card"><div class="jp">トラック</div><div class="rm">torakku</div><div class="en">Truck</div></div>
+<div class="card">
+<div class="word">Basic Example</div>
+<div class="romaji">カップ (kappu) = Cup</div>
+</div>
 
-<div class="card"><div class="jp">マッチ</div><div class="rm">matchi</div><div class="en">Match</div></div>
-<div class="card"><div class="jp">キャッチ</div><div class="rm">kyatchi</div><div class="en">Catch</div></div>
-<div class="card"><div class="jp">キッチン</div><div class="rm">kitchin</div><div class="en">Kitchen</div></div>
+<div class="card">
+<div class="word">School Example</div>
+<div class="romaji">サッカー (sakkaa) = Soccer</div>
+</div>
 
-<div class="card"><div class="jp">アップ</div><div class="rm">appu</div><div class="en">Up</div></div>
-<div class="card"><div class="jp">ストップ</div><div class="rm">sutoppu</div><div class="en">Stop</div></div>
-<div class="card"><div class="jp">ショップ</div><div class="rm">shoppu</div><div class="en">Shop</div></div>
+<div class="card">
+<div class="word">Rules</div>
+<div class="rule">
+k → kk (バッグ baggu)<br>
+s → ss (キッス kissu)<br>
+t → tt (チケット chiketto)<br>
+p → pp (カップ kappu)<br><br>
+
+Special:<br>
+マッチ → matchi (tch sound)
+</div>
+</div>
+
+<div class="card">
+<div class="word">Exam Trap</div>
+<div class="romaji">
+コップ ≠ コプ<br>
+バッグ ≠ バグ<br>
+Small ッ changes meaning!
+</div>
+</div>
 
 </div>
 
@@ -216,9 +219,13 @@ Examples: バッグ, ベッド, マッチ
 
 <!-- NAV -->
 <div class="bottom-nav">
+
 <div class="nav-left" onclick="history.back()">BACK</div>
+
 <div class="nav-center">← EWONZ LINGUA →</div>
+
 <div class="nav-right" onclick="location.href='index.html'">HOME</div>
+
 </div>
 
 </body>
