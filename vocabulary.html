@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ewonz Lingua</title>
+<title>Ewonz Lingua - Vocabulary</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600;700&display=swap" rel="stylesheet">
 
@@ -28,7 +28,7 @@ body{
     gap:10px;
 }
 
-/* ================= FRAME ================= */
+/* FRAME */
 .frame{
     width:360px;
     height:480px;
@@ -79,7 +79,7 @@ body{
     background:linear-gradient(90deg,transparent,#b8860b,#ffd700,transparent);
 }
 
-/* ================= SCROLL FIX (ONLY IMPORTANT CHANGE) ================= */
+/* SCROLL FIX */
 .content{
     position:absolute;
     top:90px;
@@ -100,13 +100,14 @@ body{
     text-align:center;
 }
 
-.btn .jp{
+/* TEXT */
+.jp{
     color:#fff;
     font-weight:600;
     font-size:13px;
 }
 
-.btn .si{
+.si{
     color:#b8860b;
     font-size:11px;
     margin-top:2px;
@@ -122,7 +123,12 @@ body{
     background:linear-gradient(90deg,transparent,#b8860b,#ffd700,transparent);
 }
 
-/* ================= OUTSIDE BACK HOME (UNCHANGED) ================= */
+/* LINKS REMOVE STYLE */
+a{
+    text-decoration:none;
+}
+
+/* NAV */
 .bottom-nav{
     width:360px;
     height:55px;
@@ -135,7 +141,7 @@ body{
     border:1px solid rgba(255,215,0,0.15);
 }
 
-/* BUTTONS */
+/* NAV BUTTONS */
 .nav-btn{
     flex:1;
     text-align:center;
@@ -143,16 +149,8 @@ body{
     font-size:13px;
     font-weight:700;
     padding:6px;
-    border-radius:8px;
-    border:1px solid rgba(255,0,0,0.2);
 }
 
-.nav-btn:active{
-    background:#ff3b3b;
-    color:#000;
-}
-
-/* CENTER */
 .nav-center{
     flex:2;
     text-align:center;
@@ -179,43 +177,55 @@ body{
 <div class="subtitle">語彙</div>
 <div class="line"></div>
 
-<!-- SCROLL CONTENT -->
+<!-- CONTENT -->
 <div class="content">
 
+<a href="people.html">
 <div class="btn">
-    <div class="jp">People & Aisatsu (人々)</div>
-    <div class="si">මිනිසුන් සහා ආචාර ක්‍රම</div>
+    <div class="jp">People (人々)</div>
+    <div class="si">මිනිසුන්</div>
 </div>
+</a>
 
+<a href="home_living.html">
 <div class="btn">
     <div class="jp">Home & Living (住まい)</div>
     <div class="si">නිවස සහ ජීවිතය</div>
 </div>
+</a>
 
+<a href="food_drinks.html">
 <div class="btn">
     <div class="jp">Food & Drinks (食べ物)</div>
     <div class="si">ආහාර සහ බීම</div>
 </div>
+</a>
 
+<a href="transport.html">
 <div class="btn">
     <div class="jp">Transportation (交通)</div>
     <div class="si">ප්‍රවාහනය</div>
 </div>
+</a>
 
+<a href="animals.html">
 <div class="btn">
     <div class="jp">Animals (動物)</div>
     <div class="si">සතුන්</div>
 </div>
+</a>
 
+<a href="school.html">
 <div class="btn">
     <div class="jp">School (学校)</div>
     <div class="si">පාසල</div>
 </div>
+</a>
 
 </div>
 </div>
 
-<!-- BACK HOME (NO CHANGE) -->
+<!-- BACK HOME -->
 <div class="bottom-nav">
 
 <div class="nav-btn" onclick="history.back()">BACK</div>
