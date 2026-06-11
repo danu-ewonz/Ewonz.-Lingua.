@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>School</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    user-select:none;
+}
+
+body{
+    background:#0b0b0b;
+    font-family:Poppins;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+    overflow:hidden;
+}
+
+/* FRAME */
+.frame{
+    width:360px;
+    height:480px;
+    background:#0a0a0a;
+    border-radius:20px;
+    position:relative;
+    overflow:hidden;
+    display:flex;
+    flex-direction:column;
+}
+
+/* BORDER */
+.frame::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    padding:2px;
+    border-radius:20px;
+    background:linear-gradient(90deg,#b8860b,#ffd700,#b8860b,#8b6508,#ffd700);
+    background-size:300% 100%;
+    animation:shine 3s linear infinite;
+
+    -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+    -webkit-mask-composite:xor;
+}
+
+/* TITLE */
+.title{
+    text-align:center;
+    font-size:18px;
+    font-weight:700;
+    color:#fff;
+    margin-top:14px;
+}
+
+.subtitle{
+    text-align:center;
+    font-size:12px;
+    color:#b8860b;
+}
+
+.line{
+    width:80%;
+    height:2px;
+    margin:8px auto;
+    background:linear-gradient(90deg,transparent,#b8860b,#ffd700,transparent);
+}
+
+/* SCROLL */
+.content{
+    position:absolute;
+    top:90px;
+    bottom:70px;
+    left:0;
+    right:0;
+    overflow-y:auto;
+    padding:12px;
+    text-align:center;
+}
+
+/* GROUP */
+.group{
+    color:#ffd700;
+    font-weight:700;
+    font-size:13px;
+    margin:18px 0 10px;
+}
+
+/* CARD */
+.card{
+    background:#111;
+    border:1px solid rgba(184,134,11,0.4);
+    border-radius:10px;
+    padding:10px;
+    margin-bottom:8px;
+}
+
+.jp{color:#fff;font-weight:700;font-size:14px;}
+.rm{color:#b8860b;font-size:12px;margin-top:2px;}
+.si{color:#ffcc70;font-size:12px;margin-top:2px;}
+
+/* NAV */
+.bottom-nav{
+    position:absolute;
+    bottom:0;
+    left:0;
+    width:100%;
+    height:60px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:0 10px;
+    background:#0a0a0a;
+}
+
+.bottom-nav::before,
+.bottom-nav::after{
+    content:"";
+    position:absolute;
+    left:0;
+    width:100%;
+    height:2px;
+    background:linear-gradient(90deg,transparent,#ffd700,transparent);
+}
+
+.bottom-nav::before{top:0;}
+.bottom-nav::after{bottom:0;}
+
+.nav-btn{
+    width:60px;
+    text-align:center;
+    color:#ff3b3b;
+    font-weight:700;
+    font-size:12px;
+}
+
+.center{
+    flex:1;
+    text-align:center;
+    color:#ffd700;
+    font-weight:700;
+    font-size:12px;
+}
+
+@keyframes shine{
+    0%{background-position:0%;}
+    100%{background-position:100%;}
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="frame">
+
+<div class="title">School（学校）</div>
+<div class="subtitle">පාසල් සහ අධ්‍යාපනය</div>
+
+<div class="line"></div>
+
+<div class="content">
+
+<div class="group">School System</div>
+
+<div class="card"><div class="jp">学校 (がっこう)</div><div class="rm">gakkou</div><div class="si">පාසල</div></div>
+<div class="card"><div class="jp">幼稚園 (ようちえん)</div><div class="rm">youchien</div><div class="si">පෙරපාසල</div></div>
+<div class="card"><div class="jp">小学校 (しょうがっこう)</div><div class="rm">shougakkou</div><div class="si">ප්‍රාථමික පාසල</div></div>
+<div class="card"><div class="jp">中学校 (ちゅうがっこう)</div><div class="rm">chuugakkou</div><div class="si">මධ්‍යම පාසල</div></div>
+<div class="card"><div class="jp">高校 (こうこう)</div><div class="rm">koukou</div><div class="si">උසස් පෙළ පාසල</div></div>
+<div class="card"><div class="jp">大学 (だいがく)</div><div class="rm">daigaku</div><div class="si">විශ්වවිද්‍යාලය</div></div>
+
+<div class="card"><div class="jp">教室 (きょうしつ)</div><div class="rm">kyoushitsu</div><div class="si">පංති කාමරය</div></div>
+<div class="card"><div class="jp">図書館 (としょかん)</div><div class="rm">toshokan</div><div class="si">පුස්තකාලය</div></div>
+<div class="card"><div class="jp">体育館 (たいいくかん)</div><div class="rm">taiikukan</div><div class="si">ක්‍රීඩා ශාලාව</div></div>
+<div class="card"><div class="jp">校庭 (こうてい)</div><div class="rm">koutei</div><div class="si">පාසල් ක්‍රීඩා පිටිය</div></div>
+<div class="card"><div class="jp">職員室 (しょくいんしつ)</div><div class="rm">shokuinshitsu</div><div class="si">ගුරු කාමරය</div></div>
+<div class="card"><div class="jp">校長室 (こうちょうしつ)</div><div class="rm">kouchoushitsu</div><div class="si">විදුහල්පති කාමරය</div></div>
+
+<div class="card"><div class="jp">保健室 (ほけんしつ)</div><div class="rm">hokenshitsu</div><div class="si">සෞඛ්‍ය කාමරය</div></div>
+<div class="card"><div class="jp">授業 (じゅぎょう)</div><div class="rm">jugyou</div><div class="si">පාඩම</div></div>
+<div class="card"><div class="jp">宿題 (しゅくだい)</div><div class="rm">shukudai</div><div class="si">ගෙදර වැඩ</div></div>
+<div class="card"><div class="jp">試験 (しけん)</div><div class="rm">shiken</div><div class="si">විභාගය</div></div>
+
+<div class="card"><div class="jp">国語 (こくご)</div><div class="rm">kokugo</div><div class="si">ජපන් භාෂාව</div></div>
+<div class="card"><div class="jp">数学 (すうがく)</div><div class="rm">suugaku</div><div class="si">ගණිතය</div></div>
+<div class="card"><div class="jp">理科 (りか)</div><div class="rm">rika</div><div class="si">විද්‍යාව</div></div>
+<div class="card"><div class="jp">英語 (えいご)</div><div class="rm">eigo</div><div class="si">ඉංග්‍රීසි</div></div>
+
+<div class="card"><div class="jp">先生 (せんせい)</div><div class="rm">sensei</div><div class="si">ගුරු</div></div>
+<div class="card"><div class="jp">生徒 (せいと)</div><div class="rm">seito</div><div class="si">ශිෂ්‍යයා</div></div>
+
+<div class="card"><div class="jp">鉛筆 (えんぴつ)</div><div class="rm">enpitsu</div><div class="si">පැන්සල</div></div>
+<div class="card"><div class="jp">消しゴム (けしごむ)</div><div class="rm">keshigomu</div><div class="si">ඉරේසර් (මකනය)</div></div>
+<div class="card"><div class="jp">ノート (のーと)</div><div class="rm">nooto</div><div class="si">නෝට් පොත</div></div>
+<div class="card"><div class="jp">教科書 (きょうかしょ)</div><div class="rm">kyoukasho</div><div class="si">පොත</div></div>
+
+</div>
+
+<div class="bottom-nav">
+<div class="nav-btn" onclick="history.back()">BACK</div>
+<div class="center">← EWONZ LINGUA →</div>
+<div class="nav-btn" onclick="location.href='index.html'">HOME</div>
+</div>
+
+</div>
+
+</body>
+  </html>
