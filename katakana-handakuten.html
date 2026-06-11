@@ -2,7 +2,6 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
 <title>Katakana Handakuten</title>
@@ -21,11 +20,9 @@
     -webkit-tap-highlight-color:transparent;
 }
 
-/* BODY FIX (IMPORTANT) */
 body{
     margin:0;
     background:#0b0b0b;
-
     height:100vh;
     width:100vw;
 
@@ -38,7 +35,7 @@ body{
     overflow:hidden;
 }
 
-/* FRAME WRAPPER (keeps nav outside clean) */
+/* WRAPPER */
 .wrapper{
     display:flex;
     flex-direction:column;
@@ -46,17 +43,14 @@ body{
     gap:6px;
 }
 
-/* 3:4 FRAME (LOCKED SIZE) */
+/* FRAME */
 .frame{
     width:360px;
     height:480px;
-
     background:#0a0a0a;
     border-radius:20px;
-
     display:flex;
     flex-direction:column;
-
     overflow:hidden;
     position:relative;
 }
@@ -68,7 +62,6 @@ body{
     inset:0;
     padding:2px;
     border-radius:20px;
-
     background:linear-gradient(90deg,#b8860b,#ffd700,#b8860b,#8b6508,#ffd700);
     background-size:300% 100%;
     animation:shine 3s linear infinite;
@@ -78,8 +71,6 @@ body{
     linear-gradient(#000 0 0);
     -webkit-mask-composite:xor;
     mask-composite:exclude;
-
-    pointer-events:none;
 }
 
 /* TITLE */
@@ -116,6 +107,7 @@ body{
     border-bottom:1px solid rgba(255,215,0,0.15);
 }
 
+/* BOX */
 .box{
     padding:10px 14px;
     background:#111;
@@ -128,15 +120,29 @@ body{
     font-weight:600;
 }
 
+/* ROMAJI */
+.romaji{
+    font-size:10px;
+    color:#aaa;
+    margin-top:3px;
+}
+
+/* INNER STACK */
+.stack{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+}
+
+/* ARROW */
 .arrow{
     color:#ffd700;
     font-size:18px;
 }
 
-/* ================= NAV FIX ================= */
+/* NAV */
 .bottom-nav{
     width:360px;
-
     height:50px;
 
     display:flex;
@@ -151,7 +157,6 @@ body{
     border:1px solid rgba(255,215,0,0.15);
 }
 
-/* TEXT */
 .nav-left,
 .nav-right{
     color:red;
@@ -164,10 +169,8 @@ body{
     color:#ffd700;
     font-weight:700;
     font-size:12px;
-    white-space:nowrap;
 }
 
-/* ACTIVE */
 .nav-left:active,
 .nav-right:active{
     color:#ffd700;
@@ -187,7 +190,6 @@ body{
 
 <div class="wrapper">
 
-<!-- FRAME -->
 <div class="frame">
 
     <div class="title">KATAKANA HANDAKUTEN</div>
@@ -196,40 +198,80 @@ body{
     <div class="grid">
 
         <div class="row">
-            <div class="box">ハ</div>
+            <div class="stack">
+                <div class="box">ハ</div>
+                <div class="romaji">ha</div>
+            </div>
+
             <div class="arrow">→</div>
-            <div class="box">パ</div>
+
+            <div class="stack">
+                <div class="box">パ</div>
+                <div class="romaji">pa</div>
+            </div>
         </div>
 
         <div class="row">
-            <div class="box">ヒ</div>
+            <div class="stack">
+                <div class="box">ヒ</div>
+                <div class="romaji">hi</div>
+            </div>
+
             <div class="arrow">→</div>
-            <div class="box">ピ</div>
+
+            <div class="stack">
+                <div class="box">ピ</div>
+                <div class="romaji">pi</div>
+            </div>
         </div>
 
         <div class="row">
-            <div class="box">フ</div>
+            <div class="stack">
+                <div class="box">フ</div>
+                <div class="romaji">fu</div>
+            </div>
+
             <div class="arrow">→</div>
-            <div class="box">プ</div>
+
+            <div class="stack">
+                <div class="box">プ</div>
+                <div class="romaji">pu</div>
+            </div>
         </div>
 
         <div class="row">
-            <div class="box">ヘ</div>
+            <div class="stack">
+                <div class="box">ヘ</div>
+                <div class="romaji">he</div>
+            </div>
+
             <div class="arrow">→</div>
-            <div class="box">ペ</div>
+
+            <div class="stack">
+                <div class="box">ペ</div>
+                <div class="romaji">pe</div>
+            </div>
         </div>
 
         <div class="row">
-            <div class="box">ホ</div>
+            <div class="stack">
+                <div class="box">ホ</div>
+                <div class="romaji">ho</div>
+            </div>
+
             <div class="arrow">→</div>
-            <div class="box">ポ</div>
+
+            <div class="stack">
+                <div class="box">ポ</div>
+                <div class="romaji">po</div>
+            </div>
         </div>
 
     </div>
 
 </div>
 
-<!-- NAV (OUTSIDE FRAME - FIXED POSITION) -->
+<!-- NAV -->
 <div class="bottom-nav">
 
     <div class="nav-left" onclick="history.back()">← BACK →</div>
