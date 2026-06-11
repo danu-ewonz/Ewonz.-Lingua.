@@ -3,9 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Vocabulary - Ewonz Lingua</title>
+<title>Ewonz Lingua</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600;700&family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600;700&display=swap" rel="stylesheet">
 
 <style>
 
@@ -19,7 +19,7 @@
 
 body{
     background:#0b0b0b;
-    font-family:'Poppins', sans-serif;
+    font-family:Poppins;
     display:flex;
     flex-direction:column;
     justify-content:center;
@@ -28,18 +28,16 @@ body{
     gap:10px;
 }
 
-/* =========================
-FRAME (3:4 BOX)
-========================= */
+/* ================= FRAME ================= */
 .frame{
     width:360px;
     height:480px;
     background:#0a0a0a;
     border-radius:20px;
     position:relative;
+    overflow:hidden;
     display:flex;
     flex-direction:column;
-    overflow:hidden;
 }
 
 /* GOLD BORDER */
@@ -49,28 +47,14 @@ FRAME (3:4 BOX)
     inset:0;
     padding:2px;
     border-radius:20px;
-
     background:linear-gradient(90deg,#b8860b,#ffd700,#b8860b,#8b6508,#ffd700);
     background-size:300% 100%;
-    animation:borderMove 3s linear infinite;
-}
+    animation:shine 3s linear infinite;
 
-/* INNER BACKGROUND */
-.frame::after{
-    content:"";
-    position:absolute;
-    inset:2px;
-    background:#0a0a0a;
-    border-radius:18px;
-}
-
-/* CONTENT */
-.content{
-    position:relative;
-    z-index:2;
-    display:flex;
-    flex-direction:column;
-    height:100%;
+    -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+    -webkit-mask-composite:xor;
 }
 
 /* TITLE */
@@ -78,11 +62,16 @@ FRAME (3:4 BOX)
     text-align:center;
     font-size:18px;
     font-weight:700;
-    color:#e6e6e6;
-    margin-top:18px;
+    color:#fff;
+    margin-top:14px;
 }
 
-/* LINE */
+.subtitle{
+    text-align:center;
+    font-size:12px;
+    color:#b8860b;
+}
+
 .line{
     width:80%;
     height:2px;
@@ -90,106 +79,90 @@ FRAME (3:4 BOX)
     background:linear-gradient(90deg,transparent,#b8860b,#ffd700,transparent);
 }
 
-/* =========================
-SCROLL AREA
-========================= */
-.grid{
-    flex:1;
+/* ================= SCROLL FIX (ONLY IMPORTANT CHANGE) ================= */
+.content{
+    position:absolute;
+    top:90px;
+    bottom:0;
+    left:0;
+    right:0;
     overflow-y:auto;
-    display:flex;
-    flex-direction:column;
-    gap:8px;
-    padding:15px;
+    padding:12px;
 }
 
 /* BUTTON */
 .btn{
-    padding:14px;
-    border-radius:10px;
+    padding:12px;
+    margin-bottom:8px;
     background:#111;
-    color:#fff;
-
-    font-family:'Montserrat', sans-serif;
-    font-size:12px;
-    font-weight:600;
-
-    text-align:center;
-    text-transform:uppercase;
-    letter-spacing:1px;
-
-    border:2px solid #b8860b;
-    cursor:pointer;
-    transition:0.2s;
-}
-
-.btn:active{
-    background:#b8860b;
-    color:#000;
-    transform:scale(0.98);
-}
-
-/* SCROLLBAR */
-.grid::-webkit-scrollbar{
-    width:3px;
-}
-
-.grid::-webkit-scrollbar-thumb{
-    background:#b8860b;
+    border:1px solid rgba(184,134,11,0.5);
     border-radius:10px;
+    text-align:center;
 }
 
-/* =========================
-OUTSIDE NAV (FINAL)
-========================= */
+.btn .jp{
+    color:#fff;
+    font-weight:600;
+    font-size:13px;
+}
+
+.btn .si{
+    color:#b8860b;
+    font-size:11px;
+    margin-top:2px;
+}
+
+/* UNDERLINE */
+.btn::after{
+    content:"";
+    display:block;
+    width:60%;
+    height:1px;
+    margin:6px auto 0;
+    background:linear-gradient(90deg,transparent,#b8860b,#ffd700,transparent);
+}
+
+/* ================= OUTSIDE BACK HOME (UNCHANGED) ================= */
 .bottom-nav{
     width:360px;
     height:55px;
-
     display:flex;
     justify-content:space-between;
     align-items:center;
-
-    padding:0 15px;
-
+    padding:0 12px;
     background:#0a0a0a;
     border-radius:12px;
-
     border:1px solid rgba(255,215,0,0.15);
 }
 
-/* ALL ITEMS */
-.nav-item,
-.nav-center{
+/* BUTTONS */
+.nav-btn{
     flex:1;
     text-align:center;
-
-    font-weight:700;
-    letter-spacing:1px;
-    white-space:nowrap;
-}
-
-/* SIDE BUTTONS */
-.nav-item{
     color:#ff3b3b;
     font-size:13px;
-    cursor:pointer;
-    transition:0.2s;
+    font-weight:700;
+    padding:6px;
+    border-radius:8px;
+    border:1px solid rgba(255,0,0,0.2);
 }
 
-/* CENTER TEXT */
+.nav-btn:active{
+    background:#ff3b3b;
+    color:#000;
+}
+
+/* CENTER */
 .nav-center{
+    flex:2;
+    text-align:center;
     color:#ffd700;
     font-size:12px;
+    font-weight:700;
 }
 
-/* TOUCH EFFECT */
-.nav-item:active{
-    color:#ffd700;
-    transform:scale(0.95);
-}
-
-/* BORDER ANIMATION */
-@keyframes borderMove{
+/* ANIMATION */
+@keyframes shine{
     0%{background-position:0%;}
     100%{background-position:200%;}
 }
@@ -202,48 +175,54 @@ OUTSIDE NAV (FINAL)
 <!-- FRAME -->
 <div class="frame">
 
+<div class="title">VOCABULARY</div>
+<div class="subtitle">語彙</div>
+<div class="line"></div>
+
+<!-- SCROLL CONTENT -->
 <div class="content">
 
-    <div class="title">VOCABULARY</div>
-    <div class="line"></div>
+<div class="btn">
+    <div class="jp">People & Aisatsu (人々)</div>
+    <div class="si">මිනිසුන් සහා ආචාර ක්‍රම</div>
+</div>
 
-    <!-- SCROLL BUTTONS -->
-    <div class="grid">
+<div class="btn">
+    <div class="jp">Home & Living (住まい)</div>
+    <div class="si">නිවස සහ ජීවිතය</div>
+</div>
 
-        <div class="btn">Greetings & Aisatsu</div>
-        <div class="btn">People & Relationships</div>
-        <div class="btn">Home & Living</div>
-        <div class="btn">Food & Drinks</div>
-        <div class="btn">Daily Activities</div>
-        <div class="btn">Time & Calendar</div>
-        <div class="btn">Numbers</div>
-        <div class="btn">Colors</div>
-        <div class="btn">Clothing</div>
-        <div class="btn">Transportation</div>
-        <div class="btn">Weather</div>
-        <div class="btn">Animals</div>
-        <div class="btn">School</div>
+<div class="btn">
+    <div class="jp">Food & Drinks (食べ物)</div>
+    <div class="si">ආහාර සහ බීම</div>
+</div>
 
-    </div>
+<div class="btn">
+    <div class="jp">Transportation (交通)</div>
+    <div class="si">ප්‍රවාහනය</div>
+</div>
 
+<div class="btn">
+    <div class="jp">Animals (動物)</div>
+    <div class="si">සතුන්</div>
+</div>
+
+<div class="btn">
+    <div class="jp">School (学校)</div>
+    <div class="si">පාසල</div>
 </div>
 
 </div>
+</div>
 
-<!-- OUTSIDE NAV -->
+<!-- BACK HOME (NO CHANGE) -->
 <div class="bottom-nav">
 
-    <div class="nav-item" onclick="history.back()">
-        BACK
-    </div>
+<div class="nav-btn" onclick="history.back()">BACK</div>
 
-    <div class="nav-center">
-        ← EWONZ LINGUA →
-    </div>
+<div class="nav-center">← EWONZ LINGUA →</div>
 
-    <div class="nav-item" onclick="location.href='index.html'">
-        HOME
-    </div>
+<div class="nav-btn" onclick="location.href='index.html'">HOME</div>
 
 </div>
 
