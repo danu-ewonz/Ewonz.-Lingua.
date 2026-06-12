@@ -15,15 +15,11 @@
     padding:0;
     box-sizing:border-box;
     user-select:none;
-    -webkit-user-select:none;
-    -webkit-touch-callout:none;
 }
 
 /* BODY */
 body{
-    margin:0;
     font-family:'Poppins', sans-serif;
-
     background:url("1781102623679_edit_59706522898481.png") no-repeat center center;
     background-size:cover;
 
@@ -34,22 +30,17 @@ body{
     overflow:hidden;
 }
 
-/* FRAME 9:16 */
+/* FRAME */
 .frame{
     width:360px;
     aspect-ratio:9/16;
-    height:auto;
-
     border-radius:20px;
     position:relative;
     overflow:hidden;
     display:flex;
     flex-direction:column;
-
     background:url("1781102623679_edit_59706522898481.png") no-repeat center center;
     background-size:cover;
-
-    box-shadow:0 0 20px rgba(0,0,0,0.4);
 }
 
 /* DARK OVERLAY */
@@ -61,7 +52,7 @@ body{
     z-index:0;
 }
 
-/* GOLD BORDER ANIMATION */
+/* BORDER */
 .frame::before{
     content:"";
     position:absolute;
@@ -84,9 +75,9 @@ body{
 }
 
 /* CONTENT */
-.title, .title-line, .grid{
+.title, .title-line, .grid, .bottom-nav{
     position:relative;
-    z-index:1;
+    z-index:3;
 }
 
 /* TITLE */
@@ -96,7 +87,6 @@ body{
     font-weight:700;
     color:#fff;
     margin-top:18px;
-    letter-spacing:1px;
 }
 
 /* LINE */
@@ -122,24 +112,12 @@ body{
     border-radius:10px;
     background:rgba(0,0,0,0.55);
     color:#fff;
-
     font-family:'Montserrat', sans-serif;
     font-size:16px;
     font-weight:700;
-
     text-align:center;
     border:2px solid #b8860b;
     cursor:pointer;
-    transition:0.15s;
-    text-transform:uppercase;
-    letter-spacing:1px;
-}
-
-/* ACTIVE */
-.btn:active{
-    background:#b8860b;
-    color:#000;
-    transform:scale(0.98);
 }
 
 /* LOCK */
@@ -160,44 +138,97 @@ body{
     font-weight:700;
 }
 
-/* NAV INSIDE FRAME */
+/* NAV */
 .bottom-nav{
     width:100%;
     height:55px;
-
     display:flex;
     justify-content:space-between;
     align-items:center;
-
-    padding:0 15px;
-
+    padding:0 12px;
     background:#0a0a0a;
     border-top:1px solid rgba(255,215,0,0.2);
 }
 
-/* NAV ITEMS */
-.nav-item,
-.nav-center{
+/* BUTTONS */
+.nav-btn{
     flex:1;
     text-align:center;
     font-weight:700;
-    white-space:nowrap;
-}
+    font-size:12px;
 
-.nav-item{
+    background:transparent;
+    border:none;
     color:#ff3b3b;
-    font-size:13px;
+
     cursor:pointer;
 }
 
+/* CENTER SINGLE LINE */
 .nav-center{
-    color:#ffd700;
+    flex:2;
+    text-align:center;
     font-size:12px;
+    font-weight:700;
+    color:#ffd700;
+
+    white-space:nowrap;
 }
 
 /* ACTIVE */
-.nav-item:active{
+.nav-btn:active{
     color:#ffd700;
+    transform:scale(0.97);
+}
+
+/* POPUP */
+.popup{
+    position:fixed;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    width:300px;
+    background:rgba(0,0,0,0.95);
+    border:2px solid #ffd700;
+    border-radius:14px;
+    padding:16px;
+    text-align:center;
+    color:#fff;
+    z-index:9999;
+    display:none;
+}
+
+.popup h2{
+    font-size:16px;
+    color:#ffd700;
+    margin-bottom:6px;
+}
+
+.popup-lang{
+    font-size:14px;
+    font-weight:700;
+    margin-bottom:8px;
+}
+
+.popup-date{
+    font-size:14px;
+    font-weight:700;
+    margin-bottom:10px;
+}
+
+.countdown{
+    font-size:14px;
+    font-weight:700;
+    margin-bottom:12px;
+}
+
+.popup button{
+    padding:6px 12px;
+    border:none;
+    background:#ff3b3b;
+    color:#fff;
+    border-radius:6px;
+    cursor:pointer;
 }
 
 /* ANIMATION */
@@ -222,40 +253,115 @@ body{
         Japanese Language 🇯🇵
     </div>
 
-    <div class="btn locked" onclick="alert('Coming Soon')">
+    <div class="btn locked" onclick="openPopup('Chinese Language 🇨🇳')">
         Chinese Language 🇨🇳
         <div class="lock-tag">LOCK</div>
     </div>
 
-    <div class="btn locked" onclick="alert('Coming Soon')">
+    <div class="btn locked" onclick="openPopup('Korean Language 🇰🇷')">
         Korean Language 🇰🇷
         <div class="lock-tag">LOCK</div>
     </div>
 
-    <div class="btn locked" onclick="alert('Coming Soon')">
+    <div class="btn locked" onclick="openPopup('French Language 🇫🇷')">
         French Language 🇫🇷
         <div class="lock-tag">LOCK</div>
     </div>
 
-    <div class="btn locked" onclick="alert('Coming Soon')">
+    <div class="btn locked" onclick="openPopup('German Language 🇩🇪')">
         German Language 🇩🇪
         <div class="lock-tag">LOCK</div>
     </div>
 
 </div>
 
-<!-- NAV INSIDE FRAME -->
+<!-- NAV -->
 <div class="bottom-nav">
 
-    <div class="nav-item" onclick="history.back()">BACK</div>
+    <button class="nav-btn" onclick="goBack()">BACK</button>
 
-    <div class="nav-center">← EWONZ LINGUA →</div>
+    <div class="nav-center">
+        ← EWONZ LINGUA →
+    </div>
 
-    <div class="nav-item" onclick="location.href='index.html'">HOME</div>
+    <button class="nav-btn" onclick="goHome()">HOME</button>
 
 </div>
 
 </div>
+
+<!-- POPUP -->
+<div id="popup" class="popup">
+
+    <h2>Coming Soon</h2>
+
+    <div id="popupLang" class="popup-lang">Language</div>
+
+    <div class="popup-date">2026 / 11 / 28</div>
+
+    <div class="countdown" id="countdown">Loading...</div>
+
+    <button onclick="closePopup()">Close</button>
+
+</div>
+
+<script>
+
+let timer;
+const targetDate = new Date("2026-11-28T00:00:00").getTime();
+
+/* BACK */
+function goBack(){
+    if(history.length > 1){
+        history.back();
+    } else {
+        location.href = "index.html";
+    }
+}
+
+/* HOME */
+function goHome(){
+    location.href = "index.html";
+}
+
+/* POPUP */
+function openPopup(lang){
+    document.getElementById("popup").style.display = "block";
+    document.getElementById("popupLang").innerText = lang;
+
+    updateCountdown();
+
+    clearInterval(timer);
+    timer = setInterval(updateCountdown, 1000);
+}
+
+/* COUNTDOWN */
+function updateCountdown(){
+    const now = new Date().getTime();
+    const diff = targetDate - now;
+
+    if(diff <= 0){
+        document.getElementById("countdown").innerHTML = "NOW AVAILABLE 🎉";
+        clearInterval(timer);
+        return;
+    }
+
+    const d = Math.floor(diff / (1000*60*60*24));
+    const h = Math.floor((diff%(1000*60*60*24))/(1000*60*60));
+    const m = Math.floor((diff%(1000*60*60))/(1000*60));
+    const s = Math.floor((diff%(1000*60))/1000);
+
+    document.getElementById("countdown").innerHTML =
+        `${d}d ${h}h ${m}m ${s}s`;
+}
+
+/* CLOSE */
+function closePopup(){
+    document.getElementById("popup").style.display = "none";
+    clearInterval(timer);
+}
+
+</script>
 
 </body>
 </html>
