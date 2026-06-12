@@ -9,11 +9,22 @@
 
 <style>
 
-/* BLOCK COPY */
+html,body{
+    margin:0;
+    padding:0;
+    width:100%;
+    max-width:100%;
+    overflow-x:hidden;
+}
+
 *{
+    box-sizing:border-box;
     -webkit-user-select:none;
     user-select:none;
 }
+
+/* BODY */
+body{
 
 /* BODY */
 body{
@@ -80,8 +91,10 @@ body::after{
 
 /* 3:4 BOX */
 .phone{
-    width:360px;
+    width:calc(100vw - 20px);
+    max-width:360px;
     height:480px;
+
     border:2px solid #ffd700;
     border-radius:22px;
 
