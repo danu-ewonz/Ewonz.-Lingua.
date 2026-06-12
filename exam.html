@@ -10,72 +10,71 @@
 
 <style>
 
+/* RESET */
 *{
     margin:0;
     padding:0;
     box-sizing:border-box;
     user-select:none;
-    -webkit-user-select:none;
+    -webkit-tap-highlight-color:transparent;
 }
 
+/* BODY CENTER */
 body{
-    background:#0b0b0b;
-    font-family:Poppins;
     height:100vh;
     display:flex;
     justify-content:center;
     align-items:center;
-    flex-direction:column;
+
+    background:#0b0b0b;
+    font-family:'Poppins',sans-serif;
 }
 
-/* WRAPPER FIX (IMPORTANT) */
-.wrapper{
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-}
-
-/* FRAME */
+/* FRAME 9:16 FIXED */
 .frame{
     width:360px;
-    height:480px;
-    background:#0a0a0a;
+    height:640px;
+
     border-radius:20px;
-    position:relative;
     overflow:hidden;
+
     display:flex;
     flex-direction:column;
+
+    position:relative;
+
+    background:#0a0a0a;
 }
 
-/* BORDER */
+/* GOLD BORDER */
 .frame::before{
     content:"";
     position:absolute;
     inset:0;
     padding:2px;
     border-radius:20px;
+
     background:linear-gradient(90deg,#b8860b,#ffd700,#b8860b,#8b6508,#ffd700);
     background-size:300% 100%;
     animation:borderMove 3s linear infinite;
-    z-index:0;
+
+    -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+
+    -webkit-mask-composite:xor;
+    mask-composite:exclude;
+
+    pointer-events:none;
 }
 
-.frame::after{
-    content:"";
-    position:absolute;
-    inset:2px;
-    background:#0a0a0a;
-    border-radius:18px;
-    z-index:1;
-}
-
-/* CONTENT */
+/* SAFE CONTENT */
 .content{
-    position:relative;
-    z-index:2;
+    flex:1;
     display:flex;
     flex-direction:column;
-    height:100%;
+    position:relative;
+    z-index:2;
 }
 
 /* TITLE */
@@ -88,6 +87,7 @@ body{
     text-transform:uppercase;
 }
 
+/* SUBTITLE */
 .subtitle{
     text-align:center;
     font-size:12px;
@@ -96,19 +96,20 @@ body{
     text-transform:uppercase;
 }
 
+/* LINE */
 .line{
-    width:80%;
+    width:85%;
     height:2px;
     margin:10px auto;
     background:linear-gradient(90deg,transparent,#b8860b,#ffd700,transparent);
 }
 
-/* BUTTON AREA */
+/* GRID */
 .grid{
     flex:1;
     display:flex;
     flex-direction:column;
-    gap:10px;
+    gap:12px;
     padding:15px;
 }
 
@@ -118,14 +119,18 @@ body{
     background:#111;
     border:2px solid #b8860b;
     color:#fff;
-    font-weight:600;
+
     font-size:13px;
+    font-weight:600;
+
     text-align:center;
     border-radius:10px;
-    cursor:pointer;
+
     text-transform:uppercase;
+    cursor:pointer;
 }
 
+/* CLICK */
 .btn:active{
     background:#ffd700;
     color:#000;
@@ -133,47 +138,50 @@ body{
 }
 
 /* ================= NAV FIXED ================= */
-
 .bottom-nav{
-    width:360px;
-    margin-top:10px;
+    width:100%;
+    height:55px;
 
     display:flex;
     justify-content:space-between;
     align-items:center;
 
-    padding:8px 12px;
+    padding:0 12px;
 
-    border-top:2px solid rgba(255,215,0,0.3);
-    border-bottom:2px solid rgba(255,215,0,0.3);
+    background:#0a0a0a;
+    border-top:2px solid rgba(255,215,0,0.2);
 
-    white-space:nowrap;
+    flex-shrink:0;
 }
 
-/* 3 PARTS SAME LINE */
-.nav-btn,
-.center{
+/* NAV ITEMS */
+.nav-btn{
     flex:1;
     text-align:center;
-    font-weight:700;
-    white-space:nowrap;
-}
 
-.nav-btn{
-    color:red;
+    color:#ff3b3b;
     font-size:13px;
+    font-weight:700;
+
     cursor:pointer;
 }
 
+/* CENTER */
 .center{
+    flex:2;
+    text-align:center;
+
     color:#ffd700;
     font-size:12px;
+    font-weight:700;
+
+    white-space:nowrap;
 }
 
-/* TOUCH */
+/* ACTIVE */
 .nav-btn:active{
     color:#ffd700;
-    transform:scale(1.05);
+    transform:scale(0.95);
 }
 
 /* ANIMATION */
@@ -187,40 +195,36 @@ body{
 
 <body>
 
-<div class="wrapper">
-
 <div class="frame">
 
-<div class="content">
+    <div class="content">
 
-    <div class="title">EXAM</div>
-    <div class="subtitle">SELECT EXAM TYPE</div>
+        <div class="title">EXAM</div>
+        <div class="subtitle">SELECT EXAM TYPE</div>
 
-    <div class="line"></div>
+        <div class="line"></div>
 
-    <div class="grid">
+        <div class="grid">
 
-        <div class="btn" onclick="location.href='jlpt-exam.html'">JLPT EXAM</div>
-        <div class="btn" onclick="location.href='nat-exam.html'">NAT-TEST EXAM</div>
-        <div class="btn" onclick="location.href='jft-exam.html'">JFT-BASIC EXAM</div>
-        <div class="btn" onclick="location.href='exam-features.html'">EXAM FEATURES</div>
+            <div class="btn" onclick="location.href='jlpt-exam.html'">JLPT EXAM</div>
+            <div class="btn" onclick="location.href='nat-exam.html'">NAT-TEST EXAM</div>
+            <div class="btn" onclick="location.href='jft-exam.html'">JFT-BASIC EXAM</div>
+            <div class="btn" onclick="location.href='exam-features.html'">EXAM FEATURES</div>
+
+        </div>
+
+        <!-- NAV INSIDE FRAME (FIXED) -->
+        <div class="bottom-nav">
+
+            <div class="nav-btn" onclick="history.back()">BACK</div>
+
+            <div class="center">← EWONZ LINGUA →</div>
+
+            <div class="nav-btn" onclick="location.href='index.html'">HOME</div>
+
+        </div>
 
     </div>
-
-</div>
-
-</div>
-
-<!-- FIXED NAV -->
-<div class="bottom-nav">
-
-    <div class="nav-btn" onclick="history.back()">BACK</div>
-
-    <div class="center">← EWONZ LINGUA →</div>
-
-    <div class="nav-btn" onclick="location.href='index.html'">HOME</div>
-
-</div>
 
 </div>
 
