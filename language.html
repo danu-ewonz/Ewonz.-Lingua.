@@ -11,12 +11,15 @@
 
 /* RESET */
 *{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
     user-select:none;
     -webkit-user-select:none;
     -webkit-touch-callout:none;
 }
 
-/* ================= OUTER BACKGROUND ================= */
+/* BODY */
 body{
     margin:0;
     font-family:'Poppins', sans-serif;
@@ -28,13 +31,15 @@ body{
     justify-content:center;
     align-items:center;
     height:100vh;
-    flex-direction:column;
+    overflow:hidden;
 }
 
-/* FRAME (3:4 BOX) */
+/* FRAME 9:16 */
 .frame{
     width:360px;
-    height:480px;
+    aspect-ratio:9/16;
+    height:auto;
+
     border-radius:20px;
     position:relative;
     overflow:hidden;
@@ -43,6 +48,8 @@ body{
 
     background:url("1781112369362_edit_86540557914926.png") no-repeat center center;
     background-size:cover;
+
+    box-shadow:0 0 20px rgba(0,0,0,0.4);
 }
 
 /* DARK OVERLAY */
@@ -54,7 +61,7 @@ body{
     z-index:0;
 }
 
-/* GOLD BORDER */
+/* GOLD BORDER ANIMATION */
 .frame::before{
     content:"";
     position:absolute;
@@ -76,7 +83,7 @@ body{
     z-index:2;
 }
 
-/* CONTENT LAYER */
+/* CONTENT */
 .title, .title-line, .grid{
     position:relative;
     z-index:1;
@@ -89,6 +96,7 @@ body{
     font-weight:700;
     color:#fff;
     margin-top:18px;
+    letter-spacing:1px;
 }
 
 /* LINE */
@@ -108,7 +116,7 @@ body{
     flex:1;
 }
 
-/* ================= BUTTON (UPDATED TEXT STYLE ONLY) ================= */
+/* BUTTON */
 .btn{
     padding:14px;
     border-radius:10px;
@@ -116,19 +124,18 @@ body{
     color:#fff;
 
     font-family:'Montserrat', sans-serif;
-    font-size:16px;   /* 🔥 BIGGER TEXT */
-    font-weight:700;  /* 🔥 BOLD PREMIUM */
+    font-size:16px;
+    font-weight:700;
 
     text-align:center;
     border:2px solid #b8860b;
     cursor:pointer;
-
+    transition:0.15s;
     text-transform:uppercase;
-    letter-spacing:1.2px;
-    line-height:1.2;
+    letter-spacing:1px;
 }
 
-/* ACTIVE EFFECT */
+/* ACTIVE */
 .btn:active{
     background:#b8860b;
     color:#000;
@@ -153,9 +160,9 @@ body{
     font-weight:700;
 }
 
-/* NAV */
+/* NAV INSIDE FRAME */
 .bottom-nav{
-    width:360px;
+    width:100%;
     height:55px;
 
     display:flex;
@@ -165,9 +172,7 @@ body{
     padding:0 15px;
 
     background:#0a0a0a;
-    border-radius:12px;
-
-    border:1px solid rgba(255,215,0,0.15);
+    border-top:1px solid rgba(255,215,0,0.2);
 }
 
 /* NAV ITEMS */
@@ -190,6 +195,7 @@ body{
     font-size:12px;
 }
 
+/* ACTIVE */
 .nav-item:active{
     color:#ffd700;
 }
@@ -212,29 +218,33 @@ body{
 
 <div class="grid">
 
-    <div class="btn" onclick="location.href='japanese-index.html'">Japanese Language 🇯🇵</div>
+    <div class="btn" onclick="location.href='japanese-index.html'">
+        Japanese Language 🇯🇵
+    </div>
 
-    <div class="btn locked" onclick="alert('Coming Soon')">Chinese Language 🇨🇳
+    <div class="btn locked" onclick="alert('Coming Soon')">
+        Chinese Language 🇨🇳
         <div class="lock-tag">LOCK</div>
     </div>
 
-    <div class="btn locked" onclick="alert('Coming Soon')">Korean Language 🇰🇷
+    <div class="btn locked" onclick="alert('Coming Soon')">
+        Korean Language 🇰🇷
         <div class="lock-tag">LOCK</div>
     </div>
 
-    <div class="btn locked" onclick="alert('Coming Soon')">French Language 🇫🇷
+    <div class="btn locked" onclick="alert('Coming Soon')">
+        French Language 🇫🇷
         <div class="lock-tag">LOCK</div>
     </div>
 
-    <div class="btn locked" onclick="alert('Coming Soon')">German Language 🇩🇪
+    <div class="btn locked" onclick="alert('Coming Soon')">
+        German Language 🇩🇪
         <div class="lock-tag">LOCK</div>
     </div>
 
 </div>
 
-</div>
-
-<!-- NAV -->
+<!-- NAV INSIDE FRAME -->
 <div class="bottom-nav">
 
     <div class="nav-item" onclick="history.back()">BACK</div>
@@ -242,6 +252,8 @@ body{
     <div class="nav-center">← EWONZ LINGUA →</div>
 
     <div class="nav-item" onclick="location.href='index.html'">HOME</div>
+
+</div>
 
 </div>
 
