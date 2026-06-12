@@ -2,7 +2,6 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
 <title>Katakana Special</title>
@@ -26,18 +25,16 @@ body{
     height:100vh;
 
     display:flex;
-    flex-direction:column;
     justify-content:center;
     align-items:center;
 
     font-family:'Poppins', sans-serif;
-    gap:10px;
 }
 
-/* FRAME */
+/* FRAME 9:16 */
 .frame{
     width:360px;
-    height:480px;
+    aspect-ratio:9/16;
 
     background:#0a0a0a;
     border-radius:20px;
@@ -76,7 +73,7 @@ body{
     color:#fff;
     font-size:18px;
     font-weight:700;
-    margin-top:15px;
+    margin-top:14px;
 }
 
 /* LINE */
@@ -90,7 +87,7 @@ body{
 /* CONTENT */
 .grid{
     flex:1;
-    padding:15px;
+    padding:12px;
     overflow-y:auto;
 
     display:flex;
@@ -98,78 +95,69 @@ body{
     gap:10px;
 }
 
-/* BUTTON */
+/* BUTTON (MEDIUM FINAL) */
 .btn{
-    padding:12px;
+    padding:13px 15px;
+
     background:#111;
     color:#fff;
+
     border-radius:10px;
 
     font-family:'Montserrat', sans-serif;
-    font-size:12px;
+    font-size:14px;
     font-weight:600;
 
     text-align:center;
     text-transform:uppercase;
-    letter-spacing:1px;
 
-    border:2px solid #b8860b;
+    border:1px solid #b8860b;
+
+    cursor:pointer;
+    transition:0.2s;
 }
 
 /* CLICK */
 .btn:active{
     background:#b8860b;
     color:#000;
+    transform:scale(0.97);
 }
 
 /* NAV */
 .bottom-nav{
-    width:360px;
-    height:55px;
+    height:50px;
 
-    display:grid;
-    grid-template-columns:1fr auto 1fr;
-
+    display:flex;
+    justify-content:space-between;
     align-items:center;
 
-    padding:0 15px;
+    padding:0 12px;
 
     background:#0a0a0a;
-    border-radius:12px;
-
-    border:1px solid rgba(255,215,0,0.15);
+    border-top:1px solid rgba(255,215,0,0.2);
 }
 
-/* LEFT */
-.nav-left{
+/* NAV BUTTONS */
+.nav-btn{
+    flex:1;
     text-align:center;
-    color:red;
-    font-weight:700;
-    font-size:13px;
-    cursor:pointer;
-}
-
-/* CENTER */
-.nav-center{
-    text-align:center;
-    color:#ffd700;
     font-weight:700;
     font-size:12px;
+    color:red;
+}
+
+.nav-center{
+    flex:2;
+    text-align:center;
+    color:#ffd700;
+    font-size:11px;
+    font-weight:700;
     white-space:nowrap;
 }
 
-/* RIGHT */
-.nav-right{
-    text-align:center;
-    color:red;
-    font-weight:700;
-    font-size:13px;
-    cursor:pointer;
-}
-
-/* TOUCH */
-.nav-left:active,
-.nav-right:active{
+/* ACTIVE */
+.nav-btn:active{
     color:#ffd700;
     transform:scale(0.95);
 }
@@ -185,7 +173,6 @@ body{
 
 <body>
 
-<!-- FRAME -->
 <div class="frame">
 
 <div class="title">KATAKANA SPECIAL</div>
@@ -194,27 +181,20 @@ body{
 <div class="grid">
 
     <div class="btn" onclick="location.href='katakana-dakuten.html'">Dakuten</div>
-
     <div class="btn" onclick="location.href='katakana-handakuten.html'">Handakuten</div>
-
     <div class="btn" onclick="location.href='katakana-yoon.html'">Yōon</div>
-
     <div class="btn" onclick="location.href='katakana-sokuon.html'">Sokuon</div>
-
     <div class="btn" onclick="location.href='katakana-choonpu.html'">Chōonpu</div>
 
 </div>
 
-</div>
-
-<!-- OUTSIDE NAV -->
 <div class="bottom-nav">
 
-<div class="nav-left" onclick="history.back()">BACK</div>
+    <div class="nav-btn" onclick="history.back()">BACK</div>
+    <div class="nav-center">← EWONZ LINGUA →</div>
+    <div class="nav-btn" onclick="location.href='index.html'">HOME</div>
 
-<div class="nav-center">← EWONZ LINGUA →</div>
-
-<div class="nav-right" onclick="location.href='index.html'">HOME</div>
+</div>
 
 </div>
 
