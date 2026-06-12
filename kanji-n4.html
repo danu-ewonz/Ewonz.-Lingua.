@@ -17,28 +17,28 @@ box-sizing:border-box;
 user-select:none;
 }
 
-html,body{
-height:100%;
-overflow:hidden;
+body{
 background:#0b0b0b;
 display:flex;
 justify-content:center;
 align-items:center;
-flex-direction:column;
+height:100vh;
 font-family:Poppins;
 }
 
-/* FRAME */
+/* 9:16 FRAME */
 .frame{
 width:360px;
-height:480px;
+height:640px;
 background:#0a0a0a;
 border-radius:20px;
 position:relative;
 overflow:hidden;
+display:flex;
+flex-direction:column;
 }
 
-/* BORDER */
+/* GOLD BORDER */
 .frame::before{
 content:"";
 position:absolute;
@@ -54,6 +54,7 @@ linear-gradient(#000 0 0) content-box,
 linear-gradient(#000 0 0);
 
 -webkit-mask-composite:xor;
+pointer-events:none;
 }
 
 /* TITLE */
@@ -72,29 +73,33 @@ margin:8px auto;
 background:linear-gradient(90deg,transparent,#b8860b,#ffd700,transparent);
 }
 
-/* SCROLL */
+/* CONTENT FIX (IMPORTANT) */
 .content{
-position:absolute;
-top:60px;
-bottom:0;
-left:0;
-right:0;
+flex:1;
 overflow-y:auto;
 padding:10px;
+padding-bottom:80px; /* ✅ NAV overlap fix */
+}
+
+/* 2 COLUMN GRID */
+.grid{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:10px;
 }
 
 /* CARD */
 .card{
 background:#111;
-border:1px solid rgba(184,134,11,0.35);
-border-radius:10px;
-padding:10px;
-margin-bottom:8px;
+border:1px solid rgba(184,134,11,0.4);
+border-radius:12px;
+padding:14px;
 text-align:center;
 }
 
+/* BIG KANJI */
 .kanji{
-font-size:18px;
+font-size:26px;
 font-weight:700;
 color:#fff;
 }
@@ -102,26 +107,28 @@ color:#fff;
 .romaji{
 font-size:11px;
 color:#ffd700;
-margin-top:2px;
+margin-top:4px;
 }
 
 .meaning{
 font-size:11px;
 color:#b8860b;
-margin-top:2px;
+margin-top:4px;
 }
 
-/* NAV */
+/* NAV FIXED */
 .bottom-nav{
-width:360px;
-height:55px;
+position:absolute;
+bottom:0;
+left:0;
+width:100%;
+height:60px;
 display:flex;
 justify-content:space-between;
 align-items:center;
 padding:0 12px;
 background:#0a0a0a;
 border-top:1px solid rgba(255,215,0,0.25);
-border-radius:12px;
 }
 
 .nav-btn{
@@ -157,16 +164,15 @@ font-size:12px;
 <div class="line"></div>
 
 <div class="content">
-<div id="list"></div>
+<div id="list" class="grid"></div>
 </div>
 
-</div>
-
-<!-- NAV -->
 <div class="bottom-nav">
 <div class="nav-btn" onclick="history.back()">BACK</div>
 <div class="center">← EWONZ LINGUA →</div>
 <div class="nav-btn" onclick="location.href='index.html'">HOME</div>
+</div>
+
 </div>
 
 <script>
@@ -315,4 +321,4 @@ document.getElementById("list").innerHTML=html;
 </script>
 
 </body>
-  </html>
+</html>
