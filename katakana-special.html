@@ -34,7 +34,7 @@ body{
 /* FRAME 9:16 */
 .frame{
     width:360px;
-    aspect-ratio:9/16;
+    aspect-ratio:9 / 16;
 
     background:#0a0a0a;
     border-radius:20px;
@@ -46,7 +46,7 @@ body{
     position:relative;
 }
 
-/* GOLD BORDER */
+/* BORDER */
 .frame::before{
     content:"";
     position:absolute;
@@ -92,24 +92,24 @@ body{
 
     display:flex;
     flex-direction:column;
-    gap:10px;
+    gap:12px;
 }
 
-/* BUTTON (MEDIUM FINAL) */
+/* BUTTON (LARGER NOW) */
 .btn{
-    padding:13px 15px;
-
+    padding:16px 18px;   /* 🔥 increased */
     background:#111;
     color:#fff;
 
-    border-radius:10px;
+    border-radius:12px;
 
     font-family:'Montserrat', sans-serif;
-    font-size:14px;
+    font-size:15px;      /* 🔥 bigger text */
     font-weight:600;
 
     text-align:center;
     text-transform:uppercase;
+    letter-spacing:0.6px;
 
     border:1px solid #b8860b;
 
@@ -121,7 +121,7 @@ body{
 .btn:active{
     background:#b8860b;
     color:#000;
-    transform:scale(0.97);
+    transform:scale(0.96);
 }
 
 /* NAV */
@@ -138,7 +138,7 @@ body{
     border-top:1px solid rgba(255,215,0,0.2);
 }
 
-/* NAV BUTTONS */
+/* NAV */
 .nav-btn{
     flex:1;
     text-align:center;
@@ -156,7 +156,7 @@ body{
     white-space:nowrap;
 }
 
-/* ACTIVE */
+/* TOUCH */
 .nav-btn:active{
     color:#ffd700;
     transform:scale(0.95);
