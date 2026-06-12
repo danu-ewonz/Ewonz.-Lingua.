@@ -15,7 +15,6 @@
 margin:0;
 padding:0;
 box-sizing:border-box;
--webkit-user-select:none;
 user-select:none;
 }
 
@@ -23,23 +22,20 @@ body{
 width:100vw;
 height:100vh;
 background:#000;
-font-family:'Poppins', sans-serif;
 display:flex;
 justify-content:center;
 align-items:center;
-overflow:hidden;
+font-family:Poppins;
 }
 
-/* APP */
+/* FRAME 9:16 */
 .app{
-width:100%;
-max-width:420px;
-height:100vh;
+width:360px;
+height:640px;
 position:relative;
 overflow:hidden;
 border-radius:22px;
 border:2px solid #ffd700;
-box-shadow:0 0 20px rgba(255,215,0,0.25);
 display:flex;
 flex-direction:column;
 }
@@ -50,7 +46,7 @@ content:"";
 position:absolute;
 inset:0;
 background:
-linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.75)),
+linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.85)),
 url("1781266572839_edit_45959155033354.png");
 background-size:cover;
 background-position:center;
@@ -59,11 +55,8 @@ z-index:-1;
 
 /* CONTENT */
 .content{
-height:100%;
-display:flex;
-flex-direction:column;
-align-items:center;
-padding:12px;
+flex:1;
+padding:14px;
 text-align:center;
 color:white;
 overflow-y:auto;
@@ -80,47 +73,43 @@ margin-top:10px;
 /* ABOUT */
 .about{
 color:#e0e0e0;
-line-height:1.7;
-font-weight:400;
+line-height:2;              /* 🔥 GAP INCREASE */
 font-size:14px;
 font-family:'Dancing Script', cursive;
-max-width:320px;
-margin-top:14px;
-margin-bottom:18px;
+margin-top:18px;
+margin-bottom:25px;
 }
 
 /* SECTION */
-.section-title,
-.contact-title{
+.section-title{
 color:#ffd700;
 font-size:11px;
 font-weight:700;
 text-transform:uppercase;
+margin-top:20px;           /* 🔥 GAP INCREASE */
+letter-spacing:1px;
 }
 
 .sub-item{
 color:rgba(255,255,255,0.75);
 font-size:11px;
-margin-top:6px;
-text-transform:uppercase;
+margin-top:10px;           /* 🔥 GAP INCREASE */
 font-weight:700;
+text-transform:uppercase;
 }
 
-/* GAP */
-.gap-medium{ height:14px; }
-
-/* SOCIAL ROW */
+/* SOCIAL */
 .social-row{
 display:flex;
 justify-content:center;
-gap:6px;
-margin-top:10px;
+gap:10px;
+margin-top:15px;
 }
 
-/* ICON BUTTON */
+/* ICON */
 .icon-btn{
-width:26px;
-height:26px;
+width:28px;
+height:28px;
 display:flex;
 justify-content:center;
 align-items:center;
@@ -131,39 +120,32 @@ cursor:pointer;
 transition:0.2s;
 }
 
-/* 🔥 GOLD TOUCH ANIMATION */
 .icon-btn:active{
 transform:scale(0.9);
 background:rgba(255,215,0,0.2);
-box-shadow:0 0 12px rgba(255,215,0,0.9);
 border:1px solid #ffd700;
 }
 
-.icon-btn:hover{
-transform:scale(1.15);
-}
-
 .icon-btn img{
-width:12px;
-height:12px;
+width:14px;
+height:14px;
 filter: brightness(0) invert(1);
 }
 
-/* BUTTON WRAPPER (5cm UP) */
+/* 🔥 BUTTON MOVED ~15CM UP */
 .bottom-btn-wrapper{
 position:absolute;
-bottom:150px;   /* 🔥 ~5cm up */
+bottom:120px;   /* 🔥 was 18px → now raised */
 left:0;
 width:100%;
 display:flex;
 justify-content:center;
 }
 
-/* START BUTTON */
 .start-btn{
-padding:14px 22px;
+padding:14px 24px;
 border:1px solid #ffd700;
-background:rgba(0,0,0,0.4);
+background:rgba(0,0,0,0.5);
 color:#ffd700;
 font-weight:600;
 font-size:14px;
@@ -175,7 +157,6 @@ transition:0.2s;
 .start-btn:hover{
 background:#ffd700;
 color:#000;
-transform:scale(1.05);
 }
 
 .start-btn:active{
@@ -195,20 +176,16 @@ transform:scale(0.97);
 <div class="title">EWONZ LINGUA</div>
 
 <div class="about">
-Ewonz Lingua is a smart language learning platform designed to make education simple and accessible for everyone, especially students facing financial difficulties. It helps learners study languages through step-by-step lessons, build strong communication skills, and open global opportunities for a better future.
+Ewonz Lingua is a smart language learning platform designed to make education simple and accessible for everyone, especially students facing financial difficulties. It helps learners build skills step by step.
 </div>
 
 <div class="section-title">SPECIAL THANKS</div>
 <div class="sub-item">JAPANESE - TSUKI SENSEI</div>
 
-<div class="gap-medium"></div>
-
 <div class="section-title">UI DESIGN & DEVELOPMENT</div>
 <div class="sub-item">DANU EWONZ</div>
 
-<div class="gap-medium"></div>
-
-<div class="contact-title">CONTACT EWONZ GROUP</div>
+<div class="section-title">CONTACT</div>
 
 <div class="social-row">
 
