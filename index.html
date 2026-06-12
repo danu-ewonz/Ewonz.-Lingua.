@@ -245,6 +245,19 @@ document.addEventListener('touchmove', function(e){
         e.preventDefault();
     }
 }, {passive:false});
+
+<script>
+    
+document.addEventListener('contextmenu', e => e.preventDefault());
+
+document.addEventListener('copy', e => e.preventDefault());
+
+document.addEventListener('cut', e => e.preventDefault());
+
+document.addEventListener('selectstart', e => e.preventDefault());
+
+document.addEventListener('dragstart', e => e.preventDefault());
+
 </script>
     
 </body>
