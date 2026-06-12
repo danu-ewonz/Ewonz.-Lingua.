@@ -16,7 +16,6 @@
     padding:0;
     box-sizing:border-box;
     user-select:none;
-    -webkit-user-select:none;
     -webkit-tap-highlight-color:transparent;
 }
 
@@ -30,27 +29,19 @@ body{
     font-family:Poppins;
 }
 
-/* WRAPPER */
-.wrapper{
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-}
-
 /* FRAME */
 .frame{
     width:360px;
     height:640px;
     background:#0a0a0a;
     border-radius:20px;
-
     display:flex;
     flex-direction:column;
     overflow:hidden;
     position:relative;
 }
 
-/* GOLD BORDER */
+/* BORDER */
 .frame::before{
     content:"";
     position:absolute;
@@ -65,7 +56,6 @@ body{
     -webkit-mask:
     linear-gradient(#000 0 0) content-box,
     linear-gradient(#000 0 0);
-
     -webkit-mask-composite:xor;
     mask-composite:exclude;
 
@@ -81,7 +71,6 @@ body{
     margin-top:15px;
 }
 
-/* LINE */
 .line{
     width:80%;
     height:2px;
@@ -92,88 +81,116 @@ body{
 /* CONTENT */
 .content{
     flex:1;
-    overflow-y:auto;
     padding:12px;
     display:flex;
     flex-direction:column;
     gap:10px;
 }
 
-/* 🔥 SMALL 9:4 BUTTON */
+/* BUTTON */
 .btn{
-    width:100%;
-    aspect-ratio: 9 / 4;
+    height:52px;
+    background:#111;
+    border:2px solid #b8860b;
+    border-radius:10px;
 
     display:flex;
     align-items:center;
     justify-content:center;
 
-    background:#111;
     color:#fff;
-
-    border:2px solid #b8860b;
-    border-radius:10px;
-
-    font-size:12px;
+    font-size:14px;
     font-weight:600;
 
-    text-transform:uppercase;
-
     cursor:pointer;
-
-    padding:4px 6px;
-
-    max-height:65px;   /* 🔥 smaller size */
 }
 
-/* CLICK EFFECT */
+/* CLICK */
 .btn:active{
-    background:linear-gradient(90deg,#ffd700,#b8860b);
+    background:#ffd700;
     color:#000;
     transform:scale(0.97);
 }
 
-/* NAV (INSIDE FRAME) */
-.bottom-nav{
-    width:100%;
-    height:55px;
+/* LOCKED BUTTON */
+.locked{
+    position:relative;
+    opacity:0.7;
+}
 
+/* LOCK TAG */
+.lock-tag{
+    position:absolute;
+    right:10px;
+    top:8px;
+    background:red;
+    color:#fff;
+    font-size:10px;
+    padding:2px 6px;
+    border-radius:5px;
+}
+
+/* NAV */
+.bottom-nav{
+    height:55px;
     display:flex;
     justify-content:space-between;
     align-items:center;
-
     padding:0 12px;
-
-    background:#0a0a0a;
-    border-top:2px solid rgba(255,215,0,0.3);
+    border-top:1px solid rgba(255,215,0,0.2);
 }
 
-/* NAV ITEMS */
-.nav-btn,
-.center{
+.nav-btn{
     flex:1;
     text-align:center;
-    font-weight:700;
-    font-size:13px;
-    white-space:nowrap;
-}
-
-/* BACK / HOME */
-.nav-btn{
     color:red;
+    font-weight:700;
     cursor:pointer;
 }
 
-/* CENTER TEXT */
 .center{
+    flex:2;
+    text-align:center;
     color:#ffd700;
+    font-weight:700;
     font-size:12px;
 }
 
-/* ANIMATION */
-@keyframes shine{
-    0%{background-position:0%;}
-    100%{background-position:200%;}
+/* POPUP */
+.popup{
+    position:fixed;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    width:280px;
+    background:#000;
+    border:2px solid #ffd700;
+    border-radius:12px;
+    padding:15px;
+    text-align:center;
+    color:#fff;
+    display:none;
+    z-index:9999;
+}
+
+.popup h2{
+    color:#ffd700;
+    font-size:16px;
+}
+
+.countdown{
+    margin-top:10px;
+    font-weight:700;
+}
+
+.close{
+    margin-top:12px;
+    background:red;
+    border:none;
+    color:#fff;
+    padding:6px 12px;
+    border-radius:6px;
+    cursor:pointer;
 }
 
 </style>
@@ -181,43 +198,68 @@ body{
 
 <body>
 
-<div class="wrapper">
-
 <div class="frame">
 
-    <div class="title">HIRAGANA SPECIAL 🇯🇵</div>
-    <div class="line"></div>
+<div class="title">HIRAGANA SPECIAL 🇯🇵</div>
+<div class="line"></div>
 
-    <div class="content">
+<div class="content">
 
-        <div class="btn" onclick="location.href='hiragana-dakuten.html'">Dakuten</div>
+    <!-- OPEN BUTTONS -->
+    <div class="btn" onclick="location.href='hiragana-dakuten.html'">Dakuten</div>
+    <div class="btn" onclick="location.href='hiragana-handakuten.html'">Handakuten</div>
+    <div class="btn" onclick="location.href='hiragana-yoon.html'">Yōon</div>
+    <div class="btn" onclick="location.href='hiragana-sokuon.html'">Sokuon</div>
 
-        <div class="btn" onclick="location.href='hiragana-handakuten.html'">Handakuten</div>
-
-        <div class="btn" onclick="location.href='hiragana-yoon.html'">Yōon</div>
-
-        <div class="btn" onclick="location.href='hiragana-sokuon.html'">Sokuon</div>
-
-        <div class="btn" onclick="location.href='hiragana-choon.html'">Chōon</div>
-
-        <div class="btn" onclick="location.href='hiragana-particles.html'">Special Particle (は・へ・を)</div>
-
-    </div>
-
-    <!-- NAV INSIDE FRAME -->
-    <div class="bottom-nav">
-
-        <div class="nav-btn" onclick="history.back()">BACK</div>
-
-        <div class="center">← EWONZ LINGUA →</div>
-
-        <div class="nav-btn" onclick="location.href='index.html'">HOME</div>
-
+    <!-- LOCKED -->
+    <div class="btn locked" onclick="openPopup()">
+        Special Practice
+        <div class="lock-tag">LOCK</div>
     </div>
 
 </div>
 
+<!-- NAV -->
+<div class="bottom-nav">
+    <div class="nav-btn" onclick="history.back()">BACK</div>
+    <div class="center">← EWONZ LINGUA →</div>
+    <div class="nav-btn" onclick="location.href='index.html'">HOME</div>
 </div>
+
+</div>
+
+<!-- POPUP -->
+<div class="popup" id="popup">
+    <h2>Coming Soon</h2>
+    <div>Release: 2026 / 11 / 28</div>
+    <div class="countdown" id="countdown"></div>
+    <button class="close" onclick="closePopup()">Close</button>
+</div>
+
+<script>
+
+const targetDate = new Date("2026-11-28").getTime();
+
+function openPopup(){
+    document.getElementById("popup").style.display="block";
+    updateCountdown();
+}
+
+function closePopup(){
+    document.getElementById("popup").style.display="none";
+}
+
+function updateCountdown(){
+    let now = new Date().getTime();
+    let diff = targetDate - now;
+
+    let days = Math.floor(diff/(1000*60*60*24));
+
+    document.getElementById("countdown").innerText =
+    days + " Days left";
+}
+
+</script>
 
 </body>
 </html>
