@@ -1,198 +1,230 @@
-<!DOCTYPE html>  <html lang="en">    <head>    
-<meta charset="UTF-8">    
-<meta name="viewport" content="width=device-width, initial-scale=1.0">    
-<title>Ewonz Lingua</title>  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Dancing+Script:wght@400;600&display=swap" rel="stylesheet">  <style>    /* BLOCK COPY */
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ewonz Lingua</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Dancing+Script:wght@400;600&display=swap" rel="stylesheet">
+
+<style>
+
 *{
+margin:0;
+padding:0;
+box-sizing:border-box;
 -webkit-user-select:none;
 user-select:none;
 }
 
-/* BODY */
 body{
-margin:0;
+width:100vw;
 height:100vh;
 display:flex;
 justify-content:center;
 align-items:center;
 overflow:hidden;
+background:#000;
 font-family:'Poppins', sans-serif;
-
-/* ⚡ instant fallback (NO BLACK FLASH) */    
-background: linear-gradient(135deg, #0a0a0a, #111);
-
 }
 
-/* BACKGROUND IMAGE LAYER (NEW FIX) */
-body::before{
-content:"";
-position:fixed;
-inset:0;
-
-background:    
-linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.75)),    
-url("1781098017405.png");    
-
-background-size:cover;    
-background-position:center;    
-background-repeat:no-repeat;    
-
-opacity:0;    
-transform:scale(1.05);    
-transition:opacity 0.8s ease, transform 1s ease;    
-
-z-index:-2;
-
-}
-
-/* when loaded */
-body.loaded::before{
-opacity:1;
-transform:scale(1);
-}
-
-/* OPTIONAL GLOW OVERLAY */
-body::after{
-content:"";
-position:absolute;
-width:380px;
-height:380px;
-border-radius:50%;
-filter:blur(100px);
-z-index:0;
-animation: floatGlow 6s infinite ease-in-out;
-background:#ffd700;
-top:10%;
-left:10%;
-opacity:0.12;
-}
-
-@keyframes floatGlow{
-0%{ transform:translateY(0px) scale(1); }
-50%{ transform:translateY(-20px) scale(1.1); }
-100%{ transform:translateY(0px) scale(1); }
-}
-
-/* 3:4 BOX */
-.phone{
-width:360px;
-height:480px;
+.app{
+width:100%;
+max-width:420px;
+aspect-ratio:9/16;
+position:relative;
+overflow:hidden;
 border:2px solid #ffd700;
 border-radius:22px;
-
-background:    
-linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.65)),    
-url("1781266572839_edit_45959155033354.png");    
-
-background-size:cover;    
-background-position:center;    
-background-repeat:no-repeat;    
-
-box-shadow:0 0 15px rgba(255,215,0,0.25);    
-display:flex;    
-flex-direction:column;    
-overflow:hidden;    
-z-index:1;
-
+box-shadow:0 0 20px rgba(255,215,0,0.25);
+display:flex;
+flex-direction:column;
 }
 
-/* CONTENT */
+.app::before{
+content:"";
+position:absolute;
+inset:0;
+background:
+linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.75)),
+url("1781098017405.png");
+background-size:cover;
+background-position:center;
+z-index:-1;
+}
+
 .content{
 flex:1;
 display:flex;
 flex-direction:column;
 align-items:center;
-padding:15px;
-color:white;
+padding:12px;
 text-align:center;
-}
-
-/* TEXT ANIMATION */
-@keyframes fadeUp{
-from{opacity:0; transform:translateY(20px);}
-to{opacity:1; transform:translateY(0);}
-}
-
-@keyframes glowText{
-0%{ text-shadow:0 0 5px rgba(255,215,0,0.2); }
-50%{ text-shadow:0 0 12px rgba(255,215,0,0.6); }
-100%{ text-shadow:0 0 5px rgba(255,215,0,0.2); }
+color:white;
 }
 
 /* TITLE */
 .title{
-font-size:24px;
+font-size:28px;
 font-weight:700;
 letter-spacing:3px;
 margin-top:10px;
-animation:fadeUp 0.8s ease-out, glowText 3s infinite;
 }
 
 /* ABOUT */
 .about{
-font-size:13px;
 color:#e0e0e0;
-line-height:1.6;
-max-width:320px;
+line-height:1.7;
+font-style:normal;
+font-weight:400;
+font-size:14px;
 font-family:'Dancing Script', cursive;
-font-weight:600;
-animation:fadeUp 1s ease-out;
+max-width:320px;
+margin-top:14px;
+margin-bottom:18px;
 }
 
-/* SPACING */
-.big-gap{ height:22px; }
-.gap{ height:6px; }
-
-/* GOLD */
-.gold{
-font-size:10px;
-color:rgba(255,215,0,0.75);
-font-weight:600;
-letter-spacing:1px;
+/* MAIN TITLES */
+.section-title,
+.contact-title{
+color:#ffd700;
+font-size:11px;
+font-weight:700;
+text-transform:uppercase;
 }
 
-/* TEXT */
-.text{
-font-size:10px;
-color:#aaa;
+.sub-item{
+color:rgba(255,255,255,0.75);
+font-size:11px;
+margin-top:6px;
+text-transform:uppercase;
+font-weight:700;
 }
 
-/* BUTTON */
-.card{
+.sub-gap{
+height:8px;
+}
+
+/* CONTACT */
+.social-row{
+display:flex;
+justify-content:center;
+gap:5px;
+margin-top:10px;
+}
+
+/* ICONS */
+.icon-btn{
+width:24px;
+height:24px;
+display:flex;
+justify-content:center;
+align-items:center;
+border-radius:6px;
+background:rgba(0,0,0,0.4);
+border:1px solid rgba(255,215,0,0.5);
+cursor:pointer;
+transition:0.15s;
+}
+
+.icon-btn:hover{
+transform:scale(1.15);
+}
+
+.icon-btn img{
+width:12px;
+height:12px;
+filter: brightness(0) invert(1);
+}
+
+/* 🔥 SPACE ABOVE BUTTON (IMPORTANT FIX) */
+.bottom-space{
+height:18px;
+}
+
+/* START BUTTON (LOWERED + CLEAN GAP) */
+.start-btn{
+margin-top:0;
+margin-bottom:14px;
+padding:10px 16px;
 border:1px solid #ffd700;
 background:rgba(0,0,0,0.4);
-backdrop-filter:blur(6px);
-padding:12px 18px;
+color:#ffd700;
+font-weight:600;
+font-size:12px;
 border-radius:10px;
 cursor:pointer;
-transition:0.25s;
-color:white;
-font-weight:600;
-font-size:13px;
-margin-top:auto;
-margin-bottom:10px;
+transition:0.2s;
 }
 
-.card:hover{
-box-shadow:0 0 12px #ffd700;
-transform:scale(1.02);
+.start-btn:hover{
+background:#ffd700;
+color:#000;
+transform:scale(1.05);
 }
 
-</style>  </head>  <body>  <div class="phone">  <div class="content">  <div class="title">EWONZ LINGUA</div>
+</style>
 
-<div class="big-gap"></div>    <div class="about">    
-    Ewonz Lingua is a smart language learning platform designed to make education simple and accessible for everyone, especially students facing financial difficulties. It helps learners study languages through step-by-step lessons, build strong communication skills, and open global opportunities for a better future.    
-</div>    <div class="big-gap"></div>    <div class="gold">SPECIAL THANKS</div>    
-<div class="gap"></div>    
-<div class="text"><strong>JAPANESE - TSUKI SENSEI</strong></div>    <div class="big-gap"></div>    <div class="gold">UI DESIGN & DEVELOPMENT</div>    
-<div class="gap"></div>    
-<div class="text">    
-    <strong>DANU EWONZ</strong>    
-</div>    <div style="flex:1"></div>    <div class="card" onclick="window.location.href='./language.html'">    
-    Start Learning Language    
-</div>  </div>  </div>  <script>    
-/* ⚡ smooth background load trigger */    
-window.addEventListener("load", () => {    
-    document.body.classList.add("loaded");    
-});    
-</script>  </body>    
-</html>   
+</head>
+
+<body>
+
+<div class="app">
+
+<div class="content">
+
+<div class="title">EWONZ LINGUA</div>
+
+<div class="about">
+Ewonz Lingua is a smart language learning platform designed to make education simple and accessible for everyone, especially students facing financial difficulties. It helps learners study languages through step-by-step lessons, build strong communication skills, and open global opportunities for a better future.
+</div>
+
+<div class="section-title">SPECIAL THANKS</div>
+<div class="sub-item">JAPANESE - TSUKI SENSEI</div>
+
+<div class="sub-gap"></div>
+
+<div class="section-title">UI DESIGN & DEVELOPMENT</div>
+<div class="sub-item">DANU EWONZ</div>
+
+<div class="contact-title">CONTACT EWONZ GROUP</div>
+
+<div class="social-row">
+
+<div class="icon-btn" onclick="window.open('https://wa.me/94778730530','_blank')">
+<img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/whatsapp.svg">
+</div>
+
+<div class="icon-btn" onclick="window.open('https://facebook.com','_blank')">
+<img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/facebook.svg">
+</div>
+
+<div class="icon-btn" onclick="window.open('https://youtube.com','_blank')">
+<img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/youtube.svg">
+</div>
+
+<div class="icon-btn" onclick="window.open('https://instagram.com','_blank')">
+<img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/instagram.svg">
+</div>
+
+<div class="icon-btn" onclick="window.open('https://tiktok.com','_blank')">
+<img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/tiktok.svg">
+</div>
+
+</div>
+
+<!-- 🔥 GAP BEFORE BUTTON -->
+<div class="bottom-space"></div>
+
+<button class="start-btn" onclick="window.location.href='./language.html'">
+START LEARNING
+</button>
+
+</div>
+
+</div>
+
+</body>
+</html>
