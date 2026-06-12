@@ -15,29 +15,34 @@
     padding:0;
     box-sizing:border-box;
     user-select:none;
+    -webkit-tap-highlight-color:transparent;
 }
 
+/* BODY CENTER */
 body{
-    background:#0b0b0b;
-    font-family:Poppins;
+    height:100vh;
     display:flex;
-    flex-direction:column;
     justify-content:center;
     align-items:center;
-    height:100vh;
-    gap:10px;
+
+    background:#0b0b0b;
+    font-family:'Poppins',sans-serif;
 }
 
-/* FRAME */
+/* FRAME (9:16 FIXED) */
 .frame{
     width:360px;
-    height:480px;
-    background:#0a0a0a;
+    height:640px;
+
     border-radius:20px;
-    position:relative;
     overflow:hidden;
+
     display:flex;
     flex-direction:column;
+
+    position:relative;
+
+    background:#0a0a0a;
 }
 
 /* GOLD BORDER */
@@ -47,6 +52,7 @@ body{
     inset:0;
     padding:2px;
     border-radius:20px;
+
     background:linear-gradient(90deg,#b8860b,#ffd700,#b8860b,#8b6508,#ffd700);
     background-size:300% 100%;
     animation:shine 3s linear infinite;
@@ -54,7 +60,17 @@ body{
     -webkit-mask:
     linear-gradient(#000 0 0) content-box,
     linear-gradient(#000 0 0);
+
     -webkit-mask-composite:xor;
+    mask-composite:exclude;
+
+    pointer-events:none;
+}
+
+/* SAFE CONTENT */
+.title,.subtitle,.line,.content,.bottom-nav{
+    position:relative;
+    z-index:2;
 }
 
 /* TITLE */
@@ -63,29 +79,27 @@ body{
     font-size:18px;
     font-weight:700;
     color:#fff;
-    margin-top:14px;
+    margin-top:16px;
 }
 
+/* SUBTITLE */
 .subtitle{
     text-align:center;
     font-size:12px;
     color:#b8860b;
 }
 
+/* LINE */
 .line{
-    width:80%;
+    width:85%;
     height:2px;
     margin:8px auto;
     background:linear-gradient(90deg,transparent,#b8860b,#ffd700,transparent);
 }
 
-/* SCROLL FIX */
+/* CONTENT SCROLL */
 .content{
-    position:absolute;
-    top:90px;
-    bottom:0;
-    left:0;
-    right:0;
+    flex:1;
     overflow-y:auto;
     padding:12px;
 }
@@ -93,11 +107,14 @@ body{
 /* BUTTON */
 .btn{
     padding:12px;
-    margin-bottom:8px;
+    margin-bottom:10px;
+
     background:#111;
-    border:1px solid rgba(184,134,11,0.5);
+    border:1px solid rgba(184,134,11,0.6);
     border-radius:10px;
+
     text-align:center;
+    transition:0.2s;
 }
 
 /* TEXT */
@@ -113,50 +130,61 @@ body{
     margin-top:2px;
 }
 
-/* UNDERLINE */
-.btn::after{
-    content:"";
-    display:block;
-    width:60%;
-    height:1px;
-    margin:6px auto 0;
-    background:linear-gradient(90deg,transparent,#b8860b,#ffd700,transparent);
+/* CLICK */
+.btn:active{
+    background:#b8860b;
+    color:#000;
+    transform:scale(0.98);
 }
 
-/* LINKS REMOVE STYLE */
+/* LINKS */
 a{
     text-decoration:none;
 }
 
-/* NAV */
+/* NAV (FIXED INSIDE FRAME) */
 .bottom-nav{
-    width:360px;
+    width:100%;
     height:55px;
+
     display:flex;
     justify-content:space-between;
     align-items:center;
+
     padding:0 12px;
+
     background:#0a0a0a;
-    border-radius:12px;
-    border:1px solid rgba(255,215,0,0.15);
+    border-top:1px solid rgba(255,215,0,0.2);
+
+    flex-shrink:0;
 }
 
-/* NAV BUTTONS */
+/* NAV ITEMS */
 .nav-btn{
     flex:1;
     text-align:center;
-    color:#ff3b3b;
+
     font-size:13px;
     font-weight:700;
-    padding:6px;
+    color:#ff3b3b;
+
+    cursor:pointer;
 }
 
+/* CENTER */
 .nav-center{
     flex:2;
     text-align:center;
+
     color:#ffd700;
     font-size:12px;
     font-weight:700;
+}
+
+/* ACTIVE */
+.nav-btn:active{
+    color:#ffd700;
+    transform:scale(0.95);
 }
 
 /* ANIMATION */
@@ -170,104 +198,103 @@ a{
 
 <body>
 
-<!-- FRAME -->
 <div class="frame">
 
-<div class="title">VOCABULARY</div>
-<div class="subtitle">語彙</div>
-<div class="line"></div>
+    <div class="title">VOCABULARY</div>
+    <div class="subtitle">語彙</div>
+    <div class="line"></div>
 
-<!-- CONTENT -->
-<div class="content">
+    <div class="content">
 
-<a href="people-relationship.html">
-<div class="btn">
-    <div class="jp">People & Relationship (人々)</div>
-    <div class="si">මිනිසුන් හා සම්බන්දතා</div>
-</div>
-</a>
+        <a href="people-relationship.html">
+            <div class="btn">
+                <div class="jp">People & Relationship (人々)</div>
+                <div class="si">මිනිසුන් හා සම්බන්දතා</div>
+            </div>
+        </a>
 
-<a href="home-living.html">
-<div class="btn">
-    <div class="jp">Home & Living (住まい)</div>
-    <div class="si">නිවස සහ ජීවිතය</div>
-</div>
-</a>
+        <a href="home-living.html">
+            <div class="btn">
+                <div class="jp">Home & Living (住まい)</div>
+                <div class="si">නිවස සහ ජීවිතය</div>
+            </div>
+        </a>
 
-<a href="food-drinks.html">
-<div class="btn">
-    <div class="jp">Food & Drinks (食べ物)</div>
-    <div class="si">ආහාර සහ බීම</div>
-</div>
-</a>
+        <a href="food-drinks.html">
+            <div class="btn">
+                <div class="jp">Food & Drinks (食べ物)</div>
+                <div class="si">ආහාර සහ බීම</div>
+            </div>
+        </a>
 
-<a href="transportation.html">
-<div class="btn">
-    <div class="jp">Transportation (交通)</div>
-    <div class="si">ප්‍රවාහනය</div>
-</div>
-</a>
+        <a href="transportation.html">
+            <div class="btn">
+                <div class="jp">Transportation (交通)</div>
+                <div class="si">ප්‍රවාහනය</div>
+            </div>
+        </a>
 
-<a href="animals.html">
-<div class="btn">
-    <div class="jp">Animals (動物)</div>
-    <div class="si">සතුන්</div>
-</div>
-</a>
+        <a href="animals.html">
+            <div class="btn">
+                <div class="jp">Animals (動物)</div>
+                <div class="si">සතුන්</div>
+            </div>
+        </a>
 
-<a href="school.html">
-<div class="btn">
-    <div class="jp">School (学校)</div>
-    <div class="si">පාසල</div>
-</div>
-</a>
+        <a href="school.html">
+            <div class="btn">
+                <div class="jp">School (学校)</div>
+                <div class="si">පාසල</div>
+            </div>
+        </a>
 
-    <a href="colors.html">
-<div class="btn">
-    <div class="jp">Colors (色)</div>
-    <div class="si">වර්ණ</div>
-</div>
-</a>
+        <a href="colors.html">
+            <div class="btn">
+                <div class="jp">Colors (色)</div>
+                <div class="si">වර්ණ</div>
+            </div>
+        </a>
 
-<a href="clothes.html">
-<div class="btn">
-    <div class="jp">Clothing (服)</div>
-    <div class="si">ඇඳුම්</div>
-</div>
-</a>
+        <a href="clothes.html">
+            <div class="btn">
+                <div class="jp">Clothing (服)</div>
+                <div class="si">ඇඳුම්</div>
+            </div>
+        </a>
 
-<a href="numbers-counting.html">
-<div class="btn">
-    <div class="jp">Numbers & Counting (数字)</div>
-    <div class="si">අංක</div>
-</div>
-</a>
+        <a href="numbers-counting.html">
+            <div class="btn">
+                <div class="jp">Numbers & Counting (数字)</div>
+                <div class="si">අංක</div>
+            </div>
+        </a>
 
-<a href="time-calendar.html">
-<div class="btn">
-    <div class="jp">Time & Calendar (時間)</div>
-    <div class="si">කාලය සහා දින සටහන්</div>
-</div>
-</a>
+        <a href="time-calendar.html">
+            <div class="btn">
+                <div class="jp">Time & Calendar (時間)</div>
+                <div class="si">කාලය සහා දින සටහන්</div>
+            </div>
+        </a>
 
-<a href="daily-activities.html">
-<div class="btn">
-    <div class="jp">Daily Activities (日常)</div>
-    <div class="si">දෛනික ක්‍රියා</div>
-</div>
-</a>
+        <a href="daily-activities.html">
+            <div class="btn">
+                <div class="jp">Daily Activities (日常)</div>
+                <div class="si">දෛනික ක්‍රියා</div>
+            </div>
+        </a>
 
-</div>
-</div>
+    </div>
 
-<!-- BACK HOME -->
-<div class="bottom-nav">
+    <!-- NAV INSIDE FRAME (FIXED) -->
+    <div class="bottom-nav">
 
-<div class="nav-btn" onclick="history.back()">BACK</div>
+        <div class="nav-btn" onclick="history.back()">BACK</div>
 
-<div class="nav-center">← EWONZ LINGUA →</div>
+        <div class="nav-center">← EWONZ LINGUA →</div>
 
-<div class="nav-btn" onclick="location.href='index.html'">HOME</div>
+        <div class="nav-btn" onclick="location.href='index.html'">HOME</div>
+
+    </div>
 
 </div>
 
