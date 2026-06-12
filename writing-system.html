@@ -2,8 +2,16 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Writing System</title>
+
+<meta name="viewport"
+content="width=device-width,
+initial-scale=1,
+maximum-scale=1,
+minimum-scale=1,
+user-scalable=no,
+viewport-fit=cover">
+
+<title>Exam Page</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600;700&family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
 
@@ -15,34 +23,51 @@
     padding:0;
     box-sizing:border-box;
     user-select:none;
+    -webkit-tap-highlight-color:transparent;
 }
 
-/* BODY */
+/* FULL SCREEN */
+html,body{
+    width:100%;
+    height:100%;
+    overflow:hidden;
+    background:#000;
+}
+
+/* CENTER */
 body{
-    height:100vh;
     display:flex;
     justify-content:center;
     align-items:center;
-    background:#0b0b0b;
     font-family:'Poppins',sans-serif;
 }
 
-/* FRAME */
+/* FRAME (STRICT 9:16) */
 .frame{
     width:360px;
-    height:640px;
+    aspect-ratio:9/16;
+    max-height:100vh;
+
+    background:url("1781280463236_edit_59479765463083.png") center/cover no-repeat;
+
+    border-radius:20px;
     position:relative;
-    display:flex;
-    flex-direction:column;
     overflow:hidden;
 
-    background:url("1781280330065_edit_59426863157618.png") center/cover no-repeat;
-    border-radius:20px;
-    }
+    display:flex;
+    flex-direction:column;
 }
 
+/* DARK LAYER */
+.frame::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:rgba(0,0,0,0.65);
+    z-index:1;
+}
 
-/* BORDER */
+/* GOLD BORDER */
 .frame::before{
     content:"";
     position:absolute;
@@ -50,27 +75,53 @@ body{
     padding:2px;
     border-radius:20px;
 
-    background:linear-gradient(90deg,#b8860b,#ffd700,#b8860b,#8b6508,#ffd700);
+    background:linear-gradient(
+        90deg,
+        #b8860b,
+        #ffd700,
+        #b8860b,
+        #8b6508,
+        #ffd700
+    );
+
     background-size:300% 100%;
     animation:shine 3s linear infinite;
 
     -webkit-mask:
-    linear-gradient(#000 0 0) content-box,
-    linear-gradient(#000 0 0);
+        linear-gradient(#000 0 0) content-box,
+        linear-gradient(#000 0 0);
 
     -webkit-mask-composite:xor;
     mask-composite:exclude;
 
     pointer-events:none;
+    z-index:3;
+}
+
+/* CONTENT */
+.content{
+    position:relative;
+    z-index:2;
+    height:100%;
+    display:flex;
+    flex-direction:column;
 }
 
 /* TITLE */
 .title{
     text-align:center;
-    color:#fff;
-    font-size:18px;
+    font-size:20px;
     font-weight:700;
+    color:#fff;
     margin-top:18px;
+}
+
+/* SUBTITLE */
+.subtitle{
+    text-align:center;
+    font-size:12px;
+    color:#b8860b;
+    margin-top:5px;
 }
 
 /* LINE */
@@ -81,86 +132,79 @@ body{
     background:linear-gradient(90deg,transparent,#b8860b,#ffd700,transparent);
 }
 
-/* CONTENT */
+/* GRID - MOVED UP */
 .grid{
-    flex:1;
-    overflow-y:auto;
     display:flex;
     flex-direction:column;
+    gap:14px;
 
-    /* 🔥 GAP INCREASED */
-    gap:18px;
+    padding:14px 18px;
 
-    padding:18px;
+    /* 🔥 MOVE UP FIX */
+    margin-top:10px;
 }
 
-/* 🔥 BIGGER BUTTON */
+/* BUTTON */
 .btn{
     padding:20px 14px;
 
-    background:#111;
-    color:#fff;
-
-    border-radius:12px;
+    background:rgba(0,0,0,0.55);
     border:2px solid #b8860b;
+    border-radius:12px;
 
-    font-family:'Montserrat',sans-serif;
-
-    /* 🔥 TEXT BIGGER */
+    color:#fff;
     font-size:16px;
     font-weight:700;
 
     text-align:center;
-    cursor:pointer;
-
-    transition:0.2s;
+    text-transform:uppercase;
 }
 
-/* CLICK EFFECT */
+/* ACTIVE */
 .btn:active{
-    background:#b8860b;
-    color:#000;
     transform:scale(0.97);
+    background:#ffd700;
+    color:#000;
+}
+
+/* PUSH NAV DOWN */
+.spacer{
+    flex:1;
 }
 
 /* NAV */
 .bottom-nav{
-    width:100%;
     height:55px;
-
     display:flex;
-    justify-content:space-between;
     align-items:center;
+    justify-content:space-between;
 
     padding:0 12px;
-
     background:#0a0a0a;
     border-top:1px solid rgba(255,215,0,0.25);
 }
 
-/* NAV BUTTON */
 .nav-btn{
     flex:1;
     text-align:center;
-    font-weight:700;
-    font-size:13px;
     color:#ff3b3b;
-    cursor:pointer;
+    font-size:13px;
+    font-weight:700;
 }
 
-/* CENTER */
-.nav-center{
+.center{
     flex:2;
     text-align:center;
+    color:#ffd700;
     font-size:12px;
     font-weight:700;
-    color:#ffd700;
+    white-space:nowrap;
 }
 
 /* ANIMATION */
 @keyframes shine{
-    0%{background-position:0%;}
-    100%{background-position:200%;}
+    0%{background-position:0%}
+    100%{background-position:200%}
 }
 
 </style>
@@ -170,26 +214,34 @@ body{
 
 <div class="frame">
 
-    <div class="title">WRITING SYSTEM</div>
-    <div class="line"></div>
+    <div class="content">
 
-    <div class="grid">
+        <div class="title">EXAM</div>
+        <div class="subtitle">SELECT EXAM TYPE</div>
 
-        <div class="btn" onclick="location.href='hiragana.html'">Hiragana</div>
-        <div class="btn" onclick="location.href='katakana.html'">Katakana</div>
-        <div class="btn" onclick="location.href='kanji.html'">Kanji</div>
-        <div class="btn" onclick="location.href='hiragana-special.html'">Hiragana Special</div>
-        <div class="btn" onclick="location.href='katakana-special.html'">Katakana Special</div>
+        <div class="line"></div>
 
-    </div>
+        <!-- 🔼 BUTTONS UP -->
+        <div class="grid">
 
-    <div class="bottom-nav">
+            <div class="btn" onclick="location.href='jlpt-exam.html'">JLPT EXAM</div>
+            <div class="btn" onclick="location.href='nat-exam.html'">NAT-TEST EXAM</div>
+            <div class="btn" onclick="location.href='jft-exam.html'">JFT-BASIC EXAM</div>
+            <div class="btn" onclick="location.href='exam-features.html'">EXAM FEATURES</div>
 
-        <div class="nav-btn" onclick="history.back()">BACK</div>
+        </div>
 
-        <div class="nav-center">← EWONZ LINGUA →</div>
+        <div class="spacer"></div>
 
-        <div class="nav-btn" onclick="location.href='index.html'">HOME</div>
+        <div class="bottom-nav">
+
+            <div class="nav-btn" onclick="history.back()">BACK</div>
+
+            <div class="center">← EWONZ LINGUA →</div>
+
+            <div class="nav-btn" onclick="location.href='index.html'">HOME</div>
+
+        </div>
 
     </div>
 
