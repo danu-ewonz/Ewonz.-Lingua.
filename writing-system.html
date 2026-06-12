@@ -11,7 +11,7 @@ minimum-scale=1,
 user-scalable=no,
 viewport-fit=cover">
 
-<title>Exam Page</title>
+<title>Writing System</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600;700&family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
 
@@ -26,7 +26,6 @@ viewport-fit=cover">
     -webkit-tap-highlight-color:transparent;
 }
 
-/* FULL SCREEN */
 html,body{
     width:100%;
     height:100%;
@@ -34,7 +33,7 @@ html,body{
     background:#000;
 }
 
-/* CENTER */
+/* CENTER SCREEN */
 body{
     display:flex;
     justify-content:center;
@@ -42,23 +41,30 @@ body{
     font-family:'Poppins',sans-serif;
 }
 
-/* FRAME (STRICT 9:16) */
+/* FRAME ONLY (BACKGROUND INSIDE HERE) */
 .frame{
     width:360px;
     aspect-ratio:9/16;
-    max-height:100vh;
 
-    background:url("1781280463236_edit_59479765463083.png") center/cover no-repeat;
-
-    border-radius:20px;
     position:relative;
     overflow:hidden;
+    border-radius:20px;
 
     display:flex;
     flex-direction:column;
 }
 
-/* DARK LAYER */
+/* 🔥 BACKGROUND ONLY INSIDE FRAME */
+.frame-bg{
+    position:absolute;
+    inset:0;
+
+    background:url("1781280403507_edit_59454179593850.png") center/cover no-repeat;
+
+    z-index:0;
+}
+
+/* DARK OVERLAY */
 .frame::after{
     content:"";
     position:absolute;
@@ -132,44 +138,37 @@ body{
     background:linear-gradient(90deg,transparent,#b8860b,#ffd700,transparent);
 }
 
-/* GRID - MOVED UP */
+/* GRID TOP */
 .grid{
+    flex:1;
     display:flex;
     flex-direction:column;
-    gap:14px;
-
+    justify-content:flex-start;
+    gap:12px;
     padding:14px 18px;
-
-    /* 🔥 MOVE UP FIX */
     margin-top:10px;
 }
 
 /* BUTTON */
 .btn{
-    padding:20px 14px;
+    padding:15px;
 
     background:rgba(0,0,0,0.55);
     border:2px solid #b8860b;
     border-radius:12px;
 
     color:#fff;
-    font-size:16px;
+    font-size:15px;
     font-weight:700;
 
     text-align:center;
-    text-transform:uppercase;
 }
 
-/* ACTIVE */
+/* CLICK */
 .btn:active{
     transform:scale(0.97);
     background:#ffd700;
     color:#000;
-}
-
-/* PUSH NAV DOWN */
-.spacer{
-    flex:1;
 }
 
 /* NAV */
@@ -198,7 +197,6 @@ body{
     color:#ffd700;
     font-size:12px;
     font-weight:700;
-    white-space:nowrap;
 }
 
 /* ANIMATION */
@@ -214,24 +212,25 @@ body{
 
 <div class="frame">
 
+    <!-- 🔥 ONLY FRAME BACKGROUND -->
+    <div class="frame-bg"></div>
+
     <div class="content">
 
-        <div class="title">EXAM</div>
-        <div class="subtitle">SELECT EXAM TYPE</div>
+        <div class="title">WRITING SYSTEM</div>
+        <div class="subtitle">SELECT CATEGORY</div>
 
         <div class="line"></div>
 
-        <!-- 🔼 BUTTONS UP -->
         <div class="grid">
 
-            <div class="btn" onclick="location.href='jlpt-exam.html'">JLPT EXAM</div>
-            <div class="btn" onclick="location.href='nat-exam.html'">NAT-TEST EXAM</div>
-            <div class="btn" onclick="location.href='jft-exam.html'">JFT-BASIC EXAM</div>
-            <div class="btn" onclick="location.href='exam-features.html'">EXAM FEATURES</div>
+            <div class="btn" onclick="location.href='hiragana.html'">HIRAGANA</div>
+            <div class="btn" onclick="location.href='katakana.html'">KATAKANA</div>
+            <div class="btn" onclick="location.href='kanji.html'">KANJI</div>
+            <div class="btn" onclick="location.href='hiragana-special.html'">HIRAGANA SPECIAL</div>
+            <div class="btn" onclick="location.href='katakana-special.html'">KATAKANA SPECIAL</div>
 
         </div>
-
-        <div class="spacer"></div>
 
         <div class="bottom-nav">
 
