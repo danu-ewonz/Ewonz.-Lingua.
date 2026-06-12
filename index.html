@@ -1,258 +1,214 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
-<title>Ewonz Lingua</title>
+<!DOCTYPE html>  <html lang="en">  
+<head>  
+<meta charset="UTF-8">  
+<meta name="viewport" content="width=device-width, initial-scale=1.0">  
+<title>Ewonz Lingua</title>  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Dancing+Script:wght@400;600&display=swap" rel="stylesheet">  <style>  
+  
+/* BLOCK COPY */  
+*{  
+    -webkit-user-select:none;  
+    user-select:none;  
+}  
+  
+/* BODY */  
+body{  
+    margin:0;  
+    height:100vh;  
+    display:flex;  
+    justify-content:center;  
+    align-items:center;  
+    overflow:hidden;  
+    font-family:'Poppins', sans-serif;  
+  
+    /* ⚡ instant fallback (NO BLACK FLASH) */  
+    background: linear-gradient(135deg, #0a0a0a, #111);  
+}  
+  
+/* BACKGROUND IMAGE LAYER (NEW FIX) */  
+body::before{  
+    content:"";  
+    position:fixed;  
+    inset:0;  
+  
+    background:  
+    linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.75)),  
+    url("1781098017405.png");  
+  
+    background-size:cover;  
+    background-position:center;  
+    background-repeat:no-repeat;  
+  
+    opacity:0;  
+    transform:scale(1.05);  
+    transition:opacity 0.8s ease, transform 1s ease;  
+  
+    z-index:-2;  
+}  
+  
+/* when loaded */  
+body.loaded::before{  
+    opacity:1;  
+    transform:scale(1);  
+}  
+  
+/* OPTIONAL GLOW OVERLAY */  
+body::after{  
+    content:"";  
+    position:absolute;  
+    width:380px;  
+    height:380px;  
+    border-radius:50%;  
+    filter:blur(100px);  
+    z-index:0;  
+    animation: floatGlow 6s infinite ease-in-out;  
+    background:#ffd700;  
+    top:10%;  
+    left:10%;  
+    opacity:0.12;  
+}  
+  
+@keyframes floatGlow{  
+    0%{ transform:translateY(0px) scale(1); }  
+    50%{ transform:translateY(-20px) scale(1.1); }  
+    100%{ transform:translateY(0px) scale(1); }  
+}  
+  
+/* 3:4 BOX */  
+.phone{  
+    width:360px;  
+    height:480px;  
+    border:2px solid #ffd700;  
+    border-radius:22px;  
+  
+    background:  
+    linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.65)),  
+    url("1781096123066_edit_71005599869154.png");  
+  
+    background-size:cover;  
+    background-position:center;  
+    background-repeat:no-repeat;  
+  
+    box-shadow:0 0 15px rgba(255,215,0,0.25);  
+    display:flex;  
+    flex-direction:column;  
+    overflow:hidden;  
+    z-index:1;  
+}  
+  
+/* CONTENT */  
+.content{  
+    flex:1;  
+    display:flex;  
+    flex-direction:column;  
+    align-items:center;  
+    padding:15px;  
+    color:white;  
+    text-align:center;  
+}  
+  
+/* TEXT ANIMATION */  
+@keyframes fadeUp{  
+    from{opacity:0; transform:translateY(20px);}  
+    to{opacity:1; transform:translateY(0);}  
+}  
+  
+@keyframes glowText{  
+    0%{ text-shadow:0 0 5px rgba(255,215,0,0.2); }  
+    50%{ text-shadow:0 0 12px rgba(255,215,0,0.6); }  
+    100%{ text-shadow:0 0 5px rgba(255,215,0,0.2); }  
+}  
+  
+/* TITLE */  
+.title{  
+    font-size:24px;  
+    font-weight:700;  
+    letter-spacing:3px;  
+    margin-top:10px;  
+    animation:fadeUp 0.8s ease-out, glowText 3s infinite;  
+}  
+  
+/* ABOUT */  
+.about{  
+    font-size:13px;  
+    color:#e0e0e0;  
+    line-height:1.6;  
+    max-width:320px;  
+    font-family:'Dancing Script', cursive;  
+    font-weight:600;  
+    animation:fadeUp 1s ease-out;  
+}  
+  
+/* SPACING */  
+.big-gap{ height:22px; }  
+.gap{ height:6px; }  
+  
+/* GOLD */  
+.gold{  
+    font-size:10px;  
+    color:rgba(255,215,0,0.75);  
+    font-weight:600;  
+    letter-spacing:1px;  
+}  
+  
+/* TEXT */  
+.text{  
+    font-size:10px;  
+    color:#aaa;  
+}  
+  
+/* BUTTON */  
+.card{  
+    border:1px solid #ffd700;  
+    background:rgba(0,0,0,0.4);  
+    backdrop-filter:blur(6px);  
+    padding:12px 18px;  
+    border-radius:10px;  
+    cursor:pointer;  
+    transition:0.25s;  
+    color:white;  
+    font-weight:600;  
+    font-size:13px;  
+    margin-top:auto;  
+    margin-bottom:10px;  
+}  
+  
+.card:hover{  
+    box-shadow:0 0 12px #ffd700;  
+    transform:scale(1.02);  
+}  
+  
+</style>  </head>  <body>  <div class="phone">  <div class="content">  <div class="title">EWONZ LINGUA</div>  
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Dancing+Script:wght@400;600&display=swap" rel="stylesheet">
+<div class="big-gap"></div>  
 
-<style>
+<div class="about">  
+    Ewonz Lingua is a smart language learning platform designed to make education simple and accessible for everyone, especially students facing financial difficulties. It helps learners study languages through step-by-step lessons, build strong communication skills, and open global opportunities for a better future.  
+</div>  
 
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+<div class="big-gap"></div>  
 
-*{
-    box-sizing:border-box;
-    -webkit-user-select:none;
-    user-select:none;
-}
+<div class="gold">SPECIAL THANKS</div>  
+<div class="gap"></div>  
+<div class="text"><strong>JAPANESE - TSUKI SENSEI</strong></div>  
 
-/* BODY */
-body{
+<div class="big-gap"></div>  
 
-/* BODY */
-body{
-    margin:0;
-    min-height:100vh;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    overflow:hidden;
-    font-family:'Poppins', sans-serif;
-    background:#111;
-}
-    /* ⚡ instant fallback (NO BLACK FLASH) */
-    background: linear-gradient(135deg, #0a0a0a, #111);
-}
+<div class="gold">UI DESIGN & DEVELOPMENT</div>  
+<div class="gap"></div>  
+<div class="text">  
+    <strong>DANU EWONZ</strong>  
+</div>  
 
-/* BACKGROUND IMAGE LAYER (NEW FIX) */
-body::before{
-    content:"";
-    position:fixed;
-    inset:0;
+<div style="flex:1"></div>  
 
-    background:
-linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.65)),
-url("1781098017405.png");
-    
-    background-size:cover;
-    background-position:center;
-    background-repeat:no-repeat;
-
-    opacity:0;
-    transform:scale(1.05);
-    transition:opacity 0.8s ease, transform 1s ease;
-
-    z-index:-2;
-}
-
-/* when loaded */
-body.loaded::before{
-    opacity:1;
-    transform:scale(1);
-}
-
-/* OPTIONAL GLOW OVERLAY */
-body::after{
-    content:"";
-    position:absolute;
-    width:380px;
-    height:380px;
-    border-radius:50%;
-    filter:blur(100px);
-    z-index:0;
-    animation: floatGlow 6s infinite ease-in-out;
-    background:#ffd700;
-    top:10%;
-    left:10%;
-    opacity:0.12;
-}
-
-@keyframes floatGlow{
-    0%{ transform:translateY(0px) scale(1); }
-    50%{ transform:translateY(-20px) scale(1.1); }
-    100%{ transform:translateY(0px) scale(1); }
-}
-
-/* 3:4 BOX */
-body::before{
-    content:"";
-    position:fixed;
-    inset:0;
-
-    background:
-    linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.75)),
-    url("1781260676328_edit_40450298652948.png");
-
-    background-size:cover;
-    background-position:center;
-    background-repeat:no-repeat;
-
-    opacity:1;
-    z-index:-2;
-}
-
-/* CONTENT */
-.content{
-    flex:1;
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    padding:15px;
-    color:white;
-    text-align:center;
-}
-
-/* TEXT ANIMATION */
-@keyframes fadeUp{
-    from{opacity:0; transform:translateY(20px);}
-    to{opacity:1; transform:translateY(0);}
-}
-
-@keyframes glowText{
-    0%{ text-shadow:0 0 5px rgba(255,215,0,0.2); }
-    50%{ text-shadow:0 0 12px rgba(255,215,0,0.6); }
-    100%{ text-shadow:0 0 5px rgba(255,215,0,0.2); }
-}
-
-/* TITLE */
-.title{
-    font-size:24px;
-    font-weight:700;
-    letter-spacing:3px;
-    margin-top:10px;
-    animation:fadeUp 0.8s ease-out, glowText 3s infinite;
-}
-
-/* ABOUT */
-.about{
-    font-size:13px;
-    color:#e0e0e0;
-    line-height:1.6;
-    max-width:320px;
-    font-family:'Dancing Script', cursive;
-    font-weight:600;
-    animation:fadeUp 1s ease-out;
-}
-
-/* SPACING */
-.big-gap{ height:22px; }
-.gap{ height:6px; }
-
-/* GOLD */
-.gold{
-    font-size:10px;
-    color:rgba(255,215,0,0.75);
-    font-weight:600;
-    letter-spacing:1px;
-}
-
-/* TEXT */
-.text{
-    font-size:10px;
-    color:#aaa;
-}
-
-/* BUTTON */
-.card{
-    border:1px solid #ffd700;
-    background:rgba(0,0,0,0.4);
-    backdrop-filter:blur(6px);
-    padding:12px 18px;
-    border-radius:10px;
-    cursor:pointer;
-    transition:0.25s;
-    color:white;
-    font-weight:600;
-    font-size:13px;
-    margin-top:auto;
-    margin-bottom:10px;
-}
-
-.card:hover{
-    box-shadow:0 0 12px #ffd700;
-    transform:scale(1.02);
-}
-
-</style>
-</head>
-
-<body>
-
-<div class="phone">
-
-<div class="content">
-
-    <div class="title">EWONZ LINGUA</div>
-
-    <div class="big-gap"></div>
-
-    <div class="about">
-        Ewonz Lingua is a smart language learning platform designed to make education simple and accessible for everyone, especially students facing financial difficulties. It helps learners study languages through step-by-step lessons, build strong communication skills, and open global opportunities for a better future.
-    </div>
-
-    <div class="big-gap"></div>
-
-    <div class="gold">SPECIAL THANKS</div>
-    <div class="gap"></div>
-    <div class="text"><strong>JAPANESE - TSUKI SENSEI</strong></div>
-
-    <div class="big-gap"></div>
-
-    <div class="gold">UI DESIGN & DEVELOPMENT</div>
-    <div class="gap"></div>
-    <div class="text">
-        <strong>DANU EWONZ</strong>
-    </div>
-
-    <div style="flex:1"></div>
-
-    <div class="card" onclick="window.location.href='./language.html'">
-        Start Learning Language
-    </div>
-
+<div class="card" onclick="window.location.href='./language.html'">  
+    Start Learning Language  
 </div>
 
-</div>
-
-<script>
-document.addEventListener('gesturestart', function(e){
-    e.preventDefault();
-});
-
-document.addEventListener('dblclick', function(e){
-    e.preventDefault();
-}, {passive:false});
-
-document.addEventListener('touchmove', function(e){
-    if(e.scale !== undefined && e.scale !== 1){
-        e.preventDefault();
-    }
-}, {passive:false});
-
-<script>
-    
-document.addEventListener('contextmenu', e => e.preventDefault());
-
-document.addEventListener('copy', e => e.preventDefault());
-
-document.addEventListener('cut', e => e.preventDefault());
-
-document.addEventListener('selectstart', e => e.preventDefault());
-
-document.addEventListener('dragstart', e => e.preventDefault());
-
-</script>
-    
-</body>
-</html>/
+</div>  </div>  <script>  
+/* ⚡ smooth background load trigger */  
+window.addEventListener("load", () => {  
+    document.body.classList.add("loaded");  
+});  
+</script>  </body>  
+</html>
