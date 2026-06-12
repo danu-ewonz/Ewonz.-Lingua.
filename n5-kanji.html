@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
 <title>N5 Kanji - Ewonz Lingua</title>
 
@@ -16,34 +16,43 @@
     padding:0;
     box-sizing:border-box;
     user-select:none;
-}
-
-html,body{
-    height:100%;
-    overflow:hidden;
+    -webkit-user-select:none;
+    -webkit-tap-highlight-color:transparent;
 }
 
 body{
-    background:#0b0b0b;
+    font-family:'Poppins', sans-serif;
+    background:url("1781102623679_edit_59706522898481.png") no-repeat center center;
+    background-size:cover;
     display:flex;
     justify-content:center;
     align-items:center;
-    flex-direction:column;
-    font-family:Poppins;
-    gap:10px;
+    height:100vh;
+    overflow:hidden;
 }
 
 /* FRAME */
 .frame{
     width:360px;
-    height:480px;
-    background:#0a0a0a;
+    aspect-ratio:9/16;
     border-radius:20px;
     position:relative;
+    display:flex;
+    flex-direction:column;
     overflow:hidden;
+    background:rgba(10,10,10,0.35);
 }
 
-/* GOLD BORDER */
+/* DARK OVERLAY */
+.frame::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:rgba(0,0,0,0.65);
+    z-index:0;
+}
+
+/* BORDER */
 .frame::before{
     content:"";
     position:absolute;
@@ -59,15 +68,25 @@ body{
     linear-gradient(#000 0 0);
 
     -webkit-mask-composite:xor;
+    mask-composite:exclude;
+
+    pointer-events:none;
+    z-index:2;
+}
+
+/* CONTENT */
+.title, .line, .content, .bottom-nav{
+    position:relative;
+    z-index:3;
 }
 
 /* TITLE */
 .title{
     text-align:center;
-    font-size:16px;
+    font-size:20px;
     font-weight:700;
     color:#fff;
-    margin-top:14px;
+    margin-top:18px;
 }
 
 /* LINE */
@@ -78,40 +97,41 @@ body{
     background:linear-gradient(90deg,transparent,#b8860b,#ffd700,transparent);
 }
 
-/* SCROLL AREA */
+/* GRID 2 COLUMN */
 .content{
-    position:absolute;
-    top:60px;
-    bottom:0;
-    left:0;
-    right:0;
-
+    flex:1;
     overflow-y:auto;
-    padding:10px;
+    padding:12px;
+
+    display:grid;
+    grid-template-columns:repeat(2, 1fr);
+    gap:10px;
 }
 
-/* CARD */
+/* CARD BIG */
 .card{
-    background:#111;
+    background:rgba(0,0,0,0.55);
     border:1px solid rgba(184,134,11,0.4);
-    border-radius:10px;
-    padding:10px;
-    margin-bottom:8px;
+    border-radius:12px;
+    padding:12px;
     text-align:center;
 }
 
+/* KANJI BIG */
 .kanji{
-    font-size:18px;
+    font-size:22px;
     font-weight:700;
     color:#fff;
 }
 
+/* READING */
 .reading{
     font-size:11px;
     color:#ffd700;
-    margin-top:2px;
+    margin-top:4px;
 }
 
+/* MEANING */
 .meaning{
     font-size:11px;
     color:#b8860b;
@@ -120,50 +140,40 @@ body{
 
 /* NAV */
 .bottom-nav{
-    width:360px;
+    width:100%;
     height:55px;
     display:flex;
     justify-content:space-between;
     align-items:center;
     padding:0 12px;
     background:#0a0a0a;
-    border-top:1px solid rgba(255,215,0,0.25);
-    border-radius:12px;
-    position:relative;
+    border-top:1px solid rgba(255,215,0,0.15);
 }
 
-.bottom-nav::before{
-    content:"";
-    position:absolute;
-    top:0;
-    left:50%;
-    transform:translateX(-50%);
-    width:90%;
-    height:2px;
-    background:linear-gradient(90deg,transparent,#ffd700,transparent);
-}
-
+/* NAV BUTTONS */
 .nav-btn{
-    width:70px;
+    flex:1;
     text-align:center;
-    color:#ff3b3b;
     font-weight:700;
     font-size:12px;
+    color:#ff3b3b;
     cursor:pointer;
 }
 
-.center{
-    flex:1;
+/* CENTER */
+.nav-center{
+    flex:2;
     text-align:center;
     color:#ffd700;
     font-weight:700;
     font-size:12px;
+    white-space:nowrap;
 }
 
 /* ANIMATION */
 @keyframes shine{
     0%{background-position:0%;}
-    100%{background-position:100%;}
+    100%{background-position:200%;}
 }
 
 </style>
@@ -173,87 +183,93 @@ body{
 
 <div class="frame">
 
-<div class="title">N5 KANJI</div>
+    <div class="title">N5 KANJI</div>
+    <div class="line"></div>
 
-<div class="line"></div>
+    <div class="content">
 
-<div class="content">
+        <div class="card"><div class="kanji">円</div><div class="reading">en</div><div class="meaning">යෙන්</div></div>
+        <div class="card"><div class="kanji">年</div><div class="reading">nen</div><div class="meaning">වසර</div></div>
 
-<!-- ================= N5 KANJI ================= -->
+        <div class="card"><div class="kanji">時</div><div class="reading">ji</div><div class="meaning">කාලය</div></div>
+        <div class="card"><div class="kanji">分</div><div class="reading">fun</div><div class="meaning">මිනිත්තු</div></div>
 
-<div class="card"><div class="kanji">円</div><div class="reading">en</div><div class="meaning">යෙන්</div></div>
-<div class="card"><div class="kanji">年</div><div class="reading">nen</div><div class="meaning">වසර</div></div>
-<div class="card"><div class="kanji">時</div><div class="reading">ji</div><div class="meaning">කාලය / පැය</div></div>
-<div class="card"><div class="kanji">分</div><div class="reading">fun</div><div class="meaning">මිනිත්තු</div></div>
-<div class="card"><div class="kanji">午</div><div class="reading">go</div><div class="meaning">දවල්</div></div>
+        <div class="card"><div class="kanji">今</div><div class="reading">ima</div><div class="meaning">දැන්</div></div>
+        <div class="card"><div class="kanji">前</div><div class="reading">mae</div><div class="meaning">ඉදිරිය</div></div>
 
-<div class="card"><div class="kanji">前</div><div class="reading">mae</div><div class="meaning">ඉදිරිය</div></div>
-<div class="card"><div class="kanji">後</div><div class="reading">ato</div><div class="meaning">පසු</div></div>
-<div class="card"><div class="kanji">今</div><div class="reading">ima</div><div class="meaning">දැන්</div></div>
-<div class="card"><div class="kanji">毎</div><div class="reading">mai</div><div class="meaning">සෑම</div></div>
-<div class="card"><div class="kanji">週</div><div class="reading">shuu</div><div class="meaning">සතිය</div></div>
+        <div class="card"><div class="kanji">後</div><div class="reading">ato</div><div class="meaning">පසු</div></div>
+        <div class="card"><div class="kanji">週</div><div class="reading">shuu</div><div class="meaning">සතිය</div></div>
 
-<div class="card"><div class="kanji">何</div><div class="reading">nani</div><div class="meaning">කුමක්ද</div></div>
-<div class="card"><div class="kanji">名</div><div class="reading">mei</div><div class="meaning">නම</div></div>
-<div class="card"><div class="kanji">外</div><div class="reading">soto</div><div class="meaning">පිටත</div></div>
-<div class="card"><div class="kanji">右</div><div class="reading">migi</div><div class="meaning">දකුණ</div></div>
-<div class="card"><div class="kanji">左</div><div class="reading">hidari</div><div class="meaning">වම</div></div>
+        <div class="card"><div class="kanji">何</div><div class="reading">nani</div><div class="meaning">කුමක්ද</div></div>
+        <div class="card"><div class="kanji">名</div><div class="reading">mei</div><div class="meaning">නම</div></div>
 
-<div class="card"><div class="kanji">東</div><div class="reading">higashi</div><div class="meaning">නැගෙනහිර</div></div>
-<div class="card"><div class="kanji">西</div><div class="reading">nishi</div><div class="meaning">බටහිර</div></div>
-<div class="card"><div class="kanji">南</div><div class="reading">minami</div><div class="meaning">දකුණු දිශාව</div></div>
-<div class="card"><div class="kanji">北</div><div class="reading">kita</div><div class="meaning">උතුර</div></div>
+        <div class="card"><div class="kanji">外</div><div class="reading">soto</div><div class="meaning">පිටත</div></div>
+        <div class="card"><div class="kanji">右</div><div class="reading">migi</div><div class="meaning">දකුණ</div></div>
 
-<div class="card"><div class="kanji">高</div><div class="reading">takai</div><div class="meaning">උස</div></div>
-<div class="card"><div class="kanji">安</div><div class="reading">yasui</div><div class="meaning">ලාභ</div></div>
-<div class="card"><div class="kanji">新</div><div class="reading">atarashii</div><div class="meaning">අලුත්</div></div>
-<div class="card"><div class="kanji">古</div><div class="reading">furui</div><div class="meaning">පරණ</div></div>
+        <div class="card"><div class="kanji">左</div><div class="reading">hidari</div><div class="meaning">වම</div></div>
+        <div class="card"><div class="kanji">東</div><div class="reading">higashi</div><div class="meaning">නැගෙනහිර</div></div>
 
-<div class="card"><div class="kanji">多</div><div class="reading">ooi</div><div class="meaning">බොහෝ</div></div>
-<div class="card"><div class="kanji">少</div><div class="reading">sukunai</div><div class="meaning">අඩු</div></div>
-<div class="card"><div class="kanji">長</div><div class="reading">nagai</div><div class="meaning">දිග</div></div>
+        <div class="card"><div class="kanji">西</div><div class="reading">nishi</div><div class="meaning">බටහිර</div></div>
+        <div class="card"><div class="kanji">南</div><div class="reading">minami</div><div class="meaning">දකුණු</div></div>
 
-<div class="card"><div class="kanji">電</div><div class="reading">den</div><div class="meaning">විදුලිය</div></div>
-<div class="card"><div class="kanji">車</div><div class="reading">kuruma</div><div class="meaning">රථය</div></div>
-<div class="card"><div class="kanji">語</div><div class="reading">go</div><div class="meaning">භාෂාව</div></div>
+        <div class="card"><div class="kanji">北</div><div class="reading">kita</div><div class="meaning">උතුර</div></div>
+        <div class="card"><div class="kanji">高</div><div class="reading">takai</div><div class="meaning">උස</div></div>
 
-<div class="card"><div class="kanji">読</div><div class="reading">yomu</div><div class="meaning">කියවීම</div></div>
-<div class="card"><div class="kanji">書</div><div class="reading">kaku</div><div class="meaning">ලියීම</div></div>
-<div class="card"><div class="kanji">話</div><div class="reading">hanasu</div><div class="meaning">කතා</div></div>
-<div class="card"><div class="kanji">聞</div><div class="reading">kiku</div><div class="meaning">ඇසීම</div></div>
+        <div class="card"><div class="kanji">安</div><div class="reading">yasui</div><div class="meaning">ලාභ</div></div>
+        <div class="card"><div class="kanji">新</div><div class="reading">atarashii</div><div class="meaning">අලුත්</div></div>
 
-<div class="card"><div class="kanji">見</div><div class="reading">miru</div><div class="meaning">බැලීම</div></div>
-<div class="card"><div class="kanji">出</div><div class="reading">deru</div><div class="meaning">පිටවීම</div></div>
-<div class="card"><div class="kanji">入</div><div class="reading">hairu</div><div class="meaning">ඇතුල්වීම</div></div>
-<div class="card"><div class="kanji">立</div><div class="reading">tatsu</div><div class="meaning">නැගී සිටීම</div></div>
+        <div class="card"><div class="kanji">古</div><div class="reading">furui</div><div class="meaning">පරණ</div></div>
+        <div class="card"><div class="kanji">多</div><div class="reading">ooi</div><div class="meaning">බොහෝ</div></div>
 
-<div class="card"><div class="kanji">休</div><div class="reading">yasumu</div><div class="meaning">විවේකය</div></div>
-<div class="card"><div class="kanji">買</div><div class="reading">kau</div><div class="meaning">ගැනීම</div></div>
-<div class="card"><div class="kanji">食</div><div class="reading">taberu</div><div class="meaning">කෑම</div></div>
-<div class="card"><div class="kanji">飲</div><div class="reading">nomu</div><div class="meaning">බීම</div></div>
+        <div class="card"><div class="kanji">少</div><div class="reading">sukunai</div><div class="meaning">අඩු</div></div>
+        <div class="card"><div class="kanji">長</div><div class="reading">nagai</div><div class="meaning">දිග</div></div>
 
-<div class="card"><div class="kanji">会</div><div class="reading">au</div><div class="meaning">හමුවීම</div></div>
-<div class="card"><div class="kanji">間</div><div class="reading">aida</div><div class="meaning">අතර</div></div>
-<div class="card"><div class="kanji">国</div><div class="reading">kuni</div><div class="meaning">රට</div></div>
+        <div class="card"><div class="kanji">電</div><div class="reading">den</div><div class="meaning">විදුලිය</div></div>
+        <div class="card"><div class="kanji">車</div><div class="reading">kuruma</div><div class="meaning">රථය</div></div>
 
-<div class="card"><div class="kanji">店</div><div class="reading">mise</div><div class="meaning">කඩය</div></div>
-<div class="card"><div class="kanji">駅</div><div class="reading">eki</div><div class="meaning">ස්ථානය</div></div>
-<div class="card"><div class="kanji">道</div><div class="reading">michi</div><div class="meaning">මාර්ගය</div></div>
+        <div class="card"><div class="kanji">語</div><div class="reading">go</div><div class="meaning">භාෂාව</div></div>
+        <div class="card"><div class="kanji">読</div><div class="reading">yomu</div><div class="meaning">කියවීම</div></div>
 
-</div>
+        <div class="card"><div class="kanji">書</div><div class="reading">kaku</div><div class="meaning">ලියීම</div></div>
+        <div class="card"><div class="kanji">話</div><div class="reading">hanasu</div><div class="meaning">කතා</div></div>
 
-</div>
+        <div class="card"><div class="kanji">聞</div><div class="reading">kiku</div><div class="meaning">ඇසීම</div></div>
+        <div class="card"><div class="kanji">見</div><div class="reading">miru</div><div class="meaning">බැලීම</div></div>
 
-<!-- NAV -->
-<div class="bottom-nav">
+        <div class="card"><div class="kanji">出</div><div class="reading">deru</div><div class="meaning">පිටවීම</div></div>
+        <div class="card"><div class="kanji">入</div><div class="reading">hairu</div><div class="meaning">ඇතුල්වීම</div></div>
 
-<div class="nav-btn" onclick="history.back()">BACK</div>
+        <div class="card"><div class="kanji">立</div><div class="reading">tatsu</div><div class="meaning">සිටීම</div></div>
+        <div class="card"><div class="kanji">休</div><div class="reading">yasumu</div><div class="meaning">විවේකය</div></div>
 
-<div class="center">← EWONZ LINGUA →</div>
+        <div class="card"><div class="kanji">買</div><div class="reading">kau</div><div class="meaning">ගැනීම</div></div>
+        <div class="card"><div class="kanji">食</div><div class="reading">taberu</div><div class="meaning">කෑම</div></div>
 
-<div class="nav-btn" onclick="location.href='index.html'">HOME</div>
+        <div class="card"><div class="kanji">飲</div><div class="reading">nomu</div><div class="meaning">බීම</div></div>
+        <div class="card"><div class="kanji">会</div><div class="reading">au</div><div class="meaning">හමුවීම</div></div>
+
+        <div class="card"><div class="kanji">間</div><div class="reading">aida</div><div class="meaning">අතර</div></div>
+        <div class="card"><div class="kanji">国</div><div class="reading">kuni</div><div class="meaning">රට</div></div>
+
+        <div class="card"><div class="kanji">店</div><div class="reading">mise</div><div class="meaning">කඩය</div></div>
+        <div class="card"><div class="kanji">駅</div><div class="reading">eki</div><div class="meaning">ස්ථානය</div></div>
+
+        <div class="card"><div class="kanji">道</div><div class="reading">michi</div><div class="meaning">මාර්ගය</div></div>
+
+    </div>
+
+    <!-- NAV -->
+    <div class="bottom-nav">
+
+        <div class="nav-btn" onclick="history.back()">BACK</div>
+
+        <div class="nav-center">← EWONZ LINGUA →</div>
+
+        <div class="nav-btn" onclick="location.href='index.html'">HOME</div>
+
+    </div>
 
 </div>
 
 </body>
-  </html>
+</html>
