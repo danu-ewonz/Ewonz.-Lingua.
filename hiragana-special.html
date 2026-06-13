@@ -40,29 +40,40 @@ body{
 
     background:url("1781342600371_edit_120941683763823.png") center/cover no-repeat;
     border-radius:20px;
-    }
-    }
 
-/* BORDER */
+    /* IMPORTANT FIX */
+    border:2px solid rgba(255,215,0,0.3);
+}
+
+/* GOLD ANIMATED BORDER */
 .frame::before{
     content:"";
     position:absolute;
     inset:0;
-    padding:2px;
     border-radius:20px;
+    padding:2px;
 
     background:linear-gradient(90deg,#b8860b,#ffd700,#b8860b,#8b6508,#ffd700);
     background-size:300% 100%;
     animation:shine 3s linear infinite;
 
+    pointer-events:none;
+
+    /* FIX FOR BORDER VISIBILITY */
     -webkit-mask:
     linear-gradient(#000 0 0) content-box,
     linear-gradient(#000 0 0);
     -webkit-mask-composite:xor;
-    mask-composite:exclude;
+            mask-composite:exclude;
 
-    pointer-events:none;
+    border:2px solid transparent;
 }
+
+/* ANIMATION */
+@keyframes shine{
+    0%{background-position:0% 0%;}
+    100%{background-position:300% 0%;}
+    }
 
 /* TITLE */
 .title{
