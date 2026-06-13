@@ -29,18 +29,20 @@ body{
     flex-direction:column;
 }
 
-/* WRAPPER FIX */
+/* WRAPPER */
 .wrapper{
     display:flex;
     flex-direction:column;
     align-items:center;
 }
 
-/* FRAME */
+/* FRAME (9:16 + BACKGROUND FIX) */
 .frame{
     width:360px;
-    height:480px;
-    background:#0a0a0a;
+    height:640px;
+
+    background:url("1781343142194_edit_121351580133078.png") center/cover no-repeat;
+
     border-radius:20px;
     position:relative;
     overflow:hidden;
@@ -48,7 +50,16 @@ body{
     flex-direction:column;
 }
 
-/* BORDER */
+/* DARK OVERLAY */
+.frame::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:rgba(0,0,0,0.55);
+    z-index:0;
+}
+
+/* GOLD BORDER */
 .frame::before{
     content:"";
     position:absolute;
@@ -58,16 +69,12 @@ body{
     background:linear-gradient(90deg,#b8860b,#ffd700,#b8860b,#8b6508,#ffd700);
     background-size:300% 100%;
     animation:borderMove 3s linear infinite;
-    z-index:0;
-}
-
-.frame::after{
-    content:"";
-    position:absolute;
-    inset:2px;
-    background:#0a0a0a;
-    border-radius:18px;
     z-index:1;
+
+    -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+    -webkit-mask-composite:xor;
 }
 
 /* CONTENT */
@@ -97,6 +104,7 @@ body{
     text-transform:uppercase;
 }
 
+/* LINE */
 .line{
     width:80%;
     height:2px;
@@ -124,8 +132,6 @@ body{
     font-size:16px;
     text-align:center;
     border-radius:10px;
-    cursor:pointer;
-    text-transform:uppercase;
 }
 
 .btn:active{
@@ -134,25 +140,33 @@ body{
     transform:scale(0.97);
 }
 
-/* ================= NAV FIX ================= */
-
+/* =========================
+GLASS NAV (INSIDE FRAME FIX)
+========================= */
 .bottom-nav{
-    width:360px;
-    margin-top:10px;
+    width:100%;
+    height:55px;
 
     display:flex;
     justify-content:space-between;
     align-items:center;
 
-    padding:8px 12px;
+    padding:0 12px;
 
-    border-top:2px solid rgba(255,215,0,0.3);
-    border-bottom:2px solid rgba(255,215,0,0.3);
+    position:absolute;
+    bottom:0;
+    left:0;
+    z-index:3;
 
-    white-space:nowrap;
+    background:rgba(10,10,10,0.35);
+    backdrop-filter:blur(14px);
+    -webkit-backdrop-filter:blur(14px);
+
+    border-top:1px solid rgba(255,215,0,0.18);
+    box-shadow:0 -5px 25px rgba(0,0,0,0.4);
 }
 
-/* 3 PARTS SAME LINE */
+/* NAV ITEMS */
 .nav-btn,
 .center{
     flex:1;
@@ -161,12 +175,14 @@ body{
     white-space:nowrap;
 }
 
+/* SIDE BUTTONS */
 .nav-btn{
     color:red;
     font-size:13px;
     cursor:pointer;
 }
 
+/* CENTER */
 .center{
     color:#ffd700;
     font-size:12px;
@@ -175,13 +191,13 @@ body{
 /* TOUCH */
 .nav-btn:active{
     color:#ffd700;
-    transform:scale(1.05);
+    transform:scale(0.95);
 }
 
 /* ANIMATION */
 @keyframes borderMove{
     0%{background-position:0%;}
-    100%{background-position:100%;}
+    100%{background-position:200%;}
 }
 
 </style>
@@ -216,9 +232,7 @@ body{
 
 </div>
 
-</div>
-
-<!-- NAV FIXED SINGLE LINE -->
+<!-- NAV INSIDE FRAME -->
 <div class="bottom-nav">
 
     <div class="nav-btn" onclick="history.back()">BACK</div>
@@ -226,6 +240,8 @@ body{
     <div class="center">← EWONZ LINGUA →</div>
 
     <div class="nav-btn" onclick="location.href='index.html'">HOME</div>
+
+</div>
 
 </div>
 
