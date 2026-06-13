@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>JLPT N5</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600;700&display=swap" rel="stylesheet">
@@ -10,45 +11,49 @@
 <style>
 
 *{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
     -webkit-user-select:none;
     user-select:none;
 }
 
 body{
-    margin:0;
     font-family:Poppins;
     background:radial-gradient(circle,#0a0a12,#000);
     display:flex;
     justify-content:center;
-    color:white;
+    align-items:center;
+    min-height:100vh;
 }
 
 /* FRAME */
 .frame{
     width:360px;
     height:640px;
-    margin-top:20px;
     background:rgba(10,10,18,0.95);
     border-radius:20px;
-    overflow:hidden;
     position:relative;
+    overflow:hidden;
 }
 
 /* ANIMATED BORDER */
 .frame::before{
     content:"";
     position:absolute;
-    top:0;left:0;right:0;bottom:0;
+    inset:0;
     border-radius:20px;
     padding:2px;
-    background:linear-gradient(90deg,#ffd700,#b8860b,#ffd700,#fff3a0);
+    background:linear-gradient(90deg,#ffd700,#b8860b,#fff3a0,#b8860b);
     background-size:300% 300%;
     animation:borderMove 4s linear infinite;
+
     -webkit-mask:
         linear-gradient(#fff 0 0) content-box,
         linear-gradient(#fff 0 0);
     -webkit-mask-composite:xor;
     mask-composite:exclude;
+
     pointer-events:none;
 }
 
@@ -60,10 +65,10 @@ body{
 /* TITLE */
 .title{
     text-align:center;
-    padding-top:30px;
+    padding-top:25px;
     font-size:18px;
-    font-weight:bold;
-    color:white;
+    font-weight:700;
+    color:#fff;
 }
 
 /* LINE */
@@ -81,25 +86,32 @@ body{
     100%{opacity:0.3;}
 }
 
+/* CONTENT */
+.content{
+    padding:10px;
+    height:500px;
+    overflow-y:auto;
+}
+
 /* BUTTON */
 .btn{
     width:90%;
-    margin:60px 5%;
-    padding:20px 14px;
+    margin:10px auto;
+    display:block;
+    padding:16px;
     border-radius:12px;
-    border:2px solid #ffd700;
+    border:2px solid #b8860b;
     background:#1a1a2a;
-    color:white;
-    font-size:16px;
-    font-weight:bold;
-    cursor:pointer;
-    transition:0.2s;
+    color:#fff;
+    font-size:15px;
+    font-weight:600;
     text-align:center;
+    transition:0.2s;
 }
 
-/* TOUCH EFFECT */
+/* ACTIVE EFFECT */
 .btn:active{
-    background:linear-gradient(145deg,#b8860b,#ffd700);
+    background:#ffd700;
     color:#000;
     transform:scale(1.02);
 }
@@ -120,15 +132,14 @@ body{
 .nav button{
     background:none;
     border:none;
-    color:red;
-    font-weight:bold;
+    color:#ff3b3b;
+    font-weight:700;
     font-size:13px;
-    cursor:pointer;
 }
 
 .center{
     color:#ffd700;
-    font-weight:bold;
+    font-weight:700;
     font-size:13px;
 }
 
@@ -145,35 +156,26 @@ body{
     <!-- LINE -->
     <div class="title-line"></div>
 
-    <!-- BUTTON -->
-    <button class="btn" onclick="openMock()">
-        Japanese Mock Paper
-    </button>
+    <!-- CONTENT -->
+    <div class="content">
+
+        <button class="btn" onclick="location.href='mock.html'">Japanese Mock Paper</button>
+
+        <button class="btn" onclick="alert('Sample Test 1')">Sample Test 1</button>
+        <button class="btn" onclick="alert('Sample Test 2')">Sample Test 2</button>
+        <button class="btn" onclick="alert('Sample Test 3')">Sample Test 3</button>
+        <button class="btn" onclick="alert('Sample Test 4')">Sample Test 4</button>
+
+    </div>
 
     <!-- NAV -->
     <div class="nav">
-        <button onclick="goBack()">BACK</button>
+        <button onclick="history.back()">BACK</button>
         <div class="center">← EWONZ LINGUA →</div>
-        <button onclick="goHome()">HOME</button>
+        <button onclick="location.href='index.html'">HOME</button>
     </div>
 
 </div>
-
-<script>
-
-function openMock(){
-    window.location.href = "mock.html";
-}
-
-function goBack(){
-    window.history.back();
-}
-
-function goHome(){
-    window.location.href = "index.html";
-}
-
-</script>
 
 </body>
 </html>
