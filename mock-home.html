@@ -10,12 +10,23 @@
 
 <style>
 
-body{
+/* RESET */
+*{
     margin:0;
+    padding:0;
+    box-sizing:border-box;
+    -webkit-user-select:none;
+    user-select:none;
+}
+
+/* BODY */
+body{
     font-family:Poppins;
     background:radial-gradient(circle,#0a0a12,#000);
     display:flex;
     justify-content:center;
+    align-items:center;
+    min-height:100vh;
     color:white;
 }
 
@@ -23,28 +34,29 @@ body{
 .frame{
     width:360px;
     height:640px;
-    margin-top:20px;
     background:rgba(10,10,18,0.95);
     border-radius:20px;
     overflow:hidden;
     position:relative;
 }
 
-/* ANIMATED FRAME BORDER */
+/* ANIMATED BORDER */
 .frame::before{
     content:"";
     position:absolute;
-    top:0;left:0;right:0;bottom:0;
+    inset:0;
     border-radius:20px;
     padding:2px;
     background:linear-gradient(90deg,#ffd700,#b8860b,#fff3a0,#ffd700);
     background-size:300% 300%;
     animation:borderMove 4s linear infinite;
+
     -webkit-mask:
         linear-gradient(#fff 0 0) content-box,
         linear-gradient(#fff 0 0);
     -webkit-mask-composite:xor;
     mask-composite:exclude;
+
     pointer-events:none;
 }
 
@@ -53,24 +65,24 @@ body{
     100%{background-position:100% 50%;}
 }
 
-/* TITLE */
+/* HEADER */
 .header{
     text-align:center;
     padding-top:20px;
     font-size:18px;
-    font-weight:bold;
-    color:white;
+    font-weight:700;
+    color:#fff;
 }
 
-/* SUB TITLE (ABOVE LINE) */
+/* SUB TITLE */
 .sub{
     text-align:center;
     font-size:11px;
     color:#b8860b;
-    margin-top:5px;
+    margin-top:4px;
 }
 
-/* TITLE LINE */
+/* LINE */
 .line{
     width:100%;
     height:2px;
@@ -88,20 +100,20 @@ body{
 /* CONTENT */
 .content{
     padding:10px;
-    height:480px;
+    height:500px;
     overflow-y:auto;
 }
 
-/* BUTTON (GOLD OUTLINE) */
+/* BUTTON */
 .btn{
     width:100%;
-    padding:14px;
+    padding:20px 14px;
     margin-bottom:10px;
     border-radius:10px;
-    border:2px solid #ffd700; /* GOLD BORDER */
+    border:2px solid #ffd700;
     background:#1a1a2a;
-    color:white;
-    font-weight:600;
+    color:#fff;
+    font-weight:700;
     text-align:center;
     transition:0.2s;
 }
@@ -129,15 +141,14 @@ body{
 .nav button{
     background:none;
     border:none;
-    color:red;
-    font-weight:bold;
+    color:#ff3b3b;
+    font-weight:700;
     font-size:13px;
-    cursor:pointer;
 }
 
 .center{
     color:#ffd700;
-    font-weight:bold;
+    font-weight:700;
     font-size:13px;
 }
 
@@ -148,13 +159,13 @@ body{
 
 <div class="frame">
 
-    <!-- TITLE -->
+    <!-- HEADER -->
     <div class="header">Japanese Mock Exam</div>
 
-    <!-- SUB TITLE (ABOVE LINE) -->
+    <!-- SUB TITLE -->
     <div class="sub">Make By Danu Ewonz</div>
 
-    <!-- TITLE LINE -->
+    <!-- LINE -->
     <div class="line"></div>
 
     <!-- CONTENT -->
@@ -175,9 +186,9 @@ body{
 
     <!-- NAV -->
     <div class="nav">
-        <button onclick="goBack()">BACK</button>
+        <button onclick="history.back()">BACK</button>
         <div class="center">← EWONZ LINGUA →</div>
-        <button onclick="goHome()">HOME</button>
+        <button onclick="location.href='index.html'">HOME</button>
     </div>
 
 </div>
@@ -188,15 +199,7 @@ function openPaper(id){
     window.location.href = "paper" + id + ".html";
 }
 
-function goBack(){
-    window.history.back();
-}
-
-function goHome(){
-    window.location.href = "index.html";
-}
-
 </script>
 
 </body>
-  </html>
+</html>
