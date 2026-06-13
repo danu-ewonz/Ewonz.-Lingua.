@@ -38,15 +38,15 @@ body{
     flex-direction:column;
     overflow:hidden;
 
-    background:url("1781342600371_edit_120941683763823.png") center/cover no-repeat;
     border-radius:20px;
 
-    /* IMPORTANT FIX */
-    border:2px solid rgba(255,215,0,0.3);
+    background:url("1781342600371_edit_120941683763823.png") center/cover no-repeat;
+
+    border:2px solid rgba(255,215,0,0.25);
 }
 
-/* GOLD ANIMATED BORDER */
-.frame::before{
+/* GOLD BORDER FIX (MORE STABLE) */
+.frame::after{
     content:"";
     position:absolute;
     inset:0;
@@ -59,21 +59,21 @@ body{
 
     pointer-events:none;
 
-    /* FIX FOR BORDER VISIBILITY */
+    /* border visibility fix */
     -webkit-mask:
-    linear-gradient(#000 0 0) content-box,
-    linear-gradient(#000 0 0);
+      linear-gradient(#000 0 0) content-box,
+      linear-gradient(#000 0 0);
     -webkit-mask-composite:xor;
             mask-composite:exclude;
 
-    border:2px solid transparent;
+    z-index:2;
 }
 
 /* ANIMATION */
 @keyframes shine{
     0%{background-position:0% 0%;}
     100%{background-position:300% 0%;}
-    }
+}
 
 /* TITLE */
 .title{
@@ -82,6 +82,7 @@ body{
     font-size:18px;
     font-weight:700;
     margin-top:15px;
+    z-index:1;
 }
 
 .line{
@@ -89,6 +90,7 @@ body{
     height:2px;
     margin:8px auto;
     background:linear-gradient(90deg,transparent,#b8860b,#ffd700,transparent);
+    z-index:1;
 }
 
 /* CONTENT */
@@ -98,6 +100,7 @@ body{
     display:flex;
     flex-direction:column;
     gap:10px;
+    z-index:1;
 }
 
 /* BUTTON */
@@ -116,24 +119,27 @@ body{
 
     cursor:pointer;
 
-    /* IMPORTANT */
-    background:rgba(0,0,0,0.35);
-    backdrop-filter: blur(6px);
-    -webkit-backdrop-filter: blur(6px);
+    /* IMPORTANT: keep background image visible */
+    background:rgba(0,0,0,0.25);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
 
-    transition:0.3s;
-    }
-/* CLICK */
+    transition:0.25s;
+
+    position:relative;
+    overflow:hidden;
+}
+
+/* CLICK EFFECT */
 .btn:active{
     background:#ffd700;
     color:#000;
     transform:scale(0.97);
 }
 
-/* LOCKED BUTTON */
+/* LOCKED */
 .locked{
-    position:relative;
-    opacity:0.7;
+    opacity:0.75;
 }
 
 /* LOCK TAG */
@@ -156,14 +162,13 @@ body{
     align-items:center;
     padding:0 12px;
 
-    /* FIX */
-    background:rgba(0,0,0,0.85);
-    backdrop-filter: blur(6px);
-    -webkit-backdrop-filter: blur(6px);
-
+    background:#000;
     border-top:1px solid rgba(255,215,0,0.2);
-                               }
 
+    z-index:5;
+}
+
+/* NAV BUTTONS */
 .nav-btn{
     flex:1;
     text-align:center;
@@ -187,12 +192,15 @@ body{
     left:50%;
     transform:translate(-50%,-50%);
     width:280px;
+
     background:#000;
     border:2px solid #ffd700;
     border-radius:12px;
+
     padding:15px;
     text-align:center;
     color:#fff;
+
     display:none;
     z-index:9999;
 }
@@ -224,18 +232,16 @@ body{
 
 <div class="frame">
 
-<div class="title">HIRAGANA SPECIAL 🇯🇵</div>
+<div class="title">HIRAGANA SPECIAL</div>
 <div class="line"></div>
 
 <div class="content">
 
-    <!-- OPEN BUTTONS -->
     <div class="btn" onclick="location.href='hiragana-dakuten.html'">Dakuten</div>
     <div class="btn" onclick="location.href='hiragana-handakuten.html'">Handakuten</div>
     <div class="btn" onclick="location.href='hiragana-yoon.html'">Yōon</div>
     <div class="btn" onclick="location.href='hiragana-sokuon.html'">Sokuon</div>
 
-    <!-- LOCKED -->
     <div class="btn locked" onclick="openPopup()">
         Special Practice
         <div class="lock-tag">LOCK</div>
@@ -273,15 +279,21 @@ function closePopup(){
     document.getElementById("popup").style.display="none";
 }
 
+/* LIVE COUNTDOWN FIX */
 function updateCountdown(){
     let now = new Date().getTime();
     let diff = targetDate - now;
 
-    let days = Math.floor(diff/(1000*60*60*24));
+    let days = Math.floor(diff / (1000 * 60 * 60 * 24));
+
+    if(days < 0) days = 0;
 
     document.getElementById("countdown").innerText =
-    days + " Days left";
+        days + " Days left";
 }
+
+/* auto update every 1 sec */
+setInterval(updateCountdown, 1000);
 
 </script>
 
