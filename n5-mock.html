@@ -40,7 +40,7 @@ body{
     position:relative;
 }
 
-/* ANIMATED BORDER */
+/* BORDER ANIMATION */
 .frame::before{
     content:"";
     position:absolute;
@@ -113,12 +113,15 @@ body{
     border:2px solid #ffd700;
     background:#1a1a2a;
     color:#fff;
+    font-size:16px;
     font-weight:700;
     text-align:center;
     transition:0.2s;
+    display:block;
+    text-decoration:none;
 }
 
-/* TOUCH EFFECT */
+/* ACTIVE EFFECT */
 .btn:active{
     background:linear-gradient(145deg,#b8860b,#ffd700);
     color:#000;
@@ -171,16 +174,16 @@ body{
     <!-- CONTENT -->
     <div class="content">
 
-        <button class="btn" onclick="openPaper(1)">JLPT - N5 Paper - 1</button>
-        <button class="btn" onclick="openPaper(2)">JLPT - N5 Paper - 2</button>
-        <button class="btn" onclick="openPaper(3)">JLPT - N5 Paper - 3</button>
-        <button class="btn" onclick="openPaper(4)">JLPT - N5 Paper - 4</button>
-        <button class="btn" onclick="openPaper(5)">JLPT - N5 Paper - 5</button>
-        <button class="btn" onclick="openPaper(6)">JLPT - N5 Paper - 6</button>
-        <button class="btn" onclick="openPaper(7)">JLPT - N5 Paper - 7</button>
-        <button class="btn" onclick="openPaper(8)">JLPT - N5 Paper - 8</button>
-        <button class="btn" onclick="openPaper(9)">JLPT - N5 Paper - 9</button>
-        <button class="btn" onclick="openPaper(10)">JLPT - N5 Paper - 10</button>
+        <a class="btn" href="japanese-mock-1.html">Japanese Mock Paper - 1</a>
+        <a class="btn" href="japanese-mock-2.html">Japanese Mock Paper - 2</a>
+        <a class="btn" href="japanese-mock-3.html">Japanese Mock Paper - 3</a>
+        <a class="btn" href="japanese-mock-4.html">Japanese Mock Paper - 4</a>
+        <a class="btn" href="japanese-mock-5.html">Japanese Mock Paper - 5</a>
+        <a class="btn" href="japanese-mock-6.html">Japanese Mock Paper - 6</a>
+        <a class="btn" href="japanese-mock-7.html">Japanese Mock Paper - 7</a>
+        <a class="btn" href="japanese-mock-8.html">Japanese Mock Paper - 8</a>
+        <a class="btn" href="japanese-mock-9.html">Japanese Mock Paper - 9</a>
+        <a class="btn" href="japanese-mock-10.html">Japanese Mock Paper - 10</a>
 
     </div>
 
@@ -192,14 +195,6 @@ body{
     </div>
 
 </div>
-
-<script>
-
-function openPaper(id){
-    window.location.href = "paper" + id + ".html";
-}
-
-</script>
 
 </body>
 </html>
