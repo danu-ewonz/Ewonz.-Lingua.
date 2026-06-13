@@ -151,18 +151,27 @@ body{
 
 /* BUTTON */
 .btn{
-    padding:15px;
-
-    background:rgba(0,0,0,0.55);
+    padding:20px 14px;
     border:2px solid #b8860b;
-    border-radius:12px;
+    border-radius:10px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
 
     color:#fff;
-    font-size:15px;
+    font-size:16px;
     font-weight:700;
 
-    text-align:center;
-}
+    cursor:pointer;
+
+    /* IMPORTANT */
+    background:rgba(0,0,0,0.35);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+
+    transition:0.3s;
+    }
 
 /* CLICK */
 .btn:active{
