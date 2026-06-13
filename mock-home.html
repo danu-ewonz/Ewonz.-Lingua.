@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Japanese Mock Exam</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+body{
+    margin:0;
+    font-family:Poppins;
+    background:radial-gradient(circle,#0a0a12,#000);
+    display:flex;
+    justify-content:center;
+    color:white;
+}
+
+/* FRAME */
+.frame{
+    width:360px;
+    height:640px;
+    margin-top:20px;
+    background:rgba(10,10,18,0.95);
+    border-radius:20px;
+    overflow:hidden;
+    position:relative;
+}
+
+/* ANIMATED FRAME BORDER */
+.frame::before{
+    content:"";
+    position:absolute;
+    top:0;left:0;right:0;bottom:0;
+    border-radius:20px;
+    padding:2px;
+    background:linear-gradient(90deg,#ffd700,#b8860b,#fff3a0,#ffd700);
+    background-size:300% 300%;
+    animation:borderMove 4s linear infinite;
+    -webkit-mask:
+        linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+    -webkit-mask-composite:xor;
+    mask-composite:exclude;
+    pointer-events:none;
+}
+
+@keyframes borderMove{
+    0%{background-position:0% 50%;}
+    100%{background-position:100% 50%;}
+}
+
+/* TITLE */
+.header{
+    text-align:center;
+    padding-top:20px;
+    font-size:18px;
+    font-weight:bold;
+    color:white;
+}
+
+/* SUB TITLE (ABOVE LINE) */
+.sub{
+    text-align:center;
+    font-size:11px;
+    color:#b8860b;
+    margin-top:5px;
+}
+
+/* TITLE LINE */
+.line{
+    width:100%;
+    height:2px;
+    margin-top:8px;
+    background:linear-gradient(90deg,transparent,#ffd700,transparent);
+    animation:shine 2s infinite;
+}
+
+@keyframes shine{
+    0%{opacity:0.3;}
+    50%{opacity:1;}
+    100%{opacity:0.3;}
+}
+
+/* CONTENT */
+.content{
+    padding:10px;
+    height:480px;
+    overflow-y:auto;
+}
+
+/* BUTTON (GOLD OUTLINE) */
+.btn{
+    width:100%;
+    padding:14px;
+    margin-bottom:10px;
+    border-radius:10px;
+    border:2px solid #ffd700; /* GOLD BORDER */
+    background:#1a1a2a;
+    color:white;
+    font-weight:600;
+    text-align:center;
+    transition:0.2s;
+}
+
+/* TOUCH EFFECT */
+.btn:active{
+    background:linear-gradient(145deg,#b8860b,#ffd700);
+    color:#000;
+    transform:scale(1.02);
+}
+
+/* NAV */
+.nav{
+    position:absolute;
+    bottom:0;
+    width:100%;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:12px 15px;
+    background:rgba(0,0,0,0.6);
+    border-top:1px solid rgba(255,215,0,0.2);
+}
+
+.nav button{
+    background:none;
+    border:none;
+    color:red;
+    font-weight:bold;
+    font-size:13px;
+    cursor:pointer;
+}
+
+.center{
+    color:#ffd700;
+    font-weight:bold;
+    font-size:13px;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="frame">
+
+    <!-- TITLE -->
+    <div class="header">Japanese Mock Exam</div>
+
+    <!-- SUB TITLE (ABOVE LINE) -->
+    <div class="sub">Make By Danu Ewonz</div>
+
+    <!-- TITLE LINE -->
+    <div class="line"></div>
+
+    <!-- CONTENT -->
+    <div class="content">
+
+        <button class="btn" onclick="openPaper(1)">JLPT - N5 Paper - 1</button>
+        <button class="btn" onclick="openPaper(2)">JLPT - N5 Paper - 2</button>
+        <button class="btn" onclick="openPaper(3)">JLPT - N5 Paper - 3</button>
+        <button class="btn" onclick="openPaper(4)">JLPT - N5 Paper - 4</button>
+        <button class="btn" onclick="openPaper(5)">JLPT - N5 Paper - 5</button>
+        <button class="btn" onclick="openPaper(6)">JLPT - N5 Paper - 6</button>
+        <button class="btn" onclick="openPaper(7)">JLPT - N5 Paper - 7</button>
+        <button class="btn" onclick="openPaper(8)">JLPT - N5 Paper - 8</button>
+        <button class="btn" onclick="openPaper(9)">JLPT - N5 Paper - 9</button>
+        <button class="btn" onclick="openPaper(10)">JLPT - N5 Paper - 10</button>
+
+    </div>
+
+    <!-- NAV -->
+    <div class="nav">
+        <button onclick="goBack()">BACK</button>
+        <div class="center">← EWONZ LINGUA →</div>
+        <button onclick="goHome()">HOME</button>
+    </div>
+
+</div>
+
+<script>
+
+function openPaper(id){
+    window.location.href = "paper" + id + ".html";
+}
+
+function goBack(){
+    window.history.back();
+}
+
+function goHome(){
+    window.location.href = "index.html";
+}
+
+</script>
+
+</body>
+  </html>
