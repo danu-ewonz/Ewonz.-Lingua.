@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>JLPT - N5 Sample Paper</title>
+<title>JLPT - N5 Sample Paper - 1</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
 
@@ -54,32 +54,20 @@ overflow-y:auto;
 padding:10px;
 }
 
-/* QUESTION */
 .q{
 background:#111;
 padding:10px;
 margin-bottom:10px;
 border-radius:10px;
 color:white;
-font-size:19px; /* QUESTION SIZE */
+font-size:19px;
 font-weight:700;
 line-height:1.5;
 }
 
-/* QUESTION NUMBER */
-.qnum{
-color:gold;
-font-weight:900;
-margin-right:6px;
-}
+.qnum{color:gold;font-weight:900;margin-right:6px;}
+.bracket{color:red;font-weight:900;}
 
-/* BRACKETS */
-.bracket{
-color:red;
-font-weight:900;
-}
-
-/* ANSWERS */
 button{
 width:100%;
 margin-top:5px;
@@ -88,7 +76,7 @@ background:#1c1c1c;
 border:1px solid #333;
 color:white;
 border-radius:6px;
-font-size:17px; /* ANSWER SIZE */
+font-size:17px;
 font-weight:700;
 text-align:center;
 }
@@ -123,10 +111,50 @@ border:none;
 color:red;
 font-weight:700;
 }
+
+#timer{
+color:gold;
+font-size:12px;
+font-weight:700;
+}
+
+/* RESULT SCREEN */
+#resultScreen{
+position:fixed;
+top:0;left:0;
+width:100%;height:100%;
+background:#000;
+display:none;
+justify-content:center;
+align-items:center;
+z-index:999;
+}
+
+.resultBox{
+width:300px;
+padding:20px;
+border:2px solid gold;
+background:#111;
+border-radius:15px;
+text-align:center;
+color:white;
+}
+
+.resultBox h1{color:gold;}
 </style>
 </head>
 
 <body>
+
+<!-- RESULT -->
+<div id="resultScreen">
+<div class="resultBox">
+<h1>RESULT</h1>
+<p id="rScore"></p>
+<p id="rCorrect"></p>
+<p id="rWrong"></p>
+</div>
+</div>
 
 <div class="frame">
 
@@ -142,6 +170,7 @@ font-weight:700;
 <div class="item" id="correct">✔ 0</div>
 <div class="item" id="wrong">❌ 0</div>
 <div class="item" id="score">⭐ 0/50</div>
+<div class="item" id="timer">⏱ 60:00</div>
 </div>
 
 </div>
@@ -210,37 +239,38 @@ const baseQ = [
 ["50 ほんを ( )","読みます","見ます","行きます","買います",0]
 ];
 
-/* shuffle */
-function shuffle(a){
-for(let i=a.length-1;i>0;i--){
+/* ================= SAFE RANDOM SYSTEM ================= */
+const q = baseQ.map(item => {
+
+let question = item[0];
+let options = item.slice(1,5);
+
+let correctAnswer = options[item[5]];
+
+// shuffle
+let shuffled = [...options];
+for(let i=shuffled.length-1;i>0;i--){
 let j=Math.floor(Math.random()*(i+1));
-[a[i],a[j]]=[a[j],a[i]];
-}
-return a;
+[shuffled[i],shuffled[j]]=[shuffled[j],shuffled[i]];
 }
 
-/* random answers */
-const q = baseQ.map(item=>{
-let question=item[0];
-let options=item.slice(1,5);
-let correctAnswer=options[item[5]];
+let correctIndex = shuffled.indexOf(correctAnswer);
 
-let shuffled=shuffle([...options]);
-let newIndex=shuffled.indexOf(correctAnswer);
+return [question, ...shuffled, correctIndex];
 
-return [question,...shuffled,newIndex];
 });
 
 let correct=0;
 let wrong=0;
 let done={};
 
+/* render */
 function render(){
 let html="";
 q.forEach((x,i)=>{
 
-let qNum = x[0].match(/\d+/)[0];
-let qText = x[0].replace(/^\d+\s*/,"");
+let qNum=x[0].match(/\d+/)[0];
+let qText=x[0].replace(/^\d+\s*/,"");
 
 html+=`
 <div class="q">
@@ -258,6 +288,14 @@ html+=`</div>`;
 document.getElementById("exam").innerHTML=html;
 }
 
+/* UI */
+function updateUI(){
+document.getElementById("correct").innerText="✔ "+correct;
+document.getElementById("wrong").innerText="❌ "+wrong;
+document.getElementById("score").innerText="⭐ "+correct+"/50";
+}
+
+/* answer */
 function ans(i,j,el){
 if(done[i]) return;
 done[i]=true;
@@ -274,9 +312,45 @@ b.disabled=true;
 if(j===correct) correct++;
 else wrong++;
 
-document.getElementById("correct").innerText="✔ "+correct;
-document.getElementById("wrong").innerText="❌ "+wrong;
-document.getElementById("score").innerText="⭐ "+correct+"/50";
+updateUI();
+checkFinish();
+}
+
+/* TIMER */
+let time=60*60;
+let timerEl=document.getElementById("timer");
+
+let timer=setInterval(()=>{
+let m=Math.floor(time/60);
+let s=time%60;
+
+timerEl.innerText=`⏱ ${m}:${s<10?"0"+s:s}`;
+
+time--;
+
+if(time<0){
+finish();
+}
+},1000);
+
+/* FINISH CHECK */
+function checkFinish(){
+if(Object.keys(done).length===q.length){
+finish();
+}
+}
+
+/* RESULT */
+function finish(){
+clearInterval(timer);
+
+document.querySelectorAll("button").forEach(b=>b.disabled=true);
+
+document.getElementById("rScore").innerText="Score: "+correct+"/50";
+document.getElementById("rCorrect").innerText="Correct: "+correct;
+document.getElementById("rWrong").innerText="Wrong: "+wrong;
+
+document.getElementById("resultScreen").style.display="flex";
 }
 
 render();
