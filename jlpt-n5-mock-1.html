@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>JLPT - N5 Sample Paper 1</title>
+<title>JLPT N5 Exam</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
 
@@ -99,7 +99,6 @@ justify-content:center;
 align-items:center;
 font-size:12px;
 font-weight:700;
-color:white;
 border-right:1px solid #222;
 }
 
@@ -116,20 +115,74 @@ color:inherit;
 font-weight:700;
 font-size:12px;
 }
+
+/* RESULT SCREEN */
+#resultScreen{
+position:fixed;
+top:0;left:0;
+width:100%;
+height:100%;
+background:#000;
+display:none;
+justify-content:center;
+align-items:center;
+z-index:999;
+}
+
+.resultBox{
+width:300px;
+padding:20px;
+border:2px solid gold;
+background:#111;
+border-radius:15px;
+text-align:center;
+color:white;
+}
+
+.resultBox h1{
+color:gold;
+margin-bottom:10px;
+}
+
+.resultBox p{
+margin:5px 0;
+font-weight:700;
+}
+
+.resultBox button{
+margin-top:10px;
+padding:10px;
+width:100%;
+background:gold;
+border:none;
+font-weight:700;
+}
 </style>
 </head>
 
 <body>
 
+<!-- RESULT SCREEN -->
+<div id="resultScreen">
+<div class="resultBox">
+<h1>🎉 Congratulations</h1>
+<p id="rScore"></p>
+<p id="rAnswered"></p>
+<p id="rUnanswered"></p>
+<button onclick="location.reload()">RESTART</button>
+</div>
+</div>
+
 <div class="frame">
 
 <div class="header">
-<div class="title">JLPT N5 MOCK PAPERS</div>
+<div class="title">JLPT N5 MOCK EXAM</div>
 <div class="subtitle">PAPER MADE BY DANU EWONZ</div>
 </div>
 
 <div class="scroll" id="exam"></div>
 
+<!-- EWONZ NAV -->
 <div class="bottom">
 
 <div class="nav back">
@@ -212,7 +265,6 @@ const baseQ = [
 
 /* RANDOM SYSTEM */
 const q = baseQ.map(item => {
-
 let question = item[0];
 let options = item.slice(1,5);
 let correctAnswer = options[item[5]];
@@ -226,68 +278,68 @@ let j=Math.floor(Math.random()*(i+1));
 return [question, ...shuffled, shuffled.indexOf(correctAnswer)];
 });
 
-let done={};
-let timerEl=document.getElementById("timer");
-let time=60*60;
+let done = {};
+let timerEl = document.getElementById("timer");
+let time = 60 * 60;
 
 /* RENDER */
 function render(){
-let html="";
+let html = "";
 q.forEach((x,i)=>{
 
-let qNum=x[0].match(/\d+/)[0];
-let qText=x[0].replace(/^\d+\s*/,"");
+let qNum = x[0].match(/\d+/)[0];
+let qText = x[0].replace(/^\d+\s*/,"");
 
-html+=`
+html += `
 <div class="q">
 <span class="qnum">${qNum}.</span>
 ${qText.replace(/\((.*?)\)/g,'<span class="bracket">($1)</span>')}
 `;
 
 for(let j=1;j<=4;j++){
-html+=`<button onclick="ans(${i},${j-1},this)">${x[j]}</button>`;
+html += `<button onclick="ans(${i},${j-1},this)">${x[j]}</button>`;
 }
 
-html+=`</div>`;
+html += `</div>`;
 });
 
-document.getElementById("exam").innerHTML=html;
+document.getElementById("exam").innerHTML = html;
 }
 
 /* ANSWER */
 function ans(i,j,el){
 if(done[i]) return;
-done[i]=true;
+done[i] = true;
 
-let correctIndex=q[i][5];
-let btns=el.parentElement.querySelectorAll("button");
+let correctIndex = q[i][5];
+let btns = el.parentElement.querySelectorAll("button");
 
 btns.forEach((b,idx)=>{
-if(idx===correctIndex) b.classList.add("correct");
-if(idx===j && j!==correctIndex) b.classList.add("wrong");
-b.disabled=true;
+if(idx === correctIndex) b.classList.add("correct");
+if(idx === j && j !== correctIndex) b.classList.add("wrong");
+b.disabled = true;
 });
 
 checkFinish();
 }
 
 /* TIMER */
-let timer=setInterval(()=>{
-let m=Math.floor(time/60);
-let s=time%60;
+let timer = setInterval(()=>{
+let m = Math.floor(time/60);
+let s = time % 60;
 
-timerEl.innerText=`⏱ ${m}:${s<10?"0"+s:s}`;
+timerEl.innerText = `⏱ ${m}:${s<10?"0"+s:s}`;
 
 time--;
 
-if(time<0){
+if(time < 0){
 finish();
 }
 },1000);
 
-/* FINISH CHECK */
+/* CHECK FINISH */
 function checkFinish(){
-if(Object.keys(done).length===q.length){
+if(Object.keys(done).length === q.length){
 finish();
 }
 }
@@ -295,8 +347,14 @@ finish();
 /* FINISH */
 function finish(){
 clearInterval(timer);
-document.querySelectorAll("button").forEach(b=>b.disabled=true);
-alert("⏰ Exam Finished!");
+document.querySelectorAll("button").forEach(b=>b.disabled = true);
+
+alert("🎉 Congratulations.. Exam Finished!");
+
+document.getElementById("resultScreen").style.display = "flex";
+document.getElementById("rScore").innerText = "Score: " + Object.keys(done).length + "/50";
+document.getElementById("rAnswered").innerText = "Answered: " + Object.keys(done).length;
+document.getElementById("rUnanswered").innerText = "Unanswered: " + (q.length - Object.keys(done).length);
 }
 
 render();
