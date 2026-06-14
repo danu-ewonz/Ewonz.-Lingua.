@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>JLPT - N5 Sample Paper - 1</title>
+<title>JLPT - N5 Sample Paper 1</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
 
@@ -84,77 +84,42 @@ text-align:center;
 .correct{background:#1f6f3a;}
 .wrong{background:#7a1f1f;}
 
+/* EWONZ NAV */
 .bottom{
 display:flex;
 border-top:1px solid gold;
 height:55px;
+background:#050505;
 }
 
-.item{
+.nav{
 flex:1;
 display:flex;
 justify-content:center;
 align-items:center;
-border-right:1px solid #333;
-color:white;
 font-size:12px;
 font-weight:700;
+color:white;
+border-right:1px solid #222;
 }
 
-.item:last-child{border:none;}
+.nav:last-child{border:none;}
 
-.back-btn{
-width:100%;
-height:100%;
+.back{color:red;}
+.home{color:gold;}
+.timer{color:#00ffd5;font-weight:900;}
+
+.btn{
 background:none;
 border:none;
-color:red;
+color:inherit;
 font-weight:700;
-}
-
-#timer{
-color:gold;
 font-size:12px;
-font-weight:700;
 }
-
-/* RESULT SCREEN */
-#resultScreen{
-position:fixed;
-top:0;left:0;
-width:100%;height:100%;
-background:#000;
-display:none;
-justify-content:center;
-align-items:center;
-z-index:999;
-}
-
-.resultBox{
-width:300px;
-padding:20px;
-border:2px solid gold;
-background:#111;
-border-radius:15px;
-text-align:center;
-color:white;
-}
-
-.resultBox h1{color:gold;}
 </style>
 </head>
 
 <body>
-
-<!-- RESULT -->
-<div id="resultScreen">
-<div class="resultBox">
-<h1>RESULT</h1>
-<p id="rScore"></p>
-<p id="rCorrect"></p>
-<p id="rWrong"></p>
-</div>
-</div>
 
 <div class="frame">
 
@@ -166,11 +131,17 @@ color:white;
 <div class="scroll" id="exam"></div>
 
 <div class="bottom">
-<div class="item"><button class="back-btn" onclick="history.back()">← BACK</button></div>
-<div class="item" id="correct">✔ 0</div>
-<div class="item" id="wrong">❌ 0</div>
-<div class="item" id="score">⭐ 0/50</div>
-<div class="item" id="timer">⏱ 60:00</div>
+
+<div class="nav back">
+<button class="btn" onclick="history.back()">← BACK</button>
+</div>
+
+<div class="nav timer" id="timer">⏱ 60:00</div>
+
+<div class="nav home">
+<button class="btn" onclick="location.reload()">HOME →</button>
+</div>
+
 </div>
 
 </div>
@@ -239,32 +210,27 @@ const baseQ = [
 ["50 ほんを ( )","読みます","見ます","行きます","買います",0]
 ];
 
-/* ================= SAFE RANDOM SYSTEM ================= */
+/* RANDOM SYSTEM */
 const q = baseQ.map(item => {
 
 let question = item[0];
 let options = item.slice(1,5);
-
 let correctAnswer = options[item[5]];
 
-// shuffle
 let shuffled = [...options];
 for(let i=shuffled.length-1;i>0;i--){
 let j=Math.floor(Math.random()*(i+1));
 [shuffled[i],shuffled[j]]=[shuffled[j],shuffled[i]];
 }
 
-let correctIndex = shuffled.indexOf(correctAnswer);
-
-return [question, ...shuffled, correctIndex];
-
+return [question, ...shuffled, shuffled.indexOf(correctAnswer)];
 });
 
-let correct=0;
-let wrong=0;
 let done={};
+let timerEl=document.getElementById("timer");
+let time=60*60;
 
-/* render */
+/* RENDER */
 function render(){
 let html="";
 q.forEach((x,i)=>{
@@ -288,14 +254,7 @@ html+=`</div>`;
 document.getElementById("exam").innerHTML=html;
 }
 
-/* UI */
-function updateUI(){
-document.getElementById("correct").innerText="✔ "+correct;
-document.getElementById("wrong").innerText="❌ "+wrong;
-document.getElementById("score").innerText="⭐ "+correct+"/50";
-}
-
-/* answer */
+/* ANSWER */
 function ans(i,j,el){
 if(done[i]) return;
 done[i]=true;
@@ -309,17 +268,10 @@ if(idx===j && j!==correctIndex) b.classList.add("wrong");
 b.disabled=true;
 });
 
-if(j===correct) correct++;
-else wrong++;
-
-updateUI();
 checkFinish();
 }
 
 /* TIMER */
-let time=60*60;
-let timerEl=document.getElementById("timer");
-
 let timer=setInterval(()=>{
 let m=Math.floor(time/60);
 let s=time%60;
@@ -340,17 +292,11 @@ finish();
 }
 }
 
-/* RESULT */
+/* FINISH */
 function finish(){
 clearInterval(timer);
-
 document.querySelectorAll("button").forEach(b=>b.disabled=true);
-
-document.getElementById("rScore").innerText="Score: "+correct+"/50";
-document.getElementById("rCorrect").innerText="Correct: "+correct;
-document.getElementById("rWrong").innerText="Wrong: "+wrong;
-
-document.getElementById("resultScreen").style.display="flex";
+alert("⏰ Exam Finished!");
 }
 
 render();
