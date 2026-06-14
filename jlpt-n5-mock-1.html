@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>JLPT N5 FULL FIX 60</title>
+<title>JLPT - N5 Sample Paper</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
 
@@ -21,7 +21,7 @@ font-family:Montserrat;
 .frame{
 width:360px;
 height:640px;
-border:2px solid #d4af37;
+border:2px solid gold;
 border-radius:20px;
 background:#0a0a0a;
 display:flex;
@@ -31,62 +31,75 @@ overflow:hidden;
 
 .header{
 text-align:center;
-padding:12px;
+padding:10px;
 border-bottom:1px solid gold;
 }
 
 .title{
 color:gold;
-font-size:20px;
+font-size:18px;
 font-weight:700;
 }
 
 .subtitle{
-color:#aaa;
-font-size:12px;
+color:white;
+font-size:10px;
+font-weight:700;
+margin-top:3px;
 }
 
 .scroll{
 flex:1;
 overflow-y:auto;
-padding:12px;
+padding:10px;
 }
 
+/* QUESTION */
 .q{
 background:#111;
-padding:14px;
-margin-bottom:12px;
-border-radius:12px;
-color:white;
-}
-
-.q b{
-font-size:15px;
-display:block;
+padding:10px;
 margin-bottom:10px;
+border-radius:10px;
+color:white;
+font-size:19px; /* QUESTION SIZE */
+font-weight:700;
+line-height:1.5;
 }
 
+/* QUESTION NUMBER */
+.qnum{
+color:gold;
+font-weight:900;
+margin-right:6px;
+}
+
+/* BRACKETS */
+.bracket{
+color:red;
+font-weight:900;
+}
+
+/* ANSWERS */
 button{
 width:100%;
-margin-top:6px;
-padding:12px;
+margin-top:5px;
+padding:10px;
 background:#1c1c1c;
 border:1px solid #333;
 color:white;
-border-radius:8px;
-font-size:14px;
+border-radius:6px;
+font-size:17px; /* ANSWER SIZE */
+font-weight:700;
+text-align:center;
 }
 
 .correct{background:#1f6f3a;}
 .wrong{background:#7a1f1f;}
 
-/* ===== BOTTOM FIX ===== */
 .bottom{
 display:flex;
 border-top:1px solid gold;
 height:55px;
-font-size:12px;
-color:white;
 }
 
 .item{
@@ -95,6 +108,9 @@ display:flex;
 justify-content:center;
 align-items:center;
 border-right:1px solid #333;
+color:white;
+font-size:12px;
+font-weight:700;
 }
 
 .item:last-child{border:none;}
@@ -106,7 +122,6 @@ background:none;
 border:none;
 color:red;
 font-weight:700;
-font-size:12px;
 }
 </style>
 </head>
@@ -116,116 +131,130 @@ font-size:12px;
 <div class="frame">
 
 <div class="header">
-<div class="title">JLPT N5 MOCK 60 FIXED</div>
-<div class="subtitle">DANU EWONZ</div>
+<div class="title">JLPT N5 MOCK PAPERS</div>
+<div class="subtitle">PAPER MADE BY DANU EWONZ</div>
 </div>
 
 <div class="scroll" id="exam"></div>
 
 <div class="bottom">
-
-<div class="item">
-<button class="back-btn" onclick="history.back()">← BACK</button>
-</div>
-
+<div class="item"><button class="back-btn" onclick="history.back()">← BACK</button></div>
 <div class="item" id="correct">✔ 0</div>
 <div class="item" id="wrong">❌ 0</div>
-<div class="item" id="score">⭐ 0/59</div>
-
+<div class="item" id="score">⭐ 0/50</div>
 </div>
 
 </div>
 
 <script>
 
-/* ================= GUARANTEED 60 QUESTIONS ================= */
+/* ================= 50 QUESTIONS ================= */
+const baseQ = [
+["1 学生","がくせい","がっせい","がくしょう","がっしょう",0],
+["2 食べる","たべる","ためる","たべりる","だべる",0],
+["3 電車","でんしゃ","てんしゃ","でんさ","でんしゃ",0],
+["4 本","ほん","ぽん","もん","ぼん",0],
+["5 見ます","みます","けんます","けます","けんします",0],
+["6 学校","がっこう","がくこう","がっこ","がくこ",0],
+["7 日本","にほん","にっぽん","にほ","にっぽ",0],
+["8 友だち","ともだち","ゆうだち","ともたち","ゆうたち",0],
+["9 行きます","いきます","ゆきます","ぎきます","いきいます",0],
+["10 食べます","たべます","のみます","かいます","いきます",0],
 
-const q = [
-["学生","がくせい","がっせい","がくしょう","がっしょう",0],
-["食べる","たべる","ためる","たべりる","だべる",0],
-["電車","でんしゃ","てんしゃ","でんさ","でんしゃ",0],
-["本","ほん","ぽん","もん","ぼん",0],
-["見ます","みます","けんます","けます","けんします",0],
-["学校","がっこう","がくこう","がっこ","がくこ",0],
-["日本","にほん","にっぽん","にほ","にっぽ",0],
-["友だち","ともだち","ゆうだち","ともたち","ゆうたち",0],
-["買います","かいます","かいいます","かいます","ばいます",0],
-["行きます","いきます","ゆきます","ぎきます","いきいます",0],
+["11 えいがを ( )","見ます","聞ます","書き","話ます",0],
+["12 みずを ( )","飲みます","見るます","行ます","買ます",0],
+["13 いすに ( )","座ります","立ちます","寝ます","起きます",0],
+["14 ほんを ( )","読みます","聞きます","見ます","買います",0],
+["15 ごはんを ( )","食べます","飲みます","行きます","買います",0],
 
-["学校へいきます","学校","学枚","学交","学校",0],
-["あついです","暑い","厚い","熱い","温い",0],
-["本を読みます","読みます","話ます","書き","聞ます",0],
-["水をのみます","飲みます","見るます","行ます","買ます",0],
-["友だちとえいが","友だち","友達","友","友だち",0],
-["いすにすわります","座ります","立ちます","寝ます","起きます",0],
-["くるまでいきます","車","軽","輪","車",0],
-["ねこがかわいい","可愛い","可愛","可い","可愛い",0],
+["16 がっこうへ ( )","行きます","来ます","帰ります","見ます",0],
+["17 ともだちは ( )","元気","暑い","寒い","小さい",0],
+["18 てんきが ( )","いい","悪い","暑い","寒い",0],
+["19 きのう ( )","見ました","行きました","食べました","買いました",0],
+["20 あさごはんを ( )","食べます","飲みます","行きます","買います",0],
 
-["かばん","かばん","くつ","ほん","くるま",0],
-["えいがをみました","見","聞","読","買",0],
-["あさごはんをたべます","食べ","飲み","買い","行き",0],
-["ともだちはげんき","げんき","しずか","あつい","ちいさい",0],
-["らいしゅうげつようび","げつようび","まいあさ","きのう","きょう",0],
-["へやがきれい","きれい","さむい","ながい","おおい",0],
-["てんきがいい","いい","うまい","すき","きれい",0],
+["21 7時に ( )","起きます","寝ます","行きます","来ます",0],
+["22 6時に ( )","帰ります","行きます","見ます","買います",0],
+["23 えきは ( )","どこ","ここ","そこ","あそこ",0],
+["24 こうえんで ( )","見ました","行きました","食べました","買いました",0],
+["25 1000えんです","500","1000","1500","2000",1],
 
-["わたしはさくらはせんせい","は","が","の","を",0],
-["ほんをよんだ","よんだ","よみ","よみます","よむ",0],
-["このほんはいくら","は","が","を","に",0],
-["なんじにおきますか","に","で","を","が",0],
-["えきにぎんこう","に","で","を","へ",0],
-["さむいけどきょうと","けど","から","ね","よ",0],
-["ひるごはんをたべます","を","に","で","が",0],
-["とうきょうへいきます","へ","に","で","を",0],
-["ねこがいます","います","あります","います","あります",0],
-["さくらはせんせいにいます","に","で","を","が",0],
+["26 くつは ( )","3000","2000","4000","5000",0],
+["27 きょうは ( )","いい","悪い","寒い","暑い",0],
+["28 あした ( )","行きます","見ます","食べます","買います",0],
+["29 ともだちは ( )","元気","暑い","寒い","小さい",0],
+["30 ほんを ( )","読みます","見ます","行きます","買います",0],
 
-["えいが","2","3","4","5",1],
-["まいにち","2","3","4","5",1],
-["くるま","2","3","4","5",1],
-["で","3","4","5","6",0],
-["にほん","2","3","4","5",0],
+["31 ねこが ( )","います","あります","します","です",0],
+["32 いぬが ( )","います","あります","します","です",0],
+["33 さくらを ( )","見ました","行きました","食べました","買いました",0],
+["34 えきは ( )","どこ","ここ","そこ","あそこ",0],
+["35 6時に ( )","帰ります","行きます","見ます","買います",0],
 
-["たべます","a","b","c","d",1],
-["やすみ","a","b","c","d",2],
-["さかな","a","b","c","d",1],
-["おおさか","a","b","c","d",1],
-["すし","a","b","c","d",1],
+["36 がっこうへ ( )","行きます","来ます","帰ります","見ます",0],
+["37 ともだちは ( )","元気","あつい","さむい","おおきい",0],
+["38 てんきは ( )","いい","悪い","寒い","暑い",0],
+["39 さかなは ( )","100","200","300","400",0],
+["40 えいがを ( )","見ました","行きました","買いました","食べました",0],
 
-["ぎんこう","a","b","c","d",0],
-["がっこう","a","b","c","d",0],
+["41 がっこう ( )","は","が","を","に",0],
+["42 ほん ( ) よみます","を","に","で","は",0],
+["43 みず ( ) のみます","を","に","で","が",0],
+["44 えき ( ) いきます","に","へ","で","を",0],
+["45 ともだちと ( ) ます","あそび","のみ","かい","いき",0],
 
-["てんきはどうですか","わるい","よい","さむい","あつい",1],
-
-["こうえん","うち","こうえん","がっこう","みせ",1],
-
-["みずをのみます","飲む","見る","行く","買う",0],
-["でんしゃでいきます","電車","車","バス","歩く",0],
-["ほんをかいます","本","車","人","家",0],
-["がっこうへいきます","学校","家","店","川",0],
-["ともだちです","友達","先生","犬","猫",0],
-["にほんご","日本語","英語","中国語","韓国語",0],
-["やすみです","休み","学校","仕事","試験",0],
-["あしたいきます","明日","昨日","今日","今",0],
-["きょうはあつい","今日","明日","昨日","去年",0],
-["わたしのなまえ","名前","国","町","山",0]
+["46 あさ ( ) おきます","に","で","が","を",0],
+["47 よる ( ) ねます","に","で","が","を",0],
+["48 にほん ( ) いきます","へ","に","で","を",0],
+["49 がっこう ( ) あります","が","は","に","で",0],
+["50 ほんを ( )","読みます","見ます","行きます","買います",0]
 ];
+
+/* shuffle */
+function shuffle(a){
+for(let i=a.length-1;i>0;i--){
+let j=Math.floor(Math.random()*(i+1));
+[a[i],a[j]]=[a[j],a[i]];
+}
+return a;
+}
+
+/* random answers */
+const q = baseQ.map(item=>{
+let question=item[0];
+let options=item.slice(1,5);
+let correctAnswer=options[item[5]];
+
+let shuffled=shuffle([...options]);
+let newIndex=shuffled.indexOf(correctAnswer);
+
+return [question,...shuffled,newIndex];
+});
 
 let correct=0;
 let wrong=0;
 let done={};
 
-function load(){
+function render(){
 let html="";
-for(let i=0;i<q.length;i++){
-html+=`<div class="q"><b>${i+1}. ${q[i][0]}</b>`;
+q.forEach((x,i)=>{
+
+let qNum = x[0].match(/\d+/)[0];
+let qText = x[0].replace(/^\d+\s*/,"");
+
+html+=`
+<div class="q">
+<span class="qnum">${qNum}.</span>
+${qText.replace(/\((.*?)\)/g,'<span class="bracket">($1)</span>')}
+`;
+
 for(let j=1;j<=4;j++){
-html+=`<button onclick="ans(${i},${j-1},this)">
-${q[i][j]}
-</button>`;
+html+=`<button onclick="ans(${i},${j-1},this)">${x[j]}</button>`;
 }
+
 html+=`</div>`;
-}
+});
+
 document.getElementById("exam").innerHTML=html;
 }
 
@@ -234,7 +263,6 @@ if(done[i]) return;
 done[i]=true;
 
 let correctIndex=q[i][5];
-
 let btns=el.parentElement.querySelectorAll("button");
 
 btns.forEach((b,idx)=>{
@@ -243,16 +271,15 @@ if(idx===j && j!==correctIndex) b.classList.add("wrong");
 b.disabled=true;
 });
 
-if(j===correctIndex) correct++;
+if(j===correct) correct++;
 else wrong++;
 
 document.getElementById("correct").innerText="✔ "+correct;
 document.getElementById("wrong").innerText="❌ "+wrong;
-document.getElementById("score").innerText="⭐ "+correct+"/60";
+document.getElementById("score").innerText="⭐ "+correct+"/50";
 }
 
-load();
-
+render();
 </script>
 
 </body>
