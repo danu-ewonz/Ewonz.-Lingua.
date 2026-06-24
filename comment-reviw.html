@@ -1,0 +1,104 @@
+<script>
+const sidebar = document.getElementById("sidebar");
+const overlay = document.getElementById("overlay");
+const submenu = document.getElementById("languageSubmenu");
+const langArrow = document.getElementById("langArrow");
+const lockedPopup = document.getElementById("lockedPopup");
+const popupTitle = document.getElementById("popupTitle");
+const popupText = document.getElementById("popupText");
+const commentSection = document.getElementById("commentSection");
+
+/* ================= SIDEBAR ================= */
+
+function toggleSidebar(){
+sidebar.classList.toggle("open");
+overlay.classList.toggle("show");
+}
+
+function closeSidebar(){
+sidebar.classList.remove("open");
+overlay.classList.remove("show");
+}
+
+/* overlay click */
+overlay.addEventListener("click", closeSidebar);
+
+/* ================= MENU ================= */
+
+function toggleLanguageMenu(){
+submenu.classList.toggle("open");
+langArrow.classList.toggle("rotate");
+}
+
+function goHome(){
+closeSidebar();
+}
+
+function scrollToAbout(){
+closeSidebar();
+}
+
+/* ================= POPUP ================= */
+
+function showLockedPopup(language){
+popupTitle.textContent = language + " - Coming Soon";
+popupText.textContent = language + " is locked right now.";
+lockedPopup.classList.add("show");
+overlay.classList.add("show");
+closeSidebar();
+}
+
+function closePopup(){
+lockedPopup.classList.remove("show");
+overlay.classList.remove("show");
+}
+
+/* popup click close */
+lockedPopup.addEventListener("click", closePopup);
+
+/* ================= COMMENTS ================= */
+
+function toggleCommentSection(){
+commentSection.classList.toggle("show");
+}
+
+function postComment(){
+const name = document.getElementById("commentName").value.trim();
+const message = document.getElementById("commentMessage").value.trim();
+
+if(!name || !message){
+alert("Fill name and comment");
+return;
+}
+
+const commentList = document.getElementById("commentList");
+
+const card = document.createElement("div");
+card.className = "comment-card";
+
+card.innerHTML = `
+<div class="comment-avatar">${name.charAt(0).toUpperCase()}</div>
+<div class="comment-body">
+<div class="comment-head">
+<div class="comment-name">${name}</div>
+<div class="comment-time">Just now</div>
+</div>
+<div class="comment-text">${message}</div>
+</div>
+`;
+
+commentList.prepend(card);
+
+document.getElementById("commentName").value = "";
+document.getElementById("commentMessage").value = "";
+}
+
+/* ================= ESC CLOSE ================= */
+
+document.addEventListener("keydown", (e)=>{
+if(e.key === "Escape"){
+closeSidebar();
+closePopup();
+}
+});
+</script>
