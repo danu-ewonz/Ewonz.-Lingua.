@@ -34,22 +34,22 @@
 
     html,body{
       width:100%;
-      min-height:100%;
+      height:100%;
       font-family:'Poppins',sans-serif;
       background: linear-gradient(135deg, var(--bg1) 0%, var(--bg2) 45%, var(--bg3) 100%);
       color:var(--text);
-      overflow-x:hidden;
+      overflow:hidden; /* මුළු පිටුවම Scroll වීම වැළැක්වීමට */
       user-select:none;
     }
 
     body{
       display:flex;
       justify-content:center;
-      align-items:flex-start;
-      padding:20px 12px 28px;
+      align-items:center;
+      padding:10px;
     }
 
-    /* පසුබිම් Canvas එක සඳහා මෝස්තර */
+    /* පසුබිම් Canvas එක (ලාවට පෙනෙන ලෙස සකසා ඇත) */
     #bg-canvas {
       position: fixed;
       top: 0;
@@ -65,16 +65,15 @@
       z-index: 2;
       width:100%;
       max-width:390px;
+      height: 92vh; /* ෆෝන් ප්‍රමාණය ස්ථාවරව තැබීමට */
       display:flex;
       flex-direction:column;
-      align-items:center;
-      gap:14px;
     }
 
     .phone-frame{
       position:relative;
       width:100%;
-      min-height:92vh;
+      height:100%;
       border-radius:30px;
       overflow:hidden;
       background: rgba(8, 8, 8, 0.85);
@@ -84,7 +83,9 @@
         0 0 0 1px rgba(255,215,0,0.20),
         0 0 22px rgba(255,215,0,0.15),
         inset 0 0 18px rgba(255,215,0,0.05);
-      padding:18px 14px 22px;
+      padding:18px 14px;
+      display: flex;
+      flex-direction: column;
     }
 
     .topbar{
@@ -95,6 +96,7 @@
       justify-content:space-between;
       gap:10px;
       margin-bottom:10px;
+      flex-shrink: 0;
     }
 
     .menu-btn{
@@ -135,7 +137,6 @@
       color:rgba(255,215,0,0.78);
       text-transform:uppercase;
       line-height:1.2;
-      text-shadow:none;
     }
 
     .topbar-title p{
@@ -149,24 +150,38 @@
       width:100%;
       height:2px;
       border-radius:999px;
-      margin:10px 0 18px;
+      margin:10px 0 14px;
       background:linear-gradient(90deg, rgba(255,215,0,0.15), var(--gold), #fff1a8, var(--gold), rgba(255,215,0,0.15));
       box-shadow:0 0 8px rgba(255,215,0,0.16);
+      flex-shrink: 0;
     }
 
+    /* බටන් ප්‍රමාණය වැඩි වන විට ඇතුළතින් Scroll වන කොටස */
     .content{
       position:relative;
       z-index:2;
       display:flex;
       flex-direction:column;
       align-items:center;
-      padding-bottom:8px;
+      overflow-y: auto; /* බටන් Grid එක විතරක් Scroll වෙන්න */
+      flex: 1;
+      padding-right: 4px;
+    }
+
+    /* Scrollbar එක ලස්සන කිරීමට */
+    .content::-webkit-scrollbar {
+      width: 4px;
+    }
+    .content::-webkit-scrollbar-thumb {
+      background: rgba(255, 215, 0, 0.3);
+      border-radius: 999px;
     }
 
     .main-title{
       text-align:center;
       margin-bottom:8px;
       width:100%;
+      flex-shrink: 0;
     }
 
     .main-title h2{
@@ -184,7 +199,8 @@
       display:flex;
       flex-direction:column;
       gap:14px;
-      margin-top:22px;
+      margin-top:14px;
+      padding-bottom: 20px; /* යටම බටන් එක කැපෙන්නේ නැති වෙන්න */
     }
 
     .lang-card{
@@ -709,7 +725,6 @@
 </head>
 <body>
 
-  <!-- සජීවී පසුබිම් රේඛා සජීවීකරණය සඳහා (Live Background Canvas) -->
   <canvas id="bg-canvas"></canvas>
 
   <div class="overlay" id="overlay"></div>
@@ -889,6 +904,18 @@
             <button class="sub-btn locked" type="button">Coming Soon <span class="lock-tag">LOCK</span></button>
             <div class="card-countdown live-card-countdown">Loading...</div>
           </div>
+          
+          <div class="lang-card" onclick="showLockedPopup('English')">
+            <div class="lang-main">
+              <div class="lang-main-left">
+                <div class="flag">🇬🇧</div>
+                <h3>English Language</h3>
+              </div>
+            </div>
+            <button class="sub-btn locked" type="button">Coming Soon <span class="lock-tag">LOCK</span></button>
+            <div class="card-countdown live-card-countdown">Loading...</div>
+          </div>
+
         </div>
       </section>
     </main>
@@ -931,13 +958,11 @@
     function openSidebar(){
       sidebar.classList.add("show");
       overlay.classList.add("show");
-      document.body.style.overflow = "hidden";
     }
 
     function closeSidebar(){
       sidebar.classList.remove("show");
       overlay.classList.remove("show");
-      document.body.style.overflow = "";
     }
 
     menuBtn.addEventListener("click", openSidebar);
@@ -978,8 +1003,8 @@
 
     function updateCountdown(){
       const data = getCountdownParts();
-      countdownBox.textContent = data.text;
-      sidebarCountdown.textContent = data.short;
+      if(countdownBox) countdownBox.textContent = data.text;
+      if(sidebarCountdown) sidebarCountdown.textContent = data.short;
       
       cardCountdowns.forEach(el => {
         el.textContent = data.fullEng;
@@ -992,12 +1017,10 @@
       popupOverlay.classList.add("show");
       closeSidebar();
       updateCountdown();
-      document.body.style.overflow = "hidden";
     }
 
     function closePopup(){
       popupOverlay.classList.remove("show");
-      document.body.style.overflow = "";
     }
 
     setInterval(updateCountdown, 1000);
@@ -1023,13 +1046,13 @@
     });
 
     // -------------------------------------------------------------
-    // 🌌 සජීවී පසුබිම් රේඛා සජීවීකරණය (Abstract Neural Line Animation Script)
+    // 🌌 ලාවට ක්‍රියාත්මක වන පසුබිම් රේඛා සජීවීකරණය (Subtle Neural Animation)
     // -------------------------------------------------------------
     const canvas = document.getElementById('bg-canvas');
     const ctx = canvas.getContext('2d');
 
     let particlesArray = [];
-    const numberOfParticles = 45; // ඉරි සහ තිත් ප්‍රමාණය (සැහැල්ලු මට්ටමක තබා ඇත)
+    const numberOfParticles = 35; // තිත් ප්‍රමාණය තරමක් අඩු කළා පිරිසිදු පෙනුමට
 
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
@@ -1043,9 +1066,66 @@
       constructor(){
         this.x = Math.random() * canvas.width;
         this.y = Math.random() * canvas.height;
-        this.size = Math.random() * 2 + 1;
-        this.speedX = Math.random() * 0.4 - 0.2;
-        this.speedY = Math.random() * 0.4 - 0.2;
+        this.size = Math.random() * 1.5 + 0.5; // තිත් කුඩා කළා
+        this.speedX = Math.random() * 0.3 - 0.15; // වේගය අඩු කළා
+        this.speedY = Math.random() * 0.3 - 0.15;
       }
       update(){
-        this.x += this.speedNormally I can help with things like this, but I don't seem to have access to that content. You can try again or ask me for something else.
+        this.x += this.speedX;
+        this.y += this.speedY;
+
+        if (this.x > canvas.width || this.x < 0) this.speedX = -this.speedX;
+        if (this.y > canvas.height || this.y < 0) this.speedY = -this.speedY;
+      }
+      draw(){
+        ctx.fillStyle = 'rgba(255, 215, 0, 0.08)'; // තිත් වල පැහැය ලා කළා (0.3 -> 0.08)
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fill();
+      }
+    }
+
+    function init(){
+      particlesArray = [];
+      for(let i = 0; i < numberOfParticles; i++){
+        particlesArray.push(new Particle());
+      }
+    }
+
+    function connect(){
+      let opacityValue = 1;
+      for (let a = 0; a < particlesArray.length; a++) {
+        for (let b = a; b < particlesArray.length; b++) {
+          let distance = ((particlesArray[a].x - particlesArray[b].x) * (particlesArray[a].x - particlesArray[b].x))
+          + ((particlesArray[a].y - particlesArray[b].y) * (particlesArray[a].y - particlesArray[b].y));
+          if (distance < (canvas.width/7) * (canvas.height/7)) {
+            opacityValue = 1 - (distance/20000);
+            // රේඛා වල පැහැය ඉතා ලා කළා (0.15 -> 0.04)
+            ctx.strokeStyle='rgba(255, 215, 0,' + opacityValue * 0.04 + ')';
+            ctx.lineWidth = 0.8;
+            ctx.beginPath();
+            ctx.moveTo(particlesArray[a].x, particlesArray[a].y);
+            ctx.lineTo(particlesArray[b].x, particlesArray[b].y);
+            ctx.stroke();
+          }
+        }
+      }
+    }
+
+    function animate(){
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      for(let i = 0; i < particlesArray.length; i++){
+        particlesArray[i].update();
+        particlesArray[i].draw();
+      }
+      connect();
+      requestAnimationFrame(animate);
+    }
+
+    init();
+    animate();
+  </script>
+</body>
+</html>
+
+```
