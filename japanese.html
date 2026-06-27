@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>EWONZ LINGUA - Japanese Dashboard</title>
+  <title>EWONZ LINGUA - Japanese Language</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -23,12 +23,13 @@
       --bg3:#111111;
       --gold:#ffd700;
       --gold-dark:#b8860b;
+      --red:#ff4d4d;
       --text:#ffffff;
-      --sub-text:rgba(255,255,255,0.45);
-      --glass:rgba(255,255,255,0.04);
-      --border:rgba(255,215,0,0.25);
+      --muted:#d8d8d8;
+      --glass:rgba(255,255,255,0.05);
+      --border:rgba(255,215,0,0.42);
       --shadow:0 0 18px rgba(255,215,0,0.10);
-      --sidebar-width: 280px;
+      --sidebar-width:290px;
     }
 
     html,body{
@@ -41,455 +42,990 @@
         linear-gradient(135deg, var(--bg1) 0%, var(--bg2) 45%, var(--bg3) 100%);
       color:var(--text);
       overflow-x:hidden;
+      user-select:none;
     }
 
-    /* Main App Layout Grid */
-    .app-container {
-      display: flex;
-      width: 100%;
-      min-height: 100vh;
+    body{
+      display:flex;
+      justify-content:center;
+      align-items:flex-start;
+      padding:20px 12px 28px;
     }
 
-    /* --- SIDEBAR SYSTEM --- */
-    .sidebar {
-      width: var(--sidebar-width);
-      background: rgba(12, 12, 12, 0.75);
-      backdrop-filter: blur(15px);
-      border-right: 1.5px solid var(--border);
-      padding: 24px 18px;
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-      position: fixed;
-      height: 100vh;
-      top: 0;
-      left: 0;
-      z-index: 100;
-      transition: transform 0.3s ease;
+    .app-shell{
+      width:100%;
+      max-width:390px;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      gap:14px;
     }
 
-    .brand {
-      text-align: center;
-      padding-bottom: 15px;
-      border-bottom: 1px solid rgba(255, 215, 0, 0.15);
-    }
-
-    .brand h1 {
-      font-size: 20px;
-      font-weight: 800;
-      letter-spacing: 1.5px;
-      color: var(--gold);
-      text-shadow: 0 0 10px rgba(255, 215, 0, 0.2);
-    }
-
-    .brand p {
-      font-size: 9px;
-      color: var(--sub-text);
-      letter-spacing: 0.5px;
-      margin-top: 3px;
-    }
-
-    .nav-list {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-      list-style: none;
-    }
-
-    .nav-item a {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      padding: 12px 14px;
-      color: #dddddd;
-      text-decoration: none;
-      font-size: 14px;
-      font-weight: 500;
-      border-radius: 12px;
-      border: 1px solid transparent;
-      transition: all 0.2s ease;
-    }
-
-    .nav-item a:hover, .nav-item.active a {
-      background: var(--glass);
-      border-color: var(--border);
-      color: var(--gold);
-      box-shadow: var(--shadow);
-    }
-
-    /* --- MAIN CONTENT AREA --- */
-    .main-content {
-      flex: 1;
-      margin-left: var(--sidebar-width);
-      padding: 40px 30px;
-      display: flex;
-      justify-content: center;
-    }
-
-    /* Phone Frame inside content */
     .phone-frame{
       position:relative;
       width:100%;
-      max-width:390px;
-      min-height:85vh;
+      min-height:92vh;
       border-radius:30px;
       overflow:hidden;
       background:
-        linear-gradient(rgba(8,8,8,0.92), rgba(8,8,8,0.96)),
+        linear-gradient(rgba(8,8,8,0.88), rgba(8,8,8,0.95)),
         url("1780704324974.png") center/cover no-repeat;
-      border: 2px solid rgba(255,215,0,0.72);
-      box-shadow: 0 0 25px rgba(255,215,0,0.15);
-      padding: 22px 16px;
+      border:2px solid rgba(255,215,0,0.72);
+      box-shadow:
+        0 0 0 1px rgba(255,215,0,0.20),
+        0 0 22px rgba(255,215,0,0.15),
+        inset 0 0 18px rgba(255,215,0,0.05);
+      padding:18px 14px 22px;
     }
 
-    /* App Header Topbar with Sidebar Menu Button */
     .topbar{
+      position:relative;
+      z-index:5;
       display:flex;
       align-items:center;
-      gap: 12px;
+      justify-content:space-between;
+      gap:10px;
       margin-bottom:10px;
     }
 
     .menu-btn{
-      width:44px;
-      height:44px;
-      border-radius:12px;
+      width:46px;
+      height:46px;
+      border-radius:14px;
       border:1.5px solid rgba(255,215,0,0.55);
       background:var(--glass);
-      backdrop-filter: blur(10px);
+      backdrop-filter:blur(10px);
       display:flex;
+      flex-direction:column;
       justify-content:center;
       align-items:center;
-      color:var(--gold);
-      font-size: 20px;
-      cursor: pointer;
-      box-shadow: var(--shadow);
+      gap:5px;
+      cursor:pointer;
+      box-shadow:var(--shadow);
       flex-shrink:0;
-      transition: all 0.2s;
     }
 
-    .menu-btn:active {
-      transform: scale(0.95);
+    .menu-btn span{
+      width:20px;
+      height:2.4px;
+      border-radius:999px;
+      background:linear-gradient(90deg, var(--gold), var(--gold-dark));
+      display:block;
     }
 
     .topbar-title{
       flex:1;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
+      text-align:center;
+      padding-right:46px;
     }
 
     .topbar-title h1{
-      font-size:17px;
-      font-weight:800;
+      font-size:19px;
+      font-weight:700;
       letter-spacing:1px;
-      color:rgba(255,215,0,0.85);
+      color:rgba(255,215,0,0.78);
       text-transform:uppercase;
-      line-height: 1.2;
+      line-height:1.2;
     }
 
-    .topbar-title p {
-      font-size: 9px;
-      color: var(--sub-text);
-      font-weight: 500;
-      letter-spacing: 0.3px;
+    .topbar-title p{
+      margin-top:3px;
+      font-size:11px;
+      color:var(--muted);
+      letter-spacing:.5px;
     }
 
     .shine-line{
       width:100%;
       height:2px;
-      margin:12px 0 20px;
+      border-radius:999px;
+      margin:10px 0 18px;
       background:linear-gradient(90deg, rgba(255,215,0,0.15), var(--gold), #fff1a8, var(--gold), rgba(255,215,0,0.15));
+      box-shadow:0 0 8px rgba(255,215,0,0.16);
+    }
+
+    .content{
+      position:relative;
+      z-index:2;
+      display:flex;
+      flex-direction:column;
+      width:100%;
+      padding-bottom:8px;
     }
 
     .main-title{
       text-align:center;
-      margin-bottom:24px;
+      margin-bottom:16px;
+      width:100%;
     }
 
     .main-title h2{
       font-size:24px;
       font-weight:800;
+      color:#ffffff;
       letter-spacing:.6px;
-      color: #ffffff;
+      line-height:1.25;
     }
 
-    .main-title p{
-      font-size:11px;
-      color:var(--gold);
-      text-transform:uppercase;
-      letter-spacing:1px;
-      margin-top:2px;
-    }
-
-    /* Scroll Dashboard Items */
-    .menu-container {
+    /* Course List Styling */
+    .course-container {
+      width: 100%;
       display: flex;
       flex-direction: column;
       gap: 12px;
-      max-height: 56vh;
+      max-height: 64vh;
       overflow-y: auto;
       padding-right: 4px;
     }
 
-    .menu-container::-webkit-scrollbar { width: 4px; }
-    .menu-container::-webkit-scrollbar-thumb { background: rgba(255,215,0,0.3); border-radius:10px; }
+    .course-container::-webkit-scrollbar {
+      width: 4px;
+    }
+    .course-container::-webkit-scrollbar-thumb {
+      background: rgba(255, 215, 0, 0.3);
+      border-radius: 10px;
+    }
 
-    /* Dashboard Action Buttons */
-    .dashboard-item {
-      width: 100%;
+    /* Single Items / Updated Buttons with Sub-texts */
+    .single-item {
+      padding: 14px 16px;
       background: var(--glass);
-      border: 1.5px solid var(--border);
-      border-radius: 18px;
-      padding: 16px 14px;
+      border: 1.5px solid rgba(255,215,0,0.3);
+      border-radius: 16px;
       display: flex;
       align-items: center;
-      justify-content: space-between;
+      gap: 14px;
+      color: #fff;
       text-decoration: none;
-      transition: all 0.2s ease;
     }
 
-    .dashboard-item:hover {
-      border-color: rgba(255, 215, 0, 0.5);
-      background: rgba(255, 255, 255, 0.06);
+    .single-item:hover {
+      background: rgba(255,255,255,0.08);
     }
 
-    .btn-left {
+    .btn-meta {
       display: flex;
       flex-direction: column;
+      gap: 2px;
     }
 
-    .btn-title {
-      font-size: 15px;
+    .btn-main-txt {
+      font-size: 16px;
       font-weight: 700;
       color: #ffffff;
+      letter-spacing: 0.5px;
     }
 
-    .btn-sub {
-      font-size: 10px;
-      color: var(--sub-text);
+    .btn-sub-txt {
+      font-size: 11px;
+      color: var(--muted);
+      font-weight: 400;
     }
 
-    .btn-right {
-      display: flex;
-      align-items: center;
-      gap: 10px;
+    .course-icon {
+      font-size: 22px;
+      flex-shrink: 0;
     }
 
-    .btn-emoji { font-size: 18px; }
-    .btn-arrow { color: var(--gold); font-size: 11px; }
+    .overlay{
+      position:fixed;
+      inset:0;
+      background:rgba(0,0,0,0.60);
+      backdrop-filter:blur(3px);
+      z-index:100;
+      opacity:0;
+      pointer-events:none;
+      transition:.28s ease;
+    }
 
-    /* --- RESPONSIVE BREAKPOINTS --- */
-    @media (max-width: 992px) {
-      .sidebar {
-        transform: translateX(-100%);
-      }
-      .sidebar.open {
-        transform: translateX(0);
-      }
-      .main-content {
-        margin-left: 0;
-        padding: 30px 15px;
-      }
+    .overlay.show{
+      opacity:1;
+      pointer-events:auto;
+    }
+
+    .sidebar{
+      position:fixed;
+      top:0;
+      left:calc(var(--sidebar-width) * -1 - 40px);
+      width:var(--sidebar-width);
+      max-width:84%;
+      height:100vh;
+      background:linear-gradient(180deg, rgba(12,12,12,0.98), rgba(18,18,18,0.98));
+      border-right:1.5px solid rgba(255,215,0,0.38);
+      box-shadow:12px 0 40px rgba(0,0,0,0.45);
+      z-index:120;
+      transition:left .32s ease;
+      padding:18px 14px 18px;
+      overflow-y:auto;
+    }
+
+    .sidebar.show{
+      left:0;
+    }
+
+    .sidebar-top{
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap:10px;
+      margin-bottom:12px;
+    }
+
+    .brand-box h2{
+      font-size:22px;
+      color:var(--gold);
+      font-weight:800;
+      letter-spacing:1px;
+      text-transform:uppercase;
+      line-height:1.2;
+    }
+
+    .brand-box p{
+      font-size:11px;
+      color:var(--muted);
+      margin-top:4px;
+      line-height:1.55;
+    }
+
+    .close-btn{
+      width:42px;
+      height:42px;
+      border-radius:14px;
+      border:1.4px solid rgba(255,215,0,0.45);
+      background:var(--glass);
+      color:var(--gold);
+      font-size:20px;
+      font-weight:700;
+      cursor:pointer;
+      flex-shrink:0;
+    }
+
+    .sidebar-line{
+      width:100%;
+      height:2px;
+      border-radius:999px;
+      background:linear-gradient(90deg, transparent, var(--gold), #fff0a6, var(--gold), transparent);
+      margin-bottom:14px;
+    }
+
+    .sidebar-top-nav{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:4px;
+      margin:4px 0 14px;
+      padding:10px 8px;
+      border-radius:16px;
+      border:1.3px solid rgba(255,215,0,0.28);
+      background:var(--glass);
+    }
+
+    .sidebar-nav-btn{
+      text-decoration:none;
+      color:var(--red);
+      font-size:11px;
+      font-weight:700;
+      letter-spacing:.7px;
+      text-transform:uppercase;
+      white-space:nowrap;
+      flex-shrink: 0;
+    }
+
+    .sidebar-nav-title{
+      flex:1;
+      text-align:center;
+      color:var(--gold);
+      font-size:10px;
+      font-weight:700;
+      letter-spacing:.4px;
+      text-transform:uppercase;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .menu-label{
+      font-size:12px;
+      font-weight:800;
+      color:var(--gold);
+      letter-spacing:.8px;
+      text-transform:uppercase;
+      margin:6px 4px 10px;
+    }
+
+    .menu-list{
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+    }
+
+    .menu-item{
+      width:100%;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      padding:14px 14px;
+      border-radius:16px;
+      border:1.3px solid rgba(255,215,0,0.25);
+      background:var(--glass);
+      color:var(--text);
+      font-size:14px;
+      font-weight:600;
+      text-decoration:none;
+      cursor:pointer;
+    }
+
+    .menu-item .left{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      min-width:0;
+    }
+
+    .menu-item .icon{
+      width:34px;
+      height:34px;
+      border-radius:12px;
+      border:1px solid rgba(255,215,0,0.28);
+      background:rgba(255,255,255,0.04);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:16px;
+      color:var(--gold);
+      flex-shrink:0;
+    }
+
+    .menu-item .arrow{
+      color:var(--gold);
+      font-size:14px;
+      flex-shrink:0;
+    }
+
+    .submenu{
+      display:none;
+      flex-direction:column;
+      gap:8px;
+      padding:8px 0 0 10px;
+    }
+
+    .submenu.show{
+      display:flex;
+    }
+
+    .submenu-item{
+      width:100%;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      padding:12px 12px;
+      border-radius:14px;
+      border:1.2px solid rgba(255,215,0,0.20);
+      background:rgba(255,255,255,0.04);
+      color:var(--text);
+      text-decoration:none;
+      font-size:13px;
+      font-weight:600;
+      cursor:pointer;
+    }
+
+    .submenu-item .sub-left{
+      display:flex;
+      align-items:center;
+      gap:10px;
+    }
+
+    .lock-badge{
+      color:var(--gold);
+      font-size:13px;
+      font-weight:700;
+      flex-shrink:0;
+    }
+
+    .settings-box{
+      margin-top:10px;
+      padding:14px;
+      border-radius:18px;
+      border:1.3px solid rgba(255,215,0,0.25);
+      background:var(--glass);
+    }
+
+    .settings-box h4{
+      color:var(--gold);
+      font-size:13px;
+      font-weight:800;
+      text-transform:uppercase;
+      letter-spacing:.7px;
+      margin-bottom:12px;
+    }
+
+    .setting-row{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      padding:11px 0;
+      border-bottom:1px solid rgba(255,215,0,0.12);
+    }
+
+    .setting-row:last-child{
+      border-bottom:none;
+      padding-bottom:0;
+    }
+
+    .setting-left{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      min-width:0;
+    }
+
+    .setting-icon{
+      width:34px;
+      height:34px;
+      border-radius:12px;
+      border:1px solid rgba(255,215,0,0.28);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      color:var(--gold);
+      background:rgba(255,255,255,0.04);
+      flex-shrink:0;
+      font-size:15px;
+    }
+
+    .setting-text{
+      font-size:13px;
+      font-weight:600;
+      color:var(--text);
+    }
+
+    .toggle{
+      position:relative;
+      width:52px;
+      height:30px;
+      border-radius:999px;
+      background:rgba(255,255,255,0.12);
+      border:1px solid rgba(255,215,0,0.28);
+      cursor:pointer;
+      flex-shrink:0;
+    }
+
+    .toggle::before{
+      content:"";
+      position:absolute;
+      top:3px;
+      left:3px;
+      width:22px;
+      height:22px;
+      border-radius:50%;
+      background:var(--gold);
+      box-shadow:0 0 8px rgba(255,215,0,0.25);
+      transition:.25s ease;
+    }
+
+    .toggle.active{
+      background:rgba(255,215,0,0.20);
+    }
+
+    .toggle.active::before{
+      left:25px;
+    }
+
+    .countdown-value{
+      font-size:11px;
+      color:var(--gold);
+      font-weight:700;
+      text-align:right;
+      line-height:1.5;
+      max-width:120px;
+    }
+
+    .sidebar-footer{
+      margin-top:14px;
+      padding:14px;
+      border-radius:18px;
+      border:1.3px solid rgba(255,215,0,0.24);
+      background:var(--glass);
+      text-align:center;
+    }
+
+    .sidebar-footer .footer-title{
+      color:var(--gold);
+      font-size:13px;
+      font-weight:800;
+      margin-bottom:6px;
+      text-transform:uppercase;
+      letter-spacing:.6px;
+    }
+
+    .sidebar-footer p{
+      font-size:11px;
+      color:var(--muted);
+      line-height:1.7;
+    }
+
+    .popup-overlay{
+      position:fixed;
+      inset:0;
+      background:rgba(0,0,0,0.72);
+      backdrop-filter:blur(4px);
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      padding:18px;
+      z-index:300;
+      opacity:0;
+      pointer-events:none;
+      transition:.25s ease;
+    }
+
+    .popup-overlay.show{
+      opacity:1;
+      pointer-events:auto;
+    }
+
+    .popup-box{
+      width:100%;
+      max-width:360px;
+      border-radius:24px;
+      padding:22px 18px 18px;
+      background:linear-gradient(180deg, rgba(16,16,16,0.98), rgba(10,10,10,0.98));
+      border:1.6px solid rgba(255,215,0,0.55);
+      box-shadow:0 0 30px rgba(255,215,0,0.14);
+      text-align:center;
+    }
+
+    .popup-box h3{
+      color:var(--gold);
+      font-size:22px;
+      font-weight:800;
+      margin-bottom:10px;
+      text-transform:uppercase;
+      letter-spacing:1px;
+    }
+
+    .popup-box p{
+      font-size:13px;
+      color:var(--muted);
+      line-height:1.8;
+      margin-bottom:14px;
+    }
+
+    .countdown{
+      font-size:13px;
+      font-weight:700;
+      color:var(--gold);
+      line-height:1.8;
+      margin-bottom:16px;
+    }
+
+    .popup-btn{
+      width:100%;
+      min-height:48px;
+      border-radius:14px;
+      border:1.5px solid rgba(255,215,0,0.55);
+      background:rgba(255,215,0,0.08);
+      color:var(--gold);
+      font-size:14px;
+      font-weight:700;
+      cursor:pointer;
+    }
+
+    @media (max-width:380px){
+      .phone-frame{padding:16px 12px 20px;}
+      .main-title h2{font-size:21px;}
+      .topbar-title h1{font-size:17px;}
+      .sidebar{width:280px;}
     }
   </style>
 </head>
 <body>
 
-  <div class="app-container">
+  <div class="overlay" id="overlay"></div>
 
-    <!-- 1. SIDEBAR NAVIGATION SYSTEM -->
-    <aside class="sidebar" id="sidebarMenu">
-      <div class="brand">
-        <h1>EWONZ LINGUA</h1>
-        <p>Premium Language Learning platform</p>
+  <!-- Sidebar Component -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-top">
+      <div class="brand-box">
+        <h2>EWONZ LINGUA</h2>
+        <p>Premium Language Learning Platform</p>
       </div>
-      <ul class="nav-list">
-        <li class="nav-item active"><a href="japanese-dashboard.html">🌐 Dashboard</a></li>
-        <li class="nav-item"><a href="japanese-writing.html">🔤 Writing System</a></li>
-        <li class="nav-item"><a href="learning-system/lessons.html">📘 Learning System</a></li>
-        <li class="nav-item"><a href="vocabulary/words-list.html">📝 Vocabulary</a></li>
-        <li class="nav-item"><a href="grammar/rules.html">📖 Grammar</a></li>
-        <li class="nav-item"><a href="quiz-center/dashboard.html">🎯 Quiz Center</a></li>
-      </ul>
-    </aside>
+      <button class="close-btn" id="closeSidebarBtn">✕</button>
+    </div>
 
-    <!-- 2. MAIN CENTER CONSOLE (PHONE VIEWPORT) -->
-    <main class="main-content">
-      <div class="phone-frame">
-        
-        <!-- Topbar Header with Hamburger Menu Button -->
-        <div class="topbar">
-          <div class="menu-btn" onclick="toggleSidebar()" aria-label="Toggle Menu">☰</div>
-          <div class="topbar-title">
-            <h1>EWONZ LINGUA</h1>
-            <p>Premium Language Learning platform</p>
+    <div class="sidebar-line"></div>
+
+    <div class="sidebar-top-nav">
+      <a href="index.html" class="sidebar-nav-btn">← BACK</a>
+      <div class="sidebar-nav-title">JAPANESE LANGUAGE</div>
+      <a href="index.html" class="sidebar-nav-btn">HOME →</a>
+    </div>
+
+    <div class="menu-label">Main Menu</div>
+
+    <div class="menu-list">
+      
+      <!-- Dashboard Menu with Sub-items -->
+      <div class="menu-item" id="dashboardToggle">
+        <div class="left">
+          <div class="icon">🏠</div>
+          <span>Dashboard</span>
+        </div>
+        <span class="arrow">⌄</span>
+      </div>
+
+      <div class="submenu" id="dashboardSubmenu">
+        <a href="writingsystem.html" class="submenu-item"><div class="sub-left"><span>🔤</span> Writing System</div></a>
+        <a href="learningsystem.html" class="submenu-item"><div class="sub-left"><span>📘</span> Learning System</div></a>
+        <a href="vocabulary.html" class="submenu-item"><div class="sub-left"><span>📝</span> Vocabulary</div></a>
+        <a href="grammar.html" class="submenu-item"><div class="sub-left"><span>📖</span> Grammar</div></a>
+        <a href="reading.html" class="submenu-item"><div class="sub-left"><span>📚</span> Reading Practice</div></a>
+        <a href="listening.html" class="submenu-item"><div class="sub-left"><span>🎧</span> Listening</div></a>
+        <a href="speaking.html" class="submenu-item"><div class="sub-left"><span>🗣</span> Speaking</div></a>
+        <a href="writingpractice.html" class="submenu-item"><div class="sub-left"><span>✍️</span> Writing Practice</div></a>
+        <a href="quiz.html" class="submenu-item"><div class="sub-left"><span>🎯</span> Quiz Center</div></a>
+        <a href="exams.html" class="submenu-item"><div class="sub-left"><span>📝</span> Exams</div></a>
+        <a href="japaninfo.html" class="submenu-item"><div class="sub-left"><span>🇯🇵</span> Japan Info</div></a>
+      </div>
+
+      <!-- Language Dropdown Menu -->
+      <div class="menu-item" id="languageToggle">
+        <div class="left">
+          <div class="icon">🌐</div>
+          <span>Language</span>
+        </div>
+        <span class="arrow">⌄</span>
+      </div>
+
+      <div class="submenu" id="languageSubmenu">
+        <div class="submenu-item" onclick="showLockedPopup('Japanese')">
+          <div class="sub-left">
+            <span>🇯🇵</span>
+            <span>Japanese</span>
           </div>
+          <span class="lock-badge">🔒</span>
         </div>
 
-        <div class="shine-line"></div>
+        <div class="submenu-item" onclick="showLockedPopup('Chinese')">
+          <div class="sub-left">
+            <span>🇨🇳</span>
+            <span>Chinese</span>
+          </div>
+          <span class="lock-badge">🔒</span>
+        </div>
 
-        <!-- Title -->
+        <div class="submenu-item" onclick="showLockedPopup('Korean')">
+          <div class="sub-left">
+            <span>🇰🇷</span>
+            <span>Korean</span>
+          </div>
+          <span class="lock-badge">🔒</span>
+        </div>
+      </div>
+
+      <a href="studyplan.html" class="menu-item">
+        <div class="left">
+          <div class="icon">📅</div>
+          <span>Study Plan</span>
+        </div>
+      </a>
+
+      <a href="about.html" class="menu-item">
+        <div class="left">
+          <div class="icon">ℹ️</div>
+          <span>About</span>
+        </div>
+      </a>
+
+      <div class="menu-item" id="settingsToggle">
+        <div class="left">
+          <div class="icon">⚙️</div>
+          <span>Settings</span>
+        </div>
+        <span class="arrow">⌄</span>
+      </div>
+
+      <div class="settings-box submenu" id="settingsSubmenu">
+        <h4>Settings</h4>
+
+        <div class="setting-row">
+          <div class="setting-left">
+            <div class="setting-icon">🌙</div>
+            <div class="setting-text">Dark Mode</div>
+          </div>
+          <div class="toggle active" id="darkModeToggle"></div>
+        </div>
+
+        <div class="setting-row">
+          <div class="setting-left">
+            <div class="setting-icon">🔔</div>
+            <div class="setting-text">Notification</div>
+          </div>
+          <div class="toggle" id="notificationToggle"></div>
+        </div>
+
+        <div class="setting-row">
+          <div class="setting-left">
+            <div class="setting-icon">⏳</div>
+            <div class="setting-text">Count Down</div>
+          </div>
+          <div class="countdown-value" id="sidebarCountdown">Loading...</div>
+        </div>
+
+        <div class="setting-row">
+          <div class="setting-left">
+            <div class="setting-icon">🔊</div>
+            <div class="setting-text">Sound Toggle</div>
+          </div>
+          <div class="toggle active" id="soundToggle"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sidebar-footer">
+      <div class="footer-title">Version 1.0</div>
+      <p>Made By Danu Ewonz</p>
+      <p>(Kalpa Mihiranga)</p>
+    </div>
+  </aside>
+
+  <!-- Main View -->
+  <div class="app-shell">
+    <main class="phone-frame">
+      <div class="topbar">
+        <button class="menu-btn" id="menuBtn" aria-label="Open menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+
+        <div class="topbar-title">
+          <h1>EWONZ LINGUA</h1>
+          <p>Premium Language Learning Platform</p>
+        </div>
+      </div>
+
+      <div class="shine-line"></div>
+
+      <section class="content">
         <div class="main-title">
           <h2>Japanese Language</h2>
-          <p>日本語コース - Nihongo Kōsu</p>
         </div>
 
-        <!-- Action Grid Menu (The 11 Buttons Order) -->
-        <div class="menu-container">
-
+        <!-- 11 Updated Main Page Buttons -->
+        <div class="course-container">
+          
           <!-- 1. Writing System -->
-          <a href="japanese-writing.html" class="dashboard-item">
-            <div class="btn-left">
-              <span class="btn-title">Writing System</span>
-              <span class="btn-sub">文字体系 - අක්ෂර මාලාව</span>
-            </div>
-            <div class="btn-right">
-              <span class="btn-emoji">🔤</span>
-              <span class="btn-arrow">➔</span>
+          <a href="writingsystem.html" class="single-item">
+            <span class="course-icon">🔤</span>
+            <div class="btn-meta">
+              <div class="btn-main-txt">Writing System</div>
+              <div class="btn-sub-txt">文字体系 (Moji Taikei) — ලිවීමේ ක්‍රමය</div>
             </div>
           </a>
 
           <!-- 2. Learning System -->
-          <a href="learning-system/lessons.html" class="dashboard-item">
-            <div class="btn-left">
-              <span class="btn-title">Learning System</span>
-              <span class="btn-sub">学習システム - මූලික පාඩම් මාලාව</span>
-            </div>
-            <div class="btn-right">
-              <span class="btn-emoji">📘</span>
-              <span class="btn-arrow">➔</span>
+          <a href="learningsystem.html" class="single-item">
+            <span class="course-icon">📘</span>
+            <div class="btn-meta">
+              <div class="btn-main-txt">Learning System</div>
+              <div class="btn-sub-txt">学習システム (Gakushū Shisutemu) — ඉගෙනීමේ පද්ධතිය</div>
             </div>
           </a>
 
           <!-- 3. Vocabulary -->
-          <a href="vocabulary/words-list.html" class="dashboard-item">
-            <div class="btn-left">
-              <span class="btn-title">Vocabulary</span>
-              <span class="btn-sub">単語 - වචන මාලාව සහ තේරුම්</span>
-            </div>
-            <div class="btn-right">
-              <span class="btn-emoji">📝</span>
-              <span class="btn-arrow">➔</span>
+          <a href="vocabulary.html" class="single-item">
+            <span class="course-icon">📝</span>
+            <div class="btn-meta">
+              <div class="btn-main-txt">Vocabulary</div>
+              <div class="btn-sub-txt">語彙 (Goi) — වචන මාලාව</div>
             </div>
           </a>
 
           <!-- 4. Grammar -->
-          <a href="grammar/rules.html" class="dashboard-item">
-            <div class="btn-left">
-              <span class="btn-title">Grammar</span>
-              <span class="btn-sub">文法 - ව්‍යාකරණ නීති මාලාව</span>
-            </div>
-            <div class="btn-right">
-              <span class="btn-emoji">📖</span>
-              <span class="btn-arrow">➔</span>
+          <a href="grammar.html" class="single-item">
+            <span class="course-icon">📖</span>
+            <div class="btn-meta">
+              <div class="btn-main-txt">Grammar</div>
+              <div class="btn-sub-txt">文法 (Bunpō) — ව්‍යාකරණ</div>
             </div>
           </a>
 
           <!-- 5. Reading Practice -->
-          <a href="reading/practice.html" class="dashboard-item">
-            <div class="btn-left">
-              <span class="btn-title">Reading Practice</span>
-              <span class="btn-sub">読解練習 - කියවීමේ පුහුණුව</span>
-            </div>
-            <div class="btn-right">
-              <span class="btn-emoji">📚</span>
-              <span class="btn-arrow">➔</span>
+          <a href="reading.html" class="single-item">
+            <span class="course-icon">📚</span>
+            <div class="btn-meta">
+              <div class="btn-main-txt">Reading Practice</div>
+              <div class="btn-sub-txt">読解練習 (Dokkai Renshū) — කියවීමේ පුහුණුව</div>
             </div>
           </a>
 
           <!-- 6. Listening -->
-          <a href="listening/audio-lessons.html" class="dashboard-item">
-            <div class="btn-left">
-              <span class="btn-title">Listening</span>
-              <span class="btn-sub">聴解 - ශ්‍රවණ පුහුණුව</span>
-            </div>
-            <div class="btn-right">
-              <span class="btn-emoji">🎧</span>
-              <span class="btn-arrow">➔</span>
+          <a href="listening.html" class="single-item">
+            <span class="course-icon">🎧</span>
+            <div class="btn-meta">
+              <div class="btn-main-txt">Listening</div>
+              <div class="btn-sub-txt">聴解練習 (Chōkai Renshū) — සවන්දීමේ පුහුණුව</div>
             </div>
           </a>
 
           <!-- 7. Speaking -->
-          <a href="speaking/conversation.html" class="dashboard-item">
-            <div class="btn-left">
-              <span class="btn-title">Speaking</span>
-              <span class="btn-sub">会話 - කථන පුහුණුව</span>
-            </div>
-            <div class="btn-right">
-              <span class="btn-emoji">🗣</span>
-              <span class="btn-arrow">➔</span>
+          <a href="speaking.html" class="single-item">
+            <span class="course-icon">🗣</span>
+            <div class="btn-meta">
+              <div class="btn-main-txt">Speaking</div>
+              <div class="btn-sub-txt">会話練習 (Kaiwa Renshū) — කථන පුහුණුව</div>
             </div>
           </a>
 
           <!-- 8. Writing Practice -->
-          <a href="writing-practice/sheets.html" class="dashboard-item">
-            <div class="btn-left">
-              <span class="btn-title">Writing Practice</span>
-              <span class="btn-sub">記述練習 - ලිවීමේ පුහුණුව</span>
-            </div>
-            <div class="btn-right">
-              <span class="btn-emoji">✍️</span>
-              <span class="btn-arrow">➔</span>
+          <a href="writingpractice.html" class="single-item">
+            <span class="course-icon">✍️</span>
+            <div class="btn-meta">
+              <div class="btn-main-txt">Writing Practice</div>
+              <div class="btn-sub-txt">作文練習 (Sakubun Renshū) — ලිවීමේ පුහුණුව</div>
             </div>
           </a>
 
           <!-- 9. Quiz Center -->
-          <a href="quiz-center/dashboard.html" class="dashboard-item">
-            <div class="btn-left">
-              <span class="btn-title">Quiz Center</span>
-              <span class="btn-sub">クイズ - කෙටි ප්‍රශ්න විචාරාත්මක</span>
-            </div>
-            <div class="btn-right">
-              <span class="btn-emoji">🎯</span>
-              <span class="btn-arrow">➔</span>
+          <a href="quiz.html" class="single-item">
+            <span class="course-icon">🎯</span>
+            <div class="btn-meta">
+              <div class="btn-main-txt">Quiz Center</div>
+              <div class="btn-sub-txt">クイズセンター (Kuizu Sentā) — ප්‍රශ්නාවලි මධ්‍යස්ථානය</div>
             </div>
           </a>
 
           <!-- 10. Exams -->
-          <a href="exams/mock-tests.html" class="dashboard-item">
-            <div class="btn-left">
-              <span class="btn-title">Exams</span>
-              <span class="btn-sub">試験 - වාර විභාග සහ Mock Tests</span>
-            </div>
-            <div class="btn-right">
-              <span class="btn-emoji">📝</span>
-              <span class="btn-arrow">➔</span>
+          <a href="exams.html" class="single-item">
+            <span class="course-icon">📝</span>
+            <div class="btn-meta">
+              <div class="btn-main-txt">Exams</div>
+              <div class="btn-sub-txt">試験 (Shiken) — විභාග</div>
             </div>
           </a>
 
           <!-- 11. Japan Information -->
-          <a href="japan-info/culture.html" class="dashboard-item">
-            <div class="btn-left">
-              <span class="btn-title">Japan Information</span>
-              <span class="btn-sub">日本情報 - ජපානය සහ සංස්කෘතිය</span>
-            </div>
-            <div class="btn-right">
-              <span class="btn-emoji">🇯🇵</span>
-              <span class="btn-arrow">➔</span>
+          <a href="japaninfo.html" class="single-item">
+            <span class="course-icon">🇯🇵</span>
+            <div class="btn-meta">
+              <div class="btn-main-txt">Japan Information</div>
+              <div class="btn-sub-txt">日本情報 (Nihon Jōhō) — ජපානය පිළිබඳ තොරතුරු</div>
             </div>
           </a>
 
         </div>
-      </div>
+      </section>
     </main>
   </div>
 
+  <!-- Locked Modals System -->
+  <div class="popup-overlay" id="popupOverlay">
+    <div class="popup-box">
+      <h3 id="popupTitle">Coming Soon</h3>
+      <p id="popupText">This section is currently locked.</p>
+      <div class="countdown" id="countdownBox"></div>
+      <button class="popup-btn" onclick="closePopup()">OK</button>
+    </div>
+  </div>
+
   <script>
-    function toggleSidebar() {
-      document.getElementById('sidebarMenu').classList.toggle('open');
+    const sidebar = document.getElementById("sidebar");
+    const overlay = document.getElementById("overlay");
+    const menuBtn = document.getElementById("menuBtn");
+    const closeSidebarBtn = document.getElementById("closeSidebarBtn");
+
+    const popupOverlay = document.getElementById("popupOverlay");
+    const popupTitle = document.getElementById("popupTitle");
+    const popupText = document.getElementById("popupText");
+    const countdownBox = document.getElementById("countdownBox");
+
+    const dashboardToggle = document.getElementById("dashboardToggle");
+    const dashboardSubmenu = document.getElementById("dashboardSubmenu");
+    const languageToggle = document.getElementById("languageToggle");
+    const languageSubmenu = document.getElementById("languageSubmenu");
+    const settingsToggle = document.getElementById("settingsToggle");
+    const settingsSubmenu = document.getElementById("settingsSubmenu");
+
+    const darkModeToggle = document.getElementById("darkModeToggle");
+    const notificationToggle = document.getElementById("notificationToggle");
+    const soundToggle = document.getElementById("soundToggle");
+    const sidebarCountdown = document.getElementById("sidebarCountdown");
+
+    function openSidebar(){
+      sidebar.classList.add("show");
+      overlay.classList.add("show");
+      document.body.style.overflow = "hidden";
     }
-    
-    // Close sidebar when clicking outside on mobile devices
-    document.addEventListener('click', function(event) {
-      const sidebar = document.getElementById('sidebarMenu');
-      const menuBtn = document.querySelector('.menu-btn');
-      
-      if (window.innerWidth <= 992 && 
-          !sidebar.contains(event.target) && 
-          !menuBtn.contains(event.target) && 
-          sidebar.classList.contains('open')) {
-        sidebar.classList.remove('open');
+
+    function closeSidebar(){
+      sidebar.classList.remove("show");
+      overlay.classList.remove("show");
+      if (!popupOverlay.classList.contains("show")) {
+        document.body.style.overflow = "";
+      }
+    }
+
+    menuBtn.addEventListener("click", openSidebar);
+    closeSidebarBtn.addEventListener("click", closeSidebar);
+    overlay.addEventListener("click", closeSidebar);
+
+    dashboardToggle.addEventListener("click", () => dashboardSubmenu.classList.toggle("show"));
+    languageToggle.addEventListener("click", () => languageSubmenu.classList.toggle("show"));
+    settingsToggle.addEventListener("click", () => settingsSubmenu.classList.toggle("show"));
+
+    const targetDate = new Date("2026-11-28T00:00:00");
+
+    function getCountdownParts() {
+      const now = new Date();
+      const diff = targetDate - now;
+      if (diff <= 0) return { text: "Unlocked", short: "Unlocked" };
+
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+      const minutes = Math.floor((diff / (1000 * 60)) % 60);
+      const seconds = Math.floor((diff / 1000) % 60);
+
+      return {
+        text: `Unlocks in: ${days}d ${hours}h ${minutes}m ${seconds}s`,
+        short: `${days}d ${hours}h ${minutes}m`
+      };
+    }
+
+    function updateCountdown(){
+      const data = getCountdownParts();
+      if (countdownBox) countdownBox.textContent = data.text;
+      if (sidebarCountdown) sidebarCountdown.textContent = data.short;
+    }
+
+    function showLockedPopup(sectionName = "This section"){
+      popupTitle.textContent = `${sectionName} Locked`;
+      popupText.textContent = `${sectionName} is currently locked and will be available in a future Ewonz Lingua update.`;
+      popupOverlay.classList.add("show");
+      closeSidebar();
+      updateCountdown();
+      document.body.style.overflow = "hidden";
+    }
+
+    function closePopup(){
+      popupOverlay.classList.remove("show");
+      document.body.style.overflow = "";
+    }
+
+    setInterval(updateCountdown, 1000);
+    updateCountdown();
+
+    darkModeToggle.addEventListener("click", () => darkModeToggle.classList.toggle("active"));
+    notificationToggle.addEventListener("click", () => notificationToggle.classList.toggle("active"));
+    soundToggle.addEventListener("click", () => soundToggle.classList.toggle("active"));
+
+    document.addEventListener("keydown", (e) => {
+      if(e.key === "Escape"){
+        closeSidebar();
+        closePopup();
       }
     });
   </script>
