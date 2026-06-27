@@ -1,0 +1,1383 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EWONZ LINGUA - Writing System</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    :root{
+      --bg1:#050505;
+      --bg2:#0c0c0c;
+      --bg3:#111111;
+      --gold:#ffd700;
+      --gold-dark:#b8860b;
+      --red:#ff4d4d;
+      --text:#ffffff;
+      --muted:#d8d8d8;
+      --glass:rgba(255,255,255,0.05);
+      --border:rgba(255,215,0,0.42);
+      --shadow:0 0 18px rgba(255,215,0,0.10);
+      --sidebar-width:290px;
+    }
+
+    html,body{
+      width:100%;
+      min-height:100%;
+      font-family:'Poppins',sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(255,215,0,0.08), transparent 28%),
+        radial-gradient(circle at bottom right, rgba(184,134,11,0.10), transparent 34%),
+        linear-gradient(135deg, var(--bg1) 0%, var(--bg2) 45%, var(--bg3) 100%);
+      color:var(--text);
+      overflow-x:hidden;
+      user-select:none;
+    }
+
+    body{
+      display:flex;
+      justify-content:center;
+      align-items:flex-start;
+      padding:20px 12px 28px;
+    }
+
+    .app-shell{
+      width:100%;
+      max-width:390px;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      gap:14px;
+    }
+
+    .phone-frame{
+      position:relative;
+      width:100%;
+      min-height:92vh;
+      border-radius:30px;
+      overflow:hidden;
+      background:
+        linear-gradient(rgba(8,8,8,0.88), rgba(8,8,8,0.95)),
+        url("1780704324974.png") center/cover no-repeat;
+      border:2px solid rgba(255,215,0,0.72);
+      box-shadow:
+        0 0 0 1px rgba(255,215,0,0.20),
+        0 0 22px rgba(255,215,0,0.15),
+        inset 0 0 18px rgba(255,215,0,0.05);
+      padding:18px 14px 22px;
+    }
+
+    .topbar{
+      position:relative;
+      z-index:5;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      margin-bottom:10px;
+    }
+
+    .menu-btn{
+      width:46px;
+      height:46px;
+      border-radius:14px;
+      border:1.5px solid rgba(255,215,0,0.55);
+      background:var(--glass);
+      backdrop-filter:blur(10px);
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      align-items:center;
+      gap:5px;
+      cursor:pointer;
+      box-shadow:var(--shadow);
+      flex-shrink:0;
+    }
+
+    .menu-btn span{
+      width:20px;
+      height:2.4px;
+      border-radius:999px;
+      background:linear-gradient(90deg, var(--gold), var(--gold-dark));
+      display:block;
+    }
+
+    .topbar-title{
+      flex:1;
+      text-align:center;
+      padding-right:46px;
+    }
+
+    .topbar-title h1{
+      font-size:19px;
+      font-weight:700;
+      letter-spacing:1px;
+      color:rgba(255,215,0,0.78);
+      text-transform:uppercase;
+      line-height:1.2;
+    }
+
+    .topbar-title p{
+      margin-top:3px;
+      font-size:11px;
+      color:var(--muted);
+      letter-spacing:.5px;
+    }
+
+    .shine-line{
+      width:100%;
+      height:2px;
+      border-radius:999px;
+      margin:10px 0 18px;
+      background:linear-gradient(90deg, rgba(255,215,0,0.15), var(--gold), #fff1a8, var(--gold), rgba(255,215,0,0.15));
+      box-shadow:0 0 8px rgba(255,215,0,0.16);
+    }
+
+    .content{
+      position:relative;
+      z-index:2;
+      display:flex;
+      flex-direction:column;
+      width:100%;
+      padding-bottom:8px;
+    }
+
+    .main-title{
+      text-align:center;
+      margin-bottom:16px;
+      width:100%;
+    }
+
+    .main-title h2{
+      font-size:24px;
+      font-weight:800;
+      color:#ffffff;
+      letter-spacing:.6px;
+      line-height:1.25;
+    }
+
+    /* Course Container & Section (Shared by Main & Sidebar Dashboard) */
+    .course-container {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      max-height: 64vh;
+      overflow-y: auto;
+      padding-right: 4px;
+    }
+
+    .course-container::-webkit-scrollbar {
+      width: 4px;
+    }
+    .course-container::-webkit-scrollbar-thumb {
+      background: rgba(255, 215, 0, 0.3);
+      border-radius: 10px;
+    }
+
+    .course-header {
+      width: 100%;
+      padding: 14px 16px;
+      background: var(--glass);
+      border: 1.5px solid rgba(255,215,0,0.3);
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .course-header:hover {
+      background: rgba(255,255,255,0.08);
+    }
+
+    .course-title-box {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      padding-right: 8px;
+    }
+
+    .course-icon {
+      font-size: 20px;
+      flex-shrink: 0;
+      margin-left: auto;
+    }
+
+    .btn-meta {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      flex: 1;
+    }
+
+    .btn-main-txt {
+      font-size: 16px;
+      font-weight: 700;
+      color: #ffffff;
+      letter-spacing: 0.5px;
+    }
+
+    .btn-sub-txt {
+      font-size: 11px;
+      color: #cca300;
+      font-weight: 400;
+    }
+
+    .course-arrow {
+      font-size: 12px;
+      color: var(--gold);
+      transition: transform 0.2s;
+      flex-shrink: 0;
+    }
+
+    .course-section.active .course-arrow {
+      transform: rotate(180deg);
+    }
+
+    .course-content {
+      display: none;
+      flex-direction: column;
+      gap: 6px;
+      padding: 6px 4px 6px 16px;
+    }
+
+    .course-section.active .course-content {
+      display: flex;
+    }
+
+    .sub-item-link {
+      width: 100%;
+      padding: 10px 14px;
+      background: rgba(255,255,255,0.02);
+      border: 1px solid rgba(255,215,0,0.12);
+      border-radius: 10px;
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .sub-item-link:hover {
+      background: rgba(255,215,0,0.05);
+      color: #fff;
+      border-color: rgba(255,215,0,0.25);
+    }
+
+    /* Single Items */
+    .single-item {
+      padding: 14px 16px;
+      background: var(--glass);
+      border: 1.5px solid rgba(255,215,0,0.3);
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      color: #fff;
+      text-decoration: none;
+    }
+
+    .single-item:hover {
+      background: rgba(255,255,255,0.08);
+    }
+
+    /* Overlay & Sidebar Styling */
+    .overlay{
+      position:fixed;
+      inset:0;
+      background:rgba(0,0,0,0.60);
+      backdrop-filter:blur(3px);
+      z-index:100;
+      opacity:0;
+      pointer-events:none;
+      transition:.28s ease;
+    }
+
+    .overlay.show{
+      opacity:1;
+      pointer-events:auto;
+    }
+
+    .sidebar{
+      position:fixed;
+      top:0;
+      left:calc(var(--sidebar-width) * -1 - 40px);
+      width:var(--sidebar-width);
+      max-width:84%;
+      height:100vh;
+      background:linear-gradient(180deg, rgba(12,12,12,0.98), rgba(18,18,18,0.98));
+      border-right:1.5px solid rgba(255,215,0,0.38);
+      box-shadow:12px 0 40px rgba(0,0,0,0.45);
+      z-index:120;
+      transition:left .32s ease;
+      padding:18px 14px 18px;
+      overflow-y:auto;
+    }
+
+    .sidebar.show{
+      left:0;
+    }
+
+    .sidebar::-webkit-scrollbar {
+      width: 4px;
+    }
+    .sidebar::-webkit-scrollbar-thumb {
+      background: rgba(255, 215, 0, 0.2);
+      border-radius: 10px;
+    }
+
+    .sidebar-top{
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap:10px;
+      margin-bottom:12px;
+    }
+
+    .brand-box h2{
+      font-size:22px;
+      color:var(--gold);
+      font-weight:800;
+      letter-spacing:1px;
+      text-transform:uppercase;
+      line-height:1.2;
+    }
+
+    .brand-box p{
+      font-size:11px;
+      color:var(--muted);
+      margin-top:4px;
+      line-height:1.55;
+    }
+
+    .close-btn{
+      width:42px;
+      height:42px;
+      border-radius:14px;
+      border:1.4px solid rgba(255,215,0,0.45);
+      background:var(--glass);
+      color:var(--gold);
+      font-size:20px;
+      font-weight:700;
+      cursor:pointer;
+      flex-shrink:0;
+    }
+
+    .sidebar-line{
+      width:100%;
+      height:2px;
+      border-radius:999px;
+      background:linear-gradient(90deg, transparent, var(--gold), #fff0a6, var(--gold), transparent);
+      margin-bottom:14px;
+    }
+
+    .sidebar-top-nav{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:4px;
+      margin:4px 0 14px;
+      padding:10px 8px;
+      border-radius:16px;
+      border:1.3px solid rgba(255,215,0,0.28);
+      background:var(--glass);
+    }
+
+    .sidebar-nav-btn{
+      text-decoration:none;
+      color:var(--red);
+      font-size:11px;
+      font-weight:700;
+      letter-spacing:.7px;
+      text-transform:uppercase;
+      white-space:nowrap;
+      flex-shrink: 0;
+    }
+
+    .sidebar-nav-title{
+      flex:1;
+      text-align:center;
+      color:var(--gold);
+      font-size:10px;
+      font-weight:700;
+      letter-spacing:.4px;
+      text-transform:uppercase;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .menu-label{
+      font-size:12px;
+      font-weight:800;
+      color:var(--gold);
+      letter-spacing:.8px;
+      text-transform:uppercase;
+      margin:6px 4px 10px;
+    }
+
+    .menu-list{
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+    }
+
+    .menu-item{
+      width:100%;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      padding:14px 14px;
+      border-radius:16px;
+      border:1.3px solid rgba(255,215,0,0.25);
+      background:var(--glass);
+      color:var(--text);
+      font-size:14px;
+      font-weight:600;
+      text-decoration:none;
+      cursor:pointer;
+    }
+
+    .menu-item .left{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      min-width:0;
+    }
+
+    .menu-item .icon{
+      width:34px;
+      height:34px;
+      border-radius:12px;
+      border:1px solid rgba(255,215,0,0.28);
+      background:rgba(255,255,255,0.04);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:16px;
+      color:var(--gold);
+      flex-shrink:0;
+    }
+
+    .menu-item .arrow{
+      color:var(--gold);
+      font-size:14px;
+      flex-shrink:0;
+      transition: transform 0.2s;
+    }
+
+    .menu-item.active .arrow {
+      transform: rotate(180deg);
+    }
+
+    /* Dashboard Submenu Wrapper Styles */
+    .submenu{
+      display:none;
+      flex-direction:column;
+      gap:8px;
+      padding:8px 0 0 4px;
+    }
+
+    .submenu.show{
+      display:flex;
+    }
+
+    /* Sidebar Inside Dashboard Specific Tweaks */
+    #dashboardSubmenu .course-header, 
+    #dashboardSubmenu .single-item {
+      padding: 10px 12px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,215,0,0.2);
+    }
+    #dashboardSubmenu .btn-main-txt {
+      font-size: 14px;
+    }
+    #dashboardSubmenu .btn-sub-txt {
+      font-size: 10px;
+    }
+    #dashboardSubmenu .course-icon {
+      font-size: 16px;
+    }
+    #dashboardSubmenu .course-content {
+      padding: 4px 4px 4px 12px;
+    }
+
+    /* Language and other submenus styling */
+    .submenu-item{
+      width:100%;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      padding:12px 12px;
+      border-radius:14px;
+      border:1.2px solid rgba(255,215,0,0.20);
+      background:rgba(255,255,255,0.04);
+      color:var(--text);
+      text-decoration:none;
+      font-size:13px;
+      font-weight:600;
+      cursor:pointer;
+    }
+
+    .submenu-item .sub-left{
+      display:flex;
+      align-items:center;
+      gap:10px;
+    }
+
+    .lock-badge{
+      color:var(--gold);
+      font-size:13px;
+      font-weight:700;
+      flex-shrink:0;
+    }
+
+    .settings-box{
+      margin-top:10px;
+      padding:14px;
+      border-radius:18px;
+      border:1.3px solid rgba(255,215,0,0.25);
+      background:var(--glass);
+    }
+
+    .settings-box h4{
+      color:var(--gold);
+      font-size:13px;
+      font-weight:800;
+      text-transform:uppercase;
+      letter-spacing:.7px;
+      margin-bottom:12px;
+    }
+
+    .setting-row{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      padding:11px 0;
+      border-bottom:1px solid rgba(255,215,0,0.12);
+    }
+
+    .setting-row:last-child{
+      border-bottom:none;
+      padding-bottom:0;
+    }
+
+    .setting-left{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      min-width:0;
+    }
+
+    .setting-icon{
+      width:34px;
+      height:34px;
+      border-radius:12px;
+      border:1px solid rgba(255,215,0,0.28);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      color:var(--gold);
+      background:rgba(255,255,255,0.04);
+      flex-shrink:0;
+      font-size:15px;
+    }
+
+    .setting-text{
+      font-size:13px;
+      font-weight:600;
+      color:var(--text);
+    }
+
+    .toggle{
+      position:relative;
+      width:52px;
+      height:30px;
+      border-radius:999px;
+      background:rgba(255,255,255,0.12);
+      border:1px solid rgba(255,215,0,0.28);
+      cursor:pointer;
+      flex-shrink:0;
+    }
+
+    .toggle::before{
+      content:"";
+      position:absolute;
+      top:3px;
+      left:3px;
+      width:22px;
+      height:22px;
+      border-radius:50%;
+      background:var(--gold);
+      box-shadow:0 0 8px rgba(255,215,0,0.25);
+      transition:.25s ease;
+    }
+
+    .toggle.active{
+      background:rgba(255,215,0,0.20);
+    }
+
+    .toggle.active::before{
+      left:25px;
+    }
+
+    .countdown-value{
+      font-size:11px;
+      color:var(--gold);
+      font-weight:700;
+      text-align:right;
+      line-height:1.5;
+      max-width:120px;
+    }
+
+    .sidebar-footer{
+      margin-top:14px;
+      padding:14px;
+      border-radius:18px;
+      border:1.3px solid rgba(255,215,0,0.24);
+      background:var(--glass);
+      text-align:center;
+    }
+
+    .sidebar-footer .footer-title{
+      color:var(--gold);
+      font-size:13px;
+      font-weight:800;
+      margin-bottom:6px;
+      text-transform:uppercase;
+      letter-spacing:.6px;
+    }
+
+    .sidebar-footer p{
+      font-size:11px;
+      color:var(--muted);
+      line-height:1.7;
+    }
+
+    .popup-overlay{
+      position:fixed;
+      inset:0;
+      background:rgba(0,0,0,0.72);
+      backdrop-filter:blur(4px);
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      padding:18px;
+      z-index:300;
+      opacity:0;
+      pointer-events:none;
+      transition:.25s ease;
+    }
+
+    .popup-overlay.show{
+      opacity:1;
+      pointer-events:auto;
+    }
+
+    .popup-box{
+      width:100%;
+      max-width:360px;
+      border-radius:24px;
+      padding:22px 18px 18px;
+      background:linear-gradient(180deg, rgba(16,16,16,0.98), rgba(10,10,10,0.98));
+      border:1.6px solid rgba(255,215,0,0.55);
+      box-shadow:0 0 30px rgba(255,215,0,0.14);
+      text-align:center;
+    }
+
+    .popup-box h3{
+      color:var(--gold);
+      font-size:22px;
+      font-weight:800;
+      margin-bottom:10px;
+      text-transform:uppercase;
+      letter-spacing:1px;
+    }
+
+    .popup-box p{
+      font-size:13px;
+      color:var(--muted);
+      line-height:1.8;
+      margin-bottom:14px;
+    }
+
+    .countdown{
+      font-size:13px;
+      font-weight:700;
+      color:var(--gold);
+      line-height:1.8;
+      margin-bottom:16px;
+    }
+
+    .popup-btn{
+      width:100%;
+      min-height:48px;
+      border-radius:14px;
+      border:1.5px solid rgba(255,215,0,0.55);
+      background:rgba(255,215,0,0.08);
+      color:var(--gold);
+      font-size:14px;
+      font-weight:700;
+      cursor:pointer;
+    }
+
+    @media (max-width:380px){
+      .phone-frame{padding:16px 12px 20px;}
+      .main-title h2{font-size:21px;}
+      .topbar-title h1{font-size:17px;}
+      .sidebar{width:280px;}
+    }
+  </style>
+</head>
+<body>
+
+  <div class="overlay" id="overlay"></div>
+
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-top">
+      <div class="brand-box">
+        <h2>EWONZ LINGUA</h2>
+        <p>Premium Language Learning Platform</p>
+      </div>
+      <button class="close-btn" id="closeSidebarBtn">✕</button>
+    </div>
+
+    <div class="sidebar-line"></div>
+
+    <div class="sidebar-top-nav">
+      <a href="index.html" class="sidebar-nav-btn">← BACK</a>
+      <div class="sidebar-nav-title">WRITING SYSTEM</div>
+      <a href="index.html" class="sidebar-nav-btn">HOME →</a>
+    </div>
+
+    <div class="menu-label">Main Menu</div>
+
+    <div class="menu-list">
+      
+      <div class="menu-item" id="dashboardToggle">
+        <div class="left">
+          <div class="icon">🏠</div>
+          <span>Dashboard</span>
+        </div>
+        <span class="arrow">▼</span>
+      </div>
+
+      <div class="submenu" id="dashboardSubmenu">
+        
+        <div class="course-section">
+          <div class="course-header" onclick="toggleCourseSection(this)">
+            <div class="course-title-box">
+              <div class="btn-meta">
+                <div class="btn-main-txt">Hiragana</div>
+                <div class="btn-sub-txt">平仮名 (Hiragana) — හිරගනා</div>
+              </div>
+              <span class="course-icon">🇯🇵</span>
+            </div>
+            <span class="course-arrow">▼</span>
+          </div>
+          <div class="course-content">
+            <a href="#" class="sub-item-link">Basic Characters</a>
+            <a href="#" class="sub-item-link">Dakuten</a>
+            <a href="#" class="sub-item-link">Handakuten</a>
+            <a href="#" class="sub-item-link">Combination Characters</a>
+            <a href="#" class="sub-item-link">Small Tsu (っ)</a>
+            <a href="#" class="sub-item-link">Long Vowels</a>
+            <a href="#" class="sub-item-link">Stroke Order</a>
+            <a href="#" class="sub-item-link">Writing Practice</a>
+            <a href="#" class="sub-item-link">Reading Practice</a>
+            <a href="#" class="sub-item-link">Quiz</a>
+          </div>
+        </div>
+
+        <div class="course-section">
+          <div class="course-header" onclick="toggleCourseSection(this)">
+            <div class="course-title-box">
+              <div class="btn-meta">
+                <div class="btn-main-txt">Katakana</div>
+                <div class="btn-sub-txt">片仮名 (Katakana) — කතකනා</div>
+              </div>
+              <span class="course-icon">🇯🇵</span>
+            </div>
+            <span class="course-arrow">▼</span>
+          </div>
+          <div class="course-content">
+            <a href="#" class="sub-item-link">Basic Characters</a>
+            <a href="#" class="sub-item-link">Dakuten</a>
+            <a href="#" class="sub-item-link">Handakuten</a>
+            <a href="#" class="sub-item-link">Combination Characters</a>
+            <a href="#" class="sub-item-link">Foreign Words</a>
+            <a href="#" class="sub-item-link">Stroke Order</a>
+            <a href="#" class="sub-item-link">Writing Practice</a>
+            <a href="#" class="sub-item-link">Reading Practice</a>
+            <a href="#" class="sub-item-link">Quiz</a>
+          </div>
+        </div>
+
+        <div class="course-section">
+          <div class="course-header" onclick="toggleCourseSection(this)">
+            <div class="course-title-box">
+              <div class="btn-meta">
+                <div class="btn-main-txt">Kanji</div>
+                <div class="btn-sub-txt">漢字 (Kanji) — කන්ජි</div>
+              </div>
+              <span class="course-icon">🈶</span>
+            </div>
+            <span class="course-arrow">▼</span>
+          </div>
+          <div class="course-content">
+            <a href="#" class="sub-item-link">Basic Kanji</a>
+            <a href="#" class="sub-item-link">JLPT N5 Kanji</a>
+            <a href="#" class="sub-item-link">JLPT N4 Kanji</a>
+            <a href="#" class="sub-item-link">Onyomi & Kunyomi</a>
+            <a href="#" class="sub-item-link">Writing Practice</a>
+            <a href="#" class="sub-item-link">Quiz</a>
+          </div>
+        </div>
+
+        <a href="#" class="single-item">
+          <div class="btn-meta">
+            <div class="btn-main-txt">Japanese Numbers</div>
+            <div class="btn-sub-txt">数字 (Sūji) — ජපන් ඉලක්කම්</div>
+          </div>
+          <span class="course-icon">🔢</span>
+        </a>
+
+        <a href="#" class="single-item">
+          <div class="btn-meta">
+            <div class="btn-main-txt">Date & Time</div>
+            <div class="btn-sub-txt">日時 (Nichiji) — දිනය සහ වේලාව</div>
+          </div>
+          <span class="course-icon">📅</span>
+        </a>
+
+        <a href="#" class="single-item">
+          <div class="btn-meta">
+            <div class="btn-main-txt">Stroke Order Center</div>
+            <div class="btn-sub-txt">筆順 (Hitsujun) — අකුරු ලියන පිළිවෙල මධ්‍යස්ථානය</div>
+          </div>
+          <span class="course-icon">✍️</span>
+        </a>
+
+        <a href="#" class="single-item">
+          <div class="btn-meta">
+            <div class="btn-main-txt">Romaji</div>
+            <div class="btn-sub-txt">ローマ字 (Rōmaji) — රෝමාජි</div>
+          </div>
+          <span class="course-icon">🔤</span>
+        </a>
+
+        <a href="#" class="single-item">
+          <div class="btn-meta">
+            <div class="btn-main-txt">Furigana</div>
+            <div class="btn-sub-txt">振り仮名 (Furigana) — ෆුරිගනා</div>
+          </div>
+          <span class="course-icon">📖</span>
+        </a>
+
+        <a href="#" class="single-item">
+          <div class="btn-meta">
+            <div class="btn-main-txt">Japanese Punctuation</div>
+            <div class="btn-sub-txt">句読点 (Kutōten) — ජපන් විරාම ලකුණු</div>
+          </div>
+          <span class="course-icon">📝</span>
+        </a>
+
+        <a href="#" class="single-item">
+          <div class="btn-meta">
+            <div class="btn-main-txt">Flashcards</div>
+            <div class="btn-sub-txt">フラッシュカード (Furasshukādo) — ෆ්ලෑෂ් කාඩ්පත්</div>
+          </div>
+          <span class="course-icon">🎴</span>
+        </a>
+
+        <div class="course-section">
+          <div class="course-header" onclick="toggleCourseSection(this)">
+            <div class="course-title-box">
+              <div class="btn-meta">
+                <div class="btn-main-txt">Practice Center</div>
+                <div class="btn-sub-txt">練習センター (Renshū Sentā) — පුහුණු මධ්‍යස්ථානය</div>
+              </div>
+              <span class="course-icon">💪</span>
+            </div>
+            <span class="course-arrow">▼</span>
+          </div>
+          <div class="course-content">
+            <a href="#" class="sub-item-link">Reading Practice</a>
+            <a href="#" class="sub-item-link">Writing Practice</a>
+          </div>
+        </div>
+
+        <div class="course-section">
+          <div class="course-header" onclick="toggleCourseSection(this)">
+            <div class="course-title-box">
+              <div class="btn-meta">
+                <div class="btn-main-txt">Quiz Center</div>
+                <div class="btn-sub-txt">クイズセンター (Kuizu Sentā) — ප්‍රශ්නාවලි මධ්‍යස්ථානය</div>
+              </div>
+              <span class="course-icon">🧠</span>
+            </div>
+            <span class="course-arrow">▼</span>
+          </div>
+          <div class="course-content">
+            <a href="#" class="sub-item-link">Hiragana Quiz</a>
+            <a href="#" class="sub-item-link">Katakana Quiz</a>
+          </div>
+        </div>
+
+        <div class="course-section">
+          <div class="course-header" onclick="toggleCourseSection(this)">
+            <div class="course-title-box">
+              <div class="btn-meta">
+                <div class="btn-main-txt">Download Center</div>
+                <div class="btn-sub-txt">ダウンロードセンター (Daunrōdo Sentā) — බාගත කිරීම් මධ්‍යස්ථානය</div>
+              </div>
+              <span class="course-icon">📄</span>
+            </div>
+            <span class="course-arrow">▼</span>
+          </div>
+          <div class="course-content">
+            <a href="#" class="sub-item-link">PDF Worksheets</a>
+          </div>
+        </div>
+
+        <div class="course-section">
+          <div class="course-header" onclick="toggleCourseSection(this)">
+            <div class="course-title-box">
+              <div class="btn-meta">
+                <div class="btn-main-txt">Progress Center</div>
+                <div class="btn-sub-txt">進捗センター (Shinchoku Sentā) — ප්‍රගති මධ්‍යස්ථානය</div>
+              </div>
+              <span class="course-icon">🏆</span>
+            </div>
+            <span class="course-arrow">▼</span>
+          </div>
+          <div class="course-content">
+            <a href="#" class="sub-item-link">Learning Progress</a>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="menu-item" id="languageToggle">
+        <div class="left">
+          <div class="icon">🌐</div>
+          <span>Language</span>
+        </div>
+        <span class="arrow">▼</span>
+      </div>
+
+      <div class="submenu" id="languageSubmenu">
+        <div class="submenu-item" onclick="showLockedPopup('Japanese')">
+          <div class="sub-left">
+            <span>Japanese</span>
+          </div>
+          <span class="lock-badge">🇯🇵 🔒</span>
+        </div>
+        <div class="submenu-item" onclick="showLockedPopup('Chinese')">
+          <div class="sub-left">
+            <span>Chinese</span>
+          </div>
+          <span class="lock-badge">🇨🇳 🔒</span>
+        </div>
+      </div>
+
+      <a href="studyplan.html" class="menu-item">
+        <div class="left">
+          <div class="icon">📅</div>
+          <span>Study Plan</span>
+        </div>
+      </a>
+
+      <div class="menu-item" id="settingsToggle">
+        <div class="left">
+          <div class="icon">⚙️</div>
+          <span>Settings</span>
+        </div>
+        <span class="arrow">▼</span>
+      </div>
+
+      <div class="settings-box submenu" id="settingsSubmenu">
+        <h4>Settings</h4>
+        <div class="setting-row">
+          <div class="setting-left">
+            <div class="setting-icon">🌙</div>
+            <div class="setting-text">Dark Mode</div>
+          </div>
+          <div class="toggle active" id="darkModeToggle"></div>
+        </div>
+        <div class="setting-row">
+          <div class="setting-left">
+            <div class="setting-icon">⏳</div>
+            <div class="setting-text">Count Down</div>
+          </div>
+          <div class="countdown-value" id="sidebarCountdown">Loading...</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sidebar-footer">
+      <div class="footer-title">Version 1.0</div>
+      <p>Made By Danu Ewonz</p>
+      <p>(Kalpa Mihiranga)</p>
+    </div>
+  </aside>
+
+  <div class="app-shell">
+    <main class="phone-frame">
+      <div class="topbar">
+        <button class="menu-btn" id="menuBtn" aria-label="Open menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+
+        <div class="topbar-title">
+          <h1>EWONZ LINGUA</h1>
+          <p>Premium Language Learning Platform</p>
+        </div>
+      </div>
+
+      <div class="shine-line"></div>
+
+      <section class="content">
+        <div class="main-title">
+          <h2>Writing System</h2>
+        </div>
+
+        <div class="course-container">
+          
+          <div class="course-section">
+            <div class="course-header" onclick="toggleCourseSection(this)">
+              <div class="course-title-box">
+                <div class="btn-meta">
+                  <div class="btn-main-txt">Hiragana</div>
+                  <div class="btn-sub-txt">平仮名 (Hiragana) — හිරගනා</div>
+                </div>
+                <span class="course-icon">🇯🇵</span>
+              </div>
+              <span class="course-arrow">▼</span>
+            </div>
+            <div class="course-content">
+              <a href="#" class="sub-item-link">Basic Characters</a>
+              <a href="#" class="sub-item-link">Dakuten</a>
+              <a href="#" class="sub-item-link">Handakuten</a>
+              <a href="#" class="sub-item-link">Combination Characters</a>
+              <a href="#" class="sub-item-link">Small Tsu (っ)</a>
+              <a href="#" class="sub-item-link">Long Vowels</a>
+              <a href="#" class="sub-item-link">Stroke Order</a>
+              <a href="#" class="sub-item-link">Writing Practice</a>
+              <a href="#" class="sub-item-link">Reading Practice</a>
+              <a href="#" class="sub-item-link">Quiz</a>
+            </div>
+          </div>
+
+          <div class="course-section">
+            <div class="course-header" onclick="toggleCourseSection(this)">
+              <div class="course-title-box">
+                <div class="btn-meta">
+                  <div class="btn-main-txt">Katakana</div>
+                  <div class="btn-sub-txt">片仮名 (Katakana) — කතකනා</div>
+                </div>
+                <span class="course-icon">🇯🇵</span>
+              </div>
+              <span class="course-arrow">▼</span>
+            </div>
+            <div class="course-content">
+              <a href="#" class="sub-item-link">Basic Characters</a>
+              <a href="#" class="sub-item-link">Dakuten</a>
+              <a href="#" class="sub-item-link">Handakuten</a>
+              <a href="#" class="sub-item-link">Combination Characters</a>
+              <a href="#" class="sub-item-link">Foreign Words</a>
+              <a href="#" class="sub-item-link">Stroke Order</a>
+              <a href="#" class="sub-item-link">Writing Practice</a>
+              <a href="#" class="sub-item-link">Reading Practice</a>
+              <a href="#" class="sub-item-link">Quiz</a>
+            </div>
+          </div>
+
+          <div class="course-section">
+            <div class="course-header" onclick="toggleCourseSection(this)">
+              <div class="course-title-box">
+                <div class="btn-meta">
+                  <div class="btn-main-txt">Kanji</div>
+                  <div class="btn-sub-txt">漢字 (Kanji) — කන්ජි</div>
+                </div>
+                <span class="course-icon">🈶</span>
+              </div>
+              <span class="course-arrow">▼</span>
+            </div>
+            <div class="course-content">
+              <a href="#" class="sub-item-link">Basic Kanji</a>
+              <a href="#" class="sub-item-link">JLPT N5 Kanji</a>
+              <a href="#" class="sub-item-link">JLPT N4 Kanji</a>
+              <a href="#" class="sub-item-link">Onyomi & Kunyomi</a>
+              <a href="#" class="sub-item-link">Writing Practice</a>
+              <a href="#" class="sub-item-link">Quiz</a>
+            </div>
+          </div>
+
+          <a href="#" class="single-item">
+            <div class="btn-meta">
+              <div class="btn-main-txt">Japanese Numbers</div>
+              <div class="btn-sub-txt">数字 (Sūji) — ජපන් ඉලක්කම්</div>
+            </div>
+            <span class="course-icon">🔢</span>
+          </a>
+
+          <a href="#" class="single-item">
+            <div class="btn-meta">
+              <div class="btn-main-txt">Date & Time</div>
+              <div class="btn-sub-txt">日時 (Nichiji) — දිනය සහ වේලාව</div>
+            </div>
+            <span class="course-icon">📅</span>
+          </a>
+
+          <a href="#" class="single-item">
+            <div class="btn-meta">
+              <div class="btn-main-txt">Stroke Order Center</div>
+              <div class="btn-sub-txt">筆順 (Hitsujun) — අකුරු ලියන පිළිවෙල මධ්‍යස්ථානය</div>
+            </div>
+            <span class="course-icon">✍️</span>
+          </a>
+
+          <a href="#" class="single-item">
+            <div class="btn-meta">
+              <div class="btn-main-txt">Romaji</div>
+              <div class="btn-sub-txt">ローマ字 (Rōmaji) — රෝමාජි</div>
+            </div>
+            <span class="course-icon">🔤</span>
+          </a>
+
+          <a href="#" class="single-item">
+            <div class="btn-meta">
+              <div class="btn-main-txt">Furigana</div>
+              <div class="btn-sub-txt">振り仮名 (Furigana) — ෆුරිගනා</div>
+            </div>
+            <span class="course-icon">📖</span>
+          </a>
+
+          <a href="#" class="single-item">
+            <div class="btn-meta">
+              <div class="btn-main-txt">Japanese Punctuation</div>
+              <div class="btn-sub-txt">句読点 (Kutōten) — ජපන් විරාම ලකුණු</div>
+            </div>
+            <span class="course-icon">📝</span>
+          </a>
+
+          <a href="#" class="single-item">
+            <div class="btn-meta">
+              <div class="btn-main-txt">Flashcards</div>
+              <div class="btn-sub-txt">フラッシュカード (Furasshukādo) — ෆ්ලෑෂ් කාඩ්පත්</div>
+            </div>
+            <span class="course-icon">🎴</span>
+          </a>
+
+          <div class="course-section">
+            <div class="course-header" onclick="toggleCourseSection(this)">
+              <div class="course-title-box">
+                <div class="btn-meta">
+                  <div class="btn-main-txt">Practice Center</div>
+                  <div class="btn-sub-txt">練習センター (Renshū Sentā) — පුහුණු මධ්‍යස්ථානය</div>
+                </div>
+                <span class="course-icon">💪</span>
+              </div>
+              <span class="course-arrow">▼</span>
+            </div>
+            <div class="course-content">
+              <a href="#" class="sub-item-link">Reading Practice</a>
+              <a href="#" class="sub-item-link">Writing Practice</a>
+            </div>
+          </div>
+
+          <div class="course-section">
+            <div class="course-header" onclick="toggleCourseSection(this)">
+              <div class="course-title-box">
+                <div class="btn-meta">
+                  <div class="btn-main-txt">Quiz Center</div>
+                  <div class="btn-sub-txt">クイズセンター (Kuizu Sentā) — ප්‍රශ්නාවලි මධ්‍යස්ථානය</div>
+                </div>
+                <span class="course-icon">🧠</span>
+              </div>
+              <span class="course-arrow">▼</span>
+            </div>
+            <div class="course-content">
+              <a href="#" class="sub-item-link">Hiragana Quiz</a>
+              <a href="#" class="sub-item-link">Katakana Quiz</a>
+            </div>
+          </div>
+
+          <div class="course-section">
+            <div class="course-header" onclick="toggleCourseSection(this)">
+              <div class="course-title-box">
+                <div class="btn-meta">
+                  <div class="btn-main-txt">Download Center</div>
+                  <div class="btn-sub-txt">ダウンロードセンター (Daunrōdo Sentā) — බාගත කිරීම් මධ්‍යස්ථානය</div>
+                </div>
+                <span class="course-icon">📄</span>
+              </div>
+              <span class="course-arrow">▼</span>
+            </div>
+            <div class="course-content">
+              <a href="#" class="sub-item-link">PDF Worksheets</a>
+            </div>
+          </div>
+
+          <div class="course-section">
+            <div class="course-header" onclick="toggleCourseSection(this)">
+              <div class="course-title-box">
+                <div class="btn-meta">
+                  <div class="btn-main-txt">Progress Center</div>
+                  <div class="btn-sub-txt">進捗センター (Shinchoku Sentā) — ප්‍රගති මධ්‍යස්ථානය</div>
+                </div>
+                <span class="course-icon">🏆</span>
+              </div>
+              <span class="course-arrow">▼</span>
+            </div>
+            <div class="course-content">
+              <a href="#" class="sub-item-link">Learning Progress</a>
+            </div>
+          </div>
+
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <div class="popup-overlay" id="popupOverlay">
+    <div class="popup-box">
+      <h3 id="popupTitle">Coming Soon</h3>
+      <p id="popupText">This section is currently locked.</p>
+      <div class="countdown" id="countdownBox"></div>
+      <button class="popup-btn" onclick="closePopup()">OK</button>
+    </div>
+  </div>
+
+  <script>
+    const sidebar = document.getElementById("sidebar");
+    const overlay = document.getElementById("overlay");
+    const menuBtn = document.getElementById("menuBtn");
+    const closeSidebarBtn = document.getElementById("closeSidebarBtn");
+
+    const popupOverlay = document.getElementById("popupOverlay");
+    const popupTitle = document.getElementById("popupTitle");
+    const popupText = document.getElementById("popupText");
+    const countdownBox = document.getElementById("countdownBox");
+
+    const dashboardToggle = document.getElementById("dashboardToggle");
+    const dashboardSubmenu = document.getElementById("dashboardSubmenu");
+    const languageToggle = document.getElementById("languageToggle");
+    const languageSubmenu = document.getElementById("languageSubmenu");
+    const settingsToggle = document.getElementById("settingsToggle");
+    const settingsSubmenu = document.getElementById("settingsSubmenu");
+
+    const darkModeToggle = document.getElementById("darkModeToggle");
+    const sidebarCountdown = document.getElementById("sidebarCountdown");
+
+    function openSidebar(){
+      sidebar.classList.add("show");
+      overlay.classList.add("show");
+      document.body.style.overflow = "hidden";
+    }
+
+    function closeSidebar(){
+      sidebar.classList.remove("show");
+      overlay.classList.remove("show");
+      if (!popupOverlay.classList.contains("show")) {
+        document.body.style.overflow = "";
+      }
+    }
+
+    function toggleCourseSection(element) {
+      const parent = element.parentElement;
+      parent.classList.toggle("active");
+    }
+
+    menuBtn.addEventListener("click", openSidebar);
+    closeSidebarBtn.addEventListener("click", closeSidebar);
+    overlay.addEventListener("click", closeSidebar);
+
+    dashboardToggle.addEventListener("click", () => {
+      dashboardToggle.classList.toggle("active");
+      dashboardSubmenu.classList.toggle("show");
+    });
+    languageToggle.addEventListener("click", () => {
+      languageToggle.classList.toggle("active");
+      languageSubmenu.classList.toggle("show");
+    });
+    settingsToggle.addEventListener("click", () => {
+      settingsToggle.classList.toggle("active");
+      settingsSubmenu.classList.toggle("show");
+    });
+
+    const targetDate = new Date("2026-11-28T00:00:00");
+
+    function getCountdownParts() {
+      const now = new Date();
+      const diff = targetDate - now;
+      if (diff <= 0) return { text: "Unlocked", short: "Unlocked" };
+
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+      const minutes = Math.floor((diff / (1000 * 60)) % 60);
+      const seconds = Math.floor((diff / 1000) % 60);
+
+      return {
+        text: `Unlocks in: ${days}d ${hours}h ${minutes}m ${seconds}s`,
+        short: `${days}d ${hours}h`
+      };
+    }
+
+    function updateCountdown(){
+      const data = getCountdownParts();
+      if (countdownBox) countdownBox.textContent = data.text;
+      if (sidebarCountdown) sidebarCountdown.textContent = data.short;
+    }
+
+    function showLockedPopup(sectionName = "This section"){
+      popupTitle.textContent = `${sectionName} Locked`;
+      popupText.textContent = `${sectionName} is currently locked and will be available in a future Ewonz Lingua update.`;
+      popupOverlay.classList.add("show");
+      closeSidebar();
+      updateCountdown();
+      document.body.style.overflow = "hidden";
+    }
+
+    function closePopup(){
+      popupOverlay.classList.remove("show");
+      document.body.style.overflow = "";
+    }
+
+    setInterval(updateCountdown, 1000);
+    updateCountdown();
+
+    darkModeToggle.addEventListener("click", () => darkModeToggle.classList.toggle("active"));
+
+    document.addEventListener("keydown", (e) => {
+      if(e.key === "Escape"){
+        closeSidebar();
+        closePopup();
+      }
+    });
+  </script>
+</body>
+</html>
