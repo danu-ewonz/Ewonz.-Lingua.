@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>EWONZ LINGUA - Japanese Language</title>
+  <title>EWONZ LINGUA - Writing System</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -27,10 +27,9 @@
       --text:#ffffff;
       --muted:#b0b0b0;
       --sub-text:rgba(255,255,255,0.45);
-      --glass:rgba(255,255,255,0.05);
-      --border:rgba(255,215,0,0.42);
+      --glass:rgba(255,255,255,0.04);
+      --border:rgba(255,215,0,0.25);
       --shadow:0 0 18px rgba(255,215,0,0.10);
-      --sidebar-width:290px;
     }
 
     html,body{
@@ -69,19 +68,16 @@
       border-radius:30px;
       overflow:hidden;
       background:
-        linear-gradient(rgba(8,8,8,0.88), rgba(8,8,8,0.95)),
+        linear-gradient(rgba(8,8,8,0.90), rgba(8,8,8,0.96)),
         url("1780704324974.png") center/cover no-repeat;
       border:2px solid rgba(255,215,0,0.72);
       box-shadow:
         0 0 0 1px rgba(255,215,0,0.20),
-        0 0 22px rgba(255,215,0,0.15),
-        inset 0 0 18px rgba(255,215,0,0.05);
+        0 0 22px rgba(255,215,0,0.15);
       padding:18px 14px 22px;
     }
 
     .topbar{
-      position:relative;
-      z-index:5;
       display:flex;
       align-items:center;
       justify-content:space-between;
@@ -89,7 +85,7 @@
       margin-bottom:10px;
     }
 
-    .menu-btn{
+    .back-btn{
       width:46px;
       height:46px;
       border-radius:14px;
@@ -97,21 +93,15 @@
       background:var(--glass);
       backdrop-filter:blur(10px);
       display:flex;
-      flex-direction:column;
       justify-content:center;
       align-items:center;
-      gap:5px;
+      color:var(--gold);
+      font-size:16px;
+      font-weight:700;
+      text-decoration:none;
       cursor:pointer;
       box-shadow:var(--shadow);
       flex-shrink:0;
-    }
-
-    .menu-btn span{
-      width:20px;
-      height:2.4px;
-      border-radius:999px;
-      background:linear-gradient(90deg, var(--gold), var(--gold-dark));
-      display:block;
     }
 
     .topbar-title{
@@ -121,19 +111,12 @@
     }
 
     .topbar-title h1{
-      font-size:19px;
+      font-size:18px;
       font-weight:700;
       letter-spacing:1px;
       color:rgba(255,215,0,0.78);
       text-transform:uppercase;
       line-height:1.2;
-    }
-
-    .topbar-title p{
-      margin-top:3px;
-      font-size:11px;
-      color:var(--muted);
-      letter-spacing:.5px;
     }
 
     .shine-line{
@@ -142,464 +125,471 @@
       border-radius:999px;
       margin:10px 0 18px;
       background:linear-gradient(90deg, rgba(255,215,0,0.15), var(--gold), #fff1a8, var(--gold), rgba(255,215,0,0.15));
-      box-shadow:0 0 8px rgba(255,215,0,0.16);
-    }
-
-    .content{
-      position:relative;
-      z-index:2;
-      display:flex;
-      flex-direction:column;
-      width:100%;
-      padding-bottom:8px;
     }
 
     .main-title{
       text-align:center;
-      margin-bottom:16px;
-      width:100%;
+      margin-bottom:20px;
     }
 
     .main-title h2{
-      font-size:24px;
+      font-size:23px;
       font-weight:800;
       color:#ffffff;
       letter-spacing:.6px;
-      line-height:1.25;
     }
 
-    /* Scroll Container Customization */
-    .custom-scroll-container {
+    .main-title p{
+      font-size:11px;
+      color:var(--gold);
+      opacity:0.8;
+      margin-top:2px;
+      text-transform:uppercase;
+      letter-spacing:1px;
+    }
+
+    /* Scroll Container */
+    .scroll-container {
       width: 100%;
       display: flex;
       flex-direction: column;
       gap: 12px;
-      max-height: 64vh;
+      max-height: 66vh;
       overflow-y: auto;
       padding-right: 4px;
     }
 
-    .custom-scroll-container::-webkit-scrollbar {
+    .scroll-container::-webkit-scrollbar {
       width: 4px;
     }
-    .custom-scroll-container::-webkit-scrollbar-thumb {
+    .scroll-container::-webkit-scrollbar-thumb {
       background: rgba(255, 215, 0, 0.3);
       border-radius: 10px;
     }
 
-    /* Customized Button styles from prompt guidelines */
-    .menu-action-btn {
+    /* Base Component Box */
+    .section-box {
       width: 100%;
-      padding: 20px 14px;
       background: var(--glass);
-      border: 1.5px solid rgba(255, 215, 0, 0.28);
+      border: 1.5px solid var(--border);
       border-radius: 18px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      text-decoration: none;
-      cursor: pointer;
-      transition: background 0.2s, border-color 0.2s;
+      overflow: hidden;
+      transition: border-color 0.2s;
     }
 
-    .menu-action-btn:hover {
-      background: rgba(255, 255, 255, 0.08);
+    .section-box:hover {
       border-color: rgba(255, 215, 0, 0.5);
     }
 
-    .btn-left-content {
+    .section-header {
+      width: 100%;
+      padding: 18px 14px;
       display: flex;
       align-items: center;
+      justify-content: space-between;
+      background: transparent;
+      border: none;
+      color: #ffffff;
+      cursor: pointer;
       text-align: left;
     }
 
-    .btn-text-group {
+    a.section-header {
+      text-decoration: none;
+    }
+
+    .header-left {
       display: flex;
       flex-direction: column;
       gap: 1px;
     }
 
-    .btn-main-title {
-      color: #ffffff;
+    .header-title {
       font-size: 16px;
       font-weight: 700;
-      letter-spacing: 0.4px;
+      color: #ffffff;
     }
 
-    .btn-sub-jp {
-      color: var(--gold);
+    .header-sub {
       font-size: 10px;
-      font-weight: 500;
-      opacity: 0.95;
-    }
-
-    .btn-sub-si {
       color: var(--sub-text);
-      font-size: 10px;
-      font-weight: 400;
     }
 
-    .btn-right-group {
+    .header-right {
       display: flex;
       align-items: center;
       gap: 10px;
-      flex-shrink: 0;
     }
 
-    .btn-icon {
+    .header-emoji {
       font-size: 18px;
     }
 
-    .btn-arrow {
+    .header-arrow {
       color: var(--gold);
-      font-size: 14px;
-      font-weight: 700;
+      font-size: 12px;
+      transition: transform 0.25s ease;
     }
 
-    /* Core Sidebar & Layout System styles */
-    .overlay{ position:fixed; inset:0; background:rgba(0,0,0,0.60); backdrop-filter:blur(3px); z-index:100; opacity:0; pointer-events:none; transition:.28s ease; }
-    .overlay.show{ opacity:1; pointer-events:auto; }
-    .sidebar{ position:fixed; top:0; left:calc(var(--sidebar-width) * -1 - 40px); width:var(--sidebar-width); max-width:84%; height:100vh; background:linear-gradient(180deg, rgba(12,12,12,0.98), rgba(18,18,18,0.98)); border-right:1.5px solid rgba(255,215,0,0.38); box-shadow:12px 0 40px rgba(0,0,0,0.45); z-index:120; transition:left .32s ease; padding:18px 14px 18px; overflow-y:auto; }
-    .sidebar.show{ left:0; }
-    .sidebar-top{ display:flex; align-items:flex-start; justify-content:space-between; gap:10px; margin-bottom:12px; }
-    .brand-box h2{ font-size:22px; color:var(--gold); font-weight:800; letter-spacing:1px; text-transform:uppercase; line-height:1.2; }
-    .brand-box p{ font-size:11px; color:var(--muted); margin-top:4px; line-height:1.55; }
-    .close-btn{ width:42px; height:42px; border-radius:14px; border:1.4px solid rgba(255,215,0,0.45); background:var(--glass); color:var(--gold); font-size:20px; font-weight:700; cursor:pointer; flex-shrink:0; }
-    .sidebar-line{ width:100%; height:2px; border-radius:999px; background:linear-gradient(90deg, transparent, var(--gold), #fff0a6, var(--gold), transparent); margin-bottom:14px; }
-    .sidebar-top-nav{ display:flex; align-items:center; justify-content:space-between; gap:4px; margin:4px 0 14px; padding:10px 8px; border-radius:16px; border:1.3px solid rgba(255,215,0,0.28); background:var(--glass); }
-    .sidebar-nav-btn{ text-decoration:none; color:var(--red); font-size:11px; font-weight:700; letter-spacing:.7px; text-transform:uppercase; white-space:nowrap; flex-shrink: 0; }
-    .sidebar-nav-title{ flex:1; text-align:center; color:var(--gold); font-size:10px; font-weight:700; letter-spacing:.4px; text-transform:uppercase; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-    .menu-label{ font-size:12px; font-weight:800; color:var(--gold); letter-spacing:.8px; text-transform:uppercase; margin:6px 4px 10px; }
-    .menu-list{ display:flex; flex-direction:column; gap:10px; }
-    .menu-item{ width:100%; display:flex; align-items:center; justify-content:space-between; gap:12px; padding:14px 14px; border-radius:16px; border:1.3px solid rgba(255,215,0,0.25); background:var(--glass); color:var(--text); font-size:14px; font-weight:600; text-decoration:none; cursor:pointer; }
-    .menu-item .left{ display:flex; align-items:center; gap:10px; min-width:0; }
-    .menu-item .left.no-icon { padding-left: 4px; }
-    .menu-item .arrow{ color:var(--gold); font-size:14px; flex-shrink:0; }
-    .submenu{ display:none; flex-direction:column; gap:8px; padding:8px 0 0 10px; }
-    .submenu.show{ display:flex; }
-    .submenu-item{ width:100%; display:flex; align-items:center; justify-content:space-between; gap:10px; padding:12px 12px; border-radius:14px; border:1.2px solid rgba(255,215,0,0.20); background:rgba(255,255,255,0.04); color:var(--text); text-decoration:none; font-size:13px; font-weight:600; cursor:pointer; }
-    .submenu-item .sub-left{ display:flex; align-items:center; gap:10px; }
-    .red-lock-badge { color: var(--red); font-size: 10px; font-weight: 700; letter-spacing: 0.5px; background: rgba(255, 77, 77, 0.12); padding: 3px 7px; border-radius: 6px; border: 1px solid rgba(255, 77, 77, 0.25); text-transform: uppercase; flex-shrink:0; }
-    .settings-box{ margin-top:10px; padding:14px; border-radius:18px; border:1.3px solid rgba(255,215,0,0.25); background:var(--glass); }
-    .settings-box h4{ color:var(--gold); font-size:13px; font-weight:800; text-transform:uppercase; letter-spacing:.7px; margin-bottom:12px; }
-    .settings-box .setting-row{ display:flex; align-items:center; justify-content:space-between; gap:12px; padding:11px 0; border-bottom:1px solid rgba(255,215,0,0.12); }
-    .settings-box .setting-row:last-child{ border-bottom:none; padding-bottom:0; }
-    .setting-left{ display:flex; align-items:center; gap:10px; min-width:0; }
-    .setting-text{ font-size:13px; font-weight:600; color:var(--text); }
-    .toggle{ position:relative; width:52px; height:30px; border-radius:999px; background:rgba(255,255,255,0.12); border:1px solid rgba(255,215,0,0.28); cursor:pointer; flex-shrink:0; }
-    .toggle::before{ content:""; position:absolute; top:3px; left:3px; width:22px; height:22px; border-radius:50%; background:var(--gold); box-shadow:0 0 8px rgba(255,215,0,0.25); transition:.25s ease; }
-    .toggle.active{ background:rgba(255,215,0,0.20); }
-    .toggle.active::before{ left:25px; }
-    .countdown-value{ font-size:11px; color:var(--gold); font-weight:700; text-align:right; line-height:1.5; max-width:120px; }
-    .sidebar-footer{ margin-top:14px; padding:14px; border-radius:18px; border:1.3px solid rgba(255,215,0,0.24); background:var(--glass); text-align:center; }
-    .sidebar-footer .footer-title{ color:var(--gold); font-size:13px; font-weight:800; margin-bottom:6px; text-transform:uppercase; letter-spacing:.6px; }
-    .sidebar-footer p{ font-size:11px; color:var(--muted); line-height:1.7; }
+    /* Accordion Dropdown Content */
+    .section-content {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.25s ease-out;
+      background: rgba(0, 0, 0, 0.2);
+    }
+
+    .sub-list {
+      display: flex;
+      flex-direction: column;
+      padding: 4px 12px 14px 12px;
+      gap: 8px;
+    }
+
+    .sub-item {
+      width: 100%;
+      padding: 12px 14px;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 215, 0, 0.12);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      text-decoration: none;
+      color: #eeeeee;
+      font-size: 13px;
+      font-weight: 500;
+      transition: background 0.2s, border-color 0.2s;
+    }
+
+    .sub-item:hover {
+      background: rgba(255, 255, 255, 0.07);
+      border-color: rgba(255, 215, 0, 0.3);
+      color: #ffffff;
+    }
+
+    .sub-item .arrow-sub {
+      color: rgba(255, 215, 0, 0.6);
+      font-size: 11px;
+    }
+
+    /* Active Accordion State */
+    .section-box.active .header-arrow {
+      transform: rotate(90deg);
+    }
     
-    /* Premium Modals Popup */
-    .popup-overlay{ position:fixed; inset:0; background:rgba(0,0,0,0.72); backdrop-filter:blur(4px); display:flex; justify-content:center; align-items:center; padding:18px; z-index:300; opacity:0; pointer-events:none; transition:.25s ease; }
-    .popup-overlay.show{ opacity:1; pointer-events:auto; }
-    .popup-box{ width:100%; max-width:360px; border-radius:24px; padding:22px 18px 18px; background:linear-gradient(180deg, rgba(16,16,16,0.98), rgba(10,10,10,0.98)); border:1.6px solid rgba(255,215,0,0.55); box-shadow:0 0 30px rgba(255,215,0,0.14); text-align:center; }
-    .popup-box h3{ color:var(--gold); font-size:22px; font-weight:800; margin-bottom:10px; text-transform:uppercase; letter-spacing:1px; }
-    .popup-box p{ font-size:13px; color:var(--muted); line-height:1.8; margin-bottom:14px; }
-    .countdown{ font-size:13px; font-weight:700; color:var(--gold); line-height:1.8; margin-bottom:16px; }
-    .popup-btn{ width:100%; min-height:48px; border-radius:14px; border:1.5px solid rgba(255,215,0,0.55); background:rgba(255,215,0,0.08); color:var(--gold); font-size:14px; font-weight:700; cursor:pointer; }
+    .section-box.active .section-content {
+      border-top: 1px solid rgba(255, 215, 0, 0.12);
+    }
 
     @media (max-width:380px){
       .phone-frame{padding:16px 12px 20px;}
-      .main-title h2{font-size:21px;}
-      .topbar-title h1{font-size:17px;}
-      .sidebar{width:280px;}
+      .main-title h2{font-size:20px;}
     }
   </style>
 </head>
 <body>
 
-  <div class="overlay" id="overlay"></div>
-
-  <!-- Sidebar Component -->
-  <aside class="sidebar" id="sidebar">
-    <div class="sidebar-top">
-      <div class="brand-box">
-        <h2>EWONZ LINGUA</h2>
-        <p>Premium Language Learning Platform</p>
-      </div>
-      <button class="close-btn" id="closeSidebarBtn">✕</button>
-    </div>
-
-    <div class="sidebar-line"></div>
-
-    <div class="sidebar-top-nav">
-      <a href="language.html" class="sidebar-nav-btn">← BACK</a>
-      <div class="sidebar-nav-title">JAPANESE</div>
-      <a href="index.html" class="sidebar-nav-btn">HOME →</a>
-    </div>
-
-    <div class="menu-label">Main Menu</div>
-    <div class="menu-list">
-      <div class="menu-item" id="languagesToggle"><div class="left no-icon"><span>Languages</span></div><span class="arrow">⌄</span></div>
-      <div class="submenu show" id="languagesSubmenu">
-        <a href="writingsystem.html" class="submenu-item" style="text-decoration:none;"><div class="sub-left"><span>Japanese 🇯🇵</span></div></a>
-        <div class="submenu-item" onclick="showLockedPopup('Chinese')"><div class="sub-left"><span>Chinese 🇨🇳</span></div><span class="red-lock-badge">[LOCKED]</span></div>
-        <div class="submenu-item" onclick="showLockedPopup('Korean')"><div class="sub-left"><span>Korean 🇰🇷</span></div><span class="red-lock-badge">[LOCKED]</span></div>
-      </div>
-      <a href="studyplan.html" class="menu-item"><div class="left"><span>Study Plan 📅</span></div></a>
-      <a href="about.html" class="menu-item"><div class="left"><span>About ℹ️</span></div></a>
-      <div class="menu-item" id="settingsToggle"><div class="left"><span>Settings ⚙️</span></div><span class="arrow">⌄</span></div>
-      <div class="settings-box submenu" id="settingsSubmenu">
-        <h4>Settings</h4>
-        <div class="setting-row"><div class="setting-left"><div class="setting-text">Dark Mode 🌙</div></div><div class="toggle active" id="darkModeToggle"></div></div>
-        <div class="setting-row"><div class="setting-left"><div class="setting-text">Notification 🔔</div></div><div class="toggle" id="notificationToggle"></div></div>
-        <div class="setting-row"><div class="setting-left"><div class="setting-text">Count Down ⏳</div></div><div class="countdown-value" id="sidebarCountdown">Loading...</div></div>
-        <div class="setting-row"><div class="setting-left"><div class="setting-text">Sound Toggle 🔊</div></div><div class="toggle active" id="soundToggle"></div></div>
-      </div>
-    </div>
-    <div class="sidebar-footer"><div class="footer-title">Version 1.0</div><p>Made By Danu Ewonz</p><p>(Kalpa Mihiranga)</p></div>
-  </aside>
-
-  <!-- Main View -->
   <div class="app-shell">
     <main class="phone-frame">
+      
+      <!-- Topbar Header -->
       <div class="topbar">
-        <button class="menu-btn" id="menuBtn" aria-label="Open menu">
-          <span></span><span></span><span></span>
-        </button>
+        <a href="japanese-learning.html" class="back-btn" aria-label="Go back">←</a>
         <div class="topbar-title">
           <h1>EWONZ LINGUA</h1>
-          <p>Premium Language Learning Platform</p>
         </div>
       </div>
 
       <div class="shine-line"></div>
 
-      <section class="content">
-        <div class="main-title">
-          <h2>Japanese Language</h2>
+      <!-- Main Title -->
+      <div class="main-title">
+        <h2>Writing System</h2>
+        <p>文字体系 - Moji Taikei</p>
+      </div>
+
+      <!-- Scrollable Sub-Menu Items -->
+      <div class="scroll-container">
+
+        <!-- 1. Hiragana (Accordion) -->
+        <div class="section-box">
+          <button class="section-header" onclick="toggleAccordion(this)">
+            <div class="header-left">
+              <span class="header-title">Hiragana</span>
+              <span class="header-sub">ひらがな - සරල අක්ෂර මාලාව</span>
+            </div>
+            <div class="header-right">
+              <span class="header-emoji">🇯🇵</span>
+              <span class="header-arrow">➔</span>
+            </div>
+          </button>
+          <div class="section-content">
+            <div class="sub-list">
+              <a href="hiragana/basic.html" class="sub-item"><span>Basic Characters</span><span class="arrow-sub">➔</span></a>
+              <a href="hiragana/dakuten.html" class="sub-item"><span>Dakuten</span><span class="arrow-sub">➔</span></a>
+              <a href="hiragana/handakuten.html" class="sub-item"><span>Handakuten</span><span class="arrow-sub">➔</span></a>
+              <a href="hiragana/combination.html" class="sub-item"><span>Combination Characters (Kya, Kyu, Kyo)</span><span class="arrow-sub">➔</span></a>
+              <a href="hiragana/small-tsu.html" class="sub-item"><span>Small Tsu (っ)</span><span class="arrow-sub">➔</span></a>
+              <a href="hiragana/long-vowels.html" class="sub-item"><span>Long Vowels</span><span class="arrow-sub">➔</span></a>
+              <a href="hiragana/stroke-order.html" class="sub-item"><span>Stroke Order</span><span class="arrow-sub">➔</span></a>
+              <a href="hiragana/writing-practice.html" class="sub-item"><span>Writing Practice</span><span class="arrow-sub">➔</span></a>
+              <a href="hiragana/reading-practice.html" class="sub-item"><span>Reading Practice</span><span class="arrow-sub">➔</span></a>
+              <a href="hiragana/quiz.html" class="sub-item"><span>Quiz</span><span class="arrow-sub">➔</span></a>
+            </div>
+          </div>
         </div>
 
-        <!-- 11 Buttons Custom Scroll Container -->
-        <div class="custom-scroll-container">
-          
-          <!-- 1. Writing System -->
-          <a href="japanese-writing.html" class="menu-action-btn">
-            <div class="btn-left-content">
-              <div class="btn-text-group">
-                <span class="btn-main-title">Writing System</span>
-                <span class="btn-sub-jp">文字体系 - Moji Taikei</span>
-                <span class="btn-sub-si">ලිවීමේ ක්‍රමය</span>
-              </div>
+        <!-- 2. Katakana (Accordion) -->
+        <div class="section-box">
+          <button class="section-header" onclick="toggleAccordion(this)">
+            <div class="header-left">
+              <span class="header-title">Katakana</span>
+              <span class="header-sub">カタカナ - විදේශීය වචන සඳහා අක්ෂර</span>
             </div>
-            <div class="btn-right-group">
-              <span class="btn-icon">🔤</span>
-              <span class="btn-arrow">➜</span>
+            <div class="header-right">
+              <span class="header-emoji">🇯🇵</span>
+              <span class="header-arrow">➔</span>
             </div>
-          </a>
-
-          <!-- 2. Learning System -->
-          <a href="japanese-learning.html" class="menu-action-btn">
-            <div class="btn-left-content">
-              <div class="btn-text-group">
-                <span class="btn-main-title">Learning System</span>
-                <span class="btn-sub-jp">学習システム - Gakushū Shisutemu</span>
-                <span class="btn-sub-si">ඉගෙනීමේ පද්ධතිය</span>
-              </div>
+          </button>
+          <div class="section-content">
+            <div class="sub-list">
+              <a href="katakana/basic.html" class="sub-item"><span>Basic Characters</span><span class="arrow-sub">➔</span></a>
+              <a href="katakana/dakuten.html" class="sub-item"><span>Dakuten</span><span class="arrow-sub">➔</span></a>
+              <a href="katakana/handakuten.html" class="sub-item"><span>Handakuten</span><span class="arrow-sub">➔</span></a>
+              <a href="katakana/combination.html" class="sub-item"><span>Combination Characters</span><span class="arrow-sub">➔</span></a>
+              <a href="katakana/foreign-words.html" class="sub-item"><span>Foreign Words</span><span class="arrow-sub">➔</span></a>
+              <a href="katakana/stroke-order.html" class="sub-item"><span>Stroke Order</span><span class="arrow-sub">➔</span></a>
+              <a href="katakana/writing-practice.html" class="sub-item"><span>Writing Practice</span><span class="arrow-sub">➔</span></a>
+              <a href="katakana/reading-practice.html" class="sub-item"><span>Reading Practice</span><span class="arrow-sub">➔</span></a>
+              <a href="katakana/quiz.html" class="sub-item"><span>Quiz</span><span class="arrow-sub">➔</span></a>
             </div>
-            <div class="btn-right-group">
-              <span class="btn-icon">📘</span>
-              <span class="btn-arrow">➜</span>
-            </div>
-          </a>
-
-          <!-- 3. Vocabulary -->
-          <a href="japanese-vocabulary.html" class="menu-action-btn">
-            <div class="btn-left-content">
-              <div class="btn-text-group">
-                <span class="btn-main-title">Vocabulary</span>
-                <span class="btn-sub-jp">語彙 - Goi</span>
-                <span class="btn-sub-si">වචන මාලාව</span>
-              </div>
-            </div>
-            <div class="btn-right-group">
-              <span class="btn-icon">📝</span>
-              <span class="btn-arrow">➜</span>
-            </div>
-          </a>
-
-          <!-- 4. Grammar -->
-          <a href="japanese-grammar.html" class="menu-action-btn">
-            <div class="btn-left-content">
-              <div class="btn-text-group">
-                <span class="btn-main-title">Grammar</span>
-                <span class="btn-sub-jp">文法 - Bunpō</span>
-                <span class="btn-sub-si">ව්‍යාකරණ</span>
-              </div>
-            </div>
-            <div class="btn-right-group">
-              <span class="btn-icon">📖</span>
-              <span class="btn-arrow">➜</span>
-            </div>
-          </a>
-
-          <!-- 5. Reading Practice -->
-          <a href="japanese-reading.html" class="menu-action-btn">
-            <div class="btn-left-content">
-              <div class="btn-text-group">
-                <span class="btn-main-title">Reading Practice</span>
-                <span class="btn-sub-jp">読解練習 - Dokkai Renshū</span>
-                <span class="btn-sub-si">කියවීමේ පුහුණුව</span>
-              </div>
-            </div>
-            <div class="btn-right-group">
-              <span class="btn-icon">📚</span>
-              <span class="btn-arrow">➜</span>
-            </div>
-          </a>
-
-          <!-- 6. Listening -->
-          <a href="japanese-listening.html" class="menu-action-btn">
-            <div class="btn-left-content">
-              <div class="btn-text-group">
-                <span class="btn-main-title">Listening</span>
-                <span class="btn-sub-jp">聴解練習 - Chōkai Renshū</span>
-                <span class="btn-sub-si">සවන්දීමේ පුහුණුව</span>
-              </div>
-            </div>
-            <div class="btn-right-group">
-              <span class="btn-icon">🎧</span>
-              <span class="btn-arrow">➜</span>
-            </div>
-          </a>
-
-          <!-- 7. Speaking -->
-          <a href="japanese-speaking.html" class="menu-action-btn">
-            <div class="btn-left-content">
-              <div class="btn-text-group">
-                <span class="btn-main-title">Speaking</span>
-                <span class="btn-sub-jp">会話練習 - Kaiwa Renshū</span>
-                <span class="btn-sub-si">කථන පුහුණුව</span>
-              </div>
-            </div>
-            <div class="btn-right-group">
-              <span class="btn-icon">🗣</span>
-              <span class="btn-arrow">➜</span>
-            </div>
-          </a>
-
-          <!-- 8. Writing Practice -->
-          <a href="japanese-writing-practice.html" class="menu-action-btn">
-            <div class="btn-left-content">
-              <div class="btn-text-group">
-                <span class="btn-main-title">Writing Practice</span>
-                <span class="btn-sub-jp">作文練習 - Sakubun Renshū</span>
-                <span class="btn-sub-si">ලිවීමේ පුහුණුව</span>
-              </div>
-            </div>
-            <div class="btn-right-group">
-              <span class="btn-icon">✍️</span>
-              <span class="btn-arrow">➜</span>
-            </div>
-          </a>
-
-          <!-- 9. Quiz Center -->
-          <a href="japanese-quiz.html" class="menu-action-btn">
-            <div class="btn-left-content">
-              <div class="btn-text-group">
-                <span class="btn-main-title">Quiz Center</span>
-                <span class="btn-sub-jp">クイズセンター - Kuizu Sentā</span>
-                <span class="btn-sub-si">ප්‍රශ්නාවලි මධ්‍යස්ථානය</span>
-              </div>
-            </div>
-            <div class="btn-right-group">
-              <span class="btn-icon">🎯</span>
-              <span class="btn-arrow">➜</span>
-            </div>
-          </a>
-
-          <!-- 10. Exams -->
-          <a href="japanese-exams.html" class="menu-action-btn">
-            <div class="btn-left-content">
-              <div class="btn-text-group">
-                <span class="btn-main-title">Exams</span>
-                <span class="btn-sub-jp">試験 - Shiken</span>
-                <span class="btn-sub-si">විභාග</span>
-              </div>
-            </div>
-            <div class="btn-right-group">
-              <span class="btn-icon">📝</span>
-              <span class="btn-arrow">➜</span>
-            </div>
-          </a>
-
-          <!-- 11. Japan Information -->
-          <a href="japan-info.html" class="menu-action-btn">
-            <div class="btn-left-content">
-              <div class="btn-text-group">
-                <span class="btn-main-title">Japan Information</span>
-                <span class="btn-sub-jp">日本情報 - Nihon Jōhō</span>
-                <span class="btn-sub-si">ජපානය පිළිබඳ තොරතුරු</span>
-              </div>
-            </div>
-            <div class="btn-right-group">
-              <span class="btn-icon">🇯🇵</span>
-              <span class="btn-arrow">➜</span>
-            </div>
-          </a>
-
+          </div>
         </div>
-      </section>
+
+        <!-- 3. Kanji (Accordion) -->
+        <div class="section-box">
+          <button class="section-header" onclick="toggleAccordion(this)">
+            <div class="header-left">
+              <span class="header-title">Kanji</span>
+              <span class="header-sub">漢字 - රූපක අක්ෂර ක්‍රමය</span>
+            </div>
+            <div class="header-right">
+              <span class="header-emoji">🈶</span>
+              <span class="header-arrow">➔</span>
+            </div>
+          </button>
+          <div class="section-content">
+            <div class="sub-list">
+              <a href="kanji/basic-kanji.html" class="sub-item"><span>Basic Kanji</span><span class="arrow-sub">➔</span></a>
+              <a href="kanji/jlpt-n5.html" class="sub-item"><span>JLPT N5 Kanji</span><span class="arrow-sub">➔</span></a>
+              <a href="kanji/jlpt-n4.html" class="sub-item"><span>JLPT N4 Kanji</span><span class="arrow-sub">➔</span></a>
+              <a href="kanji/jft-basic.html" class="sub-item"><span>JFT-Basic Kanji</span><span class="arrow-sub">➔</span></a>
+              <a href="kanji/onyomi-kunyomi.html" class="sub-item"><span>Onyomi & Kunyomi</span><span class="arrow-sub">➔</span></a>
+              <a href="kanji/stroke-order.html" class="sub-item"><span>Stroke Order</span><span class="arrow-sub">➔</span></a>
+              <a href="kanji/example-words.html" class="sub-item"><span>Example Words</span><span class="arrow-sub">➔</span></a>
+              <a href="kanji/example-sentences.html" class="sub-item"><span>Example Sentences</span><span class="arrow-sub">➔</span></a>
+              <a href="kanji/writing-practice.html" class="sub-item"><span>Writing Practice</span><span class="arrow-sub">➔</span></a>
+              <a href="kanji/quiz.html" class="sub-item"><span>Quiz</span><span class="arrow-sub">➔</span></a>
+            </div>
+          </div>
+        </div>
+
+        <!-- 4. Japanese Numbers (Link) -->
+        <div class="section-box">
+          <a href="numbers/japanese-numbers.html" class="section-header">
+            <div class="header-left">
+              <span class="header-title">Japanese Numbers</span>
+              <span class="header-sub">数字 - ජපන් ඉලක්කම් රටා</span>
+            </div>
+            <div class="header-right">
+              <span class="header-emoji">🔢</span>
+              <span class="header-arrow">➔</span>
+            </div>
+          </a>
+        </div>
+
+        <!-- 5. Date & Time (Link) -->
+        <div class="section-box">
+          <a href="time/date-time.html" class="section-header">
+            <div class="header-left">
+              <span class="header-title">Date & Time</span>
+              <span class="header-sub">日時 - දිනය සහ වේලාව</span>
+            </div>
+            <div class="header-right">
+              <span class="header-emoji">🕒</span>
+              <span class="header-arrow">➔</span>
+            </div>
+          </a>
+        </div>
+
+        <!-- 6. Stroke Order Center (Link) -->
+        <div class="section-box">
+          <a href="stroke-order/stroke-order-center.html" class="section-header">
+            <div class="header-left">
+              <span class="header-title">Stroke Order Center</span>
+              <span class="header-sub">筆順 - අකුරු ලියන නිවැරදි පිළිවෙල</span>
+            </div>
+            <div class="header-right">
+              <span class="header-emoji">✍️</span>
+              <span class="header-arrow">➔</span>
+            </div>
+          </a>
+        </div>
+
+        <!-- 7. Romaji (Link) -->
+        <div class="section-box">
+          <a href="romaji/romaji.html" class="section-header">
+            <div class="header-left">
+              <span class="header-title">Romaji</span>
+              <span class="header-sub">ローマ字 - ඉංග්‍රීසි අකුරින් ජපන්</span>
+            </div>
+            <div class="header-right">
+              <span class="header-emoji">🔤</span>
+              <span class="header-arrow">➔</span>
+            </div>
+          </a>
+        </div>
+
+        <!-- 8. Punctuation (Link) -->
+        <div class="section-box">
+          <a href="punctuation/punctuation.html" class="section-header">
+            <div class="header-left">
+              <span class="header-title">Punctuation</span>
+              <span class="header-sub">句読点 - විරාම ලකුණු</span>
+            </div>
+            <div class="header-right">
+              <span class="header-emoji">📝</span>
+              <span class="header-arrow">➔</span>
+            </div>
+          </a>
+        </div>
+
+        <!-- 9. Flashcards (Link) -->
+        <div class="section-box">
+          <a href="flashcards/flashcards.html" class="section-header">
+            <div class="header-left">
+              <span class="header-title">Flashcards</span>
+              <span class="header-sub">フラッシュカード - මතක කාඩ්පත්</span>
+            </div>
+            <div class="header-right">
+              <span class="header-emoji">🎴</span>
+              <span class="header-arrow">➔</span>
+            </div>
+          </a>
+        </div>
+
+        <!-- 10. Practice (Accordion) -->
+        <div class="section-box">
+          <button class="section-header" onclick="toggleAccordion(this)">
+            <div class="header-left">
+              <span class="header-title">Practice</span>
+              <span class="header-sub">練習 - ප්‍රායෝගික පුහුණුවීම්</span>
+            </div>
+            <div class="header-right">
+              <span class="header-emoji">💪</span>
+              <span class="header-arrow">➔</span>
+            </div>
+          </button>
+          <div class="section-content">
+            <div class="sub-list">
+              <a href="practice/reading-practice.html" class="sub-item"><span>Reading Practice</span><span class="arrow-sub">➔</span></a>
+              <a href="practice/writing-practice.html" class="sub-item"><span>Writing Practice</span><span class="arrow-sub">➔</span></a>
+              <a href="practice/typing-practice.html" class="sub-item"><span>Typing Practice</span><span class="arrow-sub">➔</span></a>
+              <a href="practice/listening-practice.html" class="sub-item"><span>Listening Practice</span><span class="arrow-sub">➔</span></a>
+            </div>
+          </div>
+        </div>
+
+        <!-- 11. Quiz Center (Accordion) -->
+        <div class="section-box">
+          <button class="section-header" onclick="toggleAccordion(this)">
+            <div class="header-left">
+              <span class="header-title">Quiz Center</span>
+              <span class="header-sub">クイズ - දැනුම මිනුම් මධ්‍යස්ථානය</span>
+            </div>
+            <div class="header-right">
+              <span class="header-emoji">🧠</span>
+              <span class="header-arrow">➔</span>
+            </div>
+          </button>
+          <div class="section-content">
+            <div class="sub-list">
+              <a href="quiz-center/hiragana-quiz.html" class="sub-item"><span>Hiragana Quiz</span><span class="arrow-sub">➔</span></a>
+              <a href="quiz-center/katakana-quiz.html" class="sub-item"><span>Katakana Quiz</span><span class="arrow-sub">➔</span></a>
+              <a href="quiz-center/kanji-quiz.html" class="sub-item"><span>Kanji Quiz</span><span class="arrow-sub">➔</span></a>
+              <a href="quiz-center/mixed-quiz.html" class="sub-item"><span>Mixed Quiz</span><span class="arrow-sub">➔</span></a>
+              <a href="quiz-center/final-exam.html" class="sub-item"><span>Final Exam</span><span class="arrow-sub">➔</span></a>
+            </div>
+          </div>
+        </div>
+
+        <!-- 12. Download Center (Accordion) -->
+        <div class="section-box">
+          <button class="section-header" onclick="toggleAccordion(this)">
+            <div class="header-left">
+              <span class="header-title">Download Center</span>
+              <span class="header-sub">ダウンロード - නිබන්ධන ලබාගැනීම</span>
+            </div>
+            <div class="header-right">
+              <span class="header-emoji">📄</span>
+              <span class="header-arrow">➔</span>
+            </div>
+          </button>
+          <div class="section-content">
+            <div class="sub-list">
+              <a href="download-center/pdf-worksheets.html" class="sub-item"><span>PDF Worksheets</span><span class="arrow-sub">➔</span></a>
+              <a href="download-center/practice-sheets.html" class="sub-item"><span>Practice Sheets</span><span class="arrow-sub">➔</span></a>
+              <a href="download-center/writing-book.html" class="sub-item"><span>Writing Book</span><span class="arrow-sub">➔</span></a>
+            </div>
+          </div>
+        </div>
+
+        <!-- 13. Progress (Accordion) -->
+        <div class="section-box">
+          <button class="section-header" onclick="toggleAccordion(this)">
+            <div class="header-left">
+              <span class="header-title">Progress</span>
+              <span class="header-sub">進捗状況 - ඔබගේ ප්‍රගතිය</span>
+            </div>
+            <div class="header-right">
+              <span class="header-emoji">🏆</span>
+              <span class="header-arrow">➔</span>
+            </div>
+          </button>
+          <div class="section-content">
+            <div class="sub-list">
+              <a href="progress/learning-progress.html" class="sub-item"><span>Learning Progress</span><span class="arrow-sub">➔</span></a>
+              <a href="progress/quiz-scores.html" class="sub-item"><span>Quiz Scores</span><span class="arrow-sub">➔</span></a>
+              <a href="progress/completion-rate.html" class="sub-item"><span>Completion Rate</span><span class="arrow-sub">➔</span></a>
+              <a href="progress/achievement-badges.html" class="sub-item"><span>Achievement Badges</span><span class="arrow-sub">➔</span></a>
+            </div>
+          </div>
+        </div>
+
+      </div>
     </main>
   </div>
 
-  <!-- Locked Modals System -->
-  <div class="popup-overlay" id="popupOverlay">
-    <div class="popup-box">
-      <h3 id="popupTitle">Coming Soon</h3>
-      <p id="popupText">This section is currently locked.</p>
-      <div class="countdown" id="countdownBox"></div>
-      <button class="popup-btn" onclick="closePopup()">OK</button>
-    </div>
-  </div>
-
   <script>
-    const sidebar = document.getElementById("sidebar");
-    const overlay = document.getElementById("overlay");
-    const menuBtn = document.getElementById("menuBtn");
-    const closeSidebarBtn = document.getElementById("closeSidebarBtn");
-    const popupOverlay = document.getElementById("popupOverlay");
-    const popupTitle = document.getElementById("popupTitle");
-    const popupText = document.getElementById("popupText");
-    const countdownBox = document.getElementById("countdownBox");
-    const languagesToggle = document.getElementById("languagesToggle");
-    const languagesSubmenu = document.getElementById("languagesSubmenu");
-    const settingsToggle = document.getElementById("settingsToggle");
-    const settingsSubmenu = document.getElementById("settingsSubmenu");
-    const darkModeToggle = document.getElementById("darkModeToggle");
-    const notificationToggle = document.getElementById("notificationToggle");
-    const soundToggle = document.getElementById("soundToggle");
-    const sidebarCountdown = document.getElementById("sidebarCountdown");
+    function toggleAccordion(element) {
+      const box = element.parentElement;
+      const content = box.querySelector('.section-content');
+      
+      document.querySelectorAll('.section-box').forEach(otherBox => {
+        if (otherBox !== box && otherBox.classList.contains('active')) {
+          otherBox.classList.remove('active');
+          otherBox.querySelector('.section-content').style.maxHeight = null;
+        }
+      });
 
-    function openSidebar(){ sidebar.classList.add("show"); overlay.classList.add("show"); document.body.style.overflow = "hidden"; }
-    function closeSidebar(){ sidebar.classList.remove("show"); overlay.classList.remove("show"); if (!popupOverlay.classList.contains("show")) { document.body.style.overflow = ""; } }
-    menuBtn.addEventListener("click", openSidebar);
-    closeSidebarBtn.addEventListener("click", closeSidebar);
-    overlay.addEventListener("click", closeSidebar);
-    languagesToggle.addEventListener("click", () => languagesSubmenu.classList.toggle("show"));
-    settingsToggle.addEventListener("click", () => settingsSubmenu.classList.toggle("show"));
-
-    const targetDate = new Date("2026-11-28T00:00:00");
-    function getCountdownParts() {
-      const now = new Date(); const diff = targetDate - now; if (diff <= 0) return { text: "Unlocked", short: "Unlocked" };
-      const days = Math.floor(diff / (1000 * 60 * 60 * 24)); const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
-      const minutes = Math.floor((diff / (1000 * 60)) % 60); const seconds = Math.floor((diff / 1000) % 60);
-      return { text: `Unlocks in: ${days}d ${hours}h ${minutes}m ${seconds}s`, short: `${days}d ${hours}h ${minutes}m` };
+      box.classList.toggle('active');
+      if (box.classList.contains('active')) {
+        content.style.maxHeight = content.scrollHeight + "px";
+      } else {
+        content.style.maxHeight = null;
+      }
     }
-    function updateCountdown(){ const data = getCountdownParts(); if (countdownBox) countdownBox.textContent = data.text; if (sidebarCountdown) sidebarCountdown.textContent = data.short; }
-    function showLockedPopup(sectionName = "This section"){ popupTitle.textContent = `${sectionName} Locked`; popupText.textContent = `${sectionName} course content is premium and will unlock automatically.`; popupOverlay.classList.add("show"); closeSidebar(); updateCountdown(); document.body.style.overflow = "hidden"; }
-    function closePopup(){ popupOverlay.classList.remove("show"); document.body.style.overflow = ""; }
-    setInterval(updateCountdown, 1000); updateCountdown();
-    darkModeToggle.addEventListener("click", () => darkModeToggle.classList.toggle("active"));
-    notificationToggle.addEventListener("click", () => notificationToggle.classList.toggle("active"));
-    soundToggle.addEventListener("click", () => soundToggle.classList.toggle("active"));
-    document.addEventListener("keydown", (e) => { if(e.key === "Escape"){ closeSidebar(); closePopup(); } });
   </script>
 </body>
 </html>
