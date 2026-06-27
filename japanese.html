@@ -186,7 +186,7 @@
       border-radius: 10px;
     }
 
-    /* Single Items / Updated Buttons with Sub-texts */
+    /* Single Items Styling */
     .single-item {
       padding: 14px 16px;
       background: var(--glass);
@@ -197,10 +197,12 @@
       gap: 14px;
       color: #fff;
       text-decoration: none;
+      transition: background 0.2s, border-color 0.2s;
     }
 
     .single-item:hover {
       background: rgba(255,255,255,0.08);
+      border-color: rgba(255,215,0,0.55);
     }
 
     .btn-meta {
@@ -218,7 +220,7 @@
 
     .btn-sub-txt {
       font-size: 11px;
-      color: var(--muted);
+      color: #cca300;
       font-weight: 400;
     }
 
@@ -227,6 +229,7 @@
       flex-shrink: 0;
     }
 
+    /* Sidebar Components */
     .overlay{
       position:fixed;
       inset:0;
@@ -246,7 +249,7 @@
     .sidebar{
       position:fixed;
       top:0;
-      left:calc(var(--sidebar-width) * -1 - 40px);
+      left: calc(var(--sidebar-width) * -1 - 40px);
       width:var(--sidebar-width);
       max-width:84%;
       height:100vh;
@@ -261,6 +264,14 @@
 
     .sidebar.show{
       left:0;
+    }
+
+    .sidebar::-webkit-scrollbar {
+      width: 4px;
+    }
+    .sidebar::-webkit-scrollbar-thumb {
+      background: rgba(255, 215, 0, 0.2);
+      border-radius: 10px;
     }
 
     .sidebar-top{
@@ -401,6 +412,11 @@
       color:var(--gold);
       font-size:14px;
       flex-shrink:0;
+      transition: transform 0.2s;
+    }
+
+    .menu-item.active .arrow {
+      transform: rotate(180deg);
     }
 
     .submenu{
@@ -674,21 +690,21 @@
           <div class="icon">🏠</div>
           <span>Dashboard</span>
         </div>
-        <span class="arrow">⌄</span>
+        <span class="arrow">▼</span>
       </div>
 
       <div class="submenu" id="dashboardSubmenu">
         <a href="japanese-writing-system.html" class="submenu-item"><div class="sub-left"><span>🔤</span> Writing System</div></a>
         <a href="japanese-learning-system.html" class="submenu-item"><div class="sub-left"><span>📘</span> Learning System</div></a>
-        <a href="vocabulary.html" class="submenu-item"><div class="sub-left"><span>📝</span> Vocabulary</div></a>
-        <a href="grammar.html" class="submenu-item"><div class="sub-left"><span>📖</span> Grammar</div></a>
-        <a href="reading.html" class="submenu-item"><div class="sub-left"><span>📚</span> Reading Practice</div></a>
-        <a href="listening.html" class="submenu-item"><div class="sub-left"><span>🎧</span> Listening</div></a>
-        <a href="speaking.html" class="submenu-item"><div class="sub-left"><span>🗣</span> Speaking</div></a>
-        <a href="writingpractice.html" class="submenu-item"><div class="sub-left"><span>✍️</span> Writing Practice</div></a>
-        <a href="quiz.html" class="submenu-item"><div class="sub-left"><span>🎯</span> Quiz Center</div></a>
-        <a href="exams.html" class="submenu-item"><div class="sub-left"><span>📝</span> Exams</div></a>
-        <a href="japaninfo.html" class="submenu-item"><div class="sub-left"><span>🇯🇵</span> Japan Info</div></a>
+        <a href="japanese-vocabulary.html" class="submenu-item"><div class="sub-left"><span>📝</span> Vocabulary</div></a>
+        <a href="japanese-grammar.html" class="submenu-item"><div class="sub-left"><span>📖</span> Grammar</div></a>
+        <a href="japanese-reading.html" class="submenu-item"><div class="sub-left"><span>📚</span> Reading Practice</div></a>
+        <a href="japanese-listening.html" class="submenu-item"><div class="sub-left"><span>🎧</span> Listening</div></a>
+        <a href="japanese-speaking.html" class="submenu-item"><div class="sub-left"><span>🗣</span> Speaking</div></a>
+        <a href="japanese-writingpractice.html" class="submenu-item"><div class="sub-left"><span>✍️</span> Writing Practice</div></a>
+        <a href="japanese-quiz.html" class="submenu-item"><div class="sub-left"><span>🎯</span> Quiz Center</div></a>
+        <a href="japanese-exams.html" class="submenu-item"><div class="sub-left"><span>📝</span> Exams</div></a>
+        <a href="japanese-japaninfo.html" class="submenu-item"><div class="sub-left"><span>🇯🇵</span> Japan Info</div></a>
       </div>
 
       <!-- Language Dropdown Menu -->
@@ -697,7 +713,7 @@
           <div class="icon">🌐</div>
           <span>Language</span>
         </div>
-        <span class="arrow">⌄</span>
+        <span class="arrow">▼</span>
       </div>
 
       <div class="submenu" id="languageSubmenu">
@@ -745,7 +761,7 @@
           <div class="icon">⚙️</div>
           <span>Settings</span>
         </div>
-        <span class="arrow">⌄</span>
+        <span class="arrow">▼</span>
       </div>
 
       <div class="settings-box submenu" id="settingsSubmenu">
@@ -837,7 +853,7 @@
           </a>
 
           <!-- 3. Vocabulary -->
-          <a href="vocabulary.html" class="single-item">
+          <a href="japanese-vocabulary.html" class="single-item">
             <span class="course-icon">📝</span>
             <div class="btn-meta">
               <div class="btn-main-txt">Vocabulary</div>
@@ -846,7 +862,7 @@
           </a>
 
           <!-- 4. Grammar -->
-          <a href="grammar.html" class="single-item">
+          <a href="japanese-grammar.html" class="single-item">
             <span class="course-icon">📖</span>
             <div class="btn-meta">
               <div class="btn-main-txt">Grammar</div>
@@ -855,7 +871,7 @@
           </a>
 
           <!-- 5. Reading Practice -->
-          <a href="reading.html" class="single-item">
+          <a href="japanese-reading.html" class="single-item">
             <span class="course-icon">📚</span>
             <div class="btn-meta">
               <div class="btn-main-txt">Reading Practice</div>
@@ -864,7 +880,7 @@
           </a>
 
           <!-- 6. Listening -->
-          <a href="listening.html" class="single-item">
+          <a href="japanese-listening.html" class="single-item">
             <span class="course-icon">🎧</span>
             <div class="btn-meta">
               <div class="btn-main-txt">Listening</div>
@@ -873,7 +889,7 @@
           </a>
 
           <!-- 7. Speaking -->
-          <a href="speaking.html" class="single-item">
+          <a href="japanese-speaking.html" class="single-item">
             <span class="course-icon">🗣</span>
             <div class="btn-meta">
               <div class="btn-main-txt">Speaking</div>
@@ -882,7 +898,7 @@
           </a>
 
           <!-- 8. Writing Practice -->
-          <a href="writingpractice.html" class="single-item">
+          <a href="japanese-writingpractice.html" class="single-item">
             <span class="course-icon">✍️</span>
             <div class="btn-meta">
               <div class="btn-main-txt">Writing Practice</div>
@@ -891,7 +907,7 @@
           </a>
 
           <!-- 9. Quiz Center -->
-          <a href="quiz.html" class="single-item">
+          <a href="japanese-quiz.html" class="single-item">
             <span class="course-icon">🎯</span>
             <div class="btn-meta">
               <div class="btn-main-txt">Quiz Center</div>
@@ -900,7 +916,7 @@
           </a>
 
           <!-- 10. Exams -->
-          <a href="exams.html" class="single-item">
+          <a href="japanese-exams.html" class="single-item">
             <span class="course-icon">📝</span>
             <div class="btn-meta">
               <div class="btn-main-txt">Exams</div>
@@ -909,7 +925,7 @@
           </a>
 
           <!-- 11. Japan Information -->
-          <a href="japaninfo.html" class="single-item">
+          <a href="japanese-japaninfo.html" class="single-item">
             <span class="course-icon">🇯🇵</span>
             <div class="btn-meta">
               <div class="btn-main-txt">Japan Information</div>
@@ -922,7 +938,7 @@
     </main>
   </div>
 
-  <!-- Locked Modals System -->
+  <!-- Popups system -->
   <div class="popup-overlay" id="popupOverlay">
     <div class="popup-box">
       <h3 id="popupTitle">Coming Soon</h3>
@@ -973,9 +989,18 @@
     closeSidebarBtn.addEventListener("click", closeSidebar);
     overlay.addEventListener("click", closeSidebar);
 
-    dashboardToggle.addEventListener("click", () => dashboardSubmenu.classList.toggle("show"));
-    languageToggle.addEventListener("click", () => languageSubmenu.classList.toggle("show"));
-    settingsToggle.addEventListener("click", () => settingsSubmenu.classList.toggle("show"));
+    dashboardToggle.addEventListener("click", () => {
+      dashboardToggle.classList.toggle("active");
+      dashboardSubmenu.classList.toggle("show");
+    });
+    languageToggle.addEventListener("click", () => {
+      languageToggle.classList.toggle("active");
+      languageSubmenu.classList.toggle("show");
+    });
+    settingsToggle.addEventListener("click", () => {
+      settingsToggle.classList.toggle("active");
+      settingsSubmenu.classList.toggle("show");
+    });
 
     const targetDate = new Date("2026-11-28T00:00:00");
 
@@ -991,7 +1016,7 @@
 
       return {
         text: `Unlocks in: ${days}d ${hours}h ${minutes}m ${seconds}s`,
-        short: `${days}d ${hours}h ${minutes}m`
+        short: `${days}d ${hours}h`
       };
     }
 
