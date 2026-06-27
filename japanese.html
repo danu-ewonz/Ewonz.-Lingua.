@@ -1,9 +1,10 @@
-<!DOCTYPE html>
+
+<!DOCTYPE html
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>EWONZ LINGUA - Japanese</title>
+  <meta name="viewport" content="dth=device-width, initial-scale=1.0" />
+  <title>EWONZ LINGUA - Japanese Language</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -34,57 +35,48 @@
 
     html,body{
       width:100%;
-      height:100%;
+      min-height:100%;
       font-family:'Poppins',sans-serif;
-      background: linear-gradient(135deg, var(--bg1) 0%, var(--bg2) 45%, var(--bg3) 100%);
+      background:
+        radial-gradient(circle at top left, rgba(255,215,0,0.08), transparent 28%),
+        radial-gradient(circle at bottom right, rgba(184,134,11,0.10), transparent 34%),
+        linear-gradient(135deg, var(--bg1) 0%, var(--bg2) 45%, var(--bg3) 100%);
       color:var(--text);
-      overflow:hidden;
+      overflow-x:hidden;
       user-select:none;
     }
 
     body{
       display:flex;
       justify-content:center;
-      align-items:center;
-      padding:10px;
-    }
-
-    #bg-canvas {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: 1;
-      pointer-events: none;
+      align-items:flex-start;
+      padding:20px 12px 28px;
     }
 
     .app-shell{
-      position: relative;
-      z-index: 2;
       width:100%;
       max-width:390px;
-      height: 92vh;
       display:flex;
       flex-direction:column;
+      align-items:center;
+      gap:14px;
     }
 
     .phone-frame{
       position:relative;
       width:100%;
-      height:100%;
+      min-height:92vh;
       border-radius:30px;
       overflow:hidden;
-      background: rgba(8, 8, 8, 0.85);
-      backdrop-filter: blur(10px);
+      background:
+        linear-gradient(rgba(8,8,8,0.88), rgba(8,8,8,0.95)),
+        url("1780704324974.png") center/cover no-repeat;
       border:2px solid rgba(255,215,0,0.72);
       box-shadow:
         0 0 0 1px rgba(255,215,0,0.20),
         0 0 22px rgba(255,215,0,0.15),
         inset 0 0 18px rgba(255,215,0,0.05);
-      padding:18px 14px;
-      display: flex;
-      flex-direction: column;
+      padding:18px 14px 22px;
     }
 
     .topbar{
@@ -95,7 +87,6 @@
       justify-content:space-between;
       gap:10px;
       margin-bottom:10px;
-      flex-shrink: 0;
     }
 
     .menu-btn{
@@ -118,7 +109,7 @@
     .menu-btn span{
       width:20px;
       height:2.4px;
-      border-radius999px;
+      border-radius:999px;
       background:linear-gradient(90deg, var(--gold), var(--gold-dark));
       display:block;
     }
@@ -138,14 +129,20 @@
       line-height:1.2;
     }
 
+    .topbar-title p{
+      margin-top:3px;
+      font-size:11px;
+      color:var(--muted);
+      letter-spacing:.5px;
+    }
+
     .shine-line{
       width:100%;
       height:2px;
       border-radius:999px;
-      margin:10px 0 14px;
+      margin:10px 0 18px;
       background:linear-gradient(90deg, rgba(255,215,0,0.15), var(--gold), #fff1a8, var(--gold), rgba(255,215,0,0.15));
       box-shadow:0 0 8px rgba(255,215,0,0.16);
-      flex-shrink: 0;
     }
 
     .content{
@@ -153,94 +150,135 @@
       z-index:2;
       display:flex;
       flex-direction:column;
-      align-items:center;
-      overflow-y: auto;
-      flex: 1;
-      padding-right: 4px;
-    }
-
-    .content::-webkit-scrollbar {
-      width: 4px;
-    }
-    .content::-webkit-scrollbar-thumb {
-      background: rgba(255, 215, 0, 0.3);
-      border-radius: 999px;
+      width:100%;
+      padding-bottom:8px;
     }
 
     .main-title{
       text-align:center;
-      margin-bottom:8px;
+      margin-bottom:16px;
       width:100%;
-      flex-shrink: 0;
     }
 
     .main-title h2{
-      font-size:21px;
-      font-weight:700;
+      font-size:24px;
+      font-weight:800;
       color:#ffffff;
-      letter-spacing:1.2px;
-      text-transform: uppercase;
+      letter-spacing:.6px;
       line-height:1.25;
-      margin-bottom:2px;
     }
 
-    .japanese-grid{
-      width:100%;
-      display:flex;
-      flex-direction:column;
-      gap:14px;
-      margin-top:14px;
-      padding-bottom: 20px;
+    /* Course List Styling */
+    .course-container {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      max-height: 64vh;
+      overflow-y: auto;
+      padding-right: 4px;
     }
 
-    /* බටන් මැදට ගැනීමට (justify-content: center) සහ position: relative යෙදීම */
-    .btn{
-      width:100%;
-      padding: 20px 14px;
-      font-size: 15px;
-      font-weight:700;
-      letter-spacing:0.8px;
-      text-transform: uppercase;
-      cursor:pointer;
-      font-family:'Poppins',sans-serif;
-      border-radius:16px;
+    .course-container::-webkit-scrollbar {
+      width: 4px;
+    }
+    .course-container::-webkit-scrollbar-thumb {
+      background: rgba(255, 215, 0, 0.3);
+      border-radius: 10px;
+    }
+
+    .course-header {
+      width: 100%;
+      padding: 14px 16px;
+      background: var(--glass);
+      border: 1.5px solid rgba(255,215,0,0.3);
+      border-radius: 16px;
       display: flex;
       align-items: center;
-      justify-content: center; /* නම මැදට ගැනීමට */
+      justify-content: space-between;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .course-header:hover {
+      background: rgba(255,255,255,0.08);
+    }
+
+    .course-title-box {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .course-icon {
+      font-size: 20px;
+    }
+
+    .course-header h3 {
+      font-size: 15px;
+      font-weight: 600;
+      color: #fff;
+    }
+
+    .course-arrow {
+      font-size: 12px;
+      color: var(--gold);
+      transition: transform 0.2s;
+    }
+
+    .course-section.active .course-arrow {
+      transform: rotate(180deg);
+    }
+
+    .course-content {
+      display: none;
+      flex-direction: column;
+      gap: 6px;
+      padding: 6px 4px 6px 16px;
+    }
+
+    .course-section.active .course-content {
+      display: flex;
+    }
+
+    .sub-item-link {
+      width: 100%;
+      padding: 10px 14px;
+      background: rgba(255,255,255,0.02);
+      border: 1px solid rgba(255,215,0,0.12);
+      border-radius: 10px;
+      color: var(--muted);
       text-decoration: none;
-      transition: all 0.2s ease;
-      position: relative;
+      font-size: 13px;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 8px;
     }
 
-    .btn.open{
+    .sub-item-link:hover {
+      background: rgba(255,215,0,0.05);
+      color: #fff;
+      border-color: rgba(255,215,0,0.25);
+    }
+
+    /* Single Items without sub-menus */
+    .single-item {
+      padding: 14px 16px;
       background: var(--glass);
-      border: 1.6px solid rgba(255,215,0,0.48);
-      color: #ffffff;
-      box-shadow: inset 0 0 12px rgba(255,215,0,0.04), 0 0 12px rgba(0,0,0,0.22);
+      border: 1.5px solid rgba(255,215,0,0.3);
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: #fff;
+      text-decoration: none;
+      font-size: 15px;
+      font-weight: 600;
     }
 
-    .btn.locked{
-      background:rgba(255,215,0,0.04);
-      border:1.6px solid rgba(255,215,0,0.25);
-      color:rgba(255,255,255,0.6);
-    }
-
-    /* Lock ටැග් එක බටන් එකේ දකුණු කෙළවරටම තැබීමට */
-    .lock-tag{
-      position: absolute;
-      right: 14px;
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      padding:3px 9px;
-      border-radius:999px;
-      background:rgba(255,77,77,0.16);
-      border:1px solid rgba(255,77,77,0.45);
-      color:var(--red);
-      font-size:11px;
-      font-weight:700;
-      letter-spacing:.6px;
-      text-transform:uppercase;
+    .single-item:hover {
+      background: rgba(255,255,255,0.08);
     }
 
     .overlay{
@@ -328,9 +366,9 @@
       display:flex;
       align-items:center;
       justify-content:space-between;
-      gap:8px;
+      gap:4px;
       margin:4px 0 14px;
-      padding:10px 10px;
+      padding:10px 8px;
       border-radius:16px;
       border:1.3px solid rgba(255,215,0,0.28);
       background:var(--glass);
@@ -344,22 +382,20 @@
       letter-spacing:.7px;
       text-transform:uppercase;
       white-space:nowrap;
-      width: 60px;
-    }
-    
-    .sidebar-nav-btn:last-child {
-      text-align: right;
+      flex-shrink: 0;
     }
 
     .sidebar-nav-title{
       flex:1;
       text-align:center;
       color:var(--gold);
-      font-size:12px;
-      font-weight:800;
-      letter-spacing:.8px;
+      font-size:10px;
+      font-weight:700;
+      letter-spacing:.4px;
       text-transform:uppercase;
-      line-height: 1;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
     .menu-label{
@@ -368,7 +404,7 @@
       color:var(--gold);
       letter-spacing:.8px;
       text-transform:uppercase;
-      margin:16px 4px 10px;
+      margin:6px 4px 10px;
     }
 
     .menu-list{
@@ -419,18 +455,13 @@
       color:var(--gold);
       font-size:14px;
       flex-shrink:0;
-      transition: transform 0.2s ease;
-    }
-
-    .menu-item.active .arrow {
-      transform: rotate(180deg);
     }
 
     .submenu{
       display:none;
       flex-direction:column;
       gap:8px;
-      padding:4px 0 4px 10px;
+      padding:8px 0 0 10px;
     }
 
     .submenu.show{
@@ -460,11 +491,19 @@
       gap:10px;
     }
 
-    .settings-box {
-      border: 1.3px solid rgba(255,215,0,0.25);
-      background: var(--glass);
-      border-radius: 18px;
-      padding: 10px 14px;
+    .lock-badge{
+      color:var(--gold);
+      font-size:13px;
+      font-weight:700;
+      flex-shrink:0;
+    }
+
+    .settings-box{
+      margin-top:10px;
+      padding:14px;
+      border-radius:18px;
+      border:1.3px solid rgba(255,215,0,0.25);
+      background:var(--glass);
     }
 
     .settings-box h4{
@@ -473,8 +512,7 @@
       font-weight:800;
       text-transform:uppercase;
       letter-spacing:.7px;
-      margin-bottom:6px;
-      margin-top: 4px;
+      margin-bottom:12px;
     }
 
     .setting-row{
@@ -488,7 +526,7 @@
 
     .setting-row:last-child{
       border-bottom:none;
-      padding-bottom:4px;
+      padding-bottom:0;
     }
 
     .setting-left{
@@ -560,7 +598,7 @@
     }
 
     .sidebar-footer{
-      margin-top:20px;
+      margin-top:14px;
       padding:14px;
       border-radius:18px;
       border:1.3px solid rgba(255,215,0,0.24);
@@ -652,7 +690,7 @@
 
     @media (max-width:380px){
       .phone-frame{padding:16px 12px 20px;}
-      .main-title h2{font-size:18px;}
+      .main-title h2{font-size:21px;}
       .topbar-title h1{font-size:17px;}
       .sidebar{width:280px;}
     }
@@ -660,10 +698,9 @@
 </head>
 <body>
 
-  <canvas id="bg-canvas"></canvas>
-
   <div class="overlay" id="overlay"></div>
 
+  <!-- Sidebar Component -->
   <aside class="sidebar" id="sidebar">
     <div class="sidebar-top">
       <div class="brand-box">
@@ -676,8 +713,8 @@
     <div class="sidebar-line"></div>
 
     <div class="sidebar-top-nav">
-      <a href="language.html" class="sidebar-nav-btn">← BACK</a>
-      <div class="sidebar-nav-title">EWONZ LINGUA</div>
+      <a href="index.html" class="sidebar-nav-btn">← BACK</a>
+      <div class="sidebar-nav-title">JAPANESE LANGUAGE</div>
       <a href="index.html" class="sidebar-nav-btn">HOME →</a>
     </div>
 
@@ -693,28 +730,29 @@
       </div>
 
       <div class="submenu" id="languageSubmenu">
-        <a href="japanese.html" class="submenu-item">
+        <div class="submenu-item" onclick="showLockedPopup('Japanese')">
           <div class="sub-left">
             <span>🇯🇵</span>
             <span>Japanese</span>
           </div>
-        </a>
+          <span class="lock-badge">🔒</span>
+        </div>
 
-        <a href="chinese.html" class="submenu-item">
+        <div class="submenu-item" onclick="showLockedPopup('Chinese')">
           <div class="sub-left">
             <span>🇨🇳</span>
             <span>Chinese</span>
           </div>
-          <span class="lock-tag">LOCK</span>
-        </a>
+          <span class="lock-badge">🔒</span>
+        </div>
 
-        <a href="korean.html" class="submenu-item">
+        <div class="submenu-item" onclick="showLockedPopup('Korean')">
           <div class="sub-left">
             <span>🇰🇷</span>
             <span>Korean</span>
           </div>
-          <span class="lock-tag">LOCK</span>
-        </a>
+          <span class="lock-badge">🔒</span>
+        </div>
       </div>
 
       <a href="studyplan.html" class="menu-item">
@@ -739,41 +777,39 @@
         <span class="arrow">⌄</span>
       </div>
 
-      <div class="submenu" id="settingsSubmenu">
-        <div class="settings-box">
-          <h4>Settings</h4>
+      <div class="settings-box submenu" id="settingsSubmenu">
+        <h4>Settings</h4>
 
-          <div class="setting-row">
-            <div class="setting-left">
-              <div class="setting-icon">🌙</div>
-              <div class="setting-text">Dark Mode</div>
-            </div>
-            <div class="toggle active" id="darkModeToggle"></div>
+        <div class="setting-row">
+          <div class="setting-left">
+            <div class="setting-icon">🌙</div>
+            <div class="setting-text">Dark Mode</div>
           </div>
+          <div class="toggle active" id="darkModeToggle"></div>
+        </div>
 
-          <div class="setting-row">
-            <div class="setting-left">
-              <div class="setting-icon">🔔</div>
-              <div class="setting-text">Notification</div>
-            </div>
-            <div class="toggle" id="notificationToggle"></div>
+        <div class="setting-row">
+          <div class="setting-left">
+            <div class="setting-icon">🔔</div>
+            <div class="setting-text">Notification</div>
           </div>
+          <div class="toggle" id="notificationToggle"></div>
+        </div>
 
-          <div class="setting-row">
-            <div class="setting-left">
-              <div class="setting-icon">⏳</div>
-              <div class="setting-text">Count Down</div>
-            </div>
-            <div class="countdown-value" id="sidebarCountdown">Loading...</div>
+        <div class="setting-row">
+          <div class="setting-left">
+            <div class="setting-icon">⏳</div>
+            <div class="setting-text">Count Down</div>
           </div>
+          <div class="countdown-value" id="sidebarCountdown">Loading...</div>
+        </div>
 
-          <div class="setting-row">
-            <div class="setting-left">
-              <div class="setting-icon">🔊</div>
-              <div class="setting-text">Sound Toggle</div>
-            </div>
-            <div class="toggle active" id="soundToggle"></div>
+        <div class="setting-row">
+          <div class="setting-left">
+            <div class="setting-icon">🔊</div>
+            <div class="setting-text">Sound Toggle</div>
           </div>
+          <div class="toggle active" id="soundToggle"></div>
         </div>
       </div>
     </div>
@@ -785,6 +821,7 @@
     </div>
   </aside>
 
+  <!-- Main View -->
   <div class="app-shell">
     <main class="phone-frame">
       <div class="topbar">
@@ -795,7 +832,8 @@
         </button>
 
         <div class="topbar-title">
-          <h1>JAPANESE LANGUAGE</h1>
+          <h1>EWONZ LINGUA</h1>
+          <p>Premium Language Learning Platform</p>
         </div>
       </div>
 
@@ -803,40 +841,154 @@
 
       <section class="content">
         <div class="main-title">
-          <h2>Select Course Unit</h2>
+          <h2>🇯🇵 Japanese Language</h2>
         </div>
 
-        <div class="japanese-grid">
+        <!-- Course Accordion Modules -->
+        <div class="course-container">
           
-          <a href="writing.html" class="btn open">
-            <span>Writing System</span>
-          </a>
-
-          <a href="learning.html" class="btn open">
-            <span>Learning System</span>
-          </a>
-
-          <a href="vocabulary.html" class="btn open">
-            <span>Vocabulary</span>
-          </a>
-
-          <div class="btn locked" onclick="showLockedPopup('Grammar')">
-            <span>Grammar</span>
-            <span class="lock-tag">LOCK</span>
+          <!-- Module 1: Hiragana -->
+          <div class="course-section">
+            <div class="course-header" onclick="toggleCourseSection(this)">
+              <div class="course-title-box">
+                <span class="course-icon">🇯🇵</span>
+                <h3>Hiragana</h3>
+              </div>
+              <span class="course-arrow">▼</span>
+            </div>
+            <div class="course-content">
+              <a href="#" class="sub-item-link">Basic Characters</a>
+              <a href="#" class="sub-item-link">Dakuten</a>
+              <a href="#" class="sub-item-link">Handakuten</a>
+              <a href="#" class="sub-item-link">Combination Characters (Kya, Kyu, Kyo)</a>
+              <a href="#" class="sub-item-link">Small Tsu (っ)</a>
+              <a href="#" class="sub-item-link">Long Vowels</a>
+              <a href="#" class="sub-item-link">Stroke Order</a>
+              <a href="#" class="sub-item-link">Writing Practice</a>
+              <a href="#" class="sub-item-link">Reading Practice</a>
+              <a href="#" class="sub-item-link">Quiz</a>
+            </div>
           </div>
 
-          <div class="btn locked" onclick="showLockedPopup('Reading Practice')">
-            <span>Reading Practice</span>
-            <span class="lock-tag">LOCK</span>
+          <!-- Module 2: Katakana -->
+          <div class="course-section">
+            <div class="course-header" onclick="toggleCourseSection(this)">
+              <div class="course-title-box">
+                <span class="course-icon">🇯🇵</span>
+                <h3>Katakana</h3>
+              </div>
+              <span class="course-arrow">▼</span>
+            </div>
+            <div class="course-content">
+              <a href="#" class="sub-item-link">Basic Characters</a>
+              <a href="#" class="sub-item-link">Dakuten</a>
+              <a href="#" class="sub-item-link">Handakuten</a>
+              <a href="#" class="sub-item-link">Combination Characters</a>
+              <a href="#" class="sub-item-link">Foreign Words</a>
+              <a href="#" class="sub-item-link">Stroke Order</a>
+              <a href="#" class="sub-item-link">Writing Practice</a>
+              <a href="#" class="sub-item-link">Reading Practice</a>
+              <a href="#" class="sub-item-link">Quiz</a>
+            </div>
           </div>
 
-          <a href="exam.html" class="btn open">
-            <span>Exam</span>
-          </a>
+          <!-- Module 3: Kanji -->
+          <div class="course-section">
+            <div class="course-header" onclick="toggleCourseSection(this)">
+              <div class="course-title-box">
+                <span class="course-icon">🈶</span>
+                <h3>Kanji</h3>
+              </div>
+              <span class="course-arrow">▼</span>
+            </div>
+            <div class="course-content">
+              <a href="#" class="sub-item-link">Basic Kanji</a>
+              <a href="#" class="sub-item-link">JLPT N5 Kanji</a>
+              <a href="#" class="sub-item-link">JLPT N4 Kanji</a>
+              <a href="#" class="sub-item-link">JFT-Basic Kanji</a>
+              <a href="#" class="sub-item-link">Onyomi & Kunyomi</a>
+              <a href="#" class="sub-item-link">Stroke Order</a>
+              <a href="#" class="sub-item-link">Example Words</a>
+              <a href="#" class="sub-item-link">Example Sentences</a>
+              <a href="#" class="sub-item-link">Writing Practice</a>
+              <a href="#" class="sub-item-link">Quiz</a>
+            </div>
+          </div>
 
-          <div class="btn locked" onclick="showLockedPopup('Quiz Center')">
-            <span>Quiz Center</span>
-            <span class="lock-tag">LOCK</span>
+          <!-- Single Items -->
+          <a href="#" class="single-item"><span class="course-icon">🔢</span> Japanese Numbers</a>
+          <a href="#" class="single-item"><span class="course-icon">🕒</span> Date & Time</a>
+          <a href="#" class="single-item"><span class="course-icon">✍️</span> Stroke Order Center</a>
+          <a href="#" class="single-item"><span class="course-icon">🔤</span> Romaji</a>
+          <a href="#" class="single-item"><span class="course-icon">📝</span> Punctuation</a>
+          <a href="#" class="single-item"><span class="course-icon">🎴</span> Flashcards</a>
+
+          <!-- Module 4: Practice -->
+          <div class="course-section">
+            <div class="course-header" onclick="toggleCourseSection(this)">
+              <div class="course-title-box">
+                <span class="course-icon">💪</span>
+                <h3>Practice</h3>
+              </div>
+              <span class="course-arrow">▼</span>
+            </div>
+            <div class="course-content">
+              <a href="#" class="sub-item-link">Reading Practice</a>
+              <a href="#" class="sub-item-link">Writing Practice</a>
+              <a href="#" class="sub-item-link">Typing Practice</a>
+              <a href="#" class="sub-item-link">Listening Practice</a>
+            </div>
+          </div>
+
+          <!-- Module 5: Quiz Center -->
+          <div class="course-section">
+            <div class="course-header" onclick="toggleCourseSection(this)">
+              <div class="course-title-box">
+                <span class="course-icon">🧠</span>
+                <h3>Quiz Center</h3>
+              </div>
+              <span class="course-arrow">▼</span>
+            </div>
+            <div class="course-content">
+              <a href="#" class="sub-item-link">Hiragana Quiz</a>
+              <a href="#" class="sub-item-link">Katakana Quiz</a>
+              <a href="#" class="sub-item-link">Kanji Quiz</a>
+              <a href="#" class="sub-item-link">Mixed Quiz</a>
+              <a href="#" class="sub-item-link">Final Exam</a>
+            </div>
+          </div>
+
+          <!-- Module 6: Download Center -->
+          <div class="course-section">
+            <div class="course-header" onclick="toggleCourseSection(this)">
+              <div class="course-title-box">
+                <span class="course-icon">📄</span>
+                <h3>Download Center</h3>
+              </div>
+              <span class="course-arrow">▼</span>
+            </div>
+            <div class="course-content">
+              <a href="#" class="sub-item-link">PDF Worksheets</a>
+              <a href="#" class="sub-item-link">Practice Sheets</a>
+              <a href="#" class="sub-item-link">Writing Book</a>
+            </div>
+          </div>
+
+          <!-- Module 7: Progress -->
+          <div class="course-section">
+            <div class="course-header" onclick="toggleCourseSection(this)">
+              <div class="course-title-box">
+                <span class="course-icon">🏆</span>
+                <h3>Progress</h3>
+              </div>
+              <span class="course-arrow">▼</span>
+            </div>
+            <div class="course-content">
+              <a href="#" class="sub-item-link">Learning Progress</a>
+              <a href="#" class="sub-item-link">Quiz Scores</a>
+              <a href="#" class="sub-item-link">Completion Rate</a>
+              <a href="#" class="sub-item-link">Achievement Badges</a>
+            </div>
           </div>
 
         </div>
@@ -844,12 +996,11 @@
     </main>
   </div>
 
+  <!-- Locked Modals System -->
   <div class="popup-overlay" id="popupOverlay">
     <div class="popup-box">
       <h3 id="popupTitle">Coming Soon</h3>
-      <p id="popupText">
-        This section is currently locked and will be available in a future update.
-      </p>
+      <p id="popupText">This section is currently locked.</p>
       <div class="countdown" id="countdownBox"></div>
       <button class="popup-btn" onclick="closePopup()">OK</button>
     </div>
@@ -868,7 +1019,6 @@
 
     const languageToggle = document.getElementById("languageToggle");
     const languageSubmenu = document.getElementById("languageSubmenu");
-
     const settingsToggle = document.getElementById("settingsToggle");
     const settingsSubmenu = document.getElementById("settingsSubmenu");
 
@@ -880,36 +1030,35 @@
     function openSidebar(){
       sidebar.classList.add("show");
       overlay.classList.add("show");
+      document.body.style.overflow = "hidden";
     }
 
     function closeSidebar(){
       sidebar.classList.remove("show");
       overlay.classList.remove("show");
+      if (!popupOverlay.classList.contains("show")) {
+        document.body.style.overflow = "";
+      }
+    }
+
+    function toggleCourseSection(element) {
+      const parent = element.parentElement;
+      parent.classList.toggle("active");
     }
 
     menuBtn.addEventListener("click", openSidebar);
     closeSidebarBtn.addEventListener("click", closeSidebar);
     overlay.addEventListener("click", closeSidebar);
 
-    languageToggle.addEventListener("click", () => {
-      languageToggle.classList.toggle("active");
-      languageSubmenu.classList.toggle("show");
-    });
-
-    settingsToggle.addEventListener("click", () => {
-      settingsToggle.classList.toggle("active");
-      settingsSubmenu.classList.toggle("show");
-    });
+    languageToggle.addEventListener("click", () => languageSubmenu.classList.toggle("show"));
+    settingsToggle.addEventListener("click", () => settingsSubmenu.classList.toggle("show"));
 
     const targetDate = new Date("2026-11-28T00:00:00");
 
     function getCountdownParts() {
       const now = new Date();
       const diff = targetDate - now;
-
-      if (diff <= 0) {
-        return { text: "Unlocked", short: "Unlocked" };
-      }
+      if (diff <= 0) return { text: "Unlocked", short: "Unlocked" };
 
       const days = Math.floor(diff / (1000 * 60 * 60 * 24));
       const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
@@ -924,36 +1073,30 @@
 
     function updateCountdown(){
       const data = getCountdownParts();
-      if(countdownBox) countdownBox.textContent = data.text;
-      if(sidebarCountdown) sidebarCountdown.textContent = data.short;
+      if (countdownBox) countdownBox.textContent = data.text;
+      if (sidebarCountdown) sidebarCountdown.textContent = data.short;
     }
 
     function showLockedPopup(sectionName = "This section"){
       popupTitle.textContent = `${sectionName} Locked`;
-      popupText.textContent = `${sectionName} is currently locked and will be available in a future updates.`;
+      popupText.textContent = `${sectionName} is currently locked and will be available in a future Ewonz Lingua update.`;
       popupOverlay.classList.add("show");
       closeSidebar();
       updateCountdown();
+      document.body.style.overflow = "hidden";
     }
 
     function closePopup(){
       popupOverlay.classList.remove("show");
+      document.body.style.overflow = "";
     }
 
     setInterval(updateCountdown, 1000);
     updateCountdown();
 
-    darkModeToggle.addEventListener("click", () => {
-      darkModeToggle.classList.toggle("active");
-    });
-
-    notificationToggle.addEventListener("click", () => {
-      notificationToggle.classList.toggle("active");
-    });
-
-    soundToggle.addEventListener("click", () => {
-      soundToggle.classList.toggle("active");
-    });
+    darkModeToggle.addEventListener("click", () => darkModeToggle.classList.toggle("active"));
+    notificationToggle.addEventListener("click", () => notificationToggle.classList.toggle("active"));
+    soundToggle.addEventListener("click", () => soundToggle.classList.toggle("active"));
 
     document.addEventListener("keydown", (e) => {
       if(e.key === "Escape"){
@@ -961,85 +1104,8 @@
         closePopup();
       }
     });
-
-    // -------------------------------------------------------------
-    // 🌌 ලාවට ක්‍රියාත්මක වන පසුබිම් රේඛා සජීවීකරණය (Subtle Neural Animation)
-    // -------------------------------------------------------------
-    const canvas = document.getElementById('bg-canvas');
-    const ctx = canvas.getContext('2d');
-
-    let particlesArray = [];
-    const numberOfParticles = 35;
-
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-
-    window.addEventListener('resize', function(){
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-    });
-
-    class Particle {
-      constructor(){
-        this.x = Math.random() * canvas.width;
-        this.y = Math.random() * canvas.height;
-        this.size = Math.random() * 1.5 + 0.5;
-        this.speedX = Math.random() * 0.3 - 0.15;
-        this.speedY = Math.random() * 0.3 - 0.15;
-      }
-      update(){
-        this.x += this.speedX;
-        this.y += this.speedY;
-
-        if (this.x > canvas.width || this.x < 0) this.speedX = -this.speedX;
-        if (this.y > canvas.height || this.y < 0) this.speedY = -this.speedY;
-      }
-      draw(){
-        ctx.fillStyle = 'rgba(255, 215, 0, 0.08)';
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-        ctx.fill();
-      }
-    }
-
-    function init(){
-      particlesArray = [];
-      for(let i = 0; i < numberOfParticles; i++){
-        particlesArray.push(new Particle());
-      }
-    }
-
-    function connect(){
-      let opacityValue = 1;
-      for (let a = 0; a < particlesArray.length; a++) {
-        for (let b = a; b < particlesArray.length; b++) {
-          let distance = ((particlesArray[a].x - particlesArray[b].x) * (particlesArray[a].x - particlesArray[b].x))
-          + ((particlesArray[a].y - particlesArray[b].y) * (particlesArray[a].y - particlesArray[b].y));
-          if (distance < (canvas.width/7) * (canvas.height/7)) {
-            opacityValue = 1 - (distance/20000);
-            ctx.strokeStyle='rgba(255, 215, 0,' + opacityValue * 0.04 + ')';
-            ctx.lineWidth = 0.8;
-            ctx.beginPath();
-            ctx.moveTo(particlesArray[a].x, particlesArray[a].y);
-            ctx.lineTo(particlesArray[b].x, particlesArray[b].y);
-            ctx.stroke();
-          }
-        }
-      }
-    }
-
-    function animate(){
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      for(let i = 0; i < particlesArray.length; i++){
-        particlesArray[i].update();
-        particlesArray[i].draw();
-      }
-      connect();
-      requestAnimationFrame(animate);
-    }
-
-    init();
-    animate();
   </script>
 </body>
 </html>
+
+```
