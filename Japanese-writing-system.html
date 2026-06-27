@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -168,13 +167,13 @@
       line-height:1.25;
     }
 
-    /* Course Container & Section (Shared by Main & Sidebar Dashboard) */
+    /* Course Container & Section */
     .course-container {
       width: 100%;
       display: flex;
       flex-direction: column;
       gap: 12px;
-      max-height: 64vh;
+      max-height: 70vh;
       overflow-y: auto;
       padding-right: 4px;
     }
@@ -318,7 +317,7 @@
     .sidebar{
       position:fixed;
       top:0;
-      left:calc(var(--sidebar-width) * -1 - 40px);
+      left: -340px;
       width:var(--sidebar-width);
       max-width:84%;
       height:100vh;
@@ -326,7 +325,7 @@
       border-right:1.5px solid rgba(255,215,0,0.38);
       box-shadow:12px 0 40px rgba(0,0,0,0.45);
       z-index:120;
-      transition:left .32s ease;
+      transition: left .32s ease;
       padding:18px 14px 18px;
       overflow-y:auto;
     }
@@ -500,7 +499,6 @@
       display:flex;
     }
 
-    /* Sidebar Inside Dashboard Specific Tweaks */
     #dashboardSubmenu .course-header, 
     #dashboardSubmenu .single-item {
       padding: 10px 12px;
@@ -753,6 +751,7 @@
 
   <div class="overlay" id="overlay"></div>
 
+  <!-- Sidebar Component -->
   <aside class="sidebar" id="sidebar">
     <div class="sidebar-top">
       <div class="brand-box">
@@ -774,6 +773,7 @@
 
     <div class="menu-list">
       
+      <!-- Dashboard Dropdown Toggle -->
       <div class="menu-item" id="dashboardToggle">
         <div class="left">
           <div class="icon">🏠</div>
@@ -782,8 +782,10 @@
         <span class="arrow">▼</span>
       </div>
 
+      <!-- Sidebar Inside Dashboard Dynamic Content -->
       <div class="submenu" id="dashboardSubmenu">
         
+        <!-- 1. Hiragana -->
         <div class="course-section">
           <div class="course-header" onclick="toggleCourseSection(this)">
             <div class="course-title-box">
@@ -796,19 +798,20 @@
             <span class="course-arrow">▼</span>
           </div>
           <div class="course-content">
-            <a href="#" class="sub-item-link">Basic Characters</a>
-            <a href="#" class="sub-item-link">Dakuten</a>
-            <a href="#" class="sub-item-link">Handakuten</a>
-            <a href="#" class="sub-item-link">Combination Characters</a>
-            <a href="#" class="sub-item-link">Small Tsu (っ)</a>
-            <a href="#" class="sub-item-link">Long Vowels</a>
-            <a href="#" class="sub-item-link">Stroke Order</a>
-            <a href="#" class="sub-item-link">Writing Practice</a>
-            <a href="#" class="sub-item-link">Reading Practice</a>
-            <a href="#" class="sub-item-link">Quiz</a>
+            <a href="hiragana_basic.html" class="sub-item-link">Basic Characters</a>
+            <a href="hiragana_dakuten.html" class="sub-item-link">Dakuten</a>
+            <a href="hiragana_handakuten.html" class="sub-item-link">Handakuten</a>
+            <a href="hiragana_combination.html" class="sub-item-link">Combination Characters (Kya, Kyu, Kyo)</a>
+            <a href="hiragana_small_tsu.html" class="sub-item-link">Small Tsu (っ)</a>
+            <a href="hiragana_long_vowels.html" class="sub-item-link">Long Vowels</a>
+            <a href="hiragana_stroke_order.html" class="sub-item-link">Stroke Order</a>
+            <a href="hiragana_writing_practice.html" class="sub-item-link">Writing Practice</a>
+            <a href="hiragana_reading_practice.html" class="sub-item-link">Reading Practice</a>
+            <a href="hiragana_quiz.html" class="sub-item-link">Quiz</a>
           </div>
         </div>
 
+        <!-- 2. Katakana -->
         <div class="course-section">
           <div class="course-header" onclick="toggleCourseSection(this)">
             <div class="course-title-box">
@@ -821,18 +824,19 @@
             <span class="course-arrow">▼</span>
           </div>
           <div class="course-content">
-            <a href="#" class="sub-item-link">Basic Characters</a>
-            <a href="#" class="sub-item-link">Dakuten</a>
-            <a href="#" class="sub-item-link">Handakuten</a>
-            <a href="#" class="sub-item-link">Combination Characters</a>
-            <a href="#" class="sub-item-link">Foreign Words</a>
-            <a href="#" class="sub-item-link">Stroke Order</a>
-            <a href="#" class="sub-item-link">Writing Practice</a>
-            <a href="#" class="sub-item-link">Reading Practice</a>
-            <a href="#" class="sub-item-link">Quiz</a>
+            <a href="katakana_basic.html" class="sub-item-link">Basic Characters</a>
+            <a href="katakana_dakuten.html" class="sub-item-link">Dakuten</a>
+            <a href="katakana_handakuten.html" class="sub-item-link">Handakuten</a>
+            <a href="katakana_combination.html" class="sub-item-link">Combination Characters</a>
+            <a href="katakana_foreign_words.html" class="sub-item-link">Foreign Words</a>
+            <a href="katakana_stroke_order.html" class="sub-item-link">Stroke Order</a>
+            <a href="katakana_writing_practice.html" class="sub-item-link">Writing Practice</a>
+            <a href="katakana_reading_practice.html" class="sub-item-link">Reading Practice</a>
+            <a href="katakana_quiz.html" class="sub-item-link">Quiz</a>
           </div>
         </div>
 
+        <!-- 3. Kanji -->
         <div class="course-section">
           <div class="course-header" onclick="toggleCourseSection(this)">
             <div class="course-title-box">
@@ -845,16 +849,22 @@
             <span class="course-arrow">▼</span>
           </div>
           <div class="course-content">
-            <a href="#" class="sub-item-link">Basic Kanji</a>
-            <a href="#" class="sub-item-link">JLPT N5 Kanji</a>
-            <a href="#" class="sub-item-link">JLPT N4 Kanji</a>
-            <a href="#" class="sub-item-link">Onyomi & Kunyomi</a>
-            <a href="#" class="sub-item-link">Writing Practice</a>
-            <a href="#" class="sub-item-link">Quiz</a>
+            <a href="kanji_basic.html" class="sub-item-link">Basic Kanji</a>
+            <a href="kanji_n5.html" class="sub-item-link">JLPT N5 Kanji</a>
+            <a href="kanji_n4.html" class="sub-item-link">JLPT N4 Kanji</a>
+            <a href="kanji_jft.html" class="sub-item-link">JFT-Basic Kanji</a>
+            <a href="kanji_onyomi_kunyomi.html" class="sub-item-link">Onyomi & Kunyomi</a>
+            <a href="kanji_stroke_order.html" class="sub-item-link">Stroke Order</a>
+            <a href="kanji_radicals.html" class="sub-item-link">Radicals (部首)</a>
+            <a href="kanji_words.html" class="sub-item-link">Example Words</a>
+            <a href="kanji_sentences.html" class="sub-item-link">Example Sentences</a>
+            <a href="kanji_writing_practice.html" class="sub-item-link">Writing Practice</a>
+            <a href="kanji_quiz.html" class="sub-item-link">Quiz</a>
           </div>
         </div>
 
-        <a href="#" class="single-item">
+        <!-- Single Items Inside Sidebar Menu -->
+        <a href="numbers.html" class="single-item">
           <div class="btn-meta">
             <div class="btn-main-txt">Japanese Numbers</div>
             <div class="btn-sub-txt">数字 (Sūji) — ජපන් ඉලක්කම්</div>
@@ -862,7 +872,7 @@
           <span class="course-icon">🔢</span>
         </a>
 
-        <a href="#" class="single-item">
+        <a href="date_time.html" class="single-item">
           <div class="btn-meta">
             <div class="btn-main-txt">Date & Time</div>
             <div class="btn-sub-txt">日時 (Nichiji) — දිනය සහ වේලාව</div>
@@ -870,7 +880,7 @@
           <span class="course-icon">📅</span>
         </a>
 
-        <a href="#" class="single-item">
+        <a href="stroke_order_center.html" class="single-item">
           <div class="btn-meta">
             <div class="btn-main-txt">Stroke Order Center</div>
             <div class="btn-sub-txt">筆順 (Hitsujun) — අකුරු ලියන පිළිවෙල මධ්‍යස්ථානය</div>
@@ -878,7 +888,7 @@
           <span class="course-icon">✍️</span>
         </a>
 
-        <a href="#" class="single-item">
+        <a href="romaji.html" class="single-item">
           <div class="btn-meta">
             <div class="btn-main-txt">Romaji</div>
             <div class="btn-sub-txt">ローマ字 (Rōmaji) — රෝමාජි</div>
@@ -886,7 +896,7 @@
           <span class="course-icon">🔤</span>
         </a>
 
-        <a href="#" class="single-item">
+        <a href="furigana.html" class="single-item">
           <div class="btn-meta">
             <div class="btn-main-txt">Furigana</div>
             <div class="btn-sub-txt">振り仮名 (Furigana) — ෆුරිගනා</div>
@@ -894,7 +904,7 @@
           <span class="course-icon">📖</span>
         </a>
 
-        <a href="#" class="single-item">
+        <a href="punctuation.html" class="single-item">
           <div class="btn-meta">
             <div class="btn-main-txt">Japanese Punctuation</div>
             <div class="btn-sub-txt">句読点 (Kutōten) — ජපන් විරාම ලකුණු</div>
@@ -902,7 +912,7 @@
           <span class="course-icon">📝</span>
         </a>
 
-        <a href="#" class="single-item">
+        <a href="flashcards.html" class="single-item">
           <div class="btn-meta">
             <div class="btn-main-txt">Flashcards</div>
             <div class="btn-sub-txt">フラッシュカード (Furasshukādo) — ෆ්ලෑෂ් කාඩ්පත්</div>
@@ -910,74 +920,92 @@
           <span class="course-icon">🎴</span>
         </a>
 
+        <!-- 4. Practice Center -->
         <div class="course-section">
           <div class="course-header" onclick="toggleCourseSection(this)">
             <div class="course-title-box">
               <div class="btn-meta">
                 <div class="btn-main-txt">Practice Center</div>
-                <div class="btn-sub-txt">練習センター (Renshū Sentā) — පුහුණු මධ්‍යස්ථානය</div>
+                <div class="btn-sub-txt">練習センター — පුහුණු මධ්‍යස්ථානය</div>
               </div>
               <span class="course-icon">💪</span>
             </div>
             <span class="course-arrow">▼</span>
           </div>
           <div class="course-content">
-            <a href="#" class="sub-item-link">Reading Practice</a>
-            <a href="#" class="sub-item-link">Writing Practice</a>
+            <a href="practice_reading.html" class="sub-item-link">Reading Practice</a>
+            <a href="practice_writing.html" class="sub-item-link">Writing Practice</a>
+            <a href="practice_typing.html" class="sub-item-link">Typing Practice</a>
+            <a href="practice_listening.html" class="sub-item-link">Listening Practice</a>
+            <a href="practice_daily.html" class="sub-item-link">Daily Challenge</a>
           </div>
         </div>
 
+        <!-- 5. Quiz Center -->
         <div class="course-section">
           <div class="course-header" onclick="toggleCourseSection(this)">
             <div class="course-title-box">
               <div class="btn-meta">
                 <div class="btn-main-txt">Quiz Center</div>
-                <div class="btn-sub-txt">クイズセンター (Kuizu Sentā) — ප්‍රශ්නාවලි මධ්‍යස්ථානය</div>
+                <div class="btn-sub-txt">クイズセンター — ප්‍රශ්නාවලි මධ්‍යස්ථානය</div>
               </div>
               <span class="course-icon">🧠</span>
             </div>
             <span class="course-arrow">▼</span>
           </div>
           <div class="course-content">
-            <a href="#" class="sub-item-link">Hiragana Quiz</a>
-            <a href="#" class="sub-item-link">Katakana Quiz</a>
+            <a href="quiz_hiragana_c.html" class="sub-item-link">Hiragana Quiz</a>
+            <a href="quiz_katakana_c.html" class="sub-item-link">Katakana Quiz</a>
+            <a href="quiz_kanji_c.html" class="sub-item-link">Kanji Quiz</a>
+            <a href="quiz_mixed.html" class="sub-item-link">Mixed Quiz</a>
+            <a href="quiz_final.html" class="sub-item-link">Final Exam</a>
           </div>
         </div>
 
+        <!-- 6. Download Center -->
         <div class="course-section">
           <div class="course-header" onclick="toggleCourseSection(this)">
             <div class="course-title-box">
               <div class="btn-meta">
                 <div class="btn-main-txt">Download Center</div>
-                <div class="btn-sub-txt">ダウンロードセンター (Daunrōdo Sentā) — බාගත කිරීම් මධ්‍යස්ථානය</div>
+                <div class="btn-sub-txt">ダウンロードセンター — බාගත කිරීම් මධ්‍යස්ථානය</div>
               </div>
               <span class="course-icon">📄</span>
             </div>
             <span class="course-arrow">▼</span>
           </div>
           <div class="course-content">
-            <a href="#" class="sub-item-link">PDF Worksheets</a>
+            <a href="download_worksheets.html" class="sub-item-link">PDF Worksheets</a>
+            <a href="download_practice.html" class="sub-item-link">Practice Sheets</a>
+            <a href="download_book.html" class="sub-item-link">Writing Book</a>
+            <a href="download_charts.html" class="sub-item-link">Stroke Order Charts</a>
           </div>
         </div>
 
+        <!-- 7. Progress Center -->
         <div class="course-section">
           <div class="course-header" onclick="toggleCourseSection(this)">
             <div class="course-title-box">
               <div class="btn-meta">
                 <div class="btn-main-txt">Progress Center</div>
-                <div class="btn-sub-txt">進捗センター (Shinchoku Sentā) — ප්‍රගති මධ්‍යස්ථානය</div>
+                <div class="btn-sub-txt">進捗センター — ප්‍රගති මධ්‍යස්ථානය</div>
               </div>
               <span class="course-icon">🏆</span>
             </div>
             <span class="course-arrow">▼</span>
           </div>
           <div class="course-content">
-            <a href="#" class="sub-item-link">Learning Progress</a>
+            <a href="progress_learning.html" class="sub-item-link">Learning Progress</a>
+            <a href="progress_scores.html" class="sub-item-link">Quiz Scores</a>
+            <a href="progress_completion.html" class="sub-item-link">Completion Rate</a>
+            <a href="progress_badges.html" class="sub-item-link">Achievement Badges</a>
+            <a href="progress_certificates.html" class="sub-item-link">Certificates</a>
           </div>
         </div>
 
       </div>
 
+      <!-- Language Dropdown Menu -->
       <div class="menu-item" id="languageToggle">
         <div class="left">
           <div class="icon">🌐</div>
@@ -1042,6 +1070,7 @@
     </div>
   </aside>
 
+  <!-- Main View -->
   <div class="app-shell">
     <main class="phone-frame">
       <div class="topbar">
@@ -1064,8 +1093,10 @@
           <h2>Writing System</h2>
         </div>
 
+        <!-- Main View Course Container -->
         <div class="course-container">
           
+          <!-- 1. Hiragana -->
           <div class="course-section">
             <div class="course-header" onclick="toggleCourseSection(this)">
               <div class="course-title-box">
@@ -1078,19 +1109,20 @@
               <span class="course-arrow">▼</span>
             </div>
             <div class="course-content">
-              <a href="#" class="sub-item-link">Basic Characters</a>
-              <a href="#" class="sub-item-link">Dakuten</a>
-              <a href="#" class="sub-item-link">Handakuten</a>
-              <a href="#" class="sub-item-link">Combination Characters</a>
-              <a href="#" class="sub-item-link">Small Tsu (っ)</a>
-              <a href="#" class="sub-item-link">Long Vowels</a>
-              <a href="#" class="sub-item-link">Stroke Order</a>
-              <a href="#" class="sub-item-link">Writing Practice</a>
-              <a href="#" class="sub-item-link">Reading Practice</a>
-              <a href="#" class="sub-item-link">Quiz</a>
+              <a href="hiragana_basic.html" class="sub-item-link">Basic Characters</a>
+              <a href="hiragana_dakuten.html" class="sub-item-link">Dakuten</a>
+              <a href="hiragana_handakuten.html" class="sub-item-link">Handakuten</a>
+              <a href="hiragana_combination.html" class="sub-item-link">Combination Characters (Kya, Kyu, Kyo)</a>
+              <a href="hiragana_small_tsu.html" class="sub-item-link">Small Tsu (っ)</a>
+              <a href="hiragana_long_vowels.html" class="sub-item-link">Long Vowels</a>
+              <a href="hiragana_stroke_order.html" class="sub-item-link">Stroke Order</a>
+              <a href="hiragana_writing_practice.html" class="sub-item-link">Writing Practice</a>
+              <a href="hiragana_reading_practice.html" class="sub-item-link">Reading Practice</a>
+              <a href="hiragana_quiz.html" class="sub-item-link">Quiz</a>
             </div>
           </div>
 
+          <!-- 2. Katakana -->
           <div class="course-section">
             <div class="course-header" onclick="toggleCourseSection(this)">
               <div class="course-title-box">
@@ -1103,18 +1135,19 @@
               <span class="course-arrow">▼</span>
             </div>
             <div class="course-content">
-              <a href="#" class="sub-item-link">Basic Characters</a>
-              <a href="#" class="sub-item-link">Dakuten</a>
-              <a href="#" class="sub-item-link">Handakuten</a>
-              <a href="#" class="sub-item-link">Combination Characters</a>
-              <a href="#" class="sub-item-link">Foreign Words</a>
-              <a href="#" class="sub-item-link">Stroke Order</a>
-              <a href="#" class="sub-item-link">Writing Practice</a>
-              <a href="#" class="sub-item-link">Reading Practice</a>
-              <a href="#" class="sub-item-link">Quiz</a>
+              <a href="katakana_basic.html" class="sub-item-link">Basic Characters</a>
+              <a href="katakana_dakuten.html" class="sub-item-link">Dakuten</a>
+              <a href="katakana_handakuten.html" class="sub-item-link">Handakuten</a>
+              <a href="katakana_combination.html" class="sub-item-link">Combination Characters</a>
+              <a href="katakana_foreign_words.html" class="sub-item-link">Foreign Words</a>
+              <a href="katakana_stroke_order.html" class="sub-item-link">Stroke Order</a>
+              <a href="katakana_writing_practice.html" class="sub-item-link">Writing Practice</a>
+              <a href="katakana_reading_practice.html" class="sub-item-link">Reading Practice</a>
+              <a href="katakana_quiz.html" class="sub-item-link">Quiz</a>
             </div>
           </div>
 
+          <!-- 3. Kanji -->
           <div class="course-section">
             <div class="course-header" onclick="toggleCourseSection(this)">
               <div class="course-title-box">
@@ -1127,16 +1160,22 @@
               <span class="course-arrow">▼</span>
             </div>
             <div class="course-content">
-              <a href="#" class="sub-item-link">Basic Kanji</a>
-              <a href="#" class="sub-item-link">JLPT N5 Kanji</a>
-              <a href="#" class="sub-item-link">JLPT N4 Kanji</a>
-              <a href="#" class="sub-item-link">Onyomi & Kunyomi</a>
-              <a href="#" class="sub-item-link">Writing Practice</a>
-              <a href="#" class="sub-item-link">Quiz</a>
+              <a href="kanji_basic.html" class="sub-item-link">Basic Kanji</a>
+              <a href="kanji_n5.html" class="sub-item-link">JLPT N5 Kanji</a>
+              <a href="kanji_n4.html" class="sub-item-link">JLPT N4 Kanji</a>
+              <a href="kanji_jft.html" class="sub-item-link">JFT-Basic Kanji</a>
+              <a href="kanji_onyomi_kunyomi.html" class="sub-item-link">Onyomi & Kunyomi</a>
+              <a href="kanji_stroke_order.html" class="sub-item-link">Stroke Order</a>
+              <a href="kanji_radicals.html" class="sub-item-link">Radicals (部首)</a>
+              <a href="kanji_words.html" class="sub-item-link">Example Words</a>
+              <a href="kanji_sentences.html" class="sub-item-link">Example Sentences</a>
+              <a href="kanji_writing_practice.html" class="sub-item-link">Writing Practice</a>
+              <a href="kanji_quiz.html" class="sub-item-link">Quiz</a>
             </div>
           </div>
 
-          <a href="#" class="single-item">
+          <!-- Single Items Main View -->
+          <a href="numbers.html" class="single-item">
             <div class="btn-meta">
               <div class="btn-main-txt">Japanese Numbers</div>
               <div class="btn-sub-txt">数字 (Sūji) — ජපන් ඉලක්කම්</div>
@@ -1144,7 +1183,7 @@
             <span class="course-icon">🔢</span>
           </a>
 
-          <a href="#" class="single-item">
+          <a href="date_time.html" class="single-item">
             <div class="btn-meta">
               <div class="btn-main-txt">Date & Time</div>
               <div class="btn-sub-txt">日時 (Nichiji) — දිනය සහ වේලාව</div>
@@ -1152,7 +1191,7 @@
             <span class="course-icon">📅</span>
           </a>
 
-          <a href="#" class="single-item">
+          <a href="stroke_order_center.html" class="single-item">
             <div class="btn-meta">
               <div class="btn-main-txt">Stroke Order Center</div>
               <div class="btn-sub-txt">筆順 (Hitsujun) — අකුරු ලියන පිළිවෙල මධ්‍යස්ථානය</div>
@@ -1160,7 +1199,7 @@
             <span class="course-icon">✍️</span>
           </a>
 
-          <a href="#" class="single-item">
+          <a href="romaji.html" class="single-item">
             <div class="btn-meta">
               <div class="btn-main-txt">Romaji</div>
               <div class="btn-sub-txt">ローマ字 (Rōmaji) — රෝමාජි</div>
@@ -1168,7 +1207,7 @@
             <span class="course-icon">🔤</span>
           </a>
 
-          <a href="#" class="single-item">
+          <a href="furigana.html" class="single-item">
             <div class="btn-meta">
               <div class="btn-main-txt">Furigana</div>
               <div class="btn-sub-txt">振り仮名 (Furigana) — ෆුරිගනා</div>
@@ -1176,7 +1215,7 @@
             <span class="course-icon">📖</span>
           </a>
 
-          <a href="#" class="single-item">
+          <a href="punctuation.html" class="single-item">
             <div class="btn-meta">
               <div class="btn-main-txt">Japanese Punctuation</div>
               <div class="btn-sub-txt">句読点 (Kutōten) — ජපන් විරාම ලකුණු</div>
@@ -1184,7 +1223,7 @@
             <span class="course-icon">📝</span>
           </a>
 
-          <a href="#" class="single-item">
+          <a href="flashcards.html" class="single-item">
             <div class="btn-meta">
               <div class="btn-main-txt">Flashcards</div>
               <div class="btn-sub-txt">フラッシュカード (Furasshukādo) — ෆ්ලෑෂ් කාඩ්පත්</div>
@@ -1192,69 +1231,86 @@
             <span class="course-icon">🎴</span>
           </a>
 
+          <!-- 4. Practice Center -->
           <div class="course-section">
             <div class="course-header" onclick="toggleCourseSection(this)">
               <div class="course-title-box">
                 <div class="btn-meta">
                   <div class="btn-main-txt">Practice Center</div>
-                  <div class="btn-sub-txt">練習センター (Renshū Sentā) — පුහුණු මධ්‍යස්ථානය</div>
+                  <div class="btn-sub-txt">練習センター — පුහුණු මධ්‍යස්ථානය</div>
                 </div>
                 <span class="course-icon">💪</span>
               </div>
               <span class="course-arrow">▼</span>
             </div>
             <div class="course-content">
-              <a href="#" class="sub-item-link">Reading Practice</a>
-              <a href="#" class="sub-item-link">Writing Practice</a>
+              <a href="practice_reading.html" class="sub-item-link">Reading Practice</a>
+              <a href="practice_writing.html" class="sub-item-link">Writing Practice</a>
+              <a href="practice_typing.html" class="sub-item-link">Typing Practice</a>
+              <a href="practice_listening.html" class="sub-item-link">Listening Practice</a>
+              <a href="practice_daily.html" class="sub-item-link">Daily Challenge</a>
             </div>
           </div>
 
+          <!-- 5. Quiz Center -->
           <div class="course-section">
             <div class="course-header" onclick="toggleCourseSection(this)">
               <div class="course-title-box">
                 <div class="btn-meta">
                   <div class="btn-main-txt">Quiz Center</div>
-                  <div class="btn-sub-txt">クイズセンター (Kuizu Sentā) — ප්‍රශ්නාවලි මධ්‍යස්ථානය</div>
+                  <div class="btn-sub-txt">クイズセンター — ප්‍රශ්නාවලි මධ්‍යස්ථානය</div>
                 </div>
                 <span class="course-icon">🧠</span>
               </div>
               <span class="course-arrow">▼</span>
             </div>
             <div class="course-content">
-              <a href="#" class="sub-item-link">Hiragana Quiz</a>
-              <a href="#" class="sub-item-link">Katakana Quiz</a>
+              <a href="quiz_hiragana_c.html" class="sub-item-link">Hiragana Quiz</a>
+              <a href="quiz_katakana_c.html" class="sub-item-link">Katakana Quiz</a>
+              <a href="quiz_kanji_c.html" class="sub-item-link">Kanji Quiz</a>
+              <a href="quiz_mixed.html" class="sub-item-link">Mixed Quiz</a>
+              <a href="quiz_final.html" class="sub-item-link">Final Exam</a>
             </div>
           </div>
 
+          <!-- 6. Download Center -->
           <div class="course-section">
             <div class="course-header" onclick="toggleCourseSection(this)">
               <div class="course-title-box">
                 <div class="btn-meta">
                   <div class="btn-main-txt">Download Center</div>
-                  <div class="btn-sub-txt">ダウンロードセンター (Daunrōdo Sentā) — බාගත කිරීම් මධ්‍යස්ථානය</div>
+                  <div class="btn-sub-txt">ダウンロードセンター — බාගත කිරීම් මධ්‍යස්ථානය</div>
                 </div>
                 <span class="course-icon">📄</span>
               </div>
               <span class="course-arrow">▼</span>
             </div>
             <div class="course-content">
-              <a href="#" class="sub-item-link">PDF Worksheets</a>
+              <a href="download_worksheets.html" class="sub-item-link">PDF Worksheets</a>
+              <a href="download_practice.html" class="sub-item-link">Practice Sheets</a>
+              <a href="download_book.html" class="sub-item-link">Writing Book</a>
+              <a href="download_charts.html" class="sub-item-link">Stroke Order Charts</a>
             </div>
           </div>
 
+          <!-- 7. Progress Center -->
           <div class="course-section">
             <div class="course-header" onclick="toggleCourseSection(this)">
               <div class="course-title-box">
                 <div class="btn-meta">
                   <div class="btn-main-txt">Progress Center</div>
-                  <div class="btn-sub-txt">進捗センター (Shinchoku Sentā) — ප්‍රගති මධ්‍යස්ථානය</div>
+                  <div class="btn-sub-txt">進捗センター — ප්‍රගති මධ්‍යස්ථානය</div>
                 </div>
                 <span class="course-icon">🏆</span>
               </div>
               <span class="course-arrow">▼</span>
             </div>
             <div class="course-content">
-              <a href="#" class="sub-item-link">Learning Progress</a>
+              <a href="progress_learning.html" class="sub-item-link">Learning Progress</a>
+              <a href="progress_scores.html" class="sub-item-link">Quiz Scores</a>
+              <a href="progress_completion.html" class="sub-item-link">Completion Rate</a>
+              <a href="progress_badges.html" class="sub-item-link">Achievement Badges</a>
+              <a href="progress_certificates.html" class="sub-item-link">Certificates</a>
             </div>
           </div>
 
@@ -1263,6 +1319,7 @@
     </main>
   </div>
 
+  <!-- Popups system -->
   <div class="popup-overlay" id="popupOverlay">
     <div class="popup-box">
       <h3 id="popupTitle">Coming Soon</h3>
