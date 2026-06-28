@@ -23,6 +23,19 @@
     --time-red: #FF0000;
 }
 
+/* ඇනිමේෂන් සඳහා CSS කොටස */
+@keyframes border-run {
+    0% { border-color: #FFD700; }
+    50% { border-color: #554800; }
+    100% { border-color: #FFD700; }
+}
+
+@keyframes gold-pulse {
+    0% { color: #FFD700; text-shadow: 0 0 5px #FFD700; }
+    50% { color: #998100; text-shadow: none; }
+    100% { color: #FFD700; text-shadow: 0 0 5px #FFD700; }
+}
+
 *{
     margin:0;
     padding:0;
@@ -47,12 +60,13 @@ body{
     height:800px;
     min-height:800px;
     background: var(--bg-main);
-    border: 1px solid var(--border-color-gold);
+    border: 2px solid var(--border-color-gold); /* ඝනකම තරමක් වැඩි කළා */
     border-radius:24px;
     position:relative;
     overflow:hidden;
     display: flex;
     flex-direction: column;
+    animation: border-run 3s infinite linear; /* බෝඩර් රේඛාව සඳහා ඇනිමේෂන් */
 }
 
 /* FIXED HEADER SECTION */
@@ -90,22 +104,25 @@ body{
 
 .home{
     text-align:center;
-    padding-top:10px;
+    padding-top:5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
 }
 
 .line{
-    width:100%;
+    width:50px;
     height:1px;
     background: var(--border-color-gold);
 }
 
 .section-title{
     font-size:14px;
-    margin-top:10px;
-    margin-bottom: 10px;
     font-weight:600;
-    color: var(--text-muted);
+    color: var(--text-gold); /* Gold වර්ණයට මාරු කළා */
     text-transform: uppercase;
+    animation: gold-pulse 2s infinite; /* Text එක සඳහා ඇනිමේෂන් */
 }
 
 /* MENU */
@@ -130,6 +147,45 @@ body{
     flex: 1;
     overflow-y: auto;
     padding: 15px;
+}
+
+/* FOOTER AREA - UPDATED PADDING */
+.footer-nav {
+    flex-shrink: 0;
+    background: #000;
+    padding-top: 5px; 
+}
+
+.footer-buttons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 0 40px;
+    margin-bottom: 5px;
+}
+
+.footer-line {
+    width: 360px;
+    height: 1px;
+    background: var(--border-color-gold);
+    margin-bottom: 5px;
+}
+
+.nav-btn {
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    background: transparent;
+    border: none;
+    color: #fff;
+}
+
+.footer-brand {
+    color: var(--text-gold);
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
 }
 
 /* SIDEBAR */
@@ -176,6 +232,21 @@ body{
     background: var(--border-color-gold);
     margin-top:10px;
     margin-bottom:12px;
+}
+
+/* SIDEBAR FOOTER - BORDER ADDED AND CENTERED */
+.sidebar-footer{
+    margin-top:20px;
+    padding:14px;
+    border: 1px solid var(--border-color-gold);
+    border-radius:14px;
+    background:#0B1220;
+    text-align:center;
+}
+.sidebar-footer p{
+    font-size:12px;
+    color:#9CA3AF;
+    line-height:1.6;
 }
 
 /* MENU BUTTON */
@@ -336,24 +407,6 @@ body{
 }
 
 .about-p { margin-bottom: 15px; color: var(--text-muted); }
-.about-list { margin-left: 20px; margin-bottom: 15px; list-style: none; }
-.about-list li { margin-bottom: 5px; position: relative; }
-.about-list li::before { content: "•"; color: var(--text-gold); position: absolute; left: -15px; }
-
-/* FOOTER BOX */
-.sidebar-footer{
-    margin-top:20px;
-    padding:14px;
-    border:1px solid var(--border-color-gold);
-    border-radius:14px;
-    background:#0B1220;
-    text-align:center;
-}
-.sidebar-footer p{
-    font-size:12px;
-    color:#9CA3AF;
-    line-height:1.6;
-}
 
 /* NEW LANGUAGE CARD STYLES */
 .lang-card {
@@ -475,13 +528,6 @@ body{
     align-items: flex-start;
     gap: 10px;
 }
-.note-text {
-    font-size: 13.5px;
-    color: var(--text-primary);
-    white-space: pre-wrap;
-    word-break: break-word;
-    line-height: 1.5;
-}
 
 .toast-notif {
     position: absolute;
@@ -502,7 +548,7 @@ body{
     gap: 8px;
 }
 .toast-notif.show {
-    bottom: 25px;
+    bottom: 85px;
 }
 </style>
 
@@ -516,7 +562,7 @@ body{
         <div class="header-container">
             <div class="top-title">EWONZ LINGUA</div>
             <div class="subtitle-text">Premium Language Learning Platform</div>
-            <div class="grey-line"></div>
+            <div class="grey-line" style="background: var(--border-color-gold);"></div>
         </div>
         
         <div class="menu-icon" onclick="toggleMenu()">
@@ -579,6 +625,16 @@ body{
                 </div>
                 <div class="btn-countdown" data-date="Jan 10, 2027 00:00:00">Loading...</div>
             </button>
+        </div>
+    </div>
+
+    <!-- FOOTER: Line above buttons and adjusted spacing -->
+    <div class="footer-nav">
+        <div class="footer-line"></div>
+        <div class="footer-buttons">
+            <button class="nav-btn" onclick="history.back()">← BACK</button>
+            <div class="footer-brand">EWONZ LINGUA</div>
+            <button class="nav-btn" onclick="location.reload()">HOME →</button>
         </div>
     </div>
 
@@ -646,7 +702,7 @@ body{
         </div>
 
         <div class="sidebar-footer">
-            <p style="color:#fff; font-weight:500;">Ewonz Lingua Version 1.0</p>
+            <p style="color:#fff; font-weight:700;">Ewonz Lingua Version 1.0</p>
             <p style="color:#9CA3AF;">Made By Danu Ewonz</p>
             <p style="color:#9CA3AF;">(Kalpa Mihiranga)</p>
         </div>
@@ -661,40 +717,35 @@ body{
             <p class="about-p">Our goal is to make language learning accessible, fun, and effective for everyone in Sri Lanka and beyond.</p>
             
             <div class="about-section-title">⭐ Features</div>
-            <ul class="about-list">
-                <li>Step-by-step learning system</li>
-                <li>Beginner to Intermediate roadmap</li>
-                <li>Vocabulary & grammar sections</li>
-                <li>Easy navigation with sidebar system</li>
-            </ul>
-
+            <p class="about-p">• Step-by-step learning system<br>• Beginner to Intermediate roadmap<br>• Vocabulary & grammar sections<br>• Easy navigation with sidebar system</p>
+            
             <div class="about-section-title">🙏 Special Thanks</div>
             <p class="about-p">We would like to express our sincere gratitude to everyone who supported and inspired the development of this app. Special thanks to:</p>
-            <p class="about-p"><b>▪ Japanese - Tsuki Sensei</b><br>(Thank you for teaching me and sharing so many valuable things with me)</p>
-            <p class="about-p"><b>▪ Youyung Hyun</b><br>Assistant Professor, Technology and Operations Management, Hitotsubashi University Business School (Hitotsubashi ICS), Tokyo, Kunitachi</p>
-
+            <p class="about-p" style="font-weight:600; color:var(--text-gold);">▪ Japanese - Tsuki Sensei</p>
+            <p class="about-p" style="font-size:12px;">(Thank you for teaching me and sharing so many valuable things with me. Mine Akka 🤍)</p>
+            <p class="about-p" style="font-weight:600; color:var(--text-gold);">▪ Youyung Hyun</p>
+            <p class="about-p" style="font-size:12px;">Assistant Professor<br>Technology and Operations Management<br>Hitotsubashi University Business School (Hitotsubashi ICS), Tokyo , Kunitachi</p>
+            
             <div class="about-section-title">👨‍💻 Developer</div>
             <p class="about-p">Developed by <b>Danu Ewonz (Kalpa Mihiranga)</b><br>Passionate about building educational tools and improving learning experiences through technology.</p>
-
+            
             <div class="about-section-title">📌 App Info</div>
             <p class="about-p">Version: 1.0<br>Category: Education / Language Learning</p>
         </div>
     </div>
 
     <div class="fav-page" id="favPage">
-        <div class="fav-header">
-            <div class="back-btn" onclick="closeFavPage()">← Back</div>
+        <div style="padding-top: 20px;">
             <h2>Favorites ⭐</h2>
         </div>
         <div style="margin-top: 20px;" id="favListContainer"></div>
     </div>
 
     <div class="notes-page" id="notesPage">
-        <div class="notes-header">
-            <div class="back-btn" onclick="closeNotesPage()">← Back</div>
+        <div style="padding-top: 20px;">
             <h2>My Notes 📝</h2>
         </div>
-        <textarea class="notes-input-box" id="noteInput" placeholder="Write your grammar rules or vocabulary notes here..."></textarea>
+        <textarea class="notes-input-box" id="noteInput" placeholder="Write your notes here..."></textarea>
         <button class="add-note-btn" onclick="addNote()">Save Note</button>
         <div style="margin-top: 20px;" id="notesListContainer"></div>
     </div>
@@ -706,80 +757,64 @@ body{
 </div>
 
 <script>
-    // Disable context menu, copy, cut, paste
     document.addEventListener('contextmenu', event => event.preventDefault());
-    document.addEventListener('copy', event => event.preventDefault());
-    document.addEventListener('cut', event => event.preventDefault());
-    document.addEventListener('paste', event => event.preventDefault());
-
+    
     function toggleMenu() { document.getElementById("sidebar").classList.toggle("active"); }
     function toggleLang() { document.getElementById("langMenu").classList.toggle("open"); }
     function toggleSettings() { document.getElementById("settingsMenu").classList.toggle("open"); }
     function openAboutPage() { document.getElementById("aboutPage").classList.add("active"); document.getElementById("sidebar").classList.remove("active"); }
     function closeAboutPage() { document.getElementById("aboutPage").classList.remove("active"); }
     function openFavPage() { document.getElementById("favPage").classList.add("active"); document.getElementById("sidebar").classList.remove("active"); }
-    function closeFavPage() { document.getElementById("favPage").classList.remove("active"); }
     function openNotesPage() { document.getElementById("notesPage").classList.add("active"); document.getElementById("sidebar").classList.remove("active"); }
-    function closeNotesPage() { document.getElementById("notesPage").classList.remove("active"); }
     
-    function runAllCountdowns() {
-        var targetTime = new Date(2026, 11, 28, 0, 0, 0).getTime();
-        var el = document.getElementById("countdown");
-        if (el) {
-            var now = new Date().getTime();
-            var diff = targetTime - now;
-            if (diff <= 0) { el.innerHTML = "Time's Up! 🎉"; }
-            else {
-                var d = Math.floor(diff / 86400000);
-                var h = Math.floor((diff % 86400000) / 3600000);
-                var m = Math.floor((diff % 3600000) / 60000);
-                var s = Math.floor((diff % 60000) / 1000);
-                el.innerHTML = d + "d " + (h < 10 ? "0" + h : h) + "h " + (m < 10 ? "0" + m : m) + "m " + (s < 10 ? "0" + s : s) + "s";
-            }
+    function updateTimer(element, targetTime) {
+        const now = new Date().getTime();
+        const diff = targetTime - now;
+        if (diff <= 0) { element.innerHTML = "Available Now!"; }
+        else {
+            const d = Math.floor(diff / 86400000);
+            const h = Math.floor((diff % 86400000) / 3600000);
+            const m = Math.floor((diff % 3600000) / 60000);
+            const s = Math.floor((diff % 60000) / 1000);
+            element.innerHTML = d + "d " + h + "h " + m + "m " + s + "s";
         }
+    }
+
+    function runAllCountdowns() {
         const cards = document.querySelectorAll('.btn-countdown');
         cards.forEach(el => {
             const target = new Date(el.getAttribute('data-date')).getTime();
-            const now = new Date().getTime();
-            const diff = target - now;
-            if (diff <= 0) { el.innerHTML = "Available Now!"; }
-            else {
-                const d = Math.floor(diff / 86400000);
-                const h = Math.floor((diff % 86400000) / 3600000);
-                const m = Math.floor((diff % 3600000) / 60000);
-                const s = Math.floor((diff % 60000) / 1000);
-                el.innerHTML = d + "d " + h + "h " + m + "m " + s + "s";
-            }
+            updateTimer(el, target);
         });
+
+        const sidebarTimer = document.getElementById("countdown");
+        if(sidebarTimer) {
+            const target = new Date("Dec 31, 2026 23:59:59").getTime();
+            updateTimer(sidebarTimer, target);
+        }
     }
+
     setInterval(runAllCountdowns, 1000);
     runAllCountdowns();
 
     function toggleNotifications() {
         const sw = document.getElementById("notifSwitch");
         sw.classList.toggle("active");
-        const isEnabled = sw.classList.contains("active");
-        localStorage.setItem("ewonz_notif", isEnabled);
-        showToast(isEnabled);
+        showToast(sw.classList.contains("active"));
     }
     function showToast(enabled) {
         const toast = document.getElementById("toastNotif");
-        const msg = document.getElementById("toastMessage");
-        const icon = document.getElementById("toastIcon");
-        if(enabled) { toast.style.background = "#333"; icon.innerText = "🔔"; msg.innerText = "Notifications Enabled!"; } 
-        else { toast.style.background = "#333"; icon.innerText = "🔕"; msg.innerText = "Notifications Disabled!"; }
+        toast.innerText = enabled ? "🔔 Enabled!" : "🔕 Disabled!";
         toast.classList.add("show");
-        setTimeout(() => { toast.classList.remove("show"); }, 2500);
+        setTimeout(() => { toast.classList.remove("show"); }, 2000);
     }
-    if (localStorage.getItem("ewonz_notif") === "true") { document.getElementById("notifSwitch").classList.add("active"); }
-
     function addNote() {
         const input = document.getElementById("noteInput");
         if(input.value.trim() !== "") {
             const list = document.getElementById("notesListContainer");
             const div = document.createElement("div");
             div.className = "note-card";
-            div.innerHTML = `<div class="note-text">${input.value}</div>`;
+            div.innerText = input.value;
             list.prepend(div);
             input.value = "";
         }
