@@ -60,13 +60,13 @@ body{
     height:800px;
     min-height:800px;
     background: var(--bg-main);
-    border: 2px solid var(--border-color-gold); /* ඝනකම තරමක් වැඩි කළා */
+    border: 2px solid var(--border-color-gold);
     border-radius:24px;
     position:relative;
     overflow:hidden;
     display: flex;
     flex-direction: column;
-    animation: border-run 3s infinite linear; /* බෝඩර් රේඛාව සඳහා ඇනිමේෂන් */
+    animation: border-run 3s infinite linear;
 }
 
 /* FIXED HEADER SECTION */
@@ -120,9 +120,9 @@ body{
 .section-title{
     font-size:14px;
     font-weight:600;
-    color: var(--text-gold); /* Gold වර්ණයට මාරු කළා */
+    color: var(--text-gold);
     text-transform: uppercase;
-    animation: gold-pulse 2s infinite; /* Text එක සඳහා ඇනිමේෂන් */
+    animation: gold-pulse 2s infinite;
 }
 
 /* MENU */
@@ -234,7 +234,7 @@ body{
     margin-bottom:12px;
 }
 
-/* SIDEBAR FOOTER - BORDER ADDED AND CENTERED */
+/* SIDEBAR FOOTER */
 .sidebar-footer{
     margin-top:20px;
     padding:14px;
@@ -377,7 +377,6 @@ body{
     left:0;
 }
 
-/* ABOUT PAGE MODIFIED */
 .about-close-icon {
     position: absolute;
     top: 20px;
@@ -582,7 +581,7 @@ body{
                 <div class="lang-icon">🇯🇵</div>
                 <div class="lang-name">Japanese Language</div>
             </div>
-            <button class="action-btn btn-start">START LEARNING</button>
+            <button class="action-btn btn-start" onclick="window.location.href='japanese.html'">START LEARNING</button>
         </div>
 
         <div class="lang-card">
@@ -628,7 +627,6 @@ body{
         </div>
     </div>
 
-    <!-- FOOTER: Line above buttons and adjusted spacing -->
     <div class="footer-nav">
         <div class="footer-line"></div>
         <div class="footer-buttons">
@@ -655,7 +653,7 @@ body{
         </div>
 
         <div class="submenu" id="langMenu">
-            <div class="item">Japanese Language 🇯🇵</div>
+            <div class="item" onclick="window.location.href='japanese.html'">Japanese Language 🇯🇵</div>
             <div class="item">Chinese Language 🇨🇳 <span class="lock-tag">Lock</span></div>
             <div class="item">Korean Language 🇰🇷 <span class="lock-tag">Lock</span></div>
             <div class="item">German Language 🇩🇪 <span class="lock-tag">Lock</span></div>
