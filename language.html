@@ -1,1129 +1,790 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>EWONZ LINGUA - Language</title>
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-
-  <style>
-    *{
-      margin:0;
-      padding:0;
-      box-sizing:border-box;
-      -webkit-tap-highlight-color: transparent;
-    }
-
-    :root{
-      --bg1:#050505;
-      --bg2:#0c0c0c;
-      --bg3:#111111;
-      --gold:#ffd700;
-      --gold-dark:#b8860b;
-      --red:#ff4d4d;
-      --text:#ffffff;
-      --muted:#d8d8d8;
-      --glass:rgba(255,255,255,0.05);
-      --border:rgba(255,215,0,0.42);
-      --shadow:0 0 18px rgba(255,215,0,0.10);
-      --sidebar-width:290px;
-    }
-
-    html,body{
-      width:100%;
-      height:100%;
-      font-family:'Poppins',sans-serif;
-      background: linear-gradient(135deg, var(--bg1) 0%, var(--bg2) 45%, var(--bg3) 100%);
-      color:var(--text);
-      overflow:hidden; /* මුළු පිටුවම Scroll වීම වැළැක්වීමට */
-      user-select:none;
-    }
-
-    body{
-      display:flex;
-      justify-content:center;
-      align-items:center;
-      padding:10px;
-    }
-
-    /* පසුබිම් Canvas එක (ලාවට පෙනෙන ලෙස සකසා ඇත) */
-    #bg-canvas {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: 1;
-      pointer-events: none;
-    }
-
-    .app-shell{
-      position: relative;
-      z-index: 2;
-      width:100%;
-      max-width:390px;
-      height: 92vh; /* ෆෝන් ප්‍රමාණය ස්ථාවරව තැබීමට */
-      display:flex;
-      flex-direction:column;
-    }
-
-    .phone-frame{
-      position:relative;
-      width:100%;
-      height:100%;
-      border-radius:30px;
-      overflow:hidden;
-      background: rgba(8, 8, 8, 0.85);
-      backdrop-filter: blur(10px);
-      border:2px solid rgba(255,215,0,0.72);
-      box-shadow:
-        0 0 0 1px rgba(255,215,0,0.20),
-        0 0 22px rgba(255,215,0,0.15),
-        inset 0 0 18px rgba(255,215,0,0.05);
-      padding:18px 14px;
-      display: flex;
-      flex-direction: column;
-    }
-
-    .topbar{
-      position:relative;
-      z-index:5;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:10px;
-      margin-bottom:10px;
-      flex-shrink: 0;
-    }
-
-    .menu-btn{
-      width:46px;
-      height:46px;
-      border-radius:14px;
-      border:1.5px solid rgba(255,215,0,0.55);
-      background:var(--glass);
-      backdrop-filter:blur(10px);
-      display:flex;
-      flex-direction:column;
-      justify-content:center;
-      align-items:center;
-      gap:5px;
-      cursor:pointer;
-      box-shadow:var(--shadow);
-      flex-shrink:0;
-    }
-
-    .menu-btn span{
-      width:20px;
-      height:2.4px;
-      border-radius:999px;
-      background:linear-gradient(90deg, var(--gold), var(--gold-dark));
-      display:block;
-    }
-
-    .topbar-title{
-      flex:1;
-      text-align:center;
-      padding-right:46px;
-    }
-
-    .topbar-title h1{
-      font-size:19px;
-      font-weight:700;
-      letter-spacing:1px;
-      color:rgba(255,215,0,0.78);
-      text-transform:uppercase;
-      line-height:1.2;
-    }
-
-    .topbar-title p{
-      margin-top:3px;
-      font-size:11px;
-      color:var(--muted);
-      letter-spacing:.5px;
-    }
-
-    .shine-line{
-      width:100%;
-      height:2px;
-      border-radius:999px;
-      margin:10px 0 14px;
-      background:linear-gradient(90deg, rgba(255,215,0,0.15), var(--gold), #fff1a8, var(--gold), rgba(255,215,0,0.15));
-      box-shadow:0 0 8px rgba(255,215,0,0.16);
-      flex-shrink: 0;
-    }
-
-    /* බටන් ප්‍රමාණය වැඩි වන විට ඇතුළතින් Scroll වන කොටස */
-    .content{
-      position:relative;
-      z-index:2;
-      display:flex;
-      flex-direction:column;
-      align-items:center;
-      overflow-y: auto; /* බටන් Grid එක විතරක් Scroll වෙන්න */
-      flex: 1;
-      padding-right: 4px;
-    }
-
-    /* Scrollbar එක ලස්සන කිරීමට */
-    .content::-webkit-scrollbar {
-      width: 4px;
-    }
-    .content::-webkit-scrollbar-thumb {
-      background: rgba(255, 215, 0, 0.3);
-      border-radius: 999px;
-    }
-
-    .main-title{
-      text-align:center;
-      margin-bottom:8px;
-      width:100%;
-      flex-shrink: 0;
-    }
-
-    .main-title h2{
-      font-size:21px;
-      font-weight:700;
-      color:#ffffff;
-      letter-spacing:1.2px;
-      text-transform: uppercase;
-      line-height:1.25;
-      margin-bottom:2px;
-    }
-
-    .language-grid{
-      width:100%;
-      display:flex;
-      flex-direction:column;
-      gap:14px;
-      margin-top:14px;
-      padding-bottom: 20px; /* යටම බටන් එක කැපෙන්නේ නැති වෙන්න */
-    }
-
-    .lang-card{
-      width:100%;
-      border-radius:20px;
-      border:1.6px solid rgba(255,215,0,0.48);
-      background:var(--glass);
-      backdrop-filter:blur(12px);
-      padding:18px 16px;
-      box-shadow:inset 0 0 12px rgba(255,215,0,0.04), 0 0 12px rgba(0,0,0,0.22);
-      cursor:pointer;
-      text-decoration:none;
-      display:block;
-    }
-
-    .lang-main{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:12px;
-      margin-bottom:14px;
-    }
-
-    .lang-main-left{
-      display:flex;
-      align-items:center;
-      gap:12px;
-    }
-
-    .flag{
-      width:52px;
-      height:52px;
-      border-radius:16px;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      font-size:26px;
-      border:1.4px solid rgba(255,215,0,0.45);
-      background:rgba(255,255,255,0.04);
-      flex-shrink:0;
-    }
-
-    .lang-main-left h3{
-      font-size:18px;
-      font-weight:700;
-      color:#ffffff;
-      line-height:1.2;
-      display:flex;
-      align-items:center;
-      gap:8px;
-      flex-wrap:wrap;
-    }
-
-    .lock-tag{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      margin-left: 8px;
-      padding:3px 9px;
-      border-radius:999px;
-      background:rgba(255,77,77,0.16);
-      border:1px solid rgba(255,77,77,0.45);
-      color:var(--red);
-      font-size:11px;
-      font-weight:700;
-      letter-spacing:.6px;
-      text-transform:uppercase;
-      vertical-align: middle;
-    }
-
-    .sub-btn{
-      width:100%;
-      min-height:48px;
-      border:none;
-      border-radius:14px;
-      font-size:15px;
-      font-weight:700;
-      letter-spacing:0.8px;
-      text-transform: uppercase;
-      cursor:pointer;
-      font-family:'Poppins',sans-serif;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .sub-btn.open{
-      background:linear-gradient(135deg, #ffd700, #ffeb7a);
-      color:#111;
-    }
-
-    .sub-btn.locked{
-      background:rgba(255,215,0,0.08);
-      border:1.3px solid rgba(255,215,0,0.35);
-      color:var(--gold);
-    }
-
-    .card-countdown {
-      font-size: 11px;
-      color: var(--red);
-      font-weight: 600;
-      text-align: center;
-      margin-top: 8px;
-      letter-spacing: 0.6px;
-    }
-
-    .overlay{
-      position:fixed;
-      inset:0;
-      background:rgba(0,0,0,0.60);
-      backdrop-filter:blur(3px);
-      z-index:100;
-      opacity:0;
-      pointer-events:none;
-      transition:.28s ease;
-    }
-
-    .overlay.show{
-      opacity:1;
-      pointer-events:auto;
-    }
-
-    .sidebar{
-      position:fixed;
-      top:0;
-      left:calc(var(--sidebar-width) * -1 - 40px);
-      width:var(--sidebar-width);
-      max-width:84%;
-      height:100vh;
-      background:linear-gradient(180deg, rgba(12,12,12,0.98), rgba(18,18,18,0.98));
-      border-right:1.5px solid rgba(255,215,0,0.38);
-      box-shadow:12px 0 40px rgba(0,0,0,0.45);
-      z-index:120;
-      transition:left .32s ease;
-      padding:18px 14px 18px;
-      overflow-y:auto;
-    }
-
-    .sidebar.show{
-      left:0;
-    }
-
-    .sidebar-top{
-      display:flex;
-      align-items:flex-start;
-      justify-content:space-between;
-      gap:10px;
-      margin-bottom:12px;
-    }
-
-    .brand-box h2{
-      font-size:22px;
-      color:var(--gold);
-      font-weight:800;
-      letter-spacing:1px;
-      text-transform:uppercase;
-      line-height:1.2;
-    }
-
-    .brand-box p{
-      font-size:11px;
-      color:var(--muted);
-      margin-top:4px;
-      line-height:1.55;
-    }
-
-    .close-btn{
-      width:42px;
-      height:42px;
-      border-radius:14px;
-      border:1.4px solid rgba(255,215,0,0.45);
-      background:var(--glass);
-      color:var(--gold);
-      font-size:20px;
-      font-weight:700;
-      cursor:pointer;
-      flex-shrink:0;
-    }
-
-    .sidebar-line{
-      width:100%;
-      height:2px;
-      border-radius:999px;
-      background:linear-gradient(90deg, transparent, var(--gold), #fff0a6, var(--gold), transparent);
-      margin-bottom:14px;
-    }
-
-    .sidebar-top-nav{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:8px;
-      margin:4px 0 14px;
-      padding:10px 10px;
-      border-radius:16px;
-      border:1.3px solid rgba(255,215,0,0.28);
-      background:var(--glass);
-    }
-
-    .sidebar-nav-btn{
-      text-decoration:none;
-      color:var(--red);
-      font-size:11px;
-      font-weight:700;
-      letter-spacing:.7px;
-      text-transform:uppercase;
-      white-space:nowrap;
-      width: 60px;
-    }
-    
-    .sidebar-nav-btn:last-child {
-      text-align: right;
-    }
-
-    .sidebar-nav-title{
-      flex:1;
-      text-align:center;
-      color:var(--gold);
-      font-size:12px;
-      font-weight:800;
-      letter-spacing:.8px;
-      text-transform:uppercase;
-      line-height: 1;
-    }
-
-    .menu-label{
-      font-size:12px;
-      font-weight:800;
-      color:var(--gold);
-      letter-spacing:.8px;
-      text-transform:uppercase;
-      margin:16px 4px 10px;
-    }
-
-    .menu-list{
-      display:flex;
-      flex-direction:column;
-      gap:10px;
-    }
-
-    .menu-item{
-      width:100%;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:12px;
-      padding:14px 14px;
-      border-radius:16px;
-      border:1.3px solid rgba(255,215,0,0.25);
-      background:var(--glass);
-      color:var(--text);
-      font-size:14px;
-      font-weight:600;
-      text-decoration:none;
-      cursor:pointer;
-    }
-
-    .menu-item .left{
-      display:flex;
-      align-items:center;
-      gap:10px;
-      min-width:0;
-    }
-
-    .menu-item .icon{
-      width:34px;
-      height:34px;
-      border-radius:12px;
-      border:1px solid rgba(255,215,0,0.28);
-      background:rgba(255,255,255,0.04);
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      font-size:16px;
-      color:var(--gold);
-      flex-shrink:0;
-    }
-
-    .menu-item .arrow{
-      color:var(--gold);
-      font-size:14px;
-      flex-shrink:0;
-      transition: transform 0.2s ease;
-    }
-
-    .menu-item.active .arrow {
-      transform: rotate(180deg);
-    }
-
-    .submenu{
-      display:none;
-      flex-direction:column;
-      gap:8px;
-      padding:4px 0 4px 10px;
-    }
-
-    .submenu.show{
-      display:flex;
-    }
-
-    .submenu-item{
-      width:100%;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:10px;
-      padding:12px 12px;
-      border-radius:14px;
-      border:1.2px solid rgba(255,215,0,0.20);
-      background:rgba(255,255,255,0.04);
-      color:var(--text);
-      text-decoration:none;
-      font-size:13px;
-      font-weight:600;
-      cursor:pointer;
-    }
-
-    .submenu-item .sub-left{
-      display:flex;
-      align-items:center;
-      gap:10px;
-    }
-
-    .settings-box {
-      border: 1.3px solid rgba(255,215,0,0.25);
-      background: var(--glass);
-      border-radius: 18px;
-      padding: 10px 14px;
-    }
-
-    .settings-box h4{
-      color:var(--gold);
-      font-size:13px;
-      font-weight:800;
-      text-transform:uppercase;
-      letter-spacing:.7px;
-      margin-bottom:6px;
-      margin-top: 4px;
-    }
-
-    .setting-row{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:12px;
-      padding:11px 0;
-      border-bottom:1px solid rgba(255,215,0,0.12);
-    }
-
-    .setting-row:last-child{
-      border-bottom:none;
-      padding-bottom:4px;
-    }
-
-    .setting-left{
-      display:flex;
-      align-items:center;
-      gap:10px;
-      min-width:0;
-    }
-
-    .setting-icon{
-      width:34px;
-      height:34px;
-      border-radius:12px;
-      border:1px solid rgba(255,215,0,0.28);
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      color:var(--gold);
-      background:rgba(255,255,255,0.04);
-      flex-shrink:0;
-      font-size:15px;
-    }
-
-    .setting-text{
-      font-size:13px;
-      font-weight:600;
-      color:var(--text);
-    }
-
-    .toggle{
-      position:relative;
-      width:52px;
-      height:30px;
-      border-radius:999px;
-      background:rgba(255,255,255,0.12);
-      border:1px solid rgba(255,215,0,0.28);
-      cursor:pointer;
-      flex-shrink:0;
-    }
-
-    .toggle::before{
-      content:"";
-      position:absolute;
-      top:3px;
-      left:3px;
-      width:22px;
-      height:22px;
-      border-radius:50%;
-      background:var(--gold);
-      box-shadow:0 0 8px rgba(255,215,0,0.25);
-      transition:.25s ease;
-    }
-
-    .toggle.active{
-      background:rgba(255,215,0,0.20);
-    }
-
-    .toggle.active::before{
-      left:25px;
-    }
-
-    .countdown-value{
-      font-size:11px;
-      color:var(--gold);
-      font-weight:700;
-      text-align:right;
-      line-height:1.5;
-      max-width:120px;
-    }
-
-    .sidebar-footer{
-      margin-top:20px;
-      padding:14px;
-      border-radius:18px;
-      border:1.3px solid rgba(255,215,0,0.24);
-      background:var(--glass);
-      text-align:center;
-    }
-
-    .sidebar-footer .footer-title{
-      color:var(--gold);
-      font-size:13px;
-      font-weight:800;
-      margin-bottom:6px;
-      text-transform:uppercase;
-      letter-spacing:.6px;
-    }
-
-    .sidebar-footer p{
-      font-size:11px;
-      color:var(--muted);
-      line-height:1.7;
-    }
-
-    .popup-overlay{
-      position:fixed;
-      inset:0;
-      background:rgba(0,0,0,0.72);
-      backdrop-filter:blur(4px);
-      display:flex;
-      justify-content:center;
-      align-items:center;
-      padding:18px;
-      z-index:300;
-      opacity:0;
-      pointer-events:none;
-      transition:.25s ease;
-    }
-
-    .popup-overlay.show{
-      opacity:1;
-      pointer-events:auto;
-    }
-
-    .popup-box{
-      width:100%;
-      max-width:360px;
-      border-radius:24px;
-      padding:22px 18px 18px;
-      background:linear-gradient(180deg, rgba(16,16,16,0.98), rgba(10,10,10,0.98));
-      border:1.6px solid rgba(255,215,0,0.55);
-      box-shadow:0 0 30px rgba(255,215,0,0.14);
-      text-align:center;
-    }
-
-    .popup-box h3{
-      color:var(--gold);
-      font-size:22px;
-      font-weight:800;
-      margin-bottom:10px;
-      text-transform:uppercase;
-      letter-spacing:1px;
-    }
-
-    .popup-box p{
-      font-size:13px;
-      color:var(--muted);
-      line-height:1.8;
-      margin-bottom:14px;
-    }
-
-    .countdown{
-      font-size:13px;
-      font-weight:700;
-      color:var(--gold);
-      line-height:1.8;
-      margin-bottom:16px;
-    }
-
-    .popup-btn{
-      width:100%;
-      min-height:48px;
-      border-radius:14px;
-      border:1.5px solid rgba(255,215,0,0.55);
-      background:rgba(255,215,0,0.08);
-      color:var(--gold);
-      font-size:14px;
-      font-weight:700;
-      cursor:pointer;
-    }
-
-    @media (max-width:380px){
-      .phone-frame{padding:16px 12px 20px;}
-      .main-title h2{font-size:18px;}
-      .topbar-title h1{font-size:17px;}
-      .sidebar{width:280px;}
-      .lang-main-left h3{font-size:16px;}
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>EWONZ LINGUA</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+/* GLOBAL THEME VARIABLES */
+:root {
+    --bg-main: #000000;
+    --bg-frame: #000000;
+    --bg-card: #1A1A1A;
+    --border-color-gold: #FFD700;
+    --border-color-grey: #4B5563;
+    --text-primary: #FFFFFF;
+    --text-secondary: #A0A0A0;
+    --text-muted: #D1D5DB;
+    --text-gold: #FFD700;
+    --color-red: #B91C1C;
+    --time-red: #FF0000;
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins', sans-serif;
+    transition: background 0.2s, color 0.2s, border-color 0.2s;
+}
+
+body{
+    margin:0;
+    background: var(--bg-frame);
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.mobile-frame{
+    width:360px;
+    height:800px;
+    min-height:800px;
+    background: var(--bg-main);
+    border: 1px solid var(--border-color-gold);
+    border-radius:24px;
+    position:relative;
+    overflow:hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+/* FIXED HEADER SECTION */
+.fixed-header-section {
+    flex-shrink: 0;
+    background: var(--bg-main);
+    padding-top: 18px;
+    z-index: 10;
+}
+
+.header-container {
+    text-align: center;
+}
+
+.top-title {
+    color: var(--text-gold);
+    font-weight: 700;
+    font-size: 18px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.subtitle-text {
+    margin-top: -2px;
+    color: var(--text-secondary);
+    font-size: 12px;
+}
+
+.grey-line {
+    width: 80%;
+    height: 1px;
+    background: var(--border-color-grey);
+    margin: 10px auto;
+}
+
+.home{
+    text-align:center;
+    padding-top:10px;
+}
+
+.line{
+    width:100%;
+    height:1px;
+    background: var(--border-color-gold);
+}
+
+.section-title{
+    font-size:14px;
+    margin-top:10px;
+    margin-bottom: 10px;
+    font-weight:600;
+    color: var(--text-muted);
+    text-transform: uppercase;
+}
+
+/* MENU */
+.menu-icon{
+    position:absolute;
+    top:22px;
+    left:16px;
+    width:20px;
+    cursor:pointer;
+    z-index: 10;
+    margin-bottom: 19px;
+}
+.menu-icon div{
+    height:3px;
+    background: var(--text-primary);
+    margin:4px 0;
+    border-radius:2px;
+}
+
+/* HOME CONTENT AREA */
+.home-content {
+    flex: 1;
+    overflow-y: auto;
+    padding: 15px;
+}
+
+/* SIDEBAR */
+.sidebar{
+    position:absolute;
+    top:0;
+    left:-300px;
+    width:300px;
+    height:100%;
+    background:#000000;
+    color:#fff;
+    padding:20px;
+    transition:0.3s;
+    overflow-y:auto;
+    z-index:999;
+    border-right: 1px solid var(--border-color-gold);
+}
+.sidebar.active{
+    left:0;
+}
+
+.close-btn{
+    position:absolute;
+    top:16px;
+    right:16px;
+    font-size:20px;
+    cursor:pointer;
+    color:#9CA3AF;
+    transition:0.2s;
+}
+.close-btn:hover{
+    color:#fff;
+}
+
+.sidebar-header{
+    text-align:center;
+    padding-top:15px;
+}
+.sidebar-header h1{font-size:18px; color: var(--text-gold);}
+.sidebar-header p{font-size:11px;color:#9CA3AF;}
+.sidebar-line{
+    width:100%;
+    height:1px;
+    background: var(--border-color-gold);
+    margin-top:10px;
+    margin-bottom:12px;
+}
+
+/* MENU BUTTON */
+.menu-item{
+    width:100%;
+    height:54px;
+    margin-top:15px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:0 14px;
+    background:#1F2937;
+    border:1px solid var(--border-color-grey);
+    border-radius:14px;
+    font-size:15px;
+    font-weight:500;
+    cursor:pointer;
+    color:#fff;
+}
+
+/* ICON */
+.icon{
+    width:36px;
+    height:36px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border:2px solid var(--border-color-grey);
+    border-radius:10px;
+    font-size:18px;
+    margin-right:12px;
+}
+
+/* SUBMENU */
+.submenu{
+    margin-left:10px;
+    margin-top:8px;
+    display:none;
+}
+.submenu.open{
+    display:block;
+}
+
+/* ITEM */
+.item{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    height:50px;
+    padding:0 14px;
+    margin-top:6px;
+    background:#0F172A;
+    border:1px solid var(--border-color-grey);
+    border-radius:12px;
+    font-size:13px;
+    color:#fff;
+    cursor:pointer;
+}
+
+.item.locked {
+    cursor: not-allowed;
+    opacity: 0.8;
+}
+
+.lock-tag {
+    background: var(--color-red);
+    color: #fff;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 6px;
+    text-transform: uppercase;
+}
+
+/* SWITCH */
+.switch{
+    width:40px;
+    height:20px;
+    background:#555;
+    border-radius:20px;
+    position:relative;
+    cursor:pointer;
+}
+.switch::after{
+    content:'';
+    position:absolute;
+    width:16px;
+    height:16px;
+    background:#fff;
+    border-radius:50%;
+    top:2px;
+    left:2px;
+    transition:0.3s;
+}
+.switch.active{
+    background:#22C55E;
+}
+.switch.active::after{
+    left:22px;
+}
+
+/* COUNTDOWN STYLING */
+.countdown{
+    font-size:11px;
+    font-weight:700;
+    color: var(--time-red);
+    background: #1E293B;
+    padding: 4px 8px;
+    border-radius: 6px;
+    border: 1px solid var(--border-color-grey);
+}
+
+/* PAGES SYSTEM */
+.about-page, .fav-page, .notes-page {
+    position:absolute;
+    top:0;
+    left:100%;
+    width:100%;
+    height:100%;
+    background: var(--bg-main);
+    transition:0.3s;
+    padding:20px;
+    overflow-y:auto;
+    z-index:1000;
+    color: var(--text-primary);
+}
+.about-page.active, .fav-page.active, .notes-page.active {
+    left:0;
+}
+
+/* ABOUT PAGE MODIFIED */
+.about-close-icon {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 24px;
+    cursor: pointer;
+    color: var(--color-red);
+    font-weight: bold;
+    z-index: 1001;
+}
+
+.about-content{
+    margin-top: 40px;
+    font-size: 13.5px;
+    color: var(--text-primary);
+    line-height: 1.6;
+}
+
+.about-section-title {
+    color: var(--text-gold);
+    font-size: 16px;
+    font-weight: 700;
+    margin: 20px 0 10px 0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.about-p { margin-bottom: 15px; color: var(--text-muted); }
+.about-list { margin-left: 20px; margin-bottom: 15px; list-style: none; }
+.about-list li { margin-bottom: 5px; position: relative; }
+.about-list li::before { content: "•"; color: var(--text-gold); position: absolute; left: -15px; }
+
+/* FOOTER BOX */
+.sidebar-footer{
+    margin-top:20px;
+    padding:14px;
+    border:1px solid var(--border-color-gold);
+    border-radius:14px;
+    background:#0B1220;
+    text-align:center;
+}
+.sidebar-footer p{
+    font-size:12px;
+    color:#9CA3AF;
+    line-height:1.6;
+}
+
+/* NEW LANGUAGE CARD STYLES */
+.lang-card {
+    background: #1A1A1A;
+    border: 1px solid var(--border-color-grey);
+    border-radius: 20px;
+    padding: 15px;
+    margin-bottom: 15px;
+}
+.lang-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 15px;
+}
+.lang-icon { font-size: 30px; padding: 0; display: inline-block; line-height: 1; }
+.lang-name { color: #ffffff; font-weight: 600; font-size: 17px; }
+
+.action-btn {
+    width: 100%;
+    padding: 12px;
+    border-radius: 12px;
+    border: 1px solid var(--border-color-grey);
+    font-weight: 700;
+    font-size: 14px;
+    cursor: pointer;
+    text-align: center;
+    margin-bottom: 5px;
+    color: #ffffff;
+}
+.btn-start { background: #333; border: 1px solid var(--border-color-gold); }
+.btn-start:hover { background: var(--border-color-gold); color: #000; font-weight: 700; }
+.btn-start:active { background: #FFD700; transform: scale(0.98); }
+
+/* MODIFIED COMING SOON BUTTON */
+.btn-coming { 
+    background: #262626; 
+    color: #ffffff;
+    display: flex; 
+    flex-direction: column;
+    padding: 12px;
+    position: relative;
+    height: auto;
+    width: 100%;
+    gap: 5px;
+}
+.btn-coming:active { background: var(--border-color-grey); color: #000; }
+
+.coming-top {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    width: 100%;
+}
+
+.coming-text {
+    font-weight: 700;
+    text-align: center;
+    flex-grow: 1;
+}
+
+.lock-tag-small { 
+    background: var(--color-red); 
+    color: #fff; 
+    padding: 2px 8px; 
+    border-radius: 6px; 
+    font-size: 12px; 
+    font-weight: 600;
+    position: absolute;
+    right: 0;
+}
+
+.btn-countdown {
+    color: var(--time-red);
+    font-size: 11px;
+    font-weight: 700;
+    width: 100%;
+    text-align: right;
+}
+
+/* NOTES UI STYLES */
+.notes-input-box {
+    width: 100%;
+    height: 90px;
+    margin-top: 20px;
+    padding: 12px;
+    border: 1px solid var(--border-color-grey);
+    background: var(--bg-card);
+    color: var(--text-primary);
+    border-radius: 12px;
+    font-size: 14px;
+    outline: none;
+    resize: none;
+}
+.notes-input-box:focus { border-color: #4B5563; }
+
+.add-note-btn {
+    width: 100%;
+    height: 45px;
+    background: #333;
+    color: #ffffff;
+    border: 1px solid var(--border-color-grey);
+    border-radius: 12px;
+    font-size: 14px;
+    font-weight: 600;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+.note-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color-grey);
+    border-radius: 12px;
+    padding: 14px;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 10px;
+}
+.note-text {
+    font-size: 13.5px;
+    color: var(--text-primary);
+    white-space: pre-wrap;
+    word-break: break-word;
+    line-height: 1.5;
+}
+
+.toast-notif {
+    position: absolute;
+    bottom: -60px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #333;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 30px;
+    font-size: 13px;
+    font-weight: 600;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    z-index: 2000;
+    transition: bottom 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.toast-notif.show {
+    bottom: 25px;
+}
+</style>
+
 </head>
+
 <body>
 
-  <canvas id="bg-canvas"></canvas>
+<div class="mobile-frame" id="mobileFrame">
 
-  <div class="overlay" id="overlay"></div>
+    <div class="fixed-header-section">
+        <div class="header-container">
+            <div class="top-title">EWONZ LINGUA</div>
+            <div class="subtitle-text">Premium Language Learning Platform</div>
+            <div class="grey-line"></div>
+        </div>
+        
+        <div class="menu-icon" onclick="toggleMenu()">
+            <div></div><div></div><div></div>
+        </div>
 
-  <aside class="sidebar" id="sidebar">
-    <div class="sidebar-top">
-      <div class="brand-box">
-        <h2>EWONZ LINGUA</h2>
-        <p>Premium Language Learning Platform</p>
-      </div>
-      <button class="close-btn" id="closeSidebarBtn">✕</button>
+        <div class="home">
+            <div class="line"></div>
+            <div class="section-title">Choose Your Language</div>
+            <div class="line"></div>
+        </div>
     </div>
 
-    <div class="sidebar-line"></div>
+    <div class="home-content" id="homeWordList">
+        <div class="lang-card">
+            <div class="lang-header">
+                <div class="lang-icon">🇯🇵</div>
+                <div class="lang-name">Japanese Language</div>
+            </div>
+            <button class="action-btn btn-start">START LEARNING</button>
+        </div>
 
-    <div class="sidebar-top-nav">
-      <a href="index.html" class="sidebar-nav-btn">← BACK</a>
-      <div class="sidebar-nav-title">EWONZ LINGUA</div>
-      <a href="index.html" class="sidebar-nav-btn">HOME →</a>
+        <div class="lang-card">
+            <div class="lang-header">
+                <div class="lang-icon">🇨🇳</div>
+                <div class="lang-name">Chinese Language</div>
+            </div>
+            <button class="action-btn btn-coming">
+                <div class="coming-top">
+                    <span class="coming-text">COMING SOON</span>
+                    <span class="lock-tag-small">LOCK</span>
+                </div>
+                <div class="btn-countdown" data-date="Nov 28, 2026 00:00:00">Loading...</div>
+            </button>
+        </div>
+
+        <div class="lang-card">
+            <div class="lang-header">
+                <div class="lang-icon">🇰🇷</div>
+                <div class="lang-name">Korean Language</div>
+            </div>
+            <button class="action-btn btn-coming">
+                <div class="coming-top">
+                    <span class="coming-text">COMING SOON</span>
+                    <span class="lock-tag-small">LOCK</span>
+                </div>
+                <div class="btn-countdown" data-date="Dec 15, 2026 00:00:00">Loading...</div>
+            </button>
+        </div>
+
+        <div class="lang-card">
+            <div class="lang-header">
+                <div class="lang-icon">🇩🇪</div>
+                <div class="lang-name">German Language</div>
+            </div>
+            <button class="action-btn btn-coming">
+                <div class="coming-top">
+                    <span class="coming-text">COMING SOON</span>
+                    <span class="lock-tag-small">LOCK</span>
+                </div>
+                <div class="btn-countdown" data-date="Jan 10, 2027 00:00:00">Loading...</div>
+            </button>
+        </div>
     </div>
 
-    <div class="menu-label">Main Menu</div>
-
-    <div class="menu-list">
-      <div class="menu-item" id="languageToggle">
-        <div class="left">
-          <div class="icon">🌐</div>
-          <span>Language</span>
+    <div class="sidebar" id="sidebar">
+        <div class="close-btn" onclick="toggleMenu()">✕</div>
+        <div class="sidebar-header">
+            <h1>EWONZ LINGUA</h1>
+            <p>Premium Language Learning Platform</p>
+            <div class="sidebar-line"></div>
         </div>
-        <span class="arrow">⌄</span>
-      </div>
 
-      <div class="submenu" id="languageSubmenu">
-        <a href="japanese.html" class="submenu-item">
-          <div class="sub-left">
-            <span>🇯🇵</span>
-            <span>Japanese</span>
-          </div>
-        </a>
-
-        <a href="chinese.html" class="submenu-item">
-          <div class="sub-left">
-            <span>🇨🇳</span>
-            <span>Chinese</span>
-          </div>
-          <span class="lock-tag">LOCK</span>
-        </a>
-
-        <a href="korean.html" class="submenu-item">
-          <div class="sub-left">
-            <span>🇰🇷</span>
-            <span>Korean</span>
-          </div>
-          <span class="lock-tag">LOCK</span>
-        </a>
-      </div>
-
-      <a href="studyplan.html" class="menu-item">
-        <div class="left">
-          <div class="icon">📅</div>
-          <span>Study Plan</span>
-        </div>
-      </a>
-
-      <a href="about.html" class="menu-item">
-        <div class="left">
-          <div class="icon">ℹ️</div>
-          <span>About</span>
-        </div>
-      </a>
-
-      <div class="menu-item" id="settingsToggle">
-        <div class="left">
-          <div class="icon">⚙️</div>
-          <span>Settings</span>
-        </div>
-        <span class="arrow">⌄</span>
-      </div>
-
-      <div class="submenu" id="settingsSubmenu">
-        <div class="settings-box">
-          <h4>Settings</h4>
-
-          <div class="setting-row">
-            <div class="setting-left">
-              <div class="setting-icon">🌙</div>
-              <div class="setting-text">Dark Mode</div>
+        <div class="menu-item" onclick="toggleLang()">
+            <div style="display:flex;align-items:center;">
+                <div class="icon">🌐</div>
+                Languages
             </div>
-            <div class="toggle active" id="darkModeToggle"></div>
-          </div>
-
-          <div class="setting-row">
-            <div class="setting-left">
-              <div class="setting-icon">🔔</div>
-              <div class="setting-text">Notification</div>
-            </div>
-            <div class="toggle" id="notificationToggle"></div>
-          </div>
-
-          <div class="setting-row">
-            <div class="setting-left">
-              <div class="setting-icon">⏳</div>
-              <div class="setting-text">Count Down</div>
-            </div>
-            <div class="countdown-value" id="sidebarCountdown">Loading...</div>
-          </div>
-
-          <div class="setting-row">
-            <div class="setting-left">
-              <div class="setting-icon">🔊</div>
-              <div class="setting-text">Sound Toggle</div>
-            </div>
-            <div class="toggle active" id="soundToggle"></div>
-          </div>
+            <div>⌄</div>
         </div>
-      </div>
+
+        <div class="submenu" id="langMenu">
+            <div class="item">Japanese Language 🇯🇵</div>
+            <div class="item">Chinese Language 🇨🇳 <span class="lock-tag">Lock</span></div>
+            <div class="item">Korean Language 🇰🇷 <span class="lock-tag">Lock</span></div>
+            <div class="item">German Language 🇩🇪 <span class="lock-tag">Lock</span></div>
+        </div>
+
+        <div class="menu-item" style="cursor: not-allowed; opacity: 0.8;">
+            <div style="display:flex;align-items:center;">
+                <div class="icon">🛠️</div>
+                Tools
+            </div>
+            <div>
+                <span class="lock-tag">Lock</span>
+            </div>
+        </div>
+
+        <div class="submenu" id="toolsMenu">
+            <div class="item locked">Search 🔍 <span class="lock-tag">Lock</span></div>
+            <div class="item">Dictionary 📚 <span class="lock-tag">Lock</span></div>
+            <div class="item locked">Translate 🌐 <span class="lock-tag">Lock</span></div>
+            <div class="item" onclick="openFavPage()">Favorites ⭐</div>
+            <div class="item" onclick="openNotesPage()">Notes 📝</div>
+        </div>
+
+        <div class="menu-item" onclick="toggleSettings()">
+            <div style="display:flex;align-items:center;">
+                <div class="icon">⚙️</div>
+                Settings
+            </div>
+            <div>⌄</div>
+        </div>
+
+        <div class="submenu" id="settingsMenu">
+            <div class="item locked">Dark Mode 🔒 <span class="lock-tag">Lock</span></div>
+            <div class="item">Notifications <div class="switch" id="notifSwitch" onclick="toggleNotifications()"></div></div>
+            <div class="item">Countdown <span id="countdown" class="countdown">Initializing...</span></div>
+        </div>
+
+        <div class="menu-item" onclick="openAboutPage()">
+            <div style="display:flex;align-items:center;">
+                <div class="icon">ℹ️</div>
+                About
+            </div>
+            <div>⌄</div>
+        </div>
+
+        <div class="sidebar-footer">
+            <p style="color:#fff; font-weight:500;">Ewonz Lingua Version 1.0</p>
+            <p style="color:#9CA3AF;">Made By Danu Ewonz</p>
+            <p style="color:#9CA3AF;">(Kalpa Mihiranga)</p>
+        </div>
     </div>
 
-    <div class="sidebar-footer">
-      <div class="footer-title">Version 1.0</div>
-      <p>Made By Danu Ewonz</p>
-      <p>(Kalpa Mihiranga)</p>
+    <div class="about-page" id="aboutPage">
+        <div class="about-close-icon" onclick="closeAboutPage()">✕</div>
+        <div class="about-content">
+            <div class="about-section-title">📘 About EWONZ LINGUA</div>
+            <p class="about-p">EWONZ LINGUA is a smart language learning app designed to help students learn Japanese in a simple and interactive way.</p>
+            <p class="about-p">This app provides structured lessons, vocabulary lists, grammar guides, and reading practice to make learning easier for beginners to advanced learners.</p>
+            <p class="about-p">Our goal is to make language learning accessible, fun, and effective for everyone in Sri Lanka and beyond.</p>
+            
+            <div class="about-section-title">⭐ Features</div>
+            <ul class="about-list">
+                <li>Step-by-step learning system</li>
+                <li>Beginner to Intermediate roadmap</li>
+                <li>Vocabulary & grammar sections</li>
+                <li>Easy navigation with sidebar system</li>
+            </ul>
+
+            <div class="about-section-title">🙏 Special Thanks</div>
+            <p class="about-p">We would like to express our sincere gratitude to everyone who supported and inspired the development of this app. Special thanks to:</p>
+            <p class="about-p"><b>▪ Japanese - Tsuki Sensei</b><br>(Thank you for teaching me and sharing so many valuable things with me)</p>
+            <p class="about-p"><b>▪ Youyung Hyun</b><br>Assistant Professor, Technology and Operations Management, Hitotsubashi University Business School (Hitotsubashi ICS), Tokyo, Kunitachi</p>
+
+            <div class="about-section-title">👨‍💻 Developer</div>
+            <p class="about-p">Developed by <b>Danu Ewonz (Kalpa Mihiranga)</b><br>Passionate about building educational tools and improving learning experiences through technology.</p>
+
+            <div class="about-section-title">📌 App Info</div>
+            <p class="about-p">Version: 1.0<br>Category: Education / Language Learning</p>
+        </div>
     </div>
-  </aside>
 
-  <div class="app-shell">
-    <main class="phone-frame">
-      <div class="topbar">
-        <button class="menu-btn" id="menuBtn" aria-label="Open menu">
-          <span></span>
-          <span></span>
-          <span></span>
-        </button>
-
-        <div class="topbar-title">
-          <h1>EWONZ LINGUA</h1>
-          <p>Premium Language Learning Platform</p>
+    <div class="fav-page" id="favPage">
+        <div class="fav-header">
+            <div class="back-btn" onclick="closeFavPage()">← Back</div>
+            <h2>Favorites ⭐</h2>
         </div>
-      </div>
-
-      <div class="shine-line"></div>
-
-      <section class="content">
-        <div class="main-title">
-          <h2>Choose your language</h2>
-        </div>
-
-        <div class="language-grid">
-          <a href="japanese.html" class="lang-card">
-            <div class="lang-main">
-              <div class="lang-main-left">
-                <div class="flag">🇯🇵</div>
-                <h3>Japanese Language</h3>
-              </div>
-            </div>
-            <button class="sub-btn open" type="button">Start Learning</button>
-          </a>
-
-          <a href="chinese.html" class="lang-card">
-            <div class="lang-main">
-              <div class="lang-main-left">
-                <div class="flag">🇨🇳</div>
-                <h3>Chinese Language</h3>
-              </div>
-            </div>
-            <button class="sub-btn locked" type="button">Coming Soon <span class="lock-tag">LOCK</span></button>
-            <div class="card-countdown live-card-countdown">Loading...</div>
-          </a>
-
-          <a href="korean.html" class="lang-card">
-            <div class="lang-main">
-              <div class="lang-main-left">
-                <div class="flag">🇰🇷</div>
-                <h3>Korean Language</h3>
-              </div>
-            </div>
-            <button class="sub-btn locked" type="button">Coming Soon <span class="lock-tag">LOCK</span></button>
-            <div class="card-countdown live-card-countdown">Loading...</div>
-          </a>
-          
-          <div class="lang-card" onclick="showLockedPopup('English')">
-            <div class="lang-main">
-              <div class="lang-main-left">
-                <div class="flag">🇬🇧</div>
-                <h3>English Language</h3>
-              </div>
-            </div>
-            <button class="sub-btn locked" type="button">Coming Soon <span class="lock-tag">LOCK</span></button>
-            <div class="card-countdown live-card-countdown">Loading...</div>
-          </div>
-
-        </div>
-      </section>
-    </main>
-  </div>
-
-  <div class="popup-overlay" id="popupOverlay">
-    <div class="popup-box">
-      <h3 id="popupTitle">Coming Soon</h3>
-      <p id="popupText">
-        This section is currently locked and will be available in a future Ewonz Lingua update.
-      </p>
-      <div class="countdown" id="countdownBox"></div>
-      <button class="popup-btn" onclick="closePopup()">OK</button>
+        <div style="margin-top: 20px;" id="favListContainer"></div>
     </div>
-  </div>
 
-  <script>
-    const sidebar = document.getElementById("sidebar");
-    const overlay = document.getElementById("overlay");
-    const menuBtn = document.getElementById("menuBtn");
-    const closeSidebarBtn = document.getElementById("closeSidebarBtn");
+    <div class="notes-page" id="notesPage">
+        <div class="notes-header">
+            <div class="back-btn" onclick="closeNotesPage()">← Back</div>
+            <h2>My Notes 📝</h2>
+        </div>
+        <textarea class="notes-input-box" id="noteInput" placeholder="Write your grammar rules or vocabulary notes here..."></textarea>
+        <button class="add-note-btn" onclick="addNote()">Save Note</button>
+        <div style="margin-top: 20px;" id="notesListContainer"></div>
+    </div>
 
-    const popupOverlay = document.getElementById("popupOverlay");
-    const popupTitle = document.getElementById("popupTitle");
-    const popupText = document.getElementById("popupText");
-    const countdownBox = document.getElementById("countdownBox");
+    <div class="toast-notif" id="toastNotif">
+        <span id="toastIcon">🔔</span> <span id="toastMessage">Notifications Enabled!</span>
+    </div>
 
-    const languageToggle = document.getElementById("languageToggle");
-    const languageSubmenu = document.getElementById("languageSubmenu");
+</div>
 
-    const settingsToggle = document.getElementById("settingsToggle");
-    const settingsSubmenu = document.getElementById("settingsSubmenu");
+<script>
+    // Disable context menu, copy, cut, paste
+    document.addEventListener('contextmenu', event => event.preventDefault());
+    document.addEventListener('copy', event => event.preventDefault());
+    document.addEventListener('cut', event => event.preventDefault());
+    document.addEventListener('paste', event => event.preventDefault());
 
-    const darkModeToggle = document.getElementById("darkModeToggle");
-    const notificationToggle = document.getElementById("notificationToggle");
-    const soundToggle = document.getElementById("soundToggle");
-    const sidebarCountdown = document.getElementById("sidebarCountdown");
-    const cardCountdowns = document.querySelectorAll(".live-card-countdown");
-
-    function openSidebar(){
-      sidebar.classList.add("show");
-      overlay.classList.add("show");
-    }
-
-    function closeSidebar(){
-      sidebar.classList.remove("show");
-      overlay.classList.remove("show");
-    }
-
-    menuBtn.addEventListener("click", openSidebar);
-    closeSidebarBtn.addEventListener("click", closeSidebar);
-    overlay.addEventListener("click", closeSidebar);
-
-    languageToggle.addEventListener("click", () => {
-      languageToggle.classList.toggle("active");
-      languageSubmenu.classList.toggle("show");
-    });
-
-    settingsToggle.addEventListener("click", () => {
-      settingsToggle.classList.toggle("active");
-      settingsSubmenu.classList.toggle("show");
-    });
-
-    const targetDate = new Date("2026-11-28T00:00:00");
-
-    function getCountdownParts() {
-      const now = new Date();
-      const diff = targetDate - now;
-
-      if (diff <= 0) {
-        return { text: "Unlocked", short: "Unlocked", fullEng: "Unlocked" };
-      }
-
-      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
-      const minutes = Math.floor((diff / (1000 * 60)) % 60);
-      const seconds = Math.floor((diff / 1000) % 60);
-
-      return {
-        text: `Unlocks in: ${days}d ${hours}h ${minutes}m ${seconds}s`,
-        short: `${days}d ${hours}h ${minutes}m`,
-        fullEng: `${days}d ${hours}h ${minutes}m ${seconds}s`
-      };
-    }
-
-    function updateCountdown(){
-      const data = getCountdownParts();
-      if(countdownBox) countdownBox.textContent = data.text;
-      if(sidebarCountdown) sidebarCountdown.textContent = data.short;
-      
-      cardCountdowns.forEach(el => {
-        el.textContent = data.fullEng;
-      });
-    }
-
-    function showLockedPopup(sectionName = "This section"){
-      popupTitle.textContent = `${sectionName} Locked`;
-      popupText.textContent = `${sectionName} is currently locked and will be available in a future Ewonz Lingua update.`;
-      popupOverlay.classList.add("show");
-      closeSidebar();
-      updateCountdown();
-    }
-
-    function closePopup(){
-      popupOverlay.classList.remove("show");
-    }
-
-    setInterval(updateCountdown, 1000);
-    updateCountdown();
-
-    darkModeToggle.addEventListener("click", () => {
-      darkModeToggle.classList.toggle("active");
-    });
-
-    notificationToggle.addEventListener("click", () => {
-      notificationToggle.classList.toggle("active");
-    });
-
-    soundToggle.addEventListener("click", () => {
-      soundToggle.classList.toggle("active");
-    });
-
-    document.addEventListener("keydown", (e) => {
-      if(e.key === "Escape"){
-        closeSidebar();
-        closePopup();
-      }
-    });
-
-    // -------------------------------------------------------------
-    // 🌌 ලාවට ක්‍රියාත්මක වන පසුබිම් රේඛා සජීවීකරණය (Subtle Neural Animation)
-    // -------------------------------------------------------------
-    const canvas = document.getElementById('bg-canvas');
-    const ctx = canvas.getContext('2d');
-
-    let particlesArray = [];
-    const numberOfParticles = 35; // තිත් ප්‍රමාණය තරමක් අඩු කළා පිරිසිදු පෙනුමට
-
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-
-    window.addEventListener('resize', function(){
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-    });
-
-    class Particle {
-      constructor(){
-        this.x = Math.random() * canvas.width;
-        this.y = Math.random() * canvas.height;
-        this.size = Math.random() * 1.5 + 0.5; // තිත් කුඩා කළා
-        this.speedX = Math.random() * 0.3 - 0.15; // වේගය අඩු කළා
-        this.speedY = Math.random() * 0.3 - 0.15;
-      }
-      update(){
-        this.x += this.speedX;
-        this.y += this.speedY;
-
-        if (this.x > canvas.width || this.x < 0) this.speedX = -this.speedX;
-        if (this.y > canvas.height || this.y < 0) this.speedY = -this.speedY;
-      }
-      draw(){
-        ctx.fillStyle = 'rgba(255, 215, 0, 0.08)'; // තිත් වල පැහැය ලා කළා (0.3 -> 0.08)
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-        ctx.fill();
-      }
-    }
-
-    function init(){
-      particlesArray = [];
-      for(let i = 0; i < numberOfParticles; i++){
-        particlesArray.push(new Particle());
-      }
-    }
-
-    function connect(){
-      let opacityValue = 1;
-      for (let a = 0; a < particlesArray.length; a++) {
-        for (let b = a; b < particlesArray.length; b++) {
-          let distance = ((particlesArray[a].x - particlesArray[b].x) * (particlesArray[a].x - particlesArray[b].x))
-          + ((particlesArray[a].y - particlesArray[b].y) * (particlesArray[a].y - particlesArray[b].y));
-          if (distance < (canvas.width/7) * (canvas.height/7)) {
-            opacityValue = 1 - (distance/20000);
-            // රේඛා වල පැහැය ඉතා ලා කළා (0.15 -> 0.04)
-            ctx.strokeStyle='rgba(255, 215, 0,' + opacityValue * 0.04 + ')';
-            ctx.lineWidth = 0.8;
-            ctx.beginPath();
-            ctx.moveTo(particlesArray[a].x, particlesArray[a].y);
-            ctx.lineTo(particlesArray[b].x, particlesArray[b].y);
-            ctx.stroke();
-          }
+    function toggleMenu() { document.getElementById("sidebar").classList.toggle("active"); }
+    function toggleLang() { document.getElementById("langMenu").classList.toggle("open"); }
+    function toggleSettings() { document.getElementById("settingsMenu").classList.toggle("open"); }
+    function openAboutPage() { document.getElementById("aboutPage").classList.add("active"); document.getElementById("sidebar").classList.remove("active"); }
+    function closeAboutPage() { document.getElementById("aboutPage").classList.remove("active"); }
+    function openFavPage() { document.getElementById("favPage").classList.add("active"); document.getElementById("sidebar").classList.remove("active"); }
+    function closeFavPage() { document.getElementById("favPage").classList.remove("active"); }
+    function openNotesPage() { document.getElementById("notesPage").classList.add("active"); document.getElementById("sidebar").classList.remove("active"); }
+    function closeNotesPage() { document.getElementById("notesPage").classList.remove("active"); }
+    
+    function runAllCountdowns() {
+        var targetTime = new Date(2026, 11, 28, 0, 0, 0).getTime();
+        var el = document.getElementById("countdown");
+        if (el) {
+            var now = new Date().getTime();
+            var diff = targetTime - now;
+            if (diff <= 0) { el.innerHTML = "Time's Up! 🎉"; }
+            else {
+                var d = Math.floor(diff / 86400000);
+                var h = Math.floor((diff % 86400000) / 3600000);
+                var m = Math.floor((diff % 3600000) / 60000);
+                var s = Math.floor((diff % 60000) / 1000);
+                el.innerHTML = d + "d " + (h < 10 ? "0" + h : h) + "h " + (m < 10 ? "0" + m : m) + "m " + (s < 10 ? "0" + s : s) + "s";
+            }
         }
-      }
+        const cards = document.querySelectorAll('.btn-countdown');
+        cards.forEach(el => {
+            const target = new Date(el.getAttribute('data-date')).getTime();
+            const now = new Date().getTime();
+            const diff = target - now;
+            if (diff <= 0) { el.innerHTML = "Available Now!"; }
+            else {
+                const d = Math.floor(diff / 86400000);
+                const h = Math.floor((diff % 86400000) / 3600000);
+                const m = Math.floor((diff % 3600000) / 60000);
+                const s = Math.floor((diff % 60000) / 1000);
+                el.innerHTML = d + "d " + h + "h " + m + "m " + s + "s";
+            }
+        });
     }
+    setInterval(runAllCountdowns, 1000);
+    runAllCountdowns();
 
-    function animate(){
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      for(let i = 0; i < particlesArray.length; i++){
-        particlesArray[i].update();
-        particlesArray[i].draw();
-      }
-      connect();
-      requestAnimationFrame(animate);
+    function toggleNotifications() {
+        const sw = document.getElementById("notifSwitch");
+        sw.classList.toggle("active");
+        const isEnabled = sw.classList.contains("active");
+        localStorage.setItem("ewonz_notif", isEnabled);
+        showToast(isEnabled);
     }
+    function showToast(enabled) {
+        const toast = document.getElementById("toastNotif");
+        const msg = document.getElementById("toastMessage");
+        const icon = document.getElementById("toastIcon");
+        if(enabled) { toast.style.background = "#333"; icon.innerText = "🔔"; msg.innerText = "Notifications Enabled!"; } 
+        else { toast.style.background = "#333"; icon.innerText = "🔕"; msg.innerText = "Notifications Disabled!"; }
+        toast.classList.add("show");
+        setTimeout(() => { toast.classList.remove("show"); }, 2500);
+    }
+    if (localStorage.getItem("ewonz_notif") === "true") { document.getElementById("notifSwitch").classList.add("active"); }
 
-    init();
-    animate();
-  </script>
+    function addNote() {
+        const input = document.getElementById("noteInput");
+        if(input.value.trim() !== "") {
+            const list = document.getElementById("notesListContainer");
+            const div = document.createElement("div");
+            div.className = "note-card";
+            div.innerHTML = `<div class="note-text">${input.value}</div>`;
+            list.prepend(div);
+            input.value = "";
+        }
+    }
+</script>
+
 </body>
 </html>
