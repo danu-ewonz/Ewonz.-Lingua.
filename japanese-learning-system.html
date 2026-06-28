@@ -1,0 +1,828 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EWONZ LINGUA - Learning System</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    :root{
+      --bg1:#050505;
+      --bg2:#0c0c0c;
+      --bg3:#111111;
+      --gold:#ffd700;
+      --gold-dark:#b8860b;
+      --red:#ff4d4d;
+      --text:#ffffff;
+      --muted:#888888;
+      --sub-gold: #e2ba22;
+      --glass: rgba(255, 255, 255, 0.03);
+      --border: rgba(255, 215, 0, 0.22);
+      --sidebar-width:320px;
+    }
+
+    html,body{
+      width:100%;
+      min-height:100%;
+      font-family:'Poppins',sans-serif;
+      background: linear-gradient(135deg, var(--bg1) 0%, var(--bg2) 45%, var(--bg3) 100%);
+      color:var(--text);
+      overflow-x:hidden;
+      user-select:none;
+    }
+
+    body{
+      display:flex;
+      justify-content:center;
+      align-items:flex-start;
+      padding:20px 12px 28px;
+    }
+
+    #bg-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    .app-shell{
+      position: relative;
+      z-index: 2;
+      width:100%;
+      max-width:390px;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      gap:14px;
+    }
+
+    .phone-frame{
+      position:relative;
+      width:100%;
+      min-height:92vh;
+      border-radius:38px;
+      overflow:hidden;
+      background: rgba(10, 10, 10, 0.93);
+      backdrop-filter: blur(10px);
+      border: 2px solid rgba(255, 215, 0, 0.65);
+      box-shadow: 0 0 25px rgba(255, 215, 0, 0.12);
+      padding: 24px 16px 22px;
+    }
+
+    .topbar{
+      position:relative;
+      z-index:5;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      margin-bottom:14px;
+    }
+
+    .menu-btn{
+      width:44px;
+      height:44px;
+      border-radius:14px;
+      border: 1.5px solid rgba(255, 215, 0, 0.4);
+      background: rgba(255,255,255,0.02);
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      align-items:center;
+      gap:5px;
+      cursor:pointer;
+    }
+
+    .menu-btn span{
+      width:18px;
+      height:2px;
+      border-radius:999px;
+      background: var(--gold);
+      display:block;
+    }
+
+    .topbar-title{
+      flex:1;
+      text-align:center;
+      padding-right:44px;
+    }
+
+    .topbar-title h1{
+      font-size:17px;
+      font-weight:700;
+      letter-spacing:1px;
+      color: var(--gold);
+      text-transform:uppercase;
+    }
+
+    .topbar-title p{
+      font-size:11px;
+      color:#ffffff;
+      opacity: 0.8;
+      margin-top: 2px;
+    }
+
+    .shine-line{
+      width:100%;
+      height:1px;
+      margin:12px 0 20px;
+      background: linear-gradient(90deg, transparent, rgba(255,215,0,0.5), transparent);
+    }
+
+    /* Updated Main Page Title Color to White */
+    .page-main-title {
+      font-size: 17px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-align: center;
+      color: #ffffff;
+      text-transform: uppercase;
+      margin-bottom: 0px;
+    }
+
+    .content-scroll {
+      max-height: 65vh;
+      overflow-y: auto;
+      padding-right: 2px;
+    }
+    .content-scroll::-webkit-scrollbar { width: 0px; }
+
+    /* Accordion Style */
+    .section-container { margin-bottom: 14px; }
+
+    .main-category-btn {
+      width: 100%;
+      background: var(--glass);
+      border: 1.2px solid var(--border);
+      border-radius: 18px;
+      padding: 14px 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      color: #fff;
+      cursor: pointer;
+      text-align: left;
+    }
+
+    .card-text-side { display: flex; flex-direction: column; gap: 4px; }
+    .card-text-side h2 { font-size: 19px; font-weight: 700; color: #ffffff; letter-spacing: 0.3px; }
+    .card-text-side p { font-size: 11.5px; color: var(--sub-gold); }
+    .card-right-side { display: flex; align-items: center; gap: 8px; }
+    .card-emoji { font-size: 22px; }
+    .card-arrow { font-size: 9px; color: var(--gold); opacity: 0.7; transition: transform 0.25s ease; }
+    .main-category-btn.active .card-arrow { transform: rotate(180deg); }
+
+    .sub-lessons-panel {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease-out;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      padding: 0 8px;
+    }
+    .sub-lessons-panel.show { max-height: 500px; margin-top: 8px; }
+
+    .lesson-item-btn {
+      width: 100%;
+      background: rgba(255, 255, 255, 0.01);
+      border: 1px solid rgba(255, 215, 0, 0.1);
+      border-radius: 12px;
+      padding: 11px 14px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      color: #e0e0e0;
+      text-decoration: none;
+      font-size: 12.5px;
+      font-weight: 500;
+    }
+    .lesson-item-btn:hover { background: rgba(255, 215, 0, 0.03); color: #fff; border-color: rgba(255, 215, 0, 0.25); }
+
+    /* ========================================================
+       SIDEBAR INTERFACE STYLE
+       ======================================================== */
+    .overlay{
+      position:fixed;
+      inset:0;
+      background:rgba(0,0,0,0.75);
+      backdrop-filter:blur(4px);
+      z-index:100;
+      opacity:0;
+      pointer-events:none;
+      transition:.28s ease;
+    }
+    .overlay.show{ opacity:1; pointer-events:auto; }
+
+    .sidebar{
+      position:fixed;
+      top:0;
+      left:calc(var(--sidebar-width) * -1 - 40px);
+      width:var(--sidebar-width);
+      max-width:88%;
+      height:100vh;
+      background:#0a0a0a;
+      border-right: 2px solid rgba(255, 215, 0, 0.5);
+      z-index:120;
+      transition: left .3s cubic-bezier(0.4, 0, 0.2, 1);
+      padding: 24px 16px;
+      display: flex;
+      flex-direction: column;
+      overflow-y: auto;
+    }
+    .sidebar.show{ left:0; }
+    .sidebar::-webkit-scrollbar { width: 0px; }
+
+    .sidebar-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 12px; }
+    .sb-title-area h2 { font-size: 21px; font-weight: 800; color: var(--gold); letter-spacing: 0.5px; }
+    .sb-title-area p { font-size: 11.5px; color: #ffffff; opacity: 0.7; margin-top: 2px; }
+    
+    .sb-close-btn {
+      width: 42px;
+      height: 42px;
+      border-radius: 14px;
+      border: 1.5px solid rgba(255, 215, 0, 0.4);
+      background: none;
+      color: var(--gold);
+      font-size: 16px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .sb-nav-bar {
+      width: 100%;
+      border: 1.2px solid rgba(255, 215, 0, 0.25);
+      border-radius: 30px;
+      padding: 10px 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 10px;
+      margin-bottom: 24px;
+    }
+    .sb-nav-link { font-size: 11.5px; font-weight: 700; color: var(--red); text-decoration: none; text-transform: uppercase; }
+    .sb-nav-center-txt { font-size: 11.5px; font-weight: 700; color: var(--gold); text-transform: uppercase; }
+
+    .sb-section-label { font-size: 13.5px; font-weight: 800; color: var(--gold); text-transform: uppercase; margin-bottom: 14px; }
+
+    .sb-menu-list { display: flex; flex-direction: column; gap: 12px; }
+    
+    .sb-menu-item-group { display: flex; flex-direction: column; width: 100%; }
+
+    .sb-menu-btn {
+      width: 100%;
+      background: #111111;
+      border: 1px solid rgba(255, 215, 0, 0.15);
+      border-radius: 18px;
+      padding: 14px 14px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+      text-decoration: none;
+    }
+
+    .sb-btn-left { display: flex; align-items: center; gap: 14px; }
+    .sb-icon-box { width: 38px; height: 38px; border-radius: 12px; border: 1px solid rgba(255, 215, 0, 0.25); background: rgba(255,255,255,0.02); display: flex; align-items: center; justify-content: center; font-size: 18px; }
+    .sb-btn-title { font-size: 16px; font-weight: 600; color: #ffffff; }
+    .sb-btn-arrow { font-size: 9px; color: var(--gold); transition: transform 0.2s; }
+    .sb-menu-btn.open .sb-btn-arrow { transform: rotate(180deg); }
+
+    .sb-sub-drawer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease-out;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      padding: 0 6px;
+    }
+    .sb-sub-drawer.open { max-height: 500px; margin-top: 8px; margin-bottom: 4px; }
+
+    .sb-drawer-link {
+      width: 100%;
+      background: rgba(255,255,255,0.02);
+      border: 1px solid rgba(255,215,0,0.08);
+      border-radius: 12px;
+      padding: 10px 14px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      color: #ccc;
+      font-size: 13px;
+      text-decoration: none;
+    }
+
+    .lock-tag {
+      background: rgba(255, 77, 77, 0.15);
+      border: 1px solid var(--red);
+      color: var(--red);
+      font-size: 10px;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 6px;
+      text-transform: uppercase;
+    }
+
+    /* ========================================================
+       SETTINGS PANEL (Image 1000043940.jpg)
+       ======================================================== */
+    .sb-settings-panel {
+      width: 100%;
+      background: #111111;
+      border: 1px solid rgba(255, 215, 0, 0.2);
+      border-radius: 22px;
+      padding: 16px 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .sb-settings-heading {
+      font-size: 13px;
+      font-weight: 800;
+      color: var(--gold);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 2px;
+    }
+
+    .set-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-bottom: 4px;
+    }
+    .set-row:not(:last-child) {
+      border-bottom: 1px solid rgba(255, 215, 0, 0.1);
+      padding-bottom: 14px;
+    }
+
+    .set-left { display: flex; align-items: center; gap: 12px; }
+    .set-icon { font-size: 18px; width: 34px; height: 34px; border-radius: 50%; border: 1px solid rgba(255,215,0,0.2); display: flex; align-items: center; justify-content: center; background: rgba(255,255,255,0.01); }
+    .set-label { font-size: 14.5px; font-weight: 600; color: #ffffff; }
+
+    .toggle-sw {
+      position: relative;
+      width: 52px;
+      height: 26px;
+      background: #333333;
+      border-radius: 99px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .toggle-sw.on { background: rgba(255, 215, 0, 0.25); border: 1px solid rgba(255,215,0,0.3); }
+    .toggle-sw::after {
+      content: '';
+      position: absolute;
+      top: 2px; left: 2px;
+      width: 20px; height: 20px;
+      background: #ffd700;
+      border-radius: 50%;
+      transition: transform 0.2s;
+    }
+    .toggle-sw.on::after { transform: translateX(26px); }
+    .toggle-sw.off::after { background: #666; }
+
+    .countdown-text { font-size: 13.5px; font-weight: 700; color: var(--gold); }
+
+    .sb-footer-box { width: 100%; background: #111111; border: 1px solid rgba(255, 215, 0, 0.15); border-radius: 18px; padding: 16px 12px; text-align: center; margin-top: 24px; }
+    .sb-version-title { font-size: 13.5px; font-weight: 800; color: var(--gold); margin-bottom: 6px; }
+    .sb-credits-text { font-size: 11px; color: #ffffff; opacity: 0.7; line-height: 1.5; }
+  </style>
+</head>
+<body>
+
+  <canvas id="bg-canvas"></canvas>
+  <div class="overlay" id="overlay"></div>
+
+  <!-- ========================================================
+       SIDEBAR CONTAINER
+       ======================================================== */ -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <div class="sb-title-area">
+        <h2>EWONZ LINGUA</h2>
+        <p>Premium Language Learning Platform</p>
+      </div>
+      <button class="sb-close-btn" id="closeSidebarBtn">✕</button>
+    </div>
+
+    <div class="shine-line" style="margin: 8px 0 10px;"></div>
+
+    <div class="sb-nav-bar">
+      <a href="#" class="sb-nav-link">← Back</a>
+      <span class="sb-nav-center-txt">Learning System</span>
+      <a href="#" class="sb-nav-link">Home →</a>
+    </div>
+
+    <h3 class="sb-section-label">Main Menu</h3>
+
+    <div class="sb-menu-list">
+      
+      <!-- 1. Dashboard Element -->
+      <div class="sb-menu-item-group">
+        <button class="sb-menu-btn" onclick="toggleSidebarDrawer(this)">
+          <div class="sb-btn-left">
+            <div class="sb-icon-box">🏠</div>
+            <span class="sb-btn-title">Dashboard</span>
+          </div>
+          <span class="sb-btn-arrow">▼</span>
+        </button>
+        <div class="sb-sub-drawer">
+          <a href="#" class="sb-drawer-link"><span>🚀 Getting Started</span><span>➔</span></a>
+          <a href="#" class="sb-drawer-link"><span>🗺️ Learning Roadmap</span><span>➔</span></a>
+          <a href="#" class="sb-drawer-link"><span>📅 Study Plan</span><span>➔</span></a>
+          <a href="#" class="sb-drawer-link"><span>🎯 Daily Learning</span><span>➔</span></a>
+          <a href="#" class="sb-drawer-link"><span>🧠 Memory Techniques</span><span>➔</span></a>
+          <a href="#" class="sb-drawer-link"><span>📚 Study Resources</span><span>➔</span></a>
+          <a href="#" class="sb-drawer-link"><span>💡 Learning Tips</span><span>➔</span></a>
+          <a href="#" class="sb-drawer-link"><span>📝 Practice Routine</span><span>➔</span></a>
+          <a href="#" class="sb-drawer-link"><span>🏆 Goals & Progress</span><span>➔</span></a>
+        </div>
+      </div>
+
+      <!-- 2. Language Element -->
+      <div class="sb-menu-item-group">
+        <button class="sb-menu-btn" onclick="toggleSidebarDrawer(this)">
+          <div class="sb-btn-left">
+            <div class="sb-icon-box">🌐</div>
+            <span class="sb-btn-title">Language</span>
+          </div>
+          <span class="sb-btn-arrow">▼</span>
+        </button>
+        <div class="sb-sub-drawer">
+          <a href="#" class="sb-drawer-link"><span>Japanese</span><span style="color:var(--gold);">✔</span></a>
+          <a href="#" class="sb-drawer-link"><span>Korean</span><span class="lock-tag">Lock</span></a>
+          <a href="#" class="sb-drawer-link"><span>Chinese</span><span class="lock-tag">Lock</span></a>
+        </div>
+      </div>
+
+      <!-- 3. Study Plan Element -->
+      <div class="sb-menu-item-group">
+        <button class="sb-menu-btn" onclick="toggleSidebarDrawer(this)">
+          <div class="sb-btn-left">
+            <div class="sb-icon-box">📅</div>
+            <span class="sb-btn-title">Study Plan</span>
+          </div>
+          <span class="sb-btn-arrow">▼</span>
+        </button>
+        <div class="sb-sub-drawer">
+          <a href="#" class="sb-drawer-link">7-Day Plan</a>
+          <a href="#" class="sb-drawer-link">30-Day Plan</a>
+          <a href="#" class="sb-drawer-link">90-Day Plan</a>
+        </div>
+      </div>
+
+      <!-- 4. About Element -->
+      <a href="about.html" class="sb-menu-btn">
+        <div class="sb-btn-left">
+          <div class="sb-icon-box">ℹ️</div>
+          <span class="sb-btn-title">About</span>
+        </div>
+        <span class="sb-btn-arrow">▼</span>
+      </a>
+
+      <!-- 5. Settings Element -->
+      <div class="sb-menu-item-group">
+        <button class="sb-menu-btn open" onclick="toggleSidebarDrawer(this)">
+          <div class="sb-btn-left">
+            <div class="sb-icon-box">⚙️</div>
+            <span class="sb-btn-title">Settings</span>
+          </div>
+          <span class="sb-btn-arrow">▼</span>
+        </button>
+        <div class="sb-sub-drawer open" style="max-height: 500px;">
+          <div class="sb-settings-panel">
+            <h4 class="sb-settings-heading">Settings</h4>
+            
+            <div class="set-row">
+              <div class="set-left">
+                <div class="set-icon">🌙</div>
+                <span class="set-label">Dark Mode</span>
+              </div>
+              <div class="toggle-sw on" onclick="this.classList.toggle('on')"></div>
+            </div>
+
+            <div class="set-row">
+              <div class="set-left">
+                <div class="set-icon">🔔</div>
+                <span class="set-label">Notification</span>
+              </div>
+              <div class="toggle-sw on" onclick="this.classList.toggle('on')"></div>
+            </div>
+
+            <div class="set-row">
+              <div class="set-left">
+                <div class="set-icon">⌛</div>
+                <span class="set-label">Count Down</span>
+              </div>
+              <span class="countdown-text">152d 10h 28m</span>
+            </div>
+
+            <div class="set-row">
+              <div class="set-left">
+                <div class="set-icon">🔊</div>
+                <span class="set-label">Sound Toggle</span>
+              </div>
+              <div class="toggle-sw on" onclick="this.classList.toggle('on')"></div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="sb-footer-box">
+      <h4 class="sb-version-title">VERSION 1.0</h4>
+      <p class="sb-credits-text">Made By Danu Ewonz<br>(Kalpa Mihiranga)</p>
+    </div>
+  </aside>
+
+  <!-- ========================================================
+       MAIN APP INTERFACE SHELL
+       ======================================================== */ -->
+  <div class="app-shell">
+    <main class="phone-frame">
+      
+      <div class="topbar">
+        <button class="menu-btn" id="menuBtn" aria-label="Open menu">
+          <span></span><span></span><span></span>
+        </button>
+        <div class="topbar-title">
+          <h1>EWONZ LINGUA</h1>
+          <p>Premium Language Learning Platform</p>
+        </div>
+      </div>
+
+      <div class="shine-line"></div>
+
+      <!-- White Color Title and Bottom Line -->
+      <h1 class="page-main-title">LEARNING SYSTEM</h1>
+      <div class="shine-line" style="margin: 12px 0 20px;"></div>
+
+      <div class="content-scroll">
+        
+        <!-- Category 1 -->
+        <div class="section-container">
+          <button class="main-category-btn" onclick="toggleAccordion(this)">
+            <div class="card-text-side">
+              <h2>Getting Started</h2>
+              <p>はじめに (Hajimene) — ආරම්භය</p>
+            </div>
+            <div class="card-right-side">
+              <span class="card-emoji">🚀</span>
+              <span class="card-arrow">▼</span>
+            </div>
+          </button>
+          <div class="sub-lessons-panel">
+            <a href="welcome.html" class="lesson-item-btn"><span>Welcome</span><span>➔</span></a>
+            <a href="how-to-use.html" class="lesson-item-btn"><span>How to Use EWONZ LINGUA</span><span>➔</span></a>
+            <a href="learning-guide.html" class="lesson-item-btn"><span>Japanese Learning Guide</span><span>➔</span></a>
+          </div>
+        </div>
+
+        <!-- Category 2 -->
+        <div class="section-container">
+          <button class="main-category-btn" onclick="toggleAccordion(this)">
+            <div class="card-text-side">
+              <h2>Learning Roadmap</h2>
+              <p>学習ロードマップ — ඉගෙනුම් මාර්ගසිතියම</p>
+            </div>
+            <div class="card-right-side">
+              <span class="card-emoji">🗺️</span>
+              <span class="card-arrow">▼</span>
+            </div>
+          </button>
+          <div class="sub-lessons-panel">
+            <a href="roadmap-beginner.html" class="lesson-item-btn"><span>Beginner</span><span>➔</span></a>
+            <a href="roadmap-elementary.html" class="lesson-item-btn"><span>Elementary</span><span>➔</span></a>
+            <a href="roadmap-intermediate.html" class="lesson-item-btn"><span>Intermediate</span><span>➔</span></a>
+            <a href="roadmap-advanced.html" class="lesson-item-btn"><span>Advanced</span><span>➔</span></a>
+          </div>
+        </div>
+
+        <!-- Category 3 -->
+        <div class="section-container">
+          <button class="main-category-btn" onclick="toggleAccordion(this)">
+            <div class="card-text-side">
+              <h2>Study Plan</h2>
+              <p>勉強計画 (Benkyō Keikaku) — අධ්‍යයන සැලැස්ම</p>
+            </div>
+            <div class="card-right-side">
+              <span class="card-emoji">📅</span>
+              <span class="card-arrow">▼</span>
+            </div>
+          </button>
+          <div class="sub-lessons-panel">
+            <a href="plan-7day.html" class="lesson-item-btn"><span>7-Day Plan</span><span>➔</span></a>
+            <a href="plan-30day.html" class="lesson-item-btn"><span>30-Day Plan</span><span>➔</span></a>
+            <a href="plan-90day.html" class="lesson-item-btn"><span>90-Day Plan</span><span>➔</span></a>
+            <a href="plan-jlpt.html" class="lesson-item-btn"><span>JLPT Study Plan</span><span>➔</span></a>
+          </div>
+        </div>
+
+        <!-- Category 4 -->
+        <div class="section-container">
+          <button class="main-category-btn" onclick="toggleAccordion(this)">
+            <div class="card-text-side">
+              <h2>Daily Learning</h2>
+              <p>毎日の学習 (Mainichi no Gakushū) — දිනපතා ඉගෙනුම</p>
+            </div>
+            <div class="card-right-side">
+              <span class="card-emoji">🎯</span>
+              <span class="card-arrow">▼</span>
+            </div>
+          </button>
+          <div class="sub-lessons-panel">
+            <a href="daily-lessons.html" class="lesson-item-btn"><span>Daily Lessons</span><span>➔</span></a>
+            <a href="daily-vocabulary.html" class="lesson-item-btn"><span>Daily Vocabulary</span><span>➔</span></a>
+            <a href="daily-grammar.html" class="lesson-item-btn"><span>Daily Grammar</span><span>➔</span></a>
+            <a href="daily-kanji.html" class="lesson-item-btn"><span>Daily Kanji</span><span>➔</span></a>
+            <a href="daily-quiz.html" class="lesson-item-btn"><span>Daily Quiz</span><span>➔</span></a>
+          </div>
+        </div>
+
+        <!-- Category 5 -->
+        <div class="section-container">
+          <button class="main-category-btn" onclick="toggleAccordion(this)">
+            <div class="card-text-side">
+              <h2>Memory Techniques</h2>
+              <p>記憶術 (Kiokujutsu) — මතක තබා ගැනීමේ ක්‍රමවේද</p>
+            </div>
+            <div class="card-right-side">
+              <span class="card-emoji">🧠</span>
+              <span class="card-arrow">▼</span>
+            </div>
+          </button>
+          <div class="sub-lessons-panel">
+            <a href="tech-mnemonics.html" class="lesson-item-btn"><span>Mnemonics</span><span>➔</span></a>
+            <a href="tech-srs.html" class="lesson-item-btn"><span>Spaced Repetition</span><span>➔</span></a>
+            <a href="tech-flashcard.html" class="lesson-item-btn"><span>Flashcard Method</span><span>➔</span></a>
+            <a href="tech-shadowing.html" class="lesson-item-btn"><span>Shadowing</span><span>➔</span></a>
+          </div>
+        </div>
+
+        <!-- Category 6 -->
+        <div class="section-container">
+          <button class="main-category-btn" onclick="toggleAccordion(this)">
+            <div class="card-text-side">
+              <h2>Study Resources</h2>
+              <p>学習リソース — අධ්‍යයන සම්පත්</p>
+            </div>
+            <div class="card-right-side">
+              <span class="card-emoji">📚</span>
+              <span class="card-arrow">▼</span>
+            </div>
+          </button>
+          <div class="sub-lessons-panel">
+            <a href="res-books.html" class="lesson-item-btn"><span>Recommended Books</span><span>➔</span></a>
+            <a href="res-websites.html" class="lesson-item-btn"><span>Websites</span><span>➔</span></a>
+            <a href="res-apps.html" class="lesson-item-btn"><span>Apps</span><span>➔</span></a>
+            <a href="res-youtube.html" class="lesson-item-btn"><span>YouTube Channels</span><span>➔</span></a>
+          </div>
+        </div>
+
+        <!-- Category 7 -->
+        <div class="section-container">
+          <button class="main-category-btn" onclick="toggleAccordion(this)">
+            <div class="card-text-side">
+              <h2>Learning Tips</h2>
+              <p>学習 ヒント (Gakushū Hinto) — ඉගෙනුම් ඉඟි</p>
+            </div>
+            <div class="card-right-side">
+              <span class="card-emoji">💡</span>
+              <span class="card-arrow">▼</span>
+            </div>
+          </button>
+          <div class="sub-lessons-panel">
+            <a href="tips-beginner.html" class="lesson-item-btn"><span>Beginner Tips</span><span>➔</span></a>
+            <a href="tips-mistakes.html" class="lesson-item-btn"><span>Common Mistakes</span><span>➔</span></a>
+            <a href="tips-motivation.html" class="lesson-item-btn"><span>Motivation</span><span>➔</span></a>
+            <a href="tips-time.html" class="lesson-item-btn"><span>Time Management</span><span>➔</span></a>
+          </div>
+        </div>
+
+        <!-- Category 8 -->
+        <div class="section-container">
+          <button class="main-category-btn" onclick="toggleAccordion(this)">
+            <div class="card-text-side">
+              <h2>Practice Routine</h2>
+              <p>練習ルーチン — පුහුණු දිනචරියාව</p>
+            </div>
+            <div class="card-right-side">
+              <span class="card-emoji">📝</span>
+              <span class="card-arrow">▼</span>
+            </div>
+          </button>
+          <div class="sub-lessons-panel">
+            <a href="routine-reading.html" class="lesson-item-btn"><span>Reading</span><span>➔</span></a>
+            <a href="routine-writing.html" class="lesson-item-btn"><span>Writing</span><span>➔</span></a>
+            <a href="routine-listening.html" class="lesson-item-btn"><span>Listening</span><span>➔</span></a>
+            <a href="routine-speaking.html" class="lesson-item-btn"><span>Speaking</span><span>➔</span></a>
+          </div>
+        </div>
+
+        <!-- Category 9 -->
+        <div class="section-container">
+          <button class="main-category-btn" onclick="toggleAccordion(this)">
+            <div class="card-text-side">
+              <h2>Goals & Progress</h2>
+              <p>目標と進捗状況 — ඉලක්ක සහ ප්‍රගතිය</p>
+            </div>
+            <div class="card-right-side">
+              <span class="card-emoji">🏆</span>
+              <span class="card-arrow">▼</span>
+            </div>
+          </button>
+          <div class="sub-lessons-panel">
+            <a href="goals-weekly.html" class="lesson-item-btn"><span>Weekly Goals</span><span>➔</span></a>
+            <a href="goals-monthly.html" class="lesson-item-btn"><span>Monthly Goals</span><span>➔</span></a>
+            <a href="goals-streak.html" class="lesson-item-btn"><span>Learning Streak</span><span>➔</span></a>
+            <a href="goals-badges.html" class="lesson-item-btn"><span>Achievement Badges</span><span>➔</span></a>
+          </div>
+        </div>
+
+      </div>
+    </main>
+  </div>
+
+  <script>
+    function toggleAccordion(button) {
+      button.classList.toggle("active");
+      const panel = button.nextElementSibling;
+      if (panel.classList.contains("show")) {
+        panel.classList.remove("show");
+        panel.style.maxHeight = null;
+      } else {
+        panel.classList.add("show");
+        panel.style.maxHeight = panel.scrollHeight + "px";
+      }
+    }
+
+    function toggleSidebarDrawer(btn) {
+      btn.classList.toggle("open");
+      const drawer = btn.nextElementSibling;
+      if (drawer.classList.contains("open")) {
+        drawer.classList.remove("open");
+        drawer.style.maxHeight = null;
+      } else {
+        drawer.classList.add("open");
+        drawer.style.maxHeight = drawer.scrollHeight + 100 + "px";
+      }
+    }
+
+    const sidebar = document.getElementById("sidebar");
+    const overlay = document.getElementById("overlay");
+    const menuBtn = document.getElementById("menuBtn");
+    const closeSidebarBtn = document.getElementById("closeSidebarBtn");
+
+    menuBtn.addEventListener("click", () => { sidebar.classList.add("show"); overlay.classList.add("show"); });
+    closeSidebarBtn.addEventListener("click", () => { sidebar.classList.remove("show"); overlay.classList.remove("show"); });
+    overlay.addEventListener("click", () => { sidebar.classList.remove("show"); overlay.classList.remove("show"); });
+
+    const canvas = document.getElementById('bg-canvas');
+    const ctx = canvas.getContext('2d');
+    let particlesArray = [];
+    canvas.width = window.innerWidth; canvas.height = window.innerHeight;
+
+    class Particle {
+      constructor(){
+        this.x = Math.random() * canvas.width; this.y = Math.random() * canvas.height;
+        this.size = Math.random() * 1.5 + 1;
+        this.speedX = Math.random() * 0.3 - 0.15; this.speedY = Math.random() * 0.3 - 0.15;
+      }
+      update(){
+        this.x += this.speedX; this.y += this.speedY;
+        if (this.x > canvas.width || this.x < 0) this.speedX = -this.speedX;
+        if (this.y > canvas.height || this.y < 0) this.speedY = -this.speedY;
+      }
+      draw(){ ctx.fillStyle = 'rgba(255, 215, 0, 0.15)'; ctx.beginPath(); ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2); ctx.fill(); }
+    }
+    function init(){ for(let i=0; i<25; i++) particlesArray.push(new Particle()); }
+    function animate(){
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      particlesArray.forEach(p => { p.update(); p.draw(); });
+      requestAnimationFrame(animate);
+    }
+    init(); animate();
+  </script>
+</body>
+</html>
