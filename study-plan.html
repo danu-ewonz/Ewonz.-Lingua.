@@ -2,271 +2,123 @@
 <html lang="si">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Study Plan - Ewonz Lingua</title>
-
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>ඉගෙනීමේ උපදෙස් (学習のコツ)</title>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-
 <style>
-
-html, body{
-    margin:0;
-    padding:0;
-    height:100%;
-    overflow:hidden;
-    background: radial-gradient(circle at top, #111, #000);
-    font-family:'Poppins', sans-serif;
-    color:white;
-}
-
-/* WRAPPER */
-.wrapper{
-    width:100%;
-    height:100%;
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-    align-items:center;
-    gap:10px;
-}
-
-/* 🔥 3:4 FRAME */
-.frame{
-    width:90vw;
-    max-width:360px;
-    aspect-ratio: 3 / 4;
-
-    display:flex;
-    flex-direction:column;
-
-    overflow:hidden;
-
-    border-radius:18px;
-    position:relative;
-
-    background: rgba(20,20,20,0.92);
-
-    box-shadow:
-    0 0 12px rgba(255,215,0,0.25),
-    inset 0 0 10px rgba(255,215,0,0.08);
-}
-
-/* GOLD BORDER ANIMATION */
-.frame::before{
-    content:"";
-    position:absolute;
-    inset:0;
-    border-radius:18px;
-    padding:2px;
-
-    background: linear-gradient(
-        120deg,
-        transparent,
-        #ffd700,
-        #b8860b,
-        #ffd700,
-        transparent
-    );
-
-    background-size:300% 300%;
-    animation: borderMove 4s linear infinite;
-
-    -webkit-mask:
-        linear-gradient(#000 0 0) content-box,
-        linear-gradient(#000 0 0);
-    -webkit-mask-composite: xor;
-            mask-composite: exclude;
-
-    pointer-events:none;
-}
-
-@keyframes borderMove{
-    0%{background-position:0% 50%;}
-    50%{background-position:100% 50%;}
-    100%{background-position:0% 50%;}
-}
-
-/* TITLE */
-.title{
-    text-align:center;
-    font-size:18px;
-    font-weight:700;
-    color:#ffd700;
-    padding:14px 10px 8px 10px;
-    position:relative;
-    flex-shrink:0;
-}
-
-/* TITLE LINE */
-.title::after{
-    content:"";
-    position:absolute;
-    left:50%;
-    bottom:4px;
-    transform:translateX(-50%);
-
-    width:60%;
-    height:2px;
-
-    background:linear-gradient(to right, transparent, #ffd700, #b8860b, #ffd700, transparent);
-
-    animation:titleLine 3s infinite;
-}
-
-@keyframes titleLine{
-    0%{opacity:0.3; width:40%;}
-    50%{opacity:1; width:60%;}
-    100%{opacity:0.3; width:40%;}
-}
-
-/* CONTENT */
-.content{
-    padding:15px;
-    font-size:13px;
-    line-height:1.6;
-
-    overflow-y:auto;
-    flex:1;
-}
-
-.content::-webkit-scrollbar{
-    width:4px;
-}
-
-.content::-webkit-scrollbar-thumb{
-    background:gold;
-    border-radius:10px;
-}
-
-/* SECTION */
-.section{
-    margin-bottom:14px;
-    padding:12px;
-    border-left:2px solid #b8860b;
-    background:rgba(255,255,255,0.03);
-    border-radius:8px;
-}
-
-.section h3{
-    margin:0 0 6px 0;
-    color:#ffd700;
-    font-size:14px;
-}
-
-/* NAV */
-.nav{
-    width:90%;
-    max-width:360px;
-
-    height:55px;
-
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-
-    padding:0 10px;
-
-    border:2px solid #b8860b;
-    border-radius:12px;
-
-    background: rgba(0,0,0,0.6);
-
-    box-shadow:0 0 10px rgba(255,215,0,0.15);
-}
-
-/* BACK / HOME RED */
-.nav span{
-    font-size:12px;
-    font-weight:800;
-    color:red;
-    cursor:pointer;
-}
-
-/* CENTER TITLE */
-.center-title{
-    color:#ffd700;
-    font-weight:900;
-    font-size:14px;
-    letter-spacing:1px;
-}
-
+    body {
+        margin: 0;
+        background-color: #000000;
+        color: #FFFFFF;
+        font-family: 'Poppins', sans-serif;
+        padding: 20px;
+        min-height: 100vh;
+    }
+    .page-wrapper {
+        max-width: 360px;
+        margin: 0 auto;
+        position: relative;
+        padding-top: 30px;
+    }
+    .close-btn {
+        position: fixed;
+        top: 15px;
+        right: 20px;
+        font-size: 30px;
+        color: #B91C1C;
+        cursor: pointer;
+        font-weight: bold;
+        z-index: 1000;
+    }
+    .section-title {
+        color: #FFD700;
+        font-size: 18px;
+        font-weight: 700;
+        margin-top: 25px;
+        margin-bottom: 15px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+    .text {
+        font-size: 14px;
+        line-height: 1.6;
+        color: #FFFFFF;
+        margin-bottom: 15px;
+    }
+    .list {
+        list-style: none;
+        padding: 0;
+    }
+    .list li {
+        margin-bottom: 8px;
+        font-size: 14px;
+        color: #D1D5DB;
+    }
+    hr {
+        border: 0;
+        border-top: 1px solid #4B5563;
+        margin: 25px 0;
+    }
 </style>
-
 </head>
-
 <body>
 
-<div class="wrapper">
+<div class="page-wrapper">
+    <div class="close-btn" onclick="history.back()">✕</div>
 
-    <!-- FRAME -->
-    <div class="frame">
+    <div class="section-title">💡 ඉගෙනීමේ උපදෙස් (学習のコツ)</div>
+    <p class="text"><strong>ඉගෙනීමේ උපදෙස් යනු කුමක්ද? (学習のコツとは？)</strong></p>
+    <p class="text">ජපන් භාෂාව සාර්ථකව ඉගෙන ගැනීමට නිවැරදි ඉගෙනුම් ක්‍රම අනුගමනය කිරීම ඉතා වැදගත්ය. හොඳ පුරුදු සහ අඛණ්ඩ පුහුණුව මඟින් ඉගෙනීම වඩාත් පහසු සහ වේගවත් කර ගත හැක.</p>
 
-        <div class="title">STUDY PLAN</div>
+    <hr>
 
-        <div class="content">
+    <div class="section-title">📅 දිනපතා ඉගෙන ගන්න (毎日勉強する)</div>
+    <p class="text">සෑම දිනකම ටික වේලාවක් හෝ ජපන් භාෂාව ඉගෙන ගැනීමට කාලය වෙන් කරන්න. දිනපතා අඛණ්ඩව පාඩම් කිරීම දිගු වේලාවක් එකවර පාඩම් කරනවාට වඩා ප්‍රතිඵලදායකය.</p>
 
-            <div class="section">
-                <h3>📘 දෛනික අධ්‍යයන සැලැස්ම</h3>
-                ජපන් භාෂාව ඉගෙනීමට step-by-step system එක.
-            </div>
+    <div class="section-title">🔄 නිතර පුනරාවර්තනය කරන්න (復習)</div>
+    <p class="text">අලුත් පාඩම් ඉගෙන ගැනීම පමණක් ප්‍රමාණවත් නොවේ. පෙර ඉගෙන ගත් වචන, ව්‍යාකරණ සහ 漢字 (Kanji) නැවත නැවත පුනරාවර්තනය කිරීමෙන් ඒවා දිගු කාලයක් මතකයේ රඳවා ගත හැක.</p>
 
-            <div class="section">
-                <h3>🈳 Hiragana</h3>
-                දිනපතා 10–15 characters practice + reading.
-            </div>
+    <div class="section-title">🎯 කුඩා ඉලක්ක තබා ගන්න (小さな目標)</div>
+    <p class="text">විශාල ඉලක්කයකට වඩා කුඩා ඉලක්ක තබා ගැනීම වඩාත් ප්‍රයෝජනවත් වේ. උදාහරණ ලෙස,</p>
+    <ul class="list">
+        <li>• අද අලුත් වචන 10ක් ඉගෙන ගැනීම.</li>
+        <li>• එක් ව්‍යාකරණ පාඩමක් සම්පූර්ණ කිරීම.</li>
+        <li>• Kanji අක්ෂර 5ක් පුහුණු කිරීම.</li>
+    </ul>
 
-            <div class="section">
-                <h3>🈂 Katakana</h3>
-                foreign words practice + writing drills.
-            </div>
+    <div class="section-title">⚖️ කුසලතා හතරම පුහුණු කරන්න (四つの技能)</div>
+    <p class="text">ජපන් භාෂාව ඉගෙනීමේදී පහත කුසලතා සියල්ලම සමබරව වර්ධනය කළ යුතුය:</p>
+    <ul class="list">
+        <li>• කියවීම</li>
+        <li>• ලිවීම</li>
+        <li>• සවන් දීම</li>
+        <li>• කතා කිරීම</li>
+    </ul>
+    <p class="text">එක් කුසලතාවක් පමණක් පුහුණු කිරීමෙන් සම්පූර්ණ දියුණුවක් ලබා ගත නොහැක.</p>
 
-            <div class="section">
-                <h3>🈶 Kanji</h3>
-                දිනකට 5–10 kanji + stroke order + meaning learning.
-                (Spaced repetition system)
-            </div>
+    <div class="section-title">⚠️ වැරදි කිරීමට බිය නොවන්න (間違いを恐れない)</div>
+    <p class="text">භාෂාවක් ඉගෙන ගැනීමේදී වැරදි සිදුවීම සාමාන්‍ය දෙයකි. වැරදිවලින් ඉගෙන ගනිමින් ඉදිරියට යාම සාර්ථක ඉගෙනීමේ වැදගත් කොටසකි.</p>
 
-            <div class="section">
-                <h3>📚 Vocabulary</h3>
-                daily 10–20 new words + revision.
-            </div>
+    <div class="section-title">🎧 ජපන් භාෂාවට නිතර සවන් දෙන්න (日本語を聞く)</div>
+    <p class="text">ජපන් සංවාද, ශ්‍රව්‍ය පාඩම් සහ වෙනත් ජපන් හඬ පටවලට නිතර සවන් දීමෙන් උච්චාරණය සහ තේරුම් ගැනීමේ හැකියාව වර්ධනය වේ.</p>
 
-            <div class="section">
-                <h3>🧠 Grammar</h3>
-                basic sentence patterns + practice sentences.
-            </div>
+    <div class="section-title">📖 නිතර කියවන්න (読む)</div>
+    <p class="text">සරල වචන, වාක්‍ය සහ කෙටි ඡේද කියවීමෙන් වචන මාලාව වැඩි වේ, කියවීමේ වේගය දියුණු වේ සහ භාෂාව පිළිබඳ අවබෝධය වර්ධනය වේ.</p>
 
-            <div class="section">
-                <h3>✍️ Practice Routine</h3>
-                reading + writing + revision (30–40 min daily).
-            </div>
+    <div class="section-title">✍️ ලිවීමේ පුහුණුව කරන්න (書く)</div>
+    <p class="text">ひらがな (Hiragana), カタカナ (Katakana) සහ 漢字 (Kanji) නිතර ලිවීමෙන් ඒවා ඉක්මනින් මතකයේ රඳවා ගත හැක.</p>
 
-            <div class="section">
-                <h3>🎯 ඉලක්කය</h3>
-                consistent learning → JLPT N5 readiness.
-            </div>
+    <div class="section-title">✨ ඉගෙනීම විනෝදජනක කරන්න (楽しく学ぶ)</div>
+    <p class="text">ඔබ කැමති ක්‍රම භාවිතා කරමින් ඉගෙන ගන්න. උදාහරණ ලෙස භාෂා අභ්‍යාස, වචන ක්‍රීඩා, ජපන් පොත් කියවීම සහ ජපන් ගීත හෝ සංවාදවලට සවන් දීම.</p>
 
-            <div class="section">
-                <h3>💡 වැදගත් සටහන</h3>
-                “Consistency beats everything.” ✨
-            </div>
+    <div class="section-title">💪 ඉවසීමෙන් ඉගෙන ගන්න (あきらめない)</div>
+    <p class="text">ජපන් භාෂාව එක් දිනකින් ඉගෙන ගත නොහැක. අඛණ්ඩ උත්සාහය, ඉවසීම සහ දිනපතා පුහුණුව මඟින් සාර්ථක ප්‍රගතියක් ලබා ගත හැක.</p>
 
-        </div>
+    <hr>
 
-    </div>
-
-    <!-- NAV -->
-    <div class="nav">
-
-        <span onclick="history.back()">BACK</span>
-
-        <div class="center-title">← EWONZ LINGUA →</div>
-
-        <span onclick="location.href='index.html'">HOME</span>
-
-    </div>
-
+    <div class="section-title">📌 සාරාංශය (まとめ)</div>
+    <p class="text">ජපන් භාෂාව සාර්ථකව ඉගෙන ගැනීම සඳහා දිනපතා පුහුණුව, නිතර පුනරාවර්තනය, කුඩා ඉලක්ක තබා ගැනීම සහ කියවීම, ලිවීම, සවන් දීම හා කතා කිරීම යන සියලුම කුසලතා සමබරව වර්ධනය කිරීම ඉතා වැදගත්ය. ඉවසීමෙන් සහ උනන්දුවෙන් ඉගෙන ගියහොත් හොඳ ප්‍රගතියක් ලබා ගත හැක.</p>
 </div>
 
 </body>
