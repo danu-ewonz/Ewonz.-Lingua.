@@ -364,7 +364,7 @@ body{
 }
 
 /* PAGES SYSTEM */
-.about-page, .fav-page, .notes-page {
+.about-page, .fav-page, .notes-page, .welcome-page {
     position:absolute;
     top:0;
     left:100%;
@@ -377,7 +377,7 @@ body{
     z-index:1000;
     color: var(--text-primary);
 }
-.about-page.active, .fav-page.active, .notes-page.active {
+.about-page.active, .fav-page.active, .notes-page.active, .welcome-page.active {
     left:0;
 }
 
@@ -523,7 +523,7 @@ body{
 
     <div class="home-content" id="homeWordList">
         <div class="menu-list-container">
-            <div class="menu-list-item" onclick="window.location.href='japanese-introduction-welcome.html'">
+            <div class="menu-list-item" onclick="openWelcomePage()">
                 <div class="item-en">Welcome 📖</div>
                 <div class="item-jp">ようこそ (Yōkoso)</div>
                 <div class="item-si">සාදරයෙන් පිළිගනිමු</div>
@@ -633,22 +633,6 @@ body{
             <div class="item">German Language 🇩🇪 <span class="lock-tag">Lock</span></div>
         </div>
 
-        <div class="menu-item" onclick="toggleTools()">
-            <div style="display:flex;align-items:center;">
-                <div class="icon">🛠️</div>
-                Tools
-            </div>
-            <div>⌄</div>
-        </div>
-
-        <div class="submenu" id="toolsMenu">
-            <div class="item" onclick="alert('Search feature activated')">Search 🔍</div>
-            <div class="item" onclick="window.location.href='dictionary.html'">Dictionary 📚</div>
-            <div class="item" onclick="alert('Translate feature activated')">Translate 🌐</div>
-            <div class="item" onclick="openFavPage()">Favorites ⭐</div>
-            <div class="item" onclick="openNotesPage()">Notes 📝</div>
-        </div>
-
         <div class="menu-item" onclick="toggleSettings()">
             <div style="display:flex;align-items:center;">
                 <div class="icon">⚙️</div>
@@ -675,6 +659,50 @@ body{
             <p style="color:#fff; font-weight:700;">Ewonz Lingua Version 1.0</p>
             <p style="color:#9CA3AF;">Made By Danu Ewonz</p>
             <p style="color:#9CA3AF;">(Kalpa Mihiranga)</p>
+        </div>
+    </div>
+
+    <!-- WELCOME PAGE -->
+    <div class="welcome-page" id="welcomePage">
+        <div class="about-close-icon" onclick="closeWelcomePage()">✕</div>
+        <div class="about-content">
+            <div class="about-section-title">👋 Welcome to EWONZ LINGUA</div>
+            <p class="about-p">ようこそ (Yōkoso)</p>
+            <p class="about-p">EWONZ LINGUA වෙත සාදරයෙන් පිළිගනිමු!</p>
+            <p class="about-p">EWONZ LINGUA යනු ජපන් භාෂාව ආරම්භක මට්ටමේ සිට උසස් මට්ටම දක්වා පහසුවෙන් ඉගෙන ගැනීමට නිර්මාණය කළ Premium Language Learning Platform එකකි.</p>
+            <p class="about-p">මෙම App එක තුළ ඔබට,</p>
+            <p class="about-p">
+                - 🇯🇵 Japanese Writing System (Hiragana, Katakana, Kanji)<br>
+                - 📖 Vocabulary<br>
+                - 📝 Grammar<br>
+                - 💬 Daily Conversations<br>
+                - 👂 Listening Practice<br>
+                - 📚 Reading Practice<br>
+                - ✍️ Writing Practice<br>
+                - 🗣️ Speaking Practice<br>
+                - 🎓 JLPT Preparation (N5–N1)<br>
+                - 🎌 Japanese Culture<br>
+                - ✈️ Travel Japanese<br>
+                - 👨‍💼 Interview & Work Japanese<br>
+                - 🎮 Practice Center
+            </p>
+            <p class="about-p">යන අංශ ක්‍රමානුකූලව ඉගෙන ගත හැක.</p>
+            
+            <div class="about-section-title">🎯 Our Goal</div>
+            <p class="about-p">ජපන් භාෂාව සරල, පැහැදිලි ආකාරයෙන් සියලුම ඉගෙනුම්කරුවන්ට ඉගෙන ගැනීමට උපකාර කිරීමයි.</p>
+            
+            <div class="about-section-title">💡 Before You Start</div>
+            <p class="about-p">
+                - දිනපතා අවම වශයෙන් මිනිත්තු 20–30 ක් ඉගෙන ගන්න.<br>
+                - පාඩම් අනුපිළිවෙළට සම්පූර්ණ කරන්න.<br>
+                - Practice Center භාවිතයෙන් ඔබේ දැනුම පරීක්ෂා කරන්න.<br>
+                - නිතරම පුනරාවර්තනය කරන්න.
+            </p>
+            
+            <hr style="border: 0; border-top: 1px solid var(--border-color-grey); margin: 20px 0;">
+            
+            <div class="about-section-title">🚀 Let's Start Learning Japanese!</div>
+            <p class="about-p">頑張りましょう！ (Ganbarimashō!)<br>අපි එකට ජපන් භාෂාව ඉගෙන ගමු! 🇯🇵</p>
         </div>
     </div>
 
@@ -731,10 +759,14 @@ body{
     
     function toggleMenu() { document.getElementById("sidebar").classList.toggle("active"); }
     function toggleLang() { document.getElementById("langMenu").classList.toggle("open"); }
-    function toggleTools() { document.getElementById("toolsMenu").classList.toggle("open"); }
     function toggleSettings() { document.getElementById("settingsMenu").classList.toggle("open"); }
+    
     function openAboutPage() { document.getElementById("aboutPage").classList.add("active"); document.getElementById("sidebar").classList.remove("active"); }
     function closeAboutPage() { document.getElementById("aboutPage").classList.remove("active"); }
+    
+    function openWelcomePage() { document.getElementById("welcomePage").classList.add("active"); }
+    function closeWelcomePage() { document.getElementById("welcomePage").classList.remove("active"); }
+    
     function openFavPage() { document.getElementById("favPage").classList.add("active"); document.getElementById("sidebar").classList.remove("active"); }
     function openNotesPage() { document.getElementById("notesPage").classList.add("active"); document.getElementById("sidebar").classList.remove("active"); }
     
