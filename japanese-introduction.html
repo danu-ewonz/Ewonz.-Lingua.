@@ -1,0 +1,790 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>EWONZ LINGUA</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+/* GLOBAL THEME VARIABLES */
+:root {
+    --bg-main: #000000;
+    --bg-frame: #000000;
+    --bg-card: #1A1A1A;
+    --border-color-gold: #FFD700;
+    --border-color-grey: #4B5563;
+    --text-primary: #FFFFFF;
+    --text-secondary: #A0A0A0;
+    --text-muted: #D1D5DB;
+    --text-gold: #FFD700;
+    --color-red: #B91C1C;
+    --time-red: #FF0000;
+}
+
+/* ඇනිමේෂන් */
+@keyframes border-run {
+    0% { border-color: #FFD700; }
+    50% { border-color: #554800; }
+    100% { border-color: #FFD700; }
+}
+
+@keyframes gold-pulse {
+    0% { color: #FFD700; text-shadow: 0 0 5px #FFD700; }
+    50% { color: #998100; text-shadow: none; }
+    100% { color: #FFD700; text-shadow: 0 0 5px #FFD700; }
+}
+
+@keyframes text-fade-white {
+    0% { color: #4B5563; }
+    50% { color: #FFFFFF; }
+    100% { color: #4B5563; }
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins', sans-serif;
+    transition: background 0.2s, color 0.2s, border-color 0.2s;
+}
+
+body{
+    margin:0;
+    background: var(--bg-frame);
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.mobile-frame{
+    width:360px;
+    height:800px;
+    min-height:800px;
+    background: var(--bg-main);
+    border: 2px solid var(--border-color-gold);
+    border-radius:24px;
+    position:relative;
+    overflow:hidden;
+    display: flex;
+    flex-direction: column;
+    animation: border-run 3s infinite linear;
+}
+
+/* FIXED HEADER SECTION */
+.fixed-header-section {
+    flex-shrink: 0;
+    background: var(--bg-main);
+    padding-top: 18px;
+    z-index: 10;
+}
+
+.header-container {
+    text-align: center;
+}
+
+.top-title {
+    color: var(--text-gold);
+    font-weight: 700;
+    font-size: 18px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.subtitle-text {
+    margin-top: -2px;
+    color: var(--text-secondary);
+    font-size: 12px;
+}
+
+.grey-line {
+    width: 80%;
+    height: 1px;
+    background: var(--border-color-grey);
+    margin: 10px auto;
+}
+
+.home{
+    text-align:center;
+    padding-top:5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.line{
+    width:50px;
+    height:1px;
+    background: var(--border-color-gold);
+}
+
+.section-title{
+    font-size:14px;
+    font-weight:600;
+    animation: text-fade-white 3s infinite;
+}
+
+/* MENU */
+.menu-icon{
+    position:absolute;
+    top:22px;
+    left:16px;
+    width:20px;
+    cursor:pointer;
+    z-index: 10;
+    margin-bottom: 19px;
+}
+.menu-icon div{
+    height:3px;
+    background: var(--text-primary);
+    margin:4px 0;
+    border-radius:2px;
+}
+
+/* HOME CONTENT AREA */
+.home-content {
+    flex: 1;
+    overflow-y: auto;
+    padding: 15px;
+}
+
+/* FOOTER AREA */
+.footer-nav {
+    flex-shrink: 0;
+    background: #000;
+    padding-top: 5px; 
+}
+
+.footer-buttons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 0 40px;
+    margin-bottom: 5px;
+}
+
+.footer-line {
+    width: 360px;
+    height: 1px;
+    background: var(--border-color-gold);
+    margin-bottom: 5px;
+}
+
+.nav-btn {
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    background: transparent;
+    border: none;
+    color: #fff;
+}
+
+.footer-brand {
+    color: var(--text-gold);
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+/* SIDEBAR */
+.sidebar{
+    position:absolute;
+    top:0;
+    left:-300px;
+    width:300px;
+    height:100%;
+    background:#000000;
+    color:#fff;
+    padding:20px;
+    transition:0.3s;
+    overflow-y:auto;
+    z-index:999;
+    border-right: 1px solid var(--border-color-gold);
+}
+.sidebar.active{
+    left:0;
+}
+
+.close-btn{
+    position:absolute;
+    top:16px;
+    right:16px;
+    font-size:20px;
+    cursor:pointer;
+    color:#9CA3AF;
+    transition:0.2s;
+}
+.close-btn:hover{
+    color:#fff;
+}
+
+.sidebar-header{
+    text-align:center;
+    padding-top:15px;
+}
+.sidebar-header h1{font-size:18px; color: var(--text-gold);}
+.sidebar-header p{font-size:11px;color:#9CA3AF;}
+.sidebar-line{
+    width:100%;
+    height:1px;
+    background: var(--border-color-gold);
+    margin-top:10px;
+    margin-bottom:12px;
+}
+
+/* SIDEBAR FOOTER */
+.sidebar-footer{
+    margin-top:20px;
+    padding:14px;
+    border: 1px solid var(--border-color-gold);
+    border-radius:14px;
+    background:#0B1220;
+    text-align:center;
+}
+.sidebar-footer p{
+    font-size:12px;
+    color:#9CA3AF;
+    line-height:1.6;
+}
+
+/* MENU BUTTON */
+.menu-item{
+    width:100%;
+    height:54px;
+    margin-top:15px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:0 14px;
+    background:#1F2937;
+    border:1px solid var(--border-color-grey);
+    border-radius:14px;
+    font-size:15px;
+    font-weight:500;
+    cursor:pointer;
+    color:#fff;
+}
+
+/* ICON */
+.icon{
+    width:36px;
+    height:36px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border:2px solid var(--border-color-grey);
+    border-radius:10px;
+    font-size:18px;
+    margin-right:12px;
+}
+
+/* SUBMENU */
+.submenu{
+    margin-left:10px;
+    margin-top:8px;
+    display:none;
+}
+.submenu.open{
+    display:block;
+}
+
+/* ITEM */
+.item{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    height:50px;
+    padding:0 14px;
+    margin-top:6px;
+    background:#0F172A;
+    border:1px solid var(--border-color-grey);
+    border-radius:12px;
+    font-size:13px;
+    color:#fff;
+    cursor:pointer;
+}
+
+.item.locked {
+    cursor: not-allowed;
+    opacity: 0.8;
+}
+
+.lock-tag {
+    background: var(--color-red);
+    color: #fff;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 6px;
+    text-transform: uppercase;
+}
+
+/* SWITCH */
+.switch{
+    width:40px;
+    height:20px;
+    background:#555;
+    border-radius:20px;
+    position:relative;
+    cursor:pointer;
+}
+.switch::after{
+    content:'';
+    position:absolute;
+    width:16px;
+    height:16px;
+    background:#fff;
+    border-radius:50%;
+    top:2px;
+    left:2px;
+    transition:0.3s;
+}
+.switch.active{
+    background:#22C55E;
+}
+.switch.active::after{
+    left:22px;
+}
+
+/* COUNTDOWN STYLING */
+.countdown{
+    font-size:11px;
+    font-weight:700;
+    color: var(--time-red);
+    background: #1E293B;
+    padding: 4px 8px;
+    border-radius: 6px;
+    border: 1px solid var(--border-color-grey);
+}
+
+/* PAGES SYSTEM */
+.about-page, .fav-page, .notes-page {
+    position:absolute;
+    top:0;
+    left:100%;
+    width:100%;
+    height:100%;
+    background: var(--bg-main);
+    transition:0.3s;
+    padding:20px;
+    overflow-y:auto;
+    z-index:1000;
+    color: var(--text-primary);
+}
+.about-page.active, .fav-page.active, .notes-page.active {
+    left:0;
+}
+
+.about-close-icon {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 24px;
+    cursor: pointer;
+    color: var(--color-red);
+    font-weight: bold;
+    z-index: 1001;
+}
+
+.about-content{
+    margin-top: 40px;
+    font-size: 13.5px;
+    color: var(--text-primary);
+    line-height: 1.6;
+}
+
+.about-section-title {
+    color: var(--text-gold);
+    font-size: 16px;
+    font-weight: 700;
+    margin: 20px 0 10px 0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.about-p { margin-bottom: 15px; color: var(--text-muted); }
+
+/* NEW MENU LIST ITEM STYLES */
+.menu-list-container {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.menu-list-item {
+    background: #1A1A1A;
+    border: 1px solid var(--border-color-grey);
+    border-radius: 16px;
+    padding: 15px;
+    cursor: pointer;
+    transition: 0.2s;
+    text-align: center; 
+}
+.menu-list-item:hover { border-color: var(--border-color-gold); }
+
+.item-en { color: #ffffff; font-weight: 600; font-size: 16px; }
+.item-jp { color: #A0A0A0; font-size: 12px; margin-top: 2px; }
+.item-si { color: #A0A0A0; font-size: 12px; margin-top: 1px; }
+
+/* NOTES UI STYLES */
+.notes-input-box {
+    width: 100%;
+    height: 90px;
+    margin-top: 20px;
+    padding: 12px;
+    border: 1px solid var(--border-color-grey);
+    background: var(--bg-card);
+    color: var(--text-primary);
+    border-radius: 12px;
+    font-size: 14px;
+    outline: none;
+    resize: none;
+}
+.notes-input-box:focus { border-color: #4B5563; }
+
+.add-note-btn {
+    width: 100%;
+    height: 45px;
+    background: #333;
+    color: #ffffff;
+    border: 1px solid var(--border-color-grey);
+    border-radius: 12px;
+    font-size: 14px;
+    font-weight: 600;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+.note-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color-grey);
+    border-radius: 12px;
+    padding: 14px;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 10px;
+}
+
+.toast-notif {
+    position: absolute;
+    bottom: -60px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #333;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 30px;
+    font-size: 13px;
+    font-weight: 600;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    z-index: 2000;
+    transition: bottom 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.toast-notif.show {
+    bottom: 85px;
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="mobile-frame" id="mobileFrame">
+
+    <div class="fixed-header-section">
+        <div class="header-container">
+            <div class="top-title">EWONZ LINGUA</div>
+            <div class="subtitle-text">Premium Language Learning Platform</div>
+            <div class="grey-line" style="background: var(--border-color-gold);"></div>
+        </div>
+        
+        <div class="menu-icon" onclick="toggleMenu()">
+            <div></div><div></div><div></div>
+        </div>
+
+        <div class="home">
+            <div class="line"></div>
+            <div class="section-title">INTRODUCTION</div>
+            <div class="line"></div>
+        </div>
+    </div>
+
+    <div class="home-content" id="homeWordList">
+        <div class="menu-list-container">
+            <div class="menu-list-item" onclick="window.location.href='japanese-introduction-welcome.html'">
+                <div class="item-en">Welcome 📖</div>
+                <div class="item-jp">ようこそ (Yōkoso)</div>
+                <div class="item-si">සාදරයෙන් පිළිගනිමු</div>
+            </div>
+            <div class="menu-list-item" onclick="window.location.href='japanese-introduction-what-is-japanese.html'">
+                <div class="item-en">What is Japanese? 🇯🇵</div>
+                <div class="item-jp">日本語とは (Nihongo to wa)</div>
+                <div class="item-si">ජපන් භාෂාව යනු කුමක්ද?</div>
+            </div>
+            <div class="menu-list-item" onclick="window.location.href='japanese-introduction-why-learn.html'">
+                <div class="item-en">Why Learn Japanese? 🌏</div>
+                <div class="item-jp">なぜ日本語を学ぶのか (Naze Nihongo o Manabu no ka)</div>
+                <div class="item-si">ඇයි ජපන් ඉගෙන ගන්නේ?</div>
+            </div>
+            <div class="menu-list-item" onclick="window.location.href='japanese-introduction-history.html'">
+                <div class="item-en">History of Japanese 📜</div>
+                <div class="item-jp">日本語の歴史 (Nihongo no Rekishi)</div>
+                <div class="item-si">ජපන් භාෂාවේ ඉතිහාසය</div>
+            </div>
+            <div class="menu-list-item" onclick="window.location.href='japanese-introduction-features.html'">
+                <div class="item-en">Features of Japanese 🔤</div>
+                <div class="item-jp">日本語の特徴 (Nihongo no Tokuchō)</div>
+                <div class="item-si">ජපන් භාෂාවේ විශේෂතා</div>
+            </div>
+            <div class="menu-list-item" onclick="window.location.href='japanese-introduction-japan-glance.html'">
+                <div class="item-en">Japan at a Glance 🗾</div>
+                <div class="item-jp">日本について (Nihon ni Tsuite)</div>
+                <div class="item-si">ජපානය ගැන කෙටි හැඳින්වීම</div>
+            </div>
+            <div class="menu-list-item" onclick="window.location.href='japanese-introduction-goals.html'">
+                <div class="item-en">Learning Goals 🎯</div>
+                <div class="item-jp">学習目標 (Gakushū Mokuhyō)</div>
+                <div class="item-si">ඉගෙනීමේ අරමුණු</div>
+            </div>
+            <div class="menu-list-item" onclick="window.location.href='japanese-introduction-roadmap.html'">
+                <div class="item-en">Learning Roadmap 🗺️</div>
+                <div class="item-jp">学習ロードマップ (Gakushū Rōdomappu)</div>
+                <div class="item-si">ඉගෙනීමේ සැලැස්ම</div>
+            </div>
+            <div class="menu-list-item" onclick="window.location.href='japanese-introduction-how-to-use.html'">
+                <div class="item-en">How to Use This App 📚</div>
+                <div class="item-jp">アプリの使い方 (Apuri no Tsukaikata)</div>
+                <div class="item-si">මෙම යෙදුම භාවිතා කරන ආකාරය</div>
+            </div>
+            <div class="menu-list-item" onclick="window.location.href='japanese-introduction-study-tips.html'">
+                <div class="item-en">Study Tips 💡</div>
+                <div class="item-jp">学習のコツ (Gakushū no Kotsu)</div>
+                <div class="item-si">ඉගෙනීමේ උපදෙස්</div>
+            </div>
+            <div class="menu-list-item" onclick="window.location.href='japanese-introduction-daily-plan.html'">
+                <div class="item-en">Daily Study Plan ⏳</div>
+                <div class="item-jp">毎日の学習計画 (Mainichi no Gakushū Keikaku)</div>
+                <div class="item-si">දෛනික පාඩම් සැලැස්ම</div>
+            </div>
+            <div class="menu-list-item" onclick="window.location.href='japanese-introduction-faq.html'">
+                <div class="item-en">FAQ ❓</div>
+                <div class="item-jp">よくある質問 (Yoku Aru Shitsumon)</div>
+                <div class="item-si">නිතර අසන ප්‍රශ්න</div>
+            </div>
+            <div class="menu-list-item" onclick="window.location.href='japanese-introduction-levels.html'">
+                <div class="item-en">Japanese Learning Levels 📖</div>
+                <div class="item-jp">日本語学習レベル (Nihongo Gakushū Reberu)</div>
+                <div class="item-si">ජපන් ඉගෙනීමේ මට්ටම්</div>
+            </div>
+            <div class="menu-list-item" onclick="window.location.href='japanese-introduction-benefits.html'">
+                <div class="item-en">Benefits of Learning Japanese 🏆</div>
+                <div class="item-jp">日本語を学ぶメリット (Nihongo o Manabu Meritto)</div>
+                <div class="item-si">ජපන් ඉගෙනීමේ ප්‍රතිලාභ</div>
+            </div>
+            <div class="menu-list-item" onclick="window.location.href='japanese-introduction-start.html'">
+                <div class="item-en">Start Your Journey 🚀</div>
+                <div class="item-jp">学習を始めよう (Gakushū o Hajimeyō)</div>
+                <div class="item-si">ඔබේ ඉගෙනීමේ ගමන ආරම්භ කරන්න</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer-nav">
+        <div class="footer-line"></div>
+        <div class="footer-buttons">
+            <button class="nav-btn" onclick="history.back()">← BACK</button>
+            <div class="footer-brand">EWONZ LINGUA</div>
+            <button class="nav-btn" onclick="location.reload()">HOME →</button>
+        </div>
+    </div>
+
+    <div class="sidebar" id="sidebar">
+        <div class="close-btn" onclick="toggleMenu()">✕</div>
+        <div class="sidebar-header">
+            <h1>EWONZ LINGUA</h1>
+            <p>Premium Language Learning Platform</p>
+            <div class="sidebar-line"></div>
+        </div>
+
+        <div class="menu-item" onclick="toggleLang()">
+            <div style="display:flex;align-items:center;">
+                <div class="icon">🌐</div>
+                Languages
+            </div>
+            <div>⌄</div>
+        </div>
+
+        <div class="submenu" id="langMenu">
+            <div class="item" onclick="window.location.href='japanese.html'">Japanese Language 🇯🇵</div>
+            <div class="item">Chinese Language 🇨🇳 <span class="lock-tag">Lock</span></div>
+            <div class="item">Korean Language 🇰🇷 <span class="lock-tag">Lock</span></div>
+            <div class="item">German Language 🇩🇪 <span class="lock-tag">Lock</span></div>
+        </div>
+
+        <div class="menu-item" onclick="toggleTools()">
+            <div style="display:flex;align-items:center;">
+                <div class="icon">🛠️</div>
+                Tools
+            </div>
+            <div>⌄</div>
+        </div>
+
+        <div class="submenu" id="toolsMenu">
+            <div class="item" onclick="alert('Search feature activated')">Search 🔍</div>
+            <div class="item" onclick="window.location.href='dictionary.html'">Dictionary 📚</div>
+            <div class="item" onclick="alert('Translate feature activated')">Translate 🌐</div>
+            <div class="item" onclick="openFavPage()">Favorites ⭐</div>
+            <div class="item" onclick="openNotesPage()">Notes 📝</div>
+        </div>
+
+        <div class="menu-item" onclick="toggleSettings()">
+            <div style="display:flex;align-items:center;">
+                <div class="icon">⚙️</div>
+                Settings
+            </div>
+            <div>⌄</div>
+        </div>
+
+        <div class="submenu" id="settingsMenu">
+            <div class="item locked">Dark Mode 🔒 <span class="lock-tag">Lock</span></div>
+            <div class="item">Notifications <div class="switch" id="notifSwitch" onclick="toggleNotifications()"></div></div>
+            <div class="item">Countdown <span id="countdown" class="countdown">Initializing...</span></div>
+        </div>
+
+        <div class="menu-item" onclick="openAboutPage()">
+            <div style="display:flex;align-items:center;">
+                <div class="icon">ℹ️</div>
+                About
+            </div>
+            <div>⌄</div>
+        </div>
+
+        <div class="sidebar-footer">
+            <p style="color:#fff; font-weight:700;">Ewonz Lingua Version 1.0</p>
+            <p style="color:#9CA3AF;">Made By Danu Ewonz</p>
+            <p style="color:#9CA3AF;">(Kalpa Mihiranga)</p>
+        </div>
+    </div>
+
+    <div class="about-page" id="aboutPage">
+        <div class="about-close-icon" onclick="closeAboutPage()">✕</div>
+        <div class="about-content">
+            <div class="about-section-title">📘 About EWONZ LINGUA</div>
+            <p class="about-p">EWONZ LINGUA is a smart language learning app designed to help students learn Japanese in a simple and interactive way.</p>
+            <p class="about-p">This app provides structured lessons, vocabulary lists, grammar guides, and reading practice to make learning easier for beginners to advanced learners.</p>
+            <p class="about-p">Our goal is to make language learning accessible, fun, and effective for everyone in Sri Lanka and beyond.</p>
+            
+            <div class="about-section-title">⭐ Features</div>
+            <p class="about-p">• Step-by-step learning system<br>• Beginner to Intermediate roadmap<br>• Vocabulary & grammar sections<br>• Easy navigation with sidebar system</p>
+            
+            <div class="about-section-title">🙏 Special Thanks</div>
+            <p class="about-p">We would like to express our sincere gratitude to everyone who supported and inspired the development of this app. Special thanks to:</p>
+            <p class="about-p" style="font-weight:600; color:var(--text-gold);">▪ Japanese - Tsuki Sensei</p>
+            <p class="about-p" style="font-size:12px;">(Thank you for teaching me and sharing so many valuable things with me. Mine Akka 🤍)</p>
+            <p class="about-p" style="font-weight:600; color:var(--text-gold);">▪ Youyung Hyun</p>
+            <p class="about-p" style="font-size:12px;">Assistant Professor<br>Technology and Operations Management<br>Hitotsubashi University Business School (Hitotsubashi ICS), Tokyo , Kunitachi</p>
+            
+            <div class="about-section-title">👨‍💻 Developer</div>
+            <p class="about-p">Developed by <b>Danu Ewonz (Kalpa Mihiranga)</b><br>Passionate about building educational tools and improving learning experiences through technology.</p>
+            
+            <div class="about-section-title">📌 App Info</div>
+            <p class="about-p">Version: 1.0<br>Category: Education / Language Learning</p>
+        </div>
+    </div>
+
+    <div class="fav-page" id="favPage">
+        <div style="padding-top: 20px;">
+            <h2>Favorites ⭐</h2>
+        </div>
+        <div style="margin-top: 20px;" id="favListContainer"></div>
+    </div>
+
+    <div class="notes-page" id="notesPage">
+        <div style="padding-top: 20px;">
+            <h2>My Notes 📝</h2>
+        </div>
+        <textarea class="notes-input-box" id="noteInput" placeholder="Write your notes here..."></textarea>
+        <button class="add-note-btn" onclick="addNote()">Save Note</button>
+        <div style="margin-top: 20px;" id="notesListContainer"></div>
+    </div>
+
+    <div class="toast-notif" id="toastNotif">
+        <span id="toastIcon">🔔</span> <span id="toastMessage">Notifications Enabled!</span>
+    </div>
+
+</div>
+
+<script>
+    document.addEventListener('contextmenu', event => event.preventDefault());
+    
+    function toggleMenu() { document.getElementById("sidebar").classList.toggle("active"); }
+    function toggleLang() { document.getElementById("langMenu").classList.toggle("open"); }
+    function toggleTools() { document.getElementById("toolsMenu").classList.toggle("open"); }
+    function toggleSettings() { document.getElementById("settingsMenu").classList.toggle("open"); }
+    function openAboutPage() { document.getElementById("aboutPage").classList.add("active"); document.getElementById("sidebar").classList.remove("active"); }
+    function closeAboutPage() { document.getElementById("aboutPage").classList.remove("active"); }
+    function openFavPage() { document.getElementById("favPage").classList.add("active"); document.getElementById("sidebar").classList.remove("active"); }
+    function openNotesPage() { document.getElementById("notesPage").classList.add("active"); document.getElementById("sidebar").classList.remove("active"); }
+    
+    function updateTimer(element, targetTime) {
+        const now = new Date().getTime();
+        const diff = targetTime - now;
+        if (diff <= 0) { element.innerHTML = "Available Now!"; }
+        else {
+            const d = Math.floor(diff / 86400000);
+            const h = Math.floor((diff % 86400000) / 3600000);
+            const m = Math.floor((diff % 3600000) / 60000);
+            const s = Math.floor((diff % 60000) / 1000);
+            element.innerHTML = d + "d " + h + "h " + m + "m " + s + "s";
+        }
+    }
+
+    function runAllCountdowns() {
+        const sidebarTimer = document.getElementById("countdown");
+        if(sidebarTimer) {
+            const target = new Date("Dec 31, 2026 23:59:59").getTime();
+            updateTimer(sidebarTimer, target);
+        }
+    }
+
+    setInterval(runAllCountdowns, 1000);
+    runAllCountdowns();
+
+    function toggleNotifications() {
+        const sw = document.getElementById("notifSwitch");
+        sw.classList.toggle("active");
+        showToast(sw.classList.contains("active"));
+    }
+    function showToast(enabled) {
+        const toast = document.getElementById("toastNotif");
+        toast.innerText = enabled ? "🔔 Enabled!" : "🔕 Disabled!";
+        toast.classList.add("show");
+        setTimeout(() => { toast.classList.remove("show"); }, 2000);
+    }
+    function addNote() {
+        const input = document.getElementById("noteInput");
+        if(input.value.trim() !== "") {
+            const list = document.getElementById("notesListContainer");
+            const div = document.createElement("div");
+            div.className = "note-card";
+            div.innerText = input.value;
+            list.prepend(div);
+            input.value = "";
+        }
+    }
+</script>
+
+</body>
+</html>
