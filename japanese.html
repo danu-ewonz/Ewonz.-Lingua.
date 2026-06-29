@@ -1,1058 +1,798 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>EWONZ LINGUA - Japanese Language</title>
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-
-  <style>
-    *{
-      margin:0;
-      padding:0;
-      box-sizing:border-box;
-      -webkit-tap-highlight-color: transparent;
-    }
-
-    :root{
-      --bg1:#050505;
-      --bg2:#0c0c0c;
-      --bg3:#111111;
-      --gold:#ffd700;
-      --gold-dark:#b8860b;
-      --red:#ff4d4d;
-      --text:#ffffff;
-      --muted:#d8d8d8;
-      --glass:rgba(255,255,255,0.05);
-      --border:rgba(255,215,0,0.42);
-      --shadow:0 0 18px rgba(255,215,0,0.10);
-      --sidebar-width:290px;
-    }
-
-    html,body{
-      width:100%;
-      min-height:100%;
-      font-family:'Poppins',sans-serif;
-      background:
-        radial-gradient(circle at top left, rgba(255,215,0,0.08), transparent 28%),
-        radial-gradient(circle at bottom right, rgba(184,134,11,0.10), transparent 34%),
-        linear-gradient(135deg, var(--bg1) 0%, var(--bg2) 45%, var(--bg3) 100%);
-      color:var(--text);
-      overflow-x:hidden;
-      user-select:none;
-    }
-
-    body{
-      display:flex;
-      justify-content:center;
-      align-items:flex-start;
-      padding:20px 12px 28px;
-    }
-
-    .app-shell{
-      width:100%;
-      max-width:390px;
-      display:flex;
-      flex-direction:column;
-      align-items:center;
-      gap:14px;
-    }
-
-    .phone-frame{
-      position:relative;
-      width:100%;
-      min-height:92vh;
-      border-radius:30px;
-      overflow:hidden;
-      background:
-        linear-gradient(rgba(8,8,8,0.88), rgba(8,8,8,0.95)),
-        url("1780704324974.png") center/cover no-repeat;
-      border:2px solid rgba(255,215,0,0.72);
-      box-shadow:
-        0 0 0 1px rgba(255,215,0,0.20),
-        0 0 22px rgba(255,215,0,0.15),
-        inset 0 0 18px rgba(255,215,0,0.05);
-      padding:18px 14px 22px;
-    }
-
-    .topbar{
-      position:relative;
-      z-index:5;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:10px;
-      margin-bottom:10px;
-    }
-
-    .menu-btn{
-      width:46px;
-      height:46px;
-      border-radius:14px;
-      border:1.5px solid rgba(255,215,0,0.55);
-      background:var(--glass);
-      backdrop-filter:blur(10px);
-      display:flex;
-      flex-direction:column;
-      justify-content:center;
-      align-items:center;
-      gap:5px;
-      cursor:pointer;
-      box-shadow:var(--shadow);
-      flex-shrink:0;
-    }
-
-    .menu-btn span{
-      width:20px;
-      height:2.4px;
-      border-radius:999px;
-      background:linear-gradient(90deg, var(--gold), var(--gold-dark));
-      display:block;
-    }
-
-    .topbar-title{
-      flex:1;
-      text-align:center;
-      padding-right:46px;
-    }
-
-    .topbar-title h1{
-      font-size:19px;
-      font-weight:700;
-      letter-spacing:1px;
-      color:rgba(255,215,0,0.78);
-      text-transform:uppercase;
-      line-height:1.2;
-    }
-
-    .topbar-title p{
-      margin-top:3px;
-      font-size:11px;
-      color:var(--muted);
-      letter-spacing:.5px;
-    }
-
-    .shine-line{
-      width:100%;
-      height:2px;
-      border-radius:999px;
-      margin:10px 0 18px;
-      background:linear-gradient(90deg, rgba(255,215,0,0.15), var(--gold), #fff1a8, var(--gold), rgba(255,215,0,0.15));
-      box-shadow:0 0 8px rgba(255,215,0,0.16);
-    }
-
-    .content{
-      position:relative;
-      z-index:2;
-      display:flex;
-      flex-direction:column;
-      width:100%;
-      padding-bottom:8px;
-    }
-
-    .main-title{
-      text-align:center;
-      margin-bottom:16px;
-      width:100%;
-    }
-
-    .main-title h2{
-      font-size:24px;
-      font-weight:800;
-      color:#ffffff;
-      letter-spacing:.6px;
-      line-height:1.25;
-    }
-
-    /* Course List Styling */
-    .course-container {
-      width: 100%;
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-      max-height: 64vh;
-      overflow-y: auto;
-      padding-right: 4px;
-    }
-
-    .course-container::-webkit-scrollbar {
-      width: 4px;
-    }
-    .course-container::-webkit-scrollbar-thumb {
-      background: rgba(255, 215, 0, 0.3);
-      border-radius: 10px;
-    }
-
-    /* Single Items Styling */
-    .single-item {
-      padding: 14px 16px;
-      background: var(--glass);
-      border: 1.5px solid rgba(255,215,0,0.3);
-      border-radius: 16px;
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      color: #fff;
-      text-decoration: none;
-      transition: background 0.2s, border-color 0.2s;
-    }
-
-    .single-item:hover {
-      background: rgba(255,255,255,0.08);
-      border-color: rgba(255,215,0,0.55);
-    }
-
-    .btn-meta {
-      display: flex;
-      flex-direction: column;
-      gap: 2px;
-    }
-
-    .btn-main-txt {
-      font-size: 16px;
-      font-weight: 700;
-      color: #ffffff;
-      letter-spacing: 0.5px;
-    }
-
-    .btn-sub-txt {
-      font-size: 11px;
-      color: #cca300;
-      font-weight: 400;
-    }
-
-    .course-icon {
-      font-size: 22px;
-      flex-shrink: 0;
-    }
-
-    /* Sidebar Components */
-    .overlay{
-      position:fixed;
-      inset:0;
-      background:rgba(0,0,0,0.60);
-      backdrop-filter:blur(3px);
-      z-index:100;
-      opacity:0;
-      pointer-events:none;
-      transition:.28s ease;
-    }
-
-    .overlay.show{
-      opacity:1;
-      pointer-events:auto;
-    }
-
-    .sidebar{
-      position:fixed;
-      top:0;
-      left: calc(var(--sidebar-width) * -1 - 40px);
-      width:var(--sidebar-width);
-      max-width:84%;
-      height:100vh;
-      background:linear-gradient(180deg, rgba(12,12,12,0.98), rgba(18,18,18,0.98));
-      border-right:1.5px solid rgba(255,215,0,0.38);
-      box-shadow:12px 0 40px rgba(0,0,0,0.45);
-      z-index:120;
-      transition:left .32s ease;
-      padding:18px 14px 18px;
-      overflow-y:auto;
-    }
-
-    .sidebar.show{
-      left:0;
-    }
-
-    .sidebar::-webkit-scrollbar {
-      width: 4px;
-    }
-    .sidebar::-webkit-scrollbar-thumb {
-      background: rgba(255, 215, 0, 0.2);
-      border-radius: 10px;
-    }
-
-    .sidebar-top{
-      display:flex;
-      align-items:flex-start;
-      justify-content:space-between;
-      gap:10px;
-      margin-bottom:12px;
-    }
-
-    .brand-box h2{
-      font-size:22px;
-      color:var(--gold);
-      font-weight:800;
-      letter-spacing:1px;
-      text-transform:uppercase;
-      line-height:1.2;
-    }
-
-    .brand-box p{
-      font-size:11px;
-      color:var(--muted);
-      margin-top:4px;
-      line-height:1.55;
-    }
-
-    .close-btn{
-      width:42px;
-      height:42px;
-      border-radius:14px;
-      border:1.4px solid rgba(255,215,0,0.45);
-      background:var(--glass);
-      color:var(--gold);
-      font-size:20px;
-      font-weight:700;
-      cursor:pointer;
-      flex-shrink:0;
-    }
-
-    .sidebar-line{
-      width:100%;
-      height:2px;
-      border-radius:999px;
-      background:linear-gradient(90deg, transparent, var(--gold), #fff0a6, var(--gold), transparent);
-      margin-bottom:14px;
-    }
-
-    .sidebar-top-nav{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:4px;
-      margin:4px 0 14px;
-      padding:10px 8px;
-      border-radius:16px;
-      border:1.3px solid rgba(255,215,0,0.28);
-      background:var(--glass);
-    }
-
-    .sidebar-nav-btn{
-      text-decoration:none;
-      color:var(--red);
-      font-size:11px;
-      font-weight:700;
-      letter-spacing:.7px;
-      text-transform:uppercase;
-      white-space:nowrap;
-      flex-shrink: 0;
-    }
-
-    .sidebar-nav-title{
-      flex:1;
-      text-align:center;
-      color:var(--gold);
-      font-size:10px;
-      font-weight:700;
-      letter-spacing:.4px;
-      text-transform:uppercase;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-
-    .menu-label{
-      font-size:12px;
-      font-weight:800;
-      color:var(--gold);
-      letter-spacing:.8px;
-      text-transform:uppercase;
-      margin:6px 4px 10px;
-    }
-
-    .menu-list{
-      display:flex;
-      flex-direction:column;
-      gap:10px;
-    }
-
-    .menu-item{
-      width:100%;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:12px;
-      padding:14px 14px;
-      border-radius:16px;
-      border:1.3px solid rgba(255,215,0,0.25);
-      background:var(--glass);
-      color:var(--text);
-      font-size:14px;
-      font-weight:600;
-      text-decoration:none;
-      cursor:pointer;
-    }
-
-    .menu-item .left{
-      display:flex;
-      align-items:center;
-      gap:10px;
-      min-width:0;
-    }
-
-    .menu-item .icon{
-      width:34px;
-      height:34px;
-      border-radius:12px;
-      border:1px solid rgba(255,215,0,0.28);
-      background:rgba(255,255,255,0.04);
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      font-size:16px;
-      color:var(--gold);
-      flex-shrink:0;
-    }
-
-    .menu-item .arrow{
-      color:var(--gold);
-      font-size:14px;
-      flex-shrink:0;
-      transition: transform 0.2s;
-    }
-
-    .menu-item.active .arrow {
-      transform: rotate(180deg);
-    }
-
-    .submenu{
-      display:none;
-      flex-direction:column;
-      gap:8px;
-      padding:8px 0 0 10px;
-    }
-
-    .submenu.show{
-      display:flex;
-    }
-
-    .submenu-item{
-      width:100%;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:10px;
-      padding:12px 12px;
-      border-radius:14px;
-      border:1.2px solid rgba(255,215,0,0.20);
-      background:rgba(255,255,255,0.04);
-      color:var(--text);
-      text-decoration:none;
-      font-size:13px;
-      font-weight:600;
-      cursor:pointer;
-    }
-
-    .submenu-item .sub-left{
-      display:flex;
-      align-items:center;
-      gap:10px;
-    }
-
-    .lock-badge{
-      color:var(--gold);
-      font-size:13px;
-      font-weight:700;
-      flex-shrink:0;
-    }
-
-    .settings-box{
-      margin-top:10px;
-      padding:14px;
-      border-radius:18px;
-      border:1.3px solid rgba(255,215,0,0.25);
-      background:var(--glass);
-    }
-
-    .settings-box h4{
-      color:var(--gold);
-      font-size:13px;
-      font-weight:800;
-      text-transform:uppercase;
-      letter-spacing:.7px;
-      margin-bottom:12px;
-    }
-
-    .setting-row{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:12px;
-      padding:11px 0;
-      border-bottom:1px solid rgba(255,215,0,0.12);
-    }
-
-    .setting-row:last-child{
-      border-bottom:none;
-      padding-bottom:0;
-    }
-
-    .setting-left{
-      display:flex;
-      align-items:center;
-      gap:10px;
-      min-width:0;
-    }
-
-    .setting-icon{
-      width:34px;
-      height:34px;
-      border-radius:12px;
-      border:1px solid rgba(255,215,0,0.28);
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      color:var(--gold);
-      background:rgba(255,255,255,0.04);
-      flex-shrink:0;
-      font-size:15px;
-    }
-
-    .setting-text{
-      font-size:13px;
-      font-weight:600;
-      color:var(--text);
-    }
-
-    .toggle{
-      position:relative;
-      width:52px;
-      height:30px;
-      border-radius:999px;
-      background:rgba(255,255,255,0.12);
-      border:1px solid rgba(255,215,0,0.28);
-      cursor:pointer;
-      flex-shrink:0;
-    }
-
-    .toggle::before{
-      content:"";
-      position:absolute;
-      top:3px;
-      left:3px;
-      width:22px;
-      height:22px;
-      border-radius:50%;
-      background:var(--gold);
-      box-shadow:0 0 8px rgba(255,215,0,0.25);
-      transition:.25s ease;
-    }
-
-    .toggle.active{
-      background:rgba(255,215,0,0.20);
-    }
-
-    .toggle.active::before{
-      left:25px;
-    }
-
-    .countdown-value{
-      font-size:11px;
-      color:var(--gold);
-      font-weight:700;
-      text-align:right;
-      line-height:1.5;
-      max-width:120px;
-    }
-
-    .sidebar-footer{
-      margin-top:14px;
-      padding:14px;
-      border-radius:18px;
-      border:1.3px solid rgba(255,215,0,0.24);
-      background:var(--glass);
-      text-align:center;
-    }
-
-    .sidebar-footer .footer-title{
-      color:var(--gold);
-      font-size:13px;
-      font-weight:800;
-      margin-bottom:6px;
-      text-transform:uppercase;
-      letter-spacing:.6px;
-    }
-
-    .sidebar-footer p{
-      font-size:11px;
-      color:var(--muted);
-      line-height:1.7;
-    }
-
-    .popup-overlay{
-      position:fixed;
-      inset:0;
-      background:rgba(0,0,0,0.72);
-      backdrop-filter:blur(4px);
-      display:flex;
-      justify-content:center;
-      align-items:center;
-      padding:18px;
-      z-index:300;
-      opacity:0;
-      pointer-events:none;
-      transition:.25s ease;
-    }
-
-    .popup-overlay.show{
-      opacity:1;
-      pointer-events:auto;
-    }
-
-    .popup-box{
-      width:100%;
-      max-width:360px;
-      border-radius:24px;
-      padding:22px 18px 18px;
-      background:linear-gradient(180deg, rgba(16,16,16,0.98), rgba(10,10,10,0.98));
-      border:1.6px solid rgba(255,215,0,0.55);
-      box-shadow:0 0 30px rgba(255,215,0,0.14);
-      text-align:center;
-    }
-
-    .popup-box h3{
-      color:var(--gold);
-      font-size:22px;
-      font-weight:800;
-      margin-bottom:10px;
-      text-transform:uppercase;
-      letter-spacing:1px;
-    }
-
-    .popup-box p{
-      font-size:13px;
-      color:var(--muted);
-      line-height:1.8;
-      margin-bottom:14px;
-    }
-
-    .countdown{
-      font-size:13px;
-      font-weight:700;
-      color:var(--gold);
-      line-height:1.8;
-      margin-bottom:16px;
-    }
-
-    .popup-btn{
-      width:100%;
-      min-height:48px;
-      border-radius:14px;
-      border:1.5px solid rgba(255,215,0,0.55);
-      background:rgba(255,215,0,0.08);
-      color:var(--gold);
-      font-size:14px;
-      font-weight:700;
-      cursor:pointer;
-    }
-
-    @media (max-width:380px){
-      .phone-frame{padding:16px 12px 20px;}
-      .main-title h2{font-size:21px;}
-      .topbar-title h1{font-size:17px;}
-      .sidebar{width:280px;}
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>EWONZ LINGUA</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+/* GLOBAL THEME VARIABLES */
+:root {
+    --bg-main: #000000;
+    --bg-frame: #000000;
+    --bg-card: #1A1A1A;
+    --border-color-gold: #FFD700;
+    --border-color-grey: #4B5563;
+    --text-primary: #FFFFFF;
+    --text-secondary: #A0A0A0;
+    --text-muted: #D1D5DB;
+    --text-gold: #FFD700;
+    --color-red: #B91C1C;
+    --time-red: #FF0000;
+}
+
+/* ඇනිමේෂන් */
+@keyframes border-run {
+    0% { border-color: #FFD700; }
+    50% { border-color: #554800; }
+    100% { border-color: #FFD700; }
+}
+
+@keyframes gold-pulse {
+    0% { color: #FFD700; text-shadow: 0 0 5px #FFD700; }
+    50% { color: #998100; text-shadow: none; }
+    100% { color: #FFD700; text-shadow: 0 0 5px #FFD700; }
+}
+
+/* Japanese Learning සඳහා නව ඇනිමේෂන් එක */
+@keyframes text-fade-white {
+    0% { color: #4B5563; }
+    50% { color: #FFFFFF; }
+    100% { color: #4B5563; }
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins', sans-serif;
+    transition: background 0.2s, color 0.2s, border-color 0.2s;
+}
+
+body{
+    margin:0;
+    background: var(--bg-frame);
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.mobile-frame{
+    width:360px;
+    height:800px;
+    min-height:800px;
+    background: var(--bg-main);
+    border: 2px solid var(--border-color-gold);
+    border-radius:24px;
+    position:relative;
+    overflow:hidden;
+    display: flex;
+    flex-direction: column;
+    animation: border-run 3s infinite linear;
+}
+
+/* FIXED HEADER SECTION */
+.fixed-header-section {
+    flex-shrink: 0;
+    background: var(--bg-main);
+    padding-top: 18px;
+    z-index: 10;
+}
+
+.header-container {
+    text-align: center;
+}
+
+.top-title {
+    color: var(--text-gold);
+    font-weight: 700;
+    font-size: 18px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.subtitle-text {
+    margin-top: -2px;
+    color: var(--text-secondary);
+    font-size: 12px;
+}
+
+.grey-line {
+    width: 80%;
+    height: 1px;
+    background: var(--border-color-grey);
+    margin: 10px auto;
+}
+
+.home{
+    text-align:center;
+    padding-top:5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.line{
+    width:50px;
+    height:1px;
+    background: var(--border-color-gold);
+}
+
+.section-title{
+    font-size:14px;
+    font-weight:600;
+    /* ඇනිමේෂන් එක මෙතනට එකතු කර ඇත */
+    animation: text-fade-white 3s infinite;
+}
+
+/* MENU */
+.menu-icon{
+    position:absolute;
+    top:22px;
+    left:16px;
+    width:20px;
+    cursor:pointer;
+    z-index: 10;
+    margin-bottom: 19px;
+}
+.menu-icon div{
+    height:3px;
+    background: var(--text-primary);
+    margin:4px 0;
+    border-radius:2px;
+}
+
+/* HOME CONTENT AREA */
+.home-content {
+    flex: 1;
+    overflow-y: auto;
+    padding: 15px;
+}
+
+/* FOOTER AREA */
+.footer-nav {
+    flex-shrink: 0;
+    background: #000;
+    padding-top: 5px; 
+}
+
+.footer-buttons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 0 40px;
+    margin-bottom: 5px;
+}
+
+.footer-line {
+    width: 360px;
+    height: 1px;
+    background: var(--border-color-gold);
+    margin-bottom: 5px;
+}
+
+.nav-btn {
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    background: transparent;
+    border: none;
+    color: #fff;
+}
+
+.footer-brand {
+    color: var(--text-gold);
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+/* SIDEBAR */
+.sidebar{
+    position:absolute;
+    top:0;
+    left:-300px;
+    width:300px;
+    height:100%;
+    background:#000000;
+    color:#fff;
+    padding:20px;
+    transition:0.3s;
+    overflow-y:auto;
+    z-index:999;
+    border-right: 1px solid var(--border-color-gold);
+}
+.sidebar.active{
+    left:0;
+}
+
+.close-btn{
+    position:absolute;
+    top:16px;
+    right:16px;
+    font-size:20px;
+    cursor:pointer;
+    color:#9CA3AF;
+    transition:0.2s;
+}
+.close-btn:hover{
+    color:#fff;
+}
+
+.sidebar-header{
+    text-align:center;
+    padding-top:15px;
+}
+.sidebar-header h1{font-size:18px; color: var(--text-gold);}
+.sidebar-header p{font-size:11px;color:#9CA3AF;}
+.sidebar-line{
+    width:100%;
+    height:1px;
+    background: var(--border-color-gold);
+    margin-top:10px;
+    margin-bottom:12px;
+}
+
+/* SIDEBAR FOOTER */
+.sidebar-footer{
+    margin-top:20px;
+    padding:14px;
+    border: 1px solid var(--border-color-gold);
+    border-radius:14px;
+    background:#0B1220;
+    text-align:center;
+}
+.sidebar-footer p{
+    font-size:12px;
+    color:#9CA3AF;
+    line-height:1.6;
+}
+
+/* MENU BUTTON */
+.menu-item{
+    width:100%;
+    height:54px;
+    margin-top:15px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:0 14px;
+    background:#1F2937;
+    border:1px solid var(--border-color-grey);
+    border-radius:14px;
+    font-size:15px;
+    font-weight:500;
+    cursor:pointer;
+    color:#fff;
+}
+
+/* ICON */
+.icon{
+    width:36px;
+    height:36px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border:2px solid var(--border-color-grey);
+    border-radius:10px;
+    font-size:18px;
+    margin-right:12px;
+}
+
+/* SUBMENU */
+.submenu{
+    margin-left:10px;
+    margin-top:8px;
+    display:none;
+}
+.submenu.open{
+    display:block;
+}
+
+/* ITEM */
+.item{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    height:50px;
+    padding:0 14px;
+    margin-top:6px;
+    background:#0F172A;
+    border:1px solid var(--border-color-grey);
+    border-radius:12px;
+    font-size:13px;
+    color:#fff;
+    cursor:pointer;
+}
+
+.item.locked {
+    cursor: not-allowed;
+    opacity: 0.8;
+}
+
+.lock-tag {
+    background: var(--color-red);
+    color: #fff;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 6px;
+    text-transform: uppercase;
+}
+
+/* SWITCH */
+.switch{
+    width:40px;
+    height:20px;
+    background:#555;
+    border-radius:20px;
+    position:relative;
+    cursor:pointer;
+}
+.switch::after{
+    content:'';
+    position:absolute;
+    width:16px;
+    height:16px;
+    background:#fff;
+    border-radius:50%;
+    top:2px;
+    left:2px;
+    transition:0.3s;
+}
+.switch.active{
+    background:#22C55E;
+}
+.switch.active::after{
+    left:22px;
+}
+
+/* COUNTDOWN STYLING */
+.countdown{
+    font-size:11px;
+    font-weight:700;
+    color: var(--time-red);
+    background: #1E293B;
+    padding: 4px 8px;
+    border-radius: 6px;
+    border: 1px solid var(--border-color-grey);
+}
+
+/* PAGES SYSTEM */
+.about-page, .fav-page, .notes-page {
+    position:absolute;
+    top:0;
+    left:100%;
+    width:100%;
+    height:100%;
+    background: var(--bg-main);
+    transition:0.3s;
+    padding:20px;
+    overflow-y:auto;
+    z-index:1000;
+    color: var(--text-primary);
+}
+.about-page.active, .fav-page.active, .notes-page.active {
+    left:0;
+}
+
+.about-close-icon {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 24px;
+    cursor: pointer;
+    color: var(--color-red);
+    font-weight: bold;
+    z-index: 1001;
+}
+
+.about-content{
+    margin-top: 40px;
+    font-size: 13.5px;
+    color: var(--text-primary);
+    line-height: 1.6;
+}
+
+.about-section-title {
+    color: var(--text-gold);
+    font-size: 16px;
+    font-weight: 700;
+    margin: 20px 0 10px 0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.about-p { margin-bottom: 15px; color: var(--text-muted); }
+
+/* NEW MENU LIST ITEM STYLES */
+.menu-list-container {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.menu-list-item {
+    background: #1A1A1A;
+    border: 1px solid var(--border-color-grey);
+    border-radius: 16px;
+    padding: 15px;
+    cursor: pointer;
+    transition: 0.2s;
+    text-align: center; 
+}
+.menu-list-item:hover { border-color: var(--border-color-gold); }
+
+.item-en { color: #ffffff; font-weight: 600; font-size: 16px; }
+.item-jp { color: #A0A0A0; font-size: 12px; margin-top: 2px; }
+.item-si { color: #A0A0A0; font-size: 12px; margin-top: 1px; }
+
+/* NOTES UI STYLES */
+.notes-input-box {
+    width: 100%;
+    height: 90px;
+    margin-top: 20px;
+    padding: 12px;
+    border: 1px solid var(--border-color-grey);
+    background: var(--bg-card);
+    color: var(--text-primary);
+    border-radius: 12px;
+    font-size: 14px;
+    outline: none;
+    resize: none;
+}
+.notes-input-box:focus { border-color: #4B5563; }
+
+.add-note-btn {
+    width: 100%;
+    height: 45px;
+    background: #333;
+    color: #ffffff;
+    border: 1px solid var(--border-color-grey);
+    border-radius: 12px;
+    font-size: 14px;
+    font-weight: 600;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+.note-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color-grey);
+    border-radius: 12px;
+    padding: 14px;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 10px;
+}
+
+.toast-notif {
+    position: absolute;
+    bottom: -60px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #333;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 30px;
+    font-size: 13px;
+    font-weight: 600;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    z-index: 2000;
+    transition: bottom 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.toast-notif.show {
+    bottom: 85px;
+}
+</style>
+
 </head>
+
 <body>
 
-  <div class="overlay" id="overlay"></div>
+<div class="mobile-frame" id="mobileFrame">
 
-  <!-- Sidebar Component -->
-  <aside class="sidebar" id="sidebar">
-    <div class="sidebar-top">
-      <div class="brand-box">
-        <h2>EWONZ LINGUA</h2>
-        <p>Premium Language Learning Platform</p>
-      </div>
-      <button class="close-btn" id="closeSidebarBtn">✕</button>
+    <div class="fixed-header-section">
+        <div class="header-container">
+            <div class="top-title">EWONZ LINGUA</div>
+            <div class="subtitle-text">Premium Language Learning Platform</div>
+            <div class="grey-line" style="background: var(--border-color-gold);"></div>
+        </div>
+        
+        <div class="menu-icon" onclick="toggleMenu()">
+            <div></div><div></div><div></div>
+        </div>
+
+        <div class="home">
+            <div class="line"></div>
+            <div class="section-title">JAPANESE LEARNING</div>
+            <div class="line"></div>
+        </div>
     </div>
 
-    <div class="sidebar-line"></div>
-
-    <div class="sidebar-top-nav">
-      <a href="index.html" class="sidebar-nav-btn">← BACK</a>
-      <div class="sidebar-nav-title">JAPANESE LANGUAGE</div>
-      <a href="index.html" class="sidebar-nav-btn">HOME →</a>
+    <div class="home-content" id="homeWordList">
+        <div class="menu-list-container">
+            <div class="menu-list-item" onclick="window.location.href='japanese-introduction.html'">
+                <div class="item-en">Introduction 📖</div>
+                <div class="item-jp">紹介 (Shōkai)</div>
+                <div class="item-si">හැඳින්වීම</div>
+            </div>
+            <div class="menu-list-item" onclick="window.location.href='japanese-getting-started.html'">
+                <div class="item-en">Getting Started 🚀</div>
+                <div class="item-jp">はじめに (Hajime ni)</div>
+                <div class="item-si">ආරම්භය</div>
+            </div>
+            <div class="menu-list-item" onclick="window.location.href='japanese-writing-system.html'">
+                <div class="item-en">Writing System 🈶</div>
+                <div class="item-jp">文字システム (Moji Shisutemu)</div>
+                <div class="item-si">ලිවීමේ ක්‍රමය</div>
+            </div>
+            <div class="menu-list-item" onclick="window.location.href='japanese-vocabulary.html'">
+                <div class="item-en">Vocabulary 📖</div>
+                <div class="item-jp">語彙 (Goi)</div>
+                <div class="item-si">වචන මාලාව</div>
+            </div>
+            <div class="menu-list-item" onclick="window.location.href='japanese-grammar.html'">
+                <div class="item-en">Grammar 📝</div>
+                <div class="item-jp">文法 (Bunpō)</div>
+                <div class="item-si">ව්‍යාකරණ</div>
+            </div>
+            <div class="menu-list-item" onclick="window.location.href='japanese-conversation.html'">
+                <div class="item-en">Conversation 💬</div>
+                <div class="item-jp">会話 (Kaiwa)</div>
+                <div class="item-si">සංවාද</div>
+            </div>
+            <div class="menu-list-item" onclick="window.location.href='japanese-listening.html'">
+                <div class="item-en">Listening 👂</div>
+                <div class="item-jp">リスニング (Risuningu)</div>
+                <div class="item-si">සවන් දීම</div>
+            </div>
+            <div class="menu-list-item" onclick="window.location.href='japanese-reading.html'">
+                <div class="item-en">Reading 📚</div>
+                <div class="item-jp">読解 (Dokkai)</div>
+                <div class="item-si">කියවීම</div>
+            </div>
+            <div class="menu-list-item" onclick="window.location.href='japanese-writing.html'">
+                <div class="item-en">Writing ✍️</div>
+                <div class="item-jp">作文 (Sakubun)</div>
+                <div class="item-si">ලිවීම</div>
+            </div>
+            <div class="menu-list-item" onclick="window.location.href='japanese-speaking.html'">
+                <div class="item-en">Speaking 🗣️</div>
+                <div class="item-jp">会話練習 (Kaiwa Renshū)</div>
+                <div class="item-si">කථන පුහුණුව</div>
+            </div>
+            <div class="menu-list-item" onclick="window.location.href='japanese-jlpt.html'">
+                <div class="item-en">JLPT 🎓</div>
+                <div class="item-jp">日本語能力試験 (Nihongo Nōryoku Shiken)</div>
+                <div class="item-si">ජපන් භාෂා නිපුණතා විභාගය</div>
+            </div>
+            <div class="menu-list-item" onclick="window.location.href='japanese-culture.html'">
+                <div class="item-en">Japanese Culture 🎌</div>
+                <div class="item-jp">日本文化 (Nihon Bunka)</div>
+                <div class="item-si">ජපන් සංස්කෘතිය</div>
+            </div>
+            <div class="menu-list-item" onclick="window.location.href='japanese-practice-center.html'">
+                <div class="item-en">Practice Center 🎮</div>
+                <div class="item-jp">練習センター (Renshū Sentā)</div>
+                <div class="item-si">පුහුණු මධ්‍යස්ථානය</div>
+            </div>
+            <div class="menu-list-item" onclick="window.location.href='japanese-reference.html'">
+                <div class="item-en">Reference 📚</div>
+                <div class="item-jp">参考資料 (Sankō Shiryō)</div>
+                <div class="item-si">යොමු ද්‍රව්‍ය</div>
+            </div>
+            <div class="menu-list-item" onclick="window.location.href='japanese-interview-work.html'">
+                <div class="item-en">Interview & Work 👨‍🎓</div>
+                <div class="item-jp">面接と仕事 (Mensetsu to Shigoto)</div>
+                <div class="item-si">සම්මුඛ පරීක්ෂණ සහ රැකියාව</div>
+            </div>
+            <div class="menu-list-item" onclick="window.location.href='japanese-travel.html'">
+                <div class="item-en">Travel Japanese ✈️</div>
+                <div class="item-jp">旅行日本語 (Ryokō Nihongo)</div>
+                <div class="item-si">සංචාර සඳහා ජපන්</div>
+            </div>
+        </div>
     </div>
 
-    <div class="menu-label">Main Menu</div>
-
-    <div class="menu-list">
-      
-      <!-- Dashboard Menu with Sub-items -->
-      <div class="menu-item" id="dashboardToggle">
-        <div class="left">
-          <div class="icon">🏠</div>
-          <span>Dashboard</span>
+    <div class="footer-nav">
+        <div class="footer-line"></div>
+        <div class="footer-buttons">
+            <button class="nav-btn" onclick="history.back()">← BACK</button>
+            <div class="footer-brand">EWONZ LINGUA</div>
+            <button class="nav-btn" onclick="location.reload()">HOME →</button>
         </div>
-        <span class="arrow">▼</span>
-      </div>
-
-      <div class="submenu" id="dashboardSubmenu">
-        <a href="japanese-writing-system.html" class="submenu-item"><div class="sub-left"><span>🔤</span> Writing System</div></a>
-        <a href="japanese-learning-system.html" class="submenu-item"><div class="sub-left"><span>📘</span> Learning System</div></a>
-        <a href="japanese-vocabulary.html" class="submenu-item"><div class="sub-left"><span>📝</span> Vocabulary</div></a>
-        <a href="japanese-grammar.html" class="submenu-item"><div class="sub-left"><span>📖</span> Grammar</div></a>
-        <a href="japanese-reading.html" class="submenu-item"><div class="sub-left"><span>📚</span> Reading Practice</div></a>
-        <a href="japanese-listening.html" class="submenu-item"><div class="sub-left"><span>🎧</span> Listening</div></a>
-        <a href="japanese-speaking.html" class="submenu-item"><div class="sub-left"><span>🗣</span> Speaking</div></a>
-        <a href="japanese-writingpractice.html" class="submenu-item"><div class="sub-left"><span>✍️</span> Writing Practice</div></a>
-        <a href="japanese-quiz.html" class="submenu-item"><div class="sub-left"><span>🎯</span> Quiz Center</div></a>
-        <a href="japanese-exams.html" class="submenu-item"><div class="sub-left"><span>📝</span> Exams</div></a>
-        <a href="japanese-japaninfo.html" class="submenu-item"><div class="sub-left"><span>🇯🇵</span> Japan Info</div></a>
-      </div>
-
-      <!-- Language Dropdown Menu -->
-      <div class="menu-item" id="languageToggle">
-        <div class="left">
-          <div class="icon">🌐</div>
-          <span>Language</span>
-        </div>
-        <span class="arrow">▼</span>
-      </div>
-
-      <div class="submenu" id="languageSubmenu">
-        <div class="submenu-item" onclick="showLockedPopup('Japanese')">
-          <div class="sub-left">
-            <span>🇯🇵</span>
-            <span>Japanese</span>
-          </div>
-          <span class="lock-badge">🔒</span>
-        </div>
-
-        <div class="submenu-item" onclick="showLockedPopup('Chinese')">
-          <div class="sub-left">
-            <span>🇨🇳</span>
-            <span>Chinese</span>
-          </div>
-          <span class="lock-badge">🔒</span>
-        </div>
-
-        <div class="submenu-item" onclick="showLockedPopup('Korean')">
-          <div class="sub-left">
-            <span>🇰🇷</span>
-            <span>Korean</span>
-          </div>
-          <span class="lock-badge">🔒</span>
-        </div>
-      </div>
-
-      <a href="studyplan.html" class="menu-item">
-        <div class="left">
-          <div class="icon">📅</div>
-          <span>Study Plan</span>
-        </div>
-      </a>
-
-      <a href="about.html" class="menu-item">
-        <div class="left">
-          <div class="icon">ℹ️</div>
-          <span>About</span>
-        </div>
-      </a>
-
-      <div class="menu-item" id="settingsToggle">
-        <div class="left">
-          <div class="icon">⚙️</div>
-          <span>Settings</span>
-        </div>
-        <span class="arrow">▼</span>
-      </div>
-
-      <div class="settings-box submenu" id="settingsSubmenu">
-        <h4>Settings</h4>
-
-        <div class="setting-row">
-          <div class="setting-left">
-            <div class="setting-icon">🌙</div>
-            <div class="setting-text">Dark Mode</div>
-          </div>
-          <div class="toggle active" id="darkModeToggle"></div>
-        </div>
-
-        <div class="setting-row">
-          <div class="setting-left">
-            <div class="setting-icon">🔔</div>
-            <div class="setting-text">Notification</div>
-          </div>
-          <div class="toggle" id="notificationToggle"></div>
-        </div>
-
-        <div class="setting-row">
-          <div class="setting-left">
-            <div class="setting-icon">⏳</div>
-            <div class="setting-text">Count Down</div>
-          </div>
-          <div class="countdown-value" id="sidebarCountdown">Loading...</div>
-        </div>
-
-        <div class="setting-row">
-          <div class="setting-left">
-            <div class="setting-icon">🔊</div>
-            <div class="setting-text">Sound Toggle</div>
-          </div>
-          <div class="toggle active" id="soundToggle"></div>
-        </div>
-      </div>
     </div>
 
-    <div class="sidebar-footer">
-      <div class="footer-title">Version 1.0</div>
-      <p>Made By Danu Ewonz</p>
-      <p>(Kalpa Mihiranga)</p>
+    <div class="sidebar" id="sidebar">
+        <div class="close-btn" onclick="toggleMenu()">✕</div>
+        <div class="sidebar-header">
+            <h1>EWONZ LINGUA</h1>
+            <p>Premium Language Learning Platform</p>
+            <div class="sidebar-line"></div>
+        </div>
+
+        <div class="menu-item" onclick="toggleLang()">
+            <div style="display:flex;align-items:center;">
+                <div class="icon">🌐</div>
+                Languages
+            </div>
+            <div>⌄</div>
+        </div>
+
+        <div class="submenu" id="langMenu">
+            <div class="item" onclick="window.location.href='japanese.html'">Japanese Language 🇯🇵</div>
+            <div class="item">Chinese Language 🇨🇳 <span class="lock-tag">Lock</span></div>
+            <div class="item">Korean Language 🇰🇷 <span class="lock-tag">Lock</span></div>
+            <div class="item">German Language 🇩🇪 <span class="lock-tag">Lock</span></div>
+        </div>
+
+        <div class="menu-item" style="cursor: not-allowed; opacity: 0.8;">
+            <div style="display:flex;align-items:center;">
+                <div class="icon">🛠️</div>
+                Tools
+            </div>
+            <div>
+                <span class="lock-tag">Lock</span>
+            </div>
+        </div>
+
+        <div class="submenu" id="toolsMenu">
+            <div class="item locked">Search 🔍 <span class="lock-tag">Lock</span></div>
+            <div class="item">Dictionary 📚 <span class="lock-tag">Lock</span></div>
+            <div class="item locked">Translate 🌐 <span class="lock-tag">Lock</span></div>
+            <div class="item" onclick="openFavPage()">Favorites ⭐</div>
+            <div class="item" onclick="openNotesPage()">Notes 📝</div>
+        </div>
+
+        <div class="menu-item" onclick="toggleSettings()">
+            <div style="display:flex;align-items:center;">
+                <div class="icon">⚙️</div>
+                Settings
+            </div>
+            <div>⌄</div>
+        </div>
+
+        <div class="submenu" id="settingsMenu">
+            <div class="item locked">Dark Mode 🔒 <span class="lock-tag">Lock</span></div>
+            <div class="item">Notifications <div class="switch" id="notifSwitch" onclick="toggleNotifications()"></div></div>
+            <div class="item">Countdown <span id="countdown" class="countdown">Initializing...</span></div>
+        </div>
+
+        <div class="menu-item" onclick="openAboutPage()">
+            <div style="display:flex;align-items:center;">
+                <div class="icon">ℹ️</div>
+                About
+            </div>
+            <div>⌄</div>
+        </div>
+
+        <div class="sidebar-footer">
+            <p style="color:#fff; font-weight:700;">Ewonz Lingua Version 1.0</p>
+            <p style="color:#9CA3AF;">Made By Danu Ewonz</p>
+            <p style="color:#9CA3AF;">(Kalpa Mihiranga)</p>
+        </div>
     </div>
-  </aside>
 
-  <!-- Main View -->
-  <div class="app-shell">
-    <main class="phone-frame">
-      <div class="topbar">
-        <button class="menu-btn" id="menuBtn" aria-label="Open menu">
-          <span></span>
-          <span></span>
-          <span></span>
-        </button>
-
-        <div class="topbar-title">
-          <h1>EWONZ LINGUA</h1>
-          <p>Premium Language Learning Platform</p>
+    <div class="about-page" id="aboutPage">
+        <div class="about-close-icon" onclick="closeAboutPage()">✕</div>
+        <div class="about-content">
+            <div class="about-section-title">📘 About EWONZ LINGUA</div>
+            <p class="about-p">EWONZ LINGUA is a smart language learning app designed to help students learn Japanese in a simple and interactive way.</p>
+            <p class="about-p">This app provides structured lessons, vocabulary lists, grammar guides, and reading practice to make learning easier for beginners to advanced learners.</p>
+            <p class="about-p">Our goal is to make language learning accessible, fun, and effective for everyone in Sri Lanka and beyond.</p>
+            
+            <div class="about-section-title">⭐ Features</div>
+            <p class="about-p">• Step-by-step learning system<br>• Beginner to Intermediate roadmap<br>• Vocabulary & grammar sections<br>• Easy navigation with sidebar system</p>
+            
+            <div class="about-section-title">🙏 Special Thanks</div>
+            <p class="about-p">We would like to express our sincere gratitude to everyone who supported and inspired the development of this app. Special thanks to:</p>
+            <p class="about-p" style="font-weight:600; color:var(--text-gold);">▪ Japanese - Tsuki Sensei</p>
+            <p class="about-p" style="font-size:12px;">(Thank you for teaching me and sharing so many valuable things with me. Mine Akka 🤍)</p>
+            <p class="about-p" style="font-weight:600; color:var(--text-gold);">▪ Youyung Hyun</p>
+            <p class="about-p" style="font-size:12px;">Assistant Professor<br>Technology and Operations Management<br>Hitotsubashi University Business School (Hitotsubashi ICS), Tokyo , Kunitachi</p>
+            
+            <div class="about-section-title">👨‍💻 Developer</div>
+            <p class="about-p">Developed by <b>Danu Ewonz (Kalpa Mihiranga)</b><br>Passionate about building educational tools and improving learning experiences through technology.</p>
+            
+            <div class="about-section-title">📌 App Info</div>
+            <p class="about-p">Version: 1.0<br>Category: Education / Language Learning</p>
         </div>
-      </div>
-
-      <div class="shine-line"></div>
-
-      <section class="content">
-        <div class="main-title">
-          <h2>Japanese Language</h2>
-        </div>
-
-        <!-- 11 Updated Main Page Buttons -->
-        <div class="course-container">
-          
-          <!-- 1. Writing System -->
-          <a href="japanese-writing-system.html" class="single-item">
-            <span class="course-icon">🔤</span>
-            <div class="btn-meta">
-              <div class="btn-main-txt">Writing System</div>
-              <div class="btn-sub-txt">文字体系 (Moji Taikei) — ලිවීමේ ක්‍රමය</div>
-            </div>
-          </a>
-
-          <!-- 2. Learning System -->
-          <a href="japanese-learning-system.html" class="single-item">
-            <span class="course-icon">📘</span>
-            <div class="btn-meta">
-              <div class="btn-main-txt">Learning System</div>
-              <div class="btn-sub-txt">学習システム (Gakushū Shisutemu) — ඉගෙනීමේ පද්ධතිය</div>
-            </div>
-          </a>
-
-          <!-- 3. Vocabulary -->
-          <a href="japanese-vocabulary.html" class="single-item">
-            <span class="course-icon">📝</span>
-            <div class="btn-meta">
-              <div class="btn-main-txt">Vocabulary</div>
-              <div class="btn-sub-txt">語彙 (Goi) — වචන මාලාව</div>
-            </div>
-          </a>
-
-          <!-- 4. Grammar -->
-          <a href="japanese-grammar.html" class="single-item">
-            <span class="course-icon">📖</span>
-            <div class="btn-meta">
-              <div class="btn-main-txt">Grammar</div>
-              <div class="btn-sub-txt">文法 (Bunpō) — ව්‍යාකරණ</div>
-            </div>
-          </a>
-
-          <!-- 5. Reading Practice -->
-          <a href="japanese-reading.html" class="single-item">
-            <span class="course-icon">📚</span>
-            <div class="btn-meta">
-              <div class="btn-main-txt">Reading Practice</div>
-              <div class="btn-sub-txt">読解練習 (Dokkai Renshū) — කියවීමේ පුහුණුව</div>
-            </div>
-          </a>
-
-          <!-- 6. Listening -->
-          <a href="japanese-listening.html" class="single-item">
-            <span class="course-icon">🎧</span>
-            <div class="btn-meta">
-              <div class="btn-main-txt">Listening</div>
-              <div class="btn-sub-txt">聴解練習 (Chōkai Renshū) — සවන්දීමේ පුහුණුව</div>
-            </div>
-          </a>
-
-          <!-- 7. Speaking -->
-          <a href="japanese-speaking.html" class="single-item">
-            <span class="course-icon">🗣</span>
-            <div class="btn-meta">
-              <div class="btn-main-txt">Speaking</div>
-              <div class="btn-sub-txt">会話練習 (Kaiwa Renshū) — කථන පුහුණුව</div>
-            </div>
-          </a>
-
-          <!-- 8. Writing Practice -->
-          <a href="japanese-writingpractice.html" class="single-item">
-            <span class="course-icon">✍️</span>
-            <div class="btn-meta">
-              <div class="btn-main-txt">Writing Practice</div>
-              <div class="btn-sub-txt">作文練習 (Sakubun Renshū) — ලිවීමේ පුහුණුව</div>
-            </div>
-          </a>
-
-          <!-- 9. Quiz Center -->
-          <a href="japanese-quiz.html" class="single-item">
-            <span class="course-icon">🎯</span>
-            <div class="btn-meta">
-              <div class="btn-main-txt">Quiz Center</div>
-              <div class="btn-sub-txt">クイズセンター (Kuizu Sentā) — ප්‍රශ්නාවලි මධ්‍යස්ථානය</div>
-            </div>
-          </a>
-
-          <!-- 10. Exams -->
-          <a href="japanese-exams.html" class="single-item">
-            <span class="course-icon">📝</span>
-            <div class="btn-meta">
-              <div class="btn-main-txt">Exams</div>
-              <div class="btn-sub-txt">試験 (Shiken) — විභාග</div>
-            </div>
-          </a>
-
-          <!-- 11. Japan Information -->
-          <a href="japanese-japaninfo.html" class="single-item">
-            <span class="course-icon">🇯🇵</span>
-            <div class="btn-meta">
-              <div class="btn-main-txt">Japan Information</div>
-              <div class="btn-sub-txt">日本情報 (Nihon Jōhō) — ජපානය පිළිබඳ තොරතුරු</div>
-            </div>
-          </a>
-
-        </div>
-      </section>
-    </main>
-  </div>
-
-  <!-- Popups system -->
-  <div class="popup-overlay" id="popupOverlay">
-    <div class="popup-box">
-      <h3 id="popupTitle">Coming Soon</h3>
-      <p id="popupText">This section is currently locked.</p>
-      <div class="countdown" id="countdownBox"></div>
-      <button class="popup-btn" onclick="closePopup()">OK</button>
     </div>
-  </div>
 
-  <script>
-    const sidebar = document.getElementById("sidebar");
-    const overlay = document.getElementById("overlay");
-    const menuBtn = document.getElementById("menuBtn");
-    const closeSidebarBtn = document.getElementById("closeSidebarBtn");
+    <div class="fav-page" id="favPage">
+        <div style="padding-top: 20px;">
+            <h2>Favorites ⭐</h2>
+        </div>
+        <div style="margin-top: 20px;" id="favListContainer"></div>
+    </div>
 
-    const popupOverlay = document.getElementById("popupOverlay");
-    const popupTitle = document.getElementById("popupTitle");
-    const popupText = document.getElementById("popupText");
-    const countdownBox = document.getElementById("countdownBox");
+    <div class="notes-page" id="notesPage">
+        <div style="padding-top: 20px;">
+            <h2>My Notes 📝</h2>
+        </div>
+        <textarea class="notes-input-box" id="noteInput" placeholder="Write your notes here..."></textarea>
+        <button class="add-note-btn" onclick="addNote()">Save Note</button>
+        <div style="margin-top: 20px;" id="notesListContainer"></div>
+    </div>
 
-    const dashboardToggle = document.getElementById("dashboardToggle");
-    const dashboardSubmenu = document.getElementById("dashboardSubmenu");
-    const languageToggle = document.getElementById("languageToggle");
-    const languageSubmenu = document.getElementById("languageSubmenu");
-    const settingsToggle = document.getElementById("settingsToggle");
-    const settingsSubmenu = document.getElementById("settingsSubmenu");
+    <div class="toast-notif" id="toastNotif">
+        <span id="toastIcon">🔔</span> <span id="toastMessage">Notifications Enabled!</span>
+    </div>
 
-    const darkModeToggle = document.getElementById("darkModeToggle");
-    const notificationToggle = document.getElementById("notificationToggle");
-    const soundToggle = document.getElementById("soundToggle");
-    const sidebarCountdown = document.getElementById("sidebarCountdown");
+</div>
 
-    function openSidebar(){
-      sidebar.classList.add("show");
-      overlay.classList.add("show");
-      document.body.style.overflow = "hidden";
+<script>
+    document.addEventListener('contextmenu', event => event.preventDefault());
+    
+    function toggleMenu() { document.getElementById("sidebar").classList.toggle("active"); }
+    function toggleLang() { document.getElementById("langMenu").classList.toggle("open"); }
+    function toggleSettings() { document.getElementById("settingsMenu").classList.toggle("open"); }
+    function openAboutPage() { document.getElementById("aboutPage").classList.add("active"); document.getElementById("sidebar").classList.remove("active"); }
+    function closeAboutPage() { document.getElementById("aboutPage").classList.remove("active"); }
+    function openFavPage() { document.getElementById("favPage").classList.add("active"); document.getElementById("sidebar").classList.remove("active"); }
+    function openNotesPage() { document.getElementById("notesPage").classList.add("active"); document.getElementById("sidebar").classList.remove("active"); }
+    
+    function updateTimer(element, targetTime) {
+        const now = new Date().getTime();
+        const diff = targetTime - now;
+        if (diff <= 0) { element.innerHTML = "Available Now!"; }
+        else {
+            const d = Math.floor(diff / 86400000);
+            const h = Math.floor((diff % 86400000) / 3600000);
+            const m = Math.floor((diff % 3600000) / 60000);
+            const s = Math.floor((diff % 60000) / 1000);
+            element.innerHTML = d + "d " + h + "h " + m + "m " + s + "s";
+        }
     }
 
-    function closeSidebar(){
-      sidebar.classList.remove("show");
-      overlay.classList.remove("show");
-      if (!popupOverlay.classList.contains("show")) {
-        document.body.style.overflow = "";
-      }
+    function runAllCountdowns() {
+        const sidebarTimer = document.getElementById("countdown");
+        if(sidebarTimer) {
+            const target = new Date("Dec 31, 2026 23:59:59").getTime();
+            updateTimer(sidebarTimer, target);
+        }
     }
 
-    menuBtn.addEventListener("click", openSidebar);
-    closeSidebarBtn.addEventListener("click", closeSidebar);
-    overlay.addEventListener("click", closeSidebar);
+    setInterval(runAllCountdowns, 1000);
+    runAllCountdowns();
 
-    dashboardToggle.addEventListener("click", () => {
-      dashboardToggle.classList.toggle("active");
-      dashboardSubmenu.classList.toggle("show");
-    });
-    languageToggle.addEventListener("click", () => {
-      languageToggle.classList.toggle("active");
-      languageSubmenu.classList.toggle("show");
-    });
-    settingsToggle.addEventListener("click", () => {
-      settingsToggle.classList.toggle("active");
-      settingsSubmenu.classList.toggle("show");
-    });
-
-    const targetDate = new Date("2026-11-28T00:00:00");
-
-    function getCountdownParts() {
-      const now = new Date();
-      const diff = targetDate - now;
-      if (diff <= 0) return { text: "Unlocked", short: "Unlocked" };
-
-      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
-      const minutes = Math.floor((diff / (1000 * 60)) % 60);
-      const seconds = Math.floor((diff / 1000) % 60);
-
-      return {
-        text: `Unlocks in: ${days}d ${hours}h ${minutes}m ${seconds}s`,
-        short: `${days}d ${hours}h`
-      };
+    function toggleNotifications() {
+        const sw = document.getElementById("notifSwitch");
+        sw.classList.toggle("active");
+        showToast(sw.classList.contains("active"));
     }
-
-    function updateCountdown(){
-      const data = getCountdownParts();
-      if (countdownBox) countdownBox.textContent = data.text;
-      if (sidebarCountdown) sidebarCountdown.textContent = data.short;
+    function showToast(enabled) {
+        const toast = document.getElementById("toastNotif");
+        toast.innerText = enabled ? "🔔 Enabled!" : "🔕 Disabled!";
+        toast.classList.add("show");
+        setTimeout(() => { toast.classList.remove("show"); }, 2000);
     }
-
-    function showLockedPopup(sectionName = "This section"){
-      popupTitle.textContent = `${sectionName} Locked`;
-      popupText.textContent = `${sectionName} is currently locked and will be available in a future Ewonz Lingua update.`;
-      popupOverlay.classList.add("show");
-      closeSidebar();
-      updateCountdown();
-      document.body.style.overflow = "hidden";
+    function addNote() {
+        const input = document.getElementById("noteInput");
+        if(input.value.trim() !== "") {
+            const list = document.getElementById("notesListContainer");
+            const div = document.createElement("div");
+            div.className = "note-card";
+            div.innerText = input.value;
+            list.prepend(div);
+            input.value = "";
+        }
     }
+</script>
 
-    function closePopup(){
-      popupOverlay.classList.remove("show");
-      document.body.style.overflow = "";
-    }
-
-    setInterval(updateCountdown, 1000);
-    updateCountdown();
-
-    darkModeToggle.addEventListener("click", () => darkModeToggle.classList.toggle("active"));
-    notificationToggle.addEventListener("click", () => notificationToggle.classList.toggle("active"));
-    soundToggle.addEventListener("click", () => soundToggle.classList.toggle("active"));
-
-    document.addEventListener("keydown", (e) => {
-      if(e.key === "Escape"){
-        closeSidebar();
-        closePopup();
-      }
-    });
-  </script>
 </body>
 </html>
