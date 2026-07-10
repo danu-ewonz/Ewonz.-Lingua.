@@ -1,1440 +1,603 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>EWONZ LINGUA - Writing System</title>
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-
-  <style>
-    *{
-      margin:0;
-      padding:0;
-      box-sizing:border-box;
-      -webkit-tap-highlight-color: transparent;
-    }
-
-    :root{
-      --bg1:#050505;
-      --bg2:#0c0c0c;
-      --bg3:#111111;
-      --gold:#ffd700;
-      --gold-dark:#b8860b;
-      --red:#ff4d4d;
-      --text:#ffffff;
-      --muted:#d8d8d8;
-      --glass:rgba(255,255,255,0.05);
-      --border:rgba(255,215,0,0.42);
-      --shadow:0 0 18px rgba(255,215,0,0.10);
-      --sidebar-width:290px;
-    }
-
-    html,body{
-      width:100%;
-      min-height:100%;
-      font-family:'Poppins',sans-serif;
-      background:
-        radial-gradient(circle at top left, rgba(255,215,0,0.08), transparent 28%),
-        radial-gradient(circle at bottom right, rgba(184,134,11,0.10), transparent 34%),
-        linear-gradient(135deg, var(--bg1) 0%, var(--bg2) 45%, var(--bg3) 100%);
-      color:var(--text);
-      overflow-x:hidden;
-      user-select:none;
-    }
-
-    body{
-      display:flex;
-      justify-content:center;
-      align-items:flex-start;
-      padding:20px 12px 28px;
-    }
-
-    .app-shell{
-      width:100%;
-      max-width:390px;
-      display:flex;
-      flex-direction:column;
-      align-items:center;
-      gap:14px;
-    }
-
-    .phone-frame{
-      position:relative;
-      width:100%;
-      min-height:92vh;
-      border-radius:30px;
-      overflow:hidden;
-      background:
-        linear-gradient(rgba(8,8,8,0.88), rgba(8,8,8,0.95)),
-        url("1780704324974.png") center/cover no-repeat;
-      border:2px solid rgba(255,215,0,0.72);
-      box-shadow:
-        0 0 0 1px rgba(255,215,0,0.20),
-        0 0 22px rgba(255,215,0,0.15),
-        inset 0 0 18px rgba(255,215,0,0.05);
-      padding:18px 14px 22px;
-    }
-
-    .topbar{
-      position:relative;
-      z-index:5;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:10px;
-      margin-bottom:10px;
-    }
-
-    .menu-btn{
-      width:46px;
-      height:46px;
-      border-radius:14px;
-      border:1.5px solid rgba(255,215,0,0.55);
-      background:var(--glass);
-      backdrop-filter:blur(10px);
-      display:flex;
-      flex-direction:column;
-      justify-content:center;
-      align-items:center;
-      gap:5px;
-      cursor:pointer;
-      box-shadow:var(--shadow);
-      flex-shrink:0;
-    }
-
-    .menu-btn span{
-      width:20px;
-      height:2.4px;
-      border-radius:999px;
-      background:linear-gradient(90deg, var(--gold), var(--gold-dark));
-      display:block;
-    }
-
-    .topbar-title{
-      flex:1;
-      text-align:center;
-      padding-right:46px;
-    }
-
-    .topbar-title h1{
-      font-size:19px;
-      font-weight:700;
-      letter-spacing:1px;
-      color:rgba(255,215,0,0.78);
-      text-transform:uppercase;
-      line-height:1.2;
-    }
-
-    .topbar-title p{
-      margin-top:3px;
-      font-size:11px;
-      color:var(--muted);
-      letter-spacing:.5px;
-    }
-
-    .shine-line{
-      width:100%;
-      height:2px;
-      border-radius:999px;
-      margin:10px 0 18px;
-      background:linear-gradient(90deg, rgba(255,215,0,0.15), var(--gold), #fff1a8, var(--gold), rgba(255,215,0,0.15));
-      box-shadow:0 0 8px rgba(255,215,0,0.16);
-    }
-
-    .content{
-      position:relative;
-      z-index:2;
-      display:flex;
-      flex-direction:column;
-      width:100%;
-      padding-bottom:8px;
-    }
-
-    .main-title{
-      text-align:center;
-      margin-bottom:16px;
-      width:100%;
-    }
-
-    .main-title h2{
-      font-size:24px;
-      font-weight:800;
-      color:#ffffff;
-      letter-spacing:.6px;
-      line-height:1.25;
-    }
-
-    /* Course Container & Section */
-    .course-container {
-      width: 100%;
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-      max-height: 70vh;
-      overflow-y: auto;
-      padding-right: 4px;
-    }
-
-    .course-container::-webkit-scrollbar {
-      width: 4px;
-    }
-    .course-container::-webkit-scrollbar-thumb {
-      background: rgba(255, 215, 0, 0.3);
-      border-radius: 10px;
-    }
-
-    .course-header {
-      width: 100%;
-      padding: 14px 16px;
-      background: var(--glass);
-      border: 1.5px solid rgba(255,215,0,0.3);
-      border-radius: 16px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      cursor: pointer;
-      transition: background 0.2s;
-    }
-
-    .course-header:hover {
-      background: rgba(255,255,255,0.08);
-    }
-
-    .course-title-box {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      width: 100%;
-      padding-right: 8px;
-    }
-
-    .course-icon {
-      font-size: 20px;
-      flex-shrink: 0;
-      margin-left: auto;
-    }
-
-    .btn-meta {
-      display: flex;
-      flex-direction: column;
-      gap: 2px;
-      flex: 1;
-    }
-
-    .btn-main-txt {
-      font-size: 16px;
-      font-weight: 700;
-      color: #ffffff;
-      letter-spacing: 0.5px;
-    }
-
-    .btn-sub-txt {
-      font-size: 11px;
-      color: #cca300;
-      font-weight: 400;
-    }
-
-    .course-arrow {
-      font-size: 12px;
-      color: var(--gold);
-      transition: transform 0.2s;
-      flex-shrink: 0;
-    }
-
-    .course-section.active .course-arrow {
-      transform: rotate(180deg);
-    }
-
-    .course-content {
-      display: none;
-      flex-direction: column;
-      gap: 6px;
-      padding: 6px 4px 6px 16px;
-    }
-
-    .course-section.active .course-content {
-      display: flex;
-    }
-
-    .sub-item-link {
-      width: 100%;
-      padding: 10px 14px;
-      background: rgba(255,255,255,0.02);
-      border: 1px solid rgba(255,215,0,0.12);
-      border-radius: 10px;
-      color: var(--muted);
-      text-decoration: none;
-      font-size: 13px;
-      font-weight: 500;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .sub-item-link:hover {
-      background: rgba(255,215,0,0.05);
-      color: #fff;
-      border-color: rgba(255,215,0,0.25);
-    }
-
-    /* Single Items */
-    .single-item {
-      padding: 14px 16px;
-      background: var(--glass);
-      border: 1.5px solid rgba(255,215,0,0.3);
-      border-radius: 16px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      color: #fff;
-      text-decoration: none;
-    }
-
-    .single-item:hover {
-      background: rgba(255,255,255,0.08);
-    }
-
-    /* Overlay & Sidebar Styling */
-    .overlay{
-      position:fixed;
-      inset:0;
-      background:rgba(0,0,0,0.60);
-      backdrop-filter:blur(3px);
-      z-index:100;
-      opacity:0;
-      pointer-events:none;
-      transition:.28s ease;
-    }
-
-    .overlay.show{
-      opacity:1;
-      pointer-events:auto;
-    }
-
-    .sidebar{
-      position:fixed;
-      top:0;
-      left: -340px;
-      width:var(--sidebar-width);
-      max-width:84%;
-      height:100vh;
-      background:linear-gradient(180deg, rgba(12,12,12,0.98), rgba(18,18,18,0.98));
-      border-right:1.5px solid rgba(255,215,0,0.38);
-      box-shadow:12px 0 40px rgba(0,0,0,0.45);
-      z-index:120;
-      transition: left .32s ease;
-      padding:18px 14px 18px;
-      overflow-y:auto;
-    }
-
-    .sidebar.show{
-      left:0;
-    }
-
-    .sidebar::-webkit-scrollbar {
-      width: 4px;
-    }
-    .sidebar::-webkit-scrollbar-thumb {
-      background: rgba(255, 215, 0, 0.2);
-      border-radius: 10px;
-    }
-
-    .sidebar-top{
-      display:flex;
-      align-items:flex-start;
-      justify-content:space-between;
-      gap:10px;
-      margin-bottom:12px;
-    }
-
-    .brand-box h2{
-      font-size:22px;
-      color:var(--gold);
-      font-weight:800;
-      letter-spacing:1px;
-      text-transform:uppercase;
-      line-height:1.2;
-    }
-
-    .brand-box p{
-      font-size:11px;
-      color:var(--muted);
-      margin-top:4px;
-      line-height:1.55;
-    }
-
-    .close-btn{
-      width:42px;
-      height:42px;
-      border-radius:14px;
-      border:1.4px solid rgba(255,215,0,0.45);
-      background:var(--glass);
-      color:var(--gold);
-      font-size:20px;
-      font-weight:700;
-      cursor:pointer;
-      flex-shrink:0;
-    }
-
-    .sidebar-line{
-      width:100%;
-      height:2px;
-      border-radius:999px;
-      background:linear-gradient(90deg, transparent, var(--gold), #fff0a6, var(--gold), transparent);
-      margin-bottom:14px;
-    }
-
-    .sidebar-top-nav{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:4px;
-      margin:4px 0 14px;
-      padding:10px 8px;
-      border-radius:16px;
-      border:1.3px solid rgba(255,215,0,0.28);
-      background:var(--glass);
-    }
-
-    .sidebar-nav-btn{
-      text-decoration:none;
-      color:var(--red);
-      font-size:11px;
-      font-weight:700;
-      letter-spacing:.7px;
-      text-transform:uppercase;
-      white-space:nowrap;
-      flex-shrink: 0;
-    }
-
-    .sidebar-nav-title{
-      flex:1;
-      text-align:center;
-      color:var(--gold);
-      font-size:10px;
-      font-weight:700;
-      letter-spacing:.4px;
-      text-transform:uppercase;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-
-    .menu-label{
-      font-size:12px;
-      font-weight:800;
-      color:var(--gold);
-      letter-spacing:.8px;
-      text-transform:uppercase;
-      margin:6px 4px 10px;
-    }
-
-    .menu-list{
-      display:flex;
-      flex-direction:column;
-      gap:10px;
-    }
-
-    .menu-item{
-      width:100%;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:12px;
-      padding:14px 14px;
-      border-radius:16px;
-      border:1.3px solid rgba(255,215,0,0.25);
-      background:var(--glass);
-      color:var(--text);
-      font-size:14px;
-      font-weight:600;
-      text-decoration:none;
-      cursor:pointer;
-    }
-
-    .menu-item .left{
-      display:flex;
-      align-items:center;
-      gap:10px;
-      min-width:0;
-    }
-
-    .menu-item .icon{
-      width:34px;
-      height:34px;
-      border-radius:12px;
-      border:1px solid rgba(255,215,0,0.28);
-      background:rgba(255,255,255,0.04);
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      font-size:16px;
-      color:var(--gold);
-      flex-shrink:0;
-    }
-
-    .menu-item .arrow{
-      color:var(--gold);
-      font-size:14px;
-      flex-shrink:0;
-      transition: transform 0.2s;
-    }
-
-    .menu-item.active .arrow {
-      transform: rotate(180deg);
-    }
-
-    /* Dashboard Submenu Wrapper Styles */
-    .submenu{
-      display:none;
-      flex-direction:column;
-      gap:8px;
-      padding:8px 0 0 4px;
-    }
-
-    .submenu.show{
-      display:flex;
-    }
-
-    #dashboardSubmenu .course-header, 
-    #dashboardSubmenu .single-item {
-      padding: 10px 12px;
-      border-radius: 12px;
-      border: 1px solid rgba(255,215,0,0.2);
-    }
-    #dashboardSubmenu .btn-main-txt {
-      font-size: 14px;
-    }
-    #dashboardSubmenu .btn-sub-txt {
-      font-size: 10px;
-    }
-    #dashboardSubmenu .course-icon {
-      font-size: 16px;
-    }
-    #dashboardSubmenu .course-content {
-      padding: 4px 4px 4px 12px;
-    }
-
-    /* Language and other submenus styling */
-    .submenu-item{
-      width:100%;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:10px;
-      padding:12px 12px;
-      border-radius:14px;
-      border:1.2px solid rgba(255,215,0,0.20);
-      background:rgba(255,255,255,0.04);
-      color:var(--text);
-      text-decoration:none;
-      font-size:13px;
-      font-weight:600;
-      cursor:pointer;
-    }
-
-    .submenu-item .sub-left{
-      display:flex;
-      align-items:center;
-      gap:10px;
-    }
-
-    .lock-badge{
-      color:var(--gold);
-      font-size:13px;
-      font-weight:700;
-      flex-shrink:0;
-    }
-
-    .settings-box{
-      margin-top:10px;
-      padding:14px;
-      border-radius:18px;
-      border:1.3px solid rgba(255,215,0,0.25);
-      background:var(--glass);
-    }
-
-    .settings-box h4{
-      color:var(--gold);
-      font-size:13px;
-      font-weight:800;
-      text-transform:uppercase;
-      letter-spacing:.7px;
-      margin-bottom:12px;
-    }
-
-    .setting-row{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:12px;
-      padding:11px 0;
-      border-bottom:1px solid rgba(255,215,0,0.12);
-    }
-
-    .setting-row:last-child{
-      border-bottom:none;
-      padding-bottom:0;
-    }
-
-    .setting-left{
-      display:flex;
-      align-items:center;
-      gap:10px;
-      min-width:0;
-    }
-
-    .setting-icon{
-      width:34px;
-      height:34px;
-      border-radius:12px;
-      border:1px solid rgba(255,215,0,0.28);
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      color:var(--gold);
-      background:rgba(255,255,255,0.04);
-      flex-shrink:0;
-      font-size:15px;
-    }
-
-    .setting-text{
-      font-size:13px;
-      font-weight:600;
-      color:var(--text);
-    }
-
-    .toggle{
-      position:relative;
-      width:52px;
-      height:30px;
-      border-radius:999px;
-      background:rgba(255,255,255,0.12);
-      border:1px solid rgba(255,215,0,0.28);
-      cursor:pointer;
-      flex-shrink:0;
-    }
-
-    .toggle::before{
-      content:"";
-      position:absolute;
-      top:3px;
-      left:3px;
-      width:22px;
-      height:22px;
-      border-radius:50%;
-      background:var(--gold);
-      box-shadow:0 0 8px rgba(255,215,0,0.25);
-      transition:.25s ease;
-    }
-
-    .toggle.active{
-      background:rgba(255,215,0,0.20);
-    }
-
-    .toggle.active::before{
-      left:25px;
-    }
-
-    .countdown-value{
-      font-size:11px;
-      color:var(--gold);
-      font-weight:700;
-      text-align:right;
-      line-height:1.5;
-      max-width:120px;
-    }
-
-    .sidebar-footer{
-      margin-top:14px;
-      padding:14px;
-      border-radius:18px;
-      border:1.3px solid rgba(255,215,0,0.24);
-      background:var(--glass);
-      text-align:center;
-    }
-
-    .sidebar-footer .footer-title{
-      color:var(--gold);
-      font-size:13px;
-      font-weight:800;
-      margin-bottom:6px;
-      text-transform:uppercase;
-      letter-spacing:.6px;
-    }
-
-    .sidebar-footer p{
-      font-size:11px;
-      color:var(--muted);
-      line-height:1.7;
-    }
-
-    .popup-overlay{
-      position:fixed;
-      inset:0;
-      background:rgba(0,0,0,0.72);
-      backdrop-filter:blur(4px);
-      display:flex;
-      justify-content:center;
-      align-items:center;
-      padding:18px;
-      z-index:300;
-      opacity:0;
-      pointer-events:none;
-      transition:.25s ease;
-    }
-
-    .popup-overlay.show{
-      opacity:1;
-      pointer-events:auto;
-    }
-
-    .popup-box{
-      width:100%;
-      max-width:360px;
-      border-radius:24px;
-      padding:22px 18px 18px;
-      background:linear-gradient(180deg, rgba(16,16,16,0.98), rgba(10,10,10,0.98));
-      border:1.6px solid rgba(255,215,0,0.55);
-      box-shadow:0 0 30px rgba(255,215,0,0.14);
-      text-align:center;
-    }
-
-    .popup-box h3{
-      color:var(--gold);
-      font-size:22px;
-      font-weight:800;
-      margin-bottom:10px;
-      text-transform:uppercase;
-      letter-spacing:1px;
-    }
-
-    .popup-box p{
-      font-size:13px;
-      color:var(--muted);
-      line-height:1.8;
-      margin-bottom:14px;
-    }
-
-    .countdown{
-      font-size:13px;
-      font-weight:700;
-      color:var(--gold);
-      line-height:1.8;
-      margin-bottom:16px;
-    }
-
-    .popup-btn{
-      width:100%;
-      min-height:48px;
-      border-radius:14px;
-      border:1.5px solid rgba(255,215,0,0.55);
-      background:rgba(255,215,0,0.08);
-      color:var(--gold);
-      font-size:14px;
-      font-weight:700;
-      cursor:pointer;
-    }
-
-    @media (max-width:380px){
-      .phone-frame{padding:16px 12px 20px;}
-      .main-title h2{font-size:21px;}
-      .topbar-title h1{font-size:17px;}
-      .sidebar{width:280px;}
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>EWONZ LINGUA</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+/* GLOBAL THEME VARIABLES */
+:root {
+    --bg-main: #000000;
+    --bg-frame: #000000;
+    --bg-card: #1A1A1A;
+    --border-color-gold: #FFD700;
+    --border-color-grey: #4B5563;
+    --text-primary: #FFFFFF;
+    --text-secondary: #A0A0A0;
+    --text-muted: #D1D5DB;
+    --text-gold: #FFD700;
+    --color-red: #B91C1C;
+    --time-red: #FF0000;
+    --color-green: #10B981;
+}
+
+/* Simple Theme Variables */
+body.simple-theme {
+    --bg-main: #FFFFFF;
+    --bg-frame: #F0F0F0;
+    --bg-card: #E5E5E5;
+    --border-color-gold: #000000;
+    --border-color-grey: #A0A0A0;
+    --text-primary: #000000;
+    --text-secondary: #555555;
+    --text-gold: #000000;
+}
+
+@keyframes border-run {
+    0% { border-color: var(--border-color-gold); }
+    50% { border-color: #554800; }
+    100% { border-color: var(--border-color-gold); }
+}
+
+@keyframes text-fade-white {
+    0% { color: var(--border-color-grey); }
+    50% { color: var(--text-primary); }
+    100% { color: var(--border-color-grey); }
+}
+
+/* නව ඇනිමේෂන් - බටන් ගෝල්ඩ් පැහැයට හැරීම */
+@keyframes gold-glow {
+    0% { border-color: var(--border-color-grey); }
+    50% { border-color: var(--text-gold); }
+    100% { border-color: var(--border-color-grey); }
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins', sans-serif;
+    transition: background 0.2s, color 0.2s, border-color 0.2s;
+}
+
+body{
+    margin:0;
+    background: var(--bg-frame);
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.mobile-frame{
+    width:360px;
+    height:800px;
+    min-height:800px;
+    background: var(--bg-main);
+    border: 2px solid var(--border-color-gold);
+    border-radius:24px;
+    position:relative;
+    overflow:hidden;
+    display: flex;
+    flex-direction: column;
+    animation: border-run 3s infinite linear;
+}
+
+.fixed-header-section {
+    flex-shrink: 0;
+    background: var(--bg-main);
+    padding-top: 18px;
+    z-index: 10;
+    position: relative;
+}
+
+.home-close-btn {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 18px;
+    cursor: pointer;
+    color: var(--color-red);
+    font-weight: bold;
+    z-index: 20;
+}
+
+.header-container {
+    text-align: center;
+}
+
+.top-title {
+    color: var(--text-gold);
+    font-weight: 700;
+    font-size: 18px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.subtitle-text {
+    margin-top: -2px;
+    color: var(--text-secondary);
+    font-size: 12px;
+}
+
+.grey-line {
+    width: 80%;
+    height: 1px;
+    background: var(--border-color-grey);
+    margin: 10px auto;
+}
+
+.home{
+    text-align:center;
+    padding-top:5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.line{
+    width:50px;
+    height:1px;
+    background: var(--border-color-gold);
+}
+
+.section-title{
+    font-size:14px;
+    font-weight:600;
+    animation: text-fade-white 3s infinite;
+    color: var(--text-primary);
+}
+
+.menu-icon{
+    position:absolute;
+    top:22px;
+    left:16px;
+    width:20px;
+    cursor:pointer;
+    z-index: 10;
+}
+.menu-icon div{
+    height:3px;
+    background: var(--text-primary);
+    margin:4px 0;
+    border-radius:2px;
+}
+
+.home-content {
+    flex: 1;
+    overflow-y: auto;
+    padding: 15px;
+}
+
+.footer-nav {
+    flex-shrink: 0;
+    background: var(--bg-main);
+    padding-top: 5px; 
+}
+
+.footer-buttons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 0 40px;
+    margin-bottom: 5px;
+}
+
+.footer-line {
+    width: 360px;
+    height: 1px;
+    background: var(--border-color-gold);
+    margin-bottom: 5px;
+}
+
+.nav-btn {
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    background: transparent;
+    border: none;
+    color: var(--text-primary);
+}
+
+.footer-brand {
+    color: var(--text-gold);
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+.sidebar{
+    position:absolute;
+    top:0;
+    left:-300px;
+    width:300px;
+    height:100%;
+    background: var(--bg-main);
+    color: var(--text-primary);
+    padding:20px;
+    transition:0.3s;
+    overflow-y:auto;
+    z-index:999;
+    border-right: 1px solid var(--border-color-gold);
+}
+.sidebar.active{
+    left:0;
+}
+
+.close-btn{
+    position:absolute;
+    top:16px;
+    right:16px;
+    font-size:20px;
+    cursor:pointer;
+    color: var(--text-secondary);
+}
+
+.sidebar-header{
+    text-align:center;
+    padding-top:15px;
+}
+.sidebar-header h1{font-size:18px; color: var(--text-gold);}
+.sidebar-header p{font-size:11px;color: var(--text-secondary);}
+.sidebar-line{
+    width:100%;
+    height:1px;
+    background: var(--border-color-gold);
+    margin-top:10px;
+    margin-bottom:12px;
+}
+
+.menu-item{
+    width:100%;
+    height:54px;
+    margin-top:15px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:0 14px;
+    background: var(--bg-card);
+    border:1px solid var(--border-color-grey);
+    border-radius:14px;
+    font-size:15px;
+    font-weight:500;
+    cursor:pointer;
+    color: var(--text-primary);
+}
+
+.icon{
+    width:36px;
+    height:36px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border:2px solid var(--border-color-grey);
+    border-radius:10px;
+    font-size:18px;
+    margin-right:12px;
+}
+
+.submenu{
+    margin-left:10px;
+    margin-top:8px;
+    display:none;
+}
+.submenu.open{
+    display:block;
+}
+
+.item{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    height:50px;
+    padding:0 14px;
+    margin-top:6px;
+    background: var(--bg-card);
+    border:1px solid var(--border-color-grey);
+    border-radius:12px;
+    font-size:13px;
+    color: var(--text-primary);
+    cursor:pointer;
+}
+
+.lock-tag {
+    background: #B91C1C;
+    color: #fff;
+    padding: 2px 8px;
+    border-radius: 6px;
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.time-display {
+    font-family: monospace;
+    font-weight: bold;
+    color: var(--text-gold);
+    font-size: 13px;
+}
+
+.rate-up { color: var(--color-green); font-weight: bold; font-size: 11px; }
+.rate-down { color: var(--color-red); font-weight: bold; font-size: 11px; }
+
+.menu-list-container {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.menu-list-item {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color-grey);
+    border-radius: 16px;
+    padding: 12px;
+    cursor: pointer;
+    transition: 0.2s;
+    text-align: center; 
+}
+.menu-list-item:hover { 
+    border-color: var(--border-color-gold); 
+    animation: gold-glow 1s infinite;
+}
+
+.item-main { color: var(--text-primary); font-weight: 600; font-size: 15px; }
+.item-sub { color: var(--text-gold); font-size: 11px; margin-top: 2px; }
+.item-si { color: var(--text-secondary); font-size: 11px; margin-top: 3px; }
+
+/* Switch Style */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 40px;
+    height: 20px;
+}
+.switch input { opacity: 0; width: 0; height: 0; }
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-color: var(--border-color-grey);
+    transition: .4s;
+    border-radius: 20px;
+}
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 14px;
+    width: 14px;
+    left: 3px; bottom: 3px;
+    background-color: white;
+    transition: .4s;
+    border-radius: 50%;
+}
+input:checked + .slider { background-color: var(--text-gold); }
+input:checked + .slider:before { transform: translateX(20px); }
+</style>
+
 </head>
-<body>
 
-  <div class="overlay" id="overlay"></div>
+<body id="mainBody">
 
-  <!-- Sidebar Component -->
-  <aside class="sidebar" id="sidebar">
-    <div class="sidebar-top">
-      <div class="brand-box">
-        <h2>EWONZ LINGUA</h2>
-        <p>Premium Language Learning Platform</p>
-      </div>
-      <button class="close-btn" id="closeSidebarBtn">✕</button>
-    </div>
+<div class="mobile-frame" id="mobileFrame">
 
-    <div class="sidebar-line"></div>
-
-    <div class="sidebar-top-nav">
-      <a href="index.html" class="sidebar-nav-btn">← BACK</a>
-      <div class="sidebar-nav-title">WRITING SYSTEM</div>
-      <a href="index.html" class="sidebar-nav-btn">HOME →</a>
-    </div>
-
-    <div class="menu-label">Main Menu</div>
-
-    <div class="menu-list">
-      
-      <!-- Dashboard Dropdown Toggle -->
-      <div class="menu-item" id="dashboardToggle">
-        <div class="left">
-          <div class="icon">🏠</div>
-          <span>Dashboard</span>
-        </div>
-        <span class="arrow">▼</span>
-      </div>
-
-      <!-- Sidebar Inside Dashboard Dynamic Content -->
-      <div class="submenu" id="dashboardSubmenu">
+    <div class="fixed-header-section">
+        <div class="home-close-btn" onclick="history.back()">✕</div>
         
-        <!-- 1. Hiragana -->
-        <div class="course-section">
-          <div class="course-header" onclick="toggleCourseSection(this)">
-            <div class="course-title-box">
-              <div class="btn-meta">
-                <div class="btn-main-txt">Hiragana</div>
-                <div class="btn-sub-txt">平仮名 (Hiragana) — හිරගනා</div>
-              </div>
-              <span class="course-icon">🇯🇵</span>
-            </div>
-            <span class="course-arrow">▼</span>
-          </div>
-          <div class="course-content">
-            <a href="hiragana_basic.html" class="sub-item-link">Basic Characters</a>
-            <a href="hiragana_dakuten.html" class="sub-item-link">Dakuten</a>
-            <a href="hiragana_handakuten.html" class="sub-item-link">Handakuten</a>
-            <a href="hiragana_combination.html" class="sub-item-link">Combination Characters (Kya, Kyu, Kyo)</a>
-            <a href="hiragana_small_tsu.html" class="sub-item-link">Small Tsu (っ)</a>
-            <a href="hiragana_long_vowels.html" class="sub-item-link">Long Vowels</a>
-            <a href="hiragana_stroke_order.html" class="sub-item-link">Stroke Order</a>
-            <a href="hiragana_writing_practice.html" class="sub-item-link">Writing Practice</a>
-            <a href="hiragana_reading_practice.html" class="sub-item-link">Reading Practice</a>
-            <a href="hiragana_quiz.html" class="sub-item-link">Quiz</a>
-          </div>
+        <div class="header-container">
+            <div class="top-title">EWONZ LINGUA</div>
+            <div class="subtitle-text">Premium Language Learning Platform</div>
+            <div class="grey-line" style="background: var(--border-color-gold);"></div>
+        </div>
+        
+        <div class="menu-icon" onclick="toggleMenu()">
+            <div></div><div></div><div></div>
         </div>
 
-        <!-- 2. Katakana -->
-        <div class="course-section">
-          <div class="course-header" onclick="toggleCourseSection(this)">
-            <div class="course-title-box">
-              <div class="btn-meta">
-                <div class="btn-main-txt">Katakana</div>
-                <div class="btn-sub-txt">片仮名 (Katakana) — කතකනා</div>
-              </div>
-              <span class="course-icon">🇯🇵</span>
-            </div>
-            <span class="course-arrow">▼</span>
-          </div>
-          <div class="course-content">
-            <a href="katakana_basic.html" class="sub-item-link">Basic Characters</a>
-            <a href="katakana_dakuten.html" class="sub-item-link">Dakuten</a>
-            <a href="katakana_handakuten.html" class="sub-item-link">Handakuten</a>
-            <a href="katakana_combination.html" class="sub-item-link">Combination Characters</a>
-            <a href="katakana_foreign_words.html" class="sub-item-link">Foreign Words</a>
-            <a href="katakana_stroke_order.html" class="sub-item-link">Stroke Order</a>
-            <a href="katakana_writing_practice.html" class="sub-item-link">Writing Practice</a>
-            <a href="katakana_reading_practice.html" class="sub-item-link">Reading Practice</a>
-            <a href="katakana_quiz.html" class="sub-item-link">Quiz</a>
-          </div>
+        <div class="home">
+            <div class="line"></div>
+            <div class="section-title" id="sectionTitle">WRITING SYSTEM</div>
+            <div class="line"></div>
         </div>
-
-        <!-- 3. Kanji -->
-        <div class="course-section">
-          <div class="course-header" onclick="toggleCourseSection(this)">
-            <div class="course-title-box">
-              <div class="btn-meta">
-                <div class="btn-main-txt">Kanji</div>
-                <div class="btn-sub-txt">漢字 (Kanji) — කන්ජි</div>
-              </div>
-              <span class="course-icon">🈶</span>
-            </div>
-            <span class="course-arrow">▼</span>
-          </div>
-          <div class="course-content">
-            <a href="kanji_basic.html" class="sub-item-link">Basic Kanji</a>
-            <a href="kanji_n5.html" class="sub-item-link">JLPT N5 Kanji</a>
-            <a href="kanji_n4.html" class="sub-item-link">JLPT N4 Kanji</a>
-            <a href="kanji_jft.html" class="sub-item-link">JFT-Basic Kanji</a>
-            <a href="kanji_onyomi_kunyomi.html" class="sub-item-link">Onyomi & Kunyomi</a>
-            <a href="kanji_stroke_order.html" class="sub-item-link">Stroke Order</a>
-            <a href="kanji_radicals.html" class="sub-item-link">Radicals (部首)</a>
-            <a href="kanji_words.html" class="sub-item-link">Example Words</a>
-            <a href="kanji_sentences.html" class="sub-item-link">Example Sentences</a>
-            <a href="kanji_writing_practice.html" class="sub-item-link">Writing Practice</a>
-            <a href="kanji_quiz.html" class="sub-item-link">Quiz</a>
-          </div>
-        </div>
-
-        <!-- Single Items Inside Sidebar Menu -->
-        <a href="numbers.html" class="single-item">
-          <div class="btn-meta">
-            <div class="btn-main-txt">Japanese Numbers</div>
-            <div class="btn-sub-txt">数字 (Sūji) — ජපන් ඉලක්කම්</div>
-          </div>
-          <span class="course-icon">🔢</span>
-        </a>
-
-        <a href="date_time.html" class="single-item">
-          <div class="btn-meta">
-            <div class="btn-main-txt">Date & Time</div>
-            <div class="btn-sub-txt">日時 (Nichiji) — දිනය සහ වේලාව</div>
-          </div>
-          <span class="course-icon">📅</span>
-        </a>
-
-        <a href="stroke_order_center.html" class="single-item">
-          <div class="btn-meta">
-            <div class="btn-main-txt">Stroke Order Center</div>
-            <div class="btn-sub-txt">筆順 (Hitsujun) — අකුරු ලියන පිළිවෙල මධ්‍යස්ථානය</div>
-          </div>
-          <span class="course-icon">✍️</span>
-        </a>
-
-        <a href="romaji.html" class="single-item">
-          <div class="btn-meta">
-            <div class="btn-main-txt">Romaji</div>
-            <div class="btn-sub-txt">ローマ字 (Rōmaji) — රෝමාජි</div>
-          </div>
-          <span class="course-icon">🔤</span>
-        </a>
-
-        <a href="furigana.html" class="single-item">
-          <div class="btn-meta">
-            <div class="btn-main-txt">Furigana</div>
-            <div class="btn-sub-txt">振り仮名 (Furigana) — ෆුරිගනා</div>
-          </div>
-          <span class="course-icon">📖</span>
-        </a>
-
-        <a href="punctuation.html" class="single-item">
-          <div class="btn-meta">
-            <div class="btn-main-txt">Japanese Punctuation</div>
-            <div class="btn-sub-txt">句読点 (Kutōten) — ජපන් විරාම ලකුණු</div>
-          </div>
-          <span class="course-icon">📝</span>
-        </a>
-
-        <a href="flashcards.html" class="single-item">
-          <div class="btn-meta">
-            <div class="btn-main-txt">Flashcards</div>
-            <div class="btn-sub-txt">フラッシュカード (Furasshukādo) — ෆ්ලෑෂ් කාඩ්පත්</div>
-          </div>
-          <span class="course-icon">🎴</span>
-        </a>
-
-        <!-- 4. Practice Center -->
-        <div class="course-section">
-          <div class="course-header" onclick="toggleCourseSection(this)">
-            <div class="course-title-box">
-              <div class="btn-meta">
-                <div class="btn-main-txt">Practice Center</div>
-                <div class="btn-sub-txt">練習センター — පුහුණු මධ්‍යස්ථානය</div>
-              </div>
-              <span class="course-icon">💪</span>
-            </div>
-            <span class="course-arrow">▼</span>
-          </div>
-          <div class="course-content">
-            <a href="practice_reading.html" class="sub-item-link">Reading Practice</a>
-            <a href="practice_writing.html" class="sub-item-link">Writing Practice</a>
-            <a href="practice_typing.html" class="sub-item-link">Typing Practice</a>
-            <a href="practice_listening.html" class="sub-item-link">Listening Practice</a>
-            <a href="practice_daily.html" class="sub-item-link">Daily Challenge</a>
-          </div>
-        </div>
-
-        <!-- 5. Quiz Center -->
-        <div class="course-section">
-          <div class="course-header" onclick="toggleCourseSection(this)">
-            <div class="course-title-box">
-              <div class="btn-meta">
-                <div class="btn-main-txt">Quiz Center</div>
-                <div class="btn-sub-txt">クイズセンター — ප්‍රශ්නාවලි මධ්‍යස්ථානය</div>
-              </div>
-              <span class="course-icon">🧠</span>
-            </div>
-            <span class="course-arrow">▼</span>
-          </div>
-          <div class="course-content">
-            <a href="quiz_hiragana_c.html" class="sub-item-link">Hiragana Quiz</a>
-            <a href="quiz_katakana_c.html" class="sub-item-link">Katakana Quiz</a>
-            <a href="quiz_kanji_c.html" class="sub-item-link">Kanji Quiz</a>
-            <a href="quiz_mixed.html" class="sub-item-link">Mixed Quiz</a>
-            <a href="quiz_final.html" class="sub-item-link">Final Exam</a>
-          </div>
-        </div>
-
-        <!-- 6. Download Center -->
-        <div class="course-section">
-          <div class="course-header" onclick="toggleCourseSection(this)">
-            <div class="course-title-box">
-              <div class="btn-meta">
-                <div class="btn-main-txt">Download Center</div>
-                <div class="btn-sub-txt">ダウンロードセンター — බාගත කිරීම් මධ්‍යස්ථානය</div>
-              </div>
-              <span class="course-icon">📄</span>
-            </div>
-            <span class="course-arrow">▼</span>
-          </div>
-          <div class="course-content">
-            <a href="download_worksheets.html" class="sub-item-link">PDF Worksheets</a>
-            <a href="download_practice.html" class="sub-item-link">Practice Sheets</a>
-            <a href="download_book.html" class="sub-item-link">Writing Book</a>
-            <a href="download_charts.html" class="sub-item-link">Stroke Order Charts</a>
-          </div>
-        </div>
-
-        <!-- 7. Progress Center -->
-        <div class="course-section">
-          <div class="course-header" onclick="toggleCourseSection(this)">
-            <div class="course-title-box">
-              <div class="btn-meta">
-                <div class="btn-main-txt">Progress Center</div>
-                <div class="btn-sub-txt">進捗センター — ප්‍රගති මධ්‍යස්ථානය</div>
-              </div>
-              <span class="course-icon">🏆</span>
-            </div>
-            <span class="course-arrow">▼</span>
-          </div>
-          <div class="course-content">
-            <a href="progress_learning.html" class="sub-item-link">Learning Progress</a>
-            <a href="progress_scores.html" class="sub-item-link">Quiz Scores</a>
-            <a href="progress_completion.html" class="sub-item-link">Completion Rate</a>
-            <a href="progress_badges.html" class="sub-item-link">Achievement Badges</a>
-            <a href="progress_certificates.html" class="sub-item-link">Certificates</a>
-          </div>
-        </div>
-
-      </div>
-
-      <!-- Language Dropdown Menu -->
-      <div class="menu-item" id="languageToggle">
-        <div class="left">
-          <div class="icon">🌐</div>
-          <span>Language</span>
-        </div>
-        <span class="arrow">▼</span>
-      </div>
-
-      <div class="submenu" id="languageSubmenu">
-        <div class="submenu-item" onclick="showLockedPopup('Japanese')">
-          <div class="sub-left">
-            <span>Japanese</span>
-          </div>
-          <span class="lock-badge">🇯🇵 🔒</span>
-        </div>
-        <div class="submenu-item" onclick="showLockedPopup('Chinese')">
-          <div class="sub-left">
-            <span>Chinese</span>
-          </div>
-          <span class="lock-badge">🇨🇳 🔒</span>
-        </div>
-      </div>
-
-      <a href="studyplan.html" class="menu-item">
-        <div class="left">
-          <div class="icon">📅</div>
-          <span>Study Plan</span>
-        </div>
-      </a>
-
-      <div class="menu-item" id="settingsToggle">
-        <div class="left">
-          <div class="icon">⚙️</div>
-          <span>Settings</span>
-        </div>
-        <span class="arrow">▼</span>
-      </div>
-
-      <div class="settings-box submenu" id="settingsSubmenu">
-        <h4>Settings</h4>
-        <div class="setting-row">
-          <div class="setting-left">
-            <div class="setting-icon">🌙</div>
-            <div class="setting-text">Dark Mode</div>
-          </div>
-          <div class="toggle active" id="darkModeToggle"></div>
-        </div>
-        <div class="setting-row">
-          <div class="setting-left">
-            <div class="setting-icon">⏳</div>
-            <div class="setting-text">Count Down</div>
-          </div>
-          <div class="countdown-value" id="sidebarCountdown">Loading...</div>
-        </div>
-      </div>
     </div>
 
-    <div class="sidebar-footer">
-      <div class="footer-title">Version 1.0</div>
-      <p>Made By Danu Ewonz</p>
-      <p>(Kalpa Mihiranga)</p>
+    <div class="home-content" id="homeWordList">
+        <div class="menu-list-container">
+            <div class="menu-list-item" onclick="window.location.href='hiragana.html'">
+                <div class="item-main">Hiragana</div>
+                <div class="item-sub">ひらがな (Hiragana)</div>
+                <div class="item-si">ජපන් මූලික අකුරු</div>
+            </div>
+            <div class="menu-list-item" onclick="window.location.href='katakana.html'">
+                <div class="item-main">Katakana</div>
+                <div class="item-sub">カタカナ (Katakana)</div>
+                <div class="item-si">විදේශ වචන අකුරු</div>
+            </div>
+            <div class="menu-list-item" onclick="window.location.href='kanji.html'">
+                <div class="item-main">Kanji</div>
+                <div class="item-sub">漢字 (Kanji)</div>
+                <div class="item-si">අර්ථ තියෙන චීන අකුරු</div>
+            </div>
+            <div class="menu-list-item" onclick="window.location.href='numbers.html'">
+                <div class="item-main">Japanese Number</div>
+                <div class="item-sub">日本の数字 (Nihon no suuji)</div>
+                <div class="item-si">ජපන් අංක</div>
+            </div>
+            <div class="menu-list-item" onclick="window.location.href='date-time.html'">
+                <div class="item-main">Date & Time</div>
+                <div class="item-sub">日付と時間 (Nichiji)</div>
+                <div class="item-si">දිනය හා වේලාව</div>
+            </div>
+            <div class="menu-list-item" onclick="window.location.href='stroke.html'">
+                <div class="item-main">Stroke Order Center</div>
+                <div class="item-sub">筆順センター (Kakijun sentaa)</div>
+                <div class="item-si">අකුරු ලියන පිළිවෙල</div>
+            </div>
+            <div class="menu-list-item" onclick="window.location.href='romaji.html'">
+                <div class="item-main">Romaji</div>
+                <div class="item-sub">ローマ字 (Romaji)</div>
+                <div class="item-si">English අකුරු වලින් ජපන්</div>
+            </div>
+            <div class="menu-list-item" onclick="window.location.href='furigana.html'">
+                <div class="item-main">Furigana</div>
+                <div class="item-sub">ふりがな (Furigana)</div>
+                <div class="item-si">Kanji කියවන්න උදව් අකුරු</div>
+            </div>
+            <div class="menu-list-item" onclick="window.location.href='punctuation.html'">
+                <div class="item-main">Punctuation</div>
+                <div class="item-sub">日本の句読点 (Kigou)</div>
+                <div class="item-si">විරාම ලකුණු</div>
+            </div>
+            <div class="menu-list-item" onclick="window.location.href='flashcard.html'">
+                <div class="item-main">Flash Card</div>
+                <div class="item-sub">フラッシュカード (Furasshukaado)</div>
+                <div class="item-si">මතක තබාගැනීමේ කාඩ්</div>
+            </div>
+            <div class="menu-list-item" onclick="window.location.href='practice.html'">
+                <div class="item-main">Practice Center</div>
+                <div class="item-sub">練習センター (Renshuu sentaa)</div>
+                <div class="item-si">පුහුණු අභ්‍යාස</div>
+            </div>
+            <div class="menu-list-item" onclick="window.location.href='quiz.html'">
+                <div class="item-main">Quiz Center</div>
+                <div class="item-sub">クイズセンター (Kuizu sentaa)</div>
+                <div class="item-si">ප්‍රශ්න පිළිතුරු අභ්‍යාස</div>
+            </div>
+        </div>
     </div>
-  </aside>
 
-  <!-- Main View -->
-  <div class="app-shell">
-    <main class="phone-frame">
-      <div class="topbar">
-        <button class="menu-btn" id="menuBtn" aria-label="Open menu">
-          <span></span>
-          <span></span>
-          <span></span>
-        </button>
-
-        <div class="topbar-title">
-          <h1>EWONZ LINGUA</h1>
-          <p>Premium Language Learning Platform</p>
+    <div class="footer-nav">
+        <div class="footer-line"></div>
+        <div class="footer-buttons">
+            <button class="nav-btn" onclick="history.back()">← BACK</button>
+            <div class="footer-brand">EWONZ LINGUA</div>
+            <button class="nav-btn" onclick="location.reload()">HOME →</button>
         </div>
-      </div>
-
-      <div class="shine-line"></div>
-
-      <section class="content">
-        <div class="main-title">
-          <h2>Writing System</h2>
-        </div>
-
-        <!-- Main View Course Container -->
-        <div class="course-container">
-          
-          <!-- 1. Hiragana -->
-          <div class="course-section">
-            <div class="course-header" onclick="toggleCourseSection(this)">
-              <div class="course-title-box">
-                <div class="btn-meta">
-                  <div class="btn-main-txt">Hiragana</div>
-                  <div class="btn-sub-txt">平仮名 (Hiragana) — හිරගනා</div>
-                </div>
-                <span class="course-icon">🇯🇵</span>
-              </div>
-              <span class="course-arrow">▼</span>
-            </div>
-            <div class="course-content">
-              <a href="hiragana_basic.html" class="sub-item-link">Basic Characters</a>
-              <a href="hiragana_dakuten.html" class="sub-item-link">Dakuten</a>
-              <a href="hiragana_handakuten.html" class="sub-item-link">Handakuten</a>
-              <a href="hiragana_combination.html" class="sub-item-link">Combination Characters (Kya, Kyu, Kyo)</a>
-              <a href="hiragana_small_tsu.html" class="sub-item-link">Small Tsu (っ)</a>
-              <a href="hiragana_long_vowels.html" class="sub-item-link">Long Vowels</a>
-              <a href="hiragana_stroke_order.html" class="sub-item-link">Stroke Order</a>
-              <a href="hiragana_writing_practice.html" class="sub-item-link">Writing Practice</a>
-              <a href="hiragana_reading_practice.html" class="sub-item-link">Reading Practice</a>
-              <a href="hiragana_quiz.html" class="sub-item-link">Quiz</a>
-            </div>
-          </div>
-
-          <!-- 2. Katakana -->
-          <div class="course-section">
-            <div class="course-header" onclick="toggleCourseSection(this)">
-              <div class="course-title-box">
-                <div class="btn-meta">
-                  <div class="btn-main-txt">Katakana</div>
-                  <div class="btn-sub-txt">片仮名 (Katakana) — කතකනා</div>
-                </div>
-                <span class="course-icon">🇯🇵</span>
-              </div>
-              <span class="course-arrow">▼</span>
-            </div>
-            <div class="course-content">
-              <a href="katakana_basic.html" class="sub-item-link">Basic Characters</a>
-              <a href="katakana_dakuten.html" class="sub-item-link">Dakuten</a>
-              <a href="katakana_handakuten.html" class="sub-item-link">Handakuten</a>
-              <a href="katakana_combination.html" class="sub-item-link">Combination Characters</a>
-              <a href="katakana_foreign_words.html" class="sub-item-link">Foreign Words</a>
-              <a href="katakana_stroke_order.html" class="sub-item-link">Stroke Order</a>
-              <a href="katakana_writing_practice.html" class="sub-item-link">Writing Practice</a>
-              <a href="katakana_reading_practice.html" class="sub-item-link">Reading Practice</a>
-              <a href="katakana_quiz.html" class="sub-item-link">Quiz</a>
-            </div>
-          </div>
-
-          <!-- 3. Kanji -->
-          <div class="course-section">
-            <div class="course-header" onclick="toggleCourseSection(this)">
-              <div class="course-title-box">
-                <div class="btn-meta">
-                  <div class="btn-main-txt">Kanji</div>
-                  <div class="btn-sub-txt">漢字 (Kanji) — කන්ජි</div>
-                </div>
-                <span class="course-icon">🈶</span>
-              </div>
-              <span class="course-arrow">▼</span>
-            </div>
-            <div class="course-content">
-              <a href="kanji_basic.html" class="sub-item-link">Basic Kanji</a>
-              <a href="kanji_n5.html" class="sub-item-link">JLPT N5 Kanji</a>
-              <a href="kanji_n4.html" class="sub-item-link">JLPT N4 Kanji</a>
-              <a href="kanji_jft.html" class="sub-item-link">JFT-Basic Kanji</a>
-              <a href="kanji_onyomi_kunyomi.html" class="sub-item-link">Onyomi & Kunyomi</a>
-              <a href="kanji_stroke_order.html" class="sub-item-link">Stroke Order</a>
-              <a href="kanji_radicals.html" class="sub-item-link">Radicals (部首)</a>
-              <a href="kanji_words.html" class="sub-item-link">Example Words</a>
-              <a href="kanji_sentences.html" class="sub-item-link">Example Sentences</a>
-              <a href="kanji_writing_practice.html" class="sub-item-link">Writing Practice</a>
-              <a href="kanji_quiz.html" class="sub-item-link">Quiz</a>
-            </div>
-          </div>
-
-          <!-- Single Items Main View -->
-          <a href="numbers.html" class="single-item">
-            <div class="btn-meta">
-              <div class="btn-main-txt">Japanese Numbers</div>
-              <div class="btn-sub-txt">数字 (Sūji) — ජපන් ඉලක්කම්</div>
-            </div>
-            <span class="course-icon">🔢</span>
-          </a>
-
-          <a href="date_time.html" class="single-item">
-            <div class="btn-meta">
-              <div class="btn-main-txt">Date & Time</div>
-              <div class="btn-sub-txt">日時 (Nichiji) — දිනය සහ වේලාව</div>
-            </div>
-            <span class="course-icon">📅</span>
-          </a>
-
-          <a href="stroke_order_center.html" class="single-item">
-            <div class="btn-meta">
-              <div class="btn-main-txt">Stroke Order Center</div>
-              <div class="btn-sub-txt">筆順 (Hitsujun) — අකුරු ලියන පිළිවෙල මධ්‍යස්ථානය</div>
-            </div>
-            <span class="course-icon">✍️</span>
-          </a>
-
-          <a href="romaji.html" class="single-item">
-            <div class="btn-meta">
-              <div class="btn-main-txt">Romaji</div>
-              <div class="btn-sub-txt">ローマ字 (Rōmaji) — රෝමාජි</div>
-            </div>
-            <span class="course-icon">🔤</span>
-          </a>
-
-          <a href="furigana.html" class="single-item">
-            <div class="btn-meta">
-              <div class="btn-main-txt">Furigana</div>
-              <div class="btn-sub-txt">振り仮名 (Furigana) — ෆුරිගනා</div>
-            </div>
-            <span class="course-icon">📖</span>
-          </a>
-
-          <a href="punctuation.html" class="single-item">
-            <div class="btn-meta">
-              <div class="btn-main-txt">Japanese Punctuation</div>
-              <div class="btn-sub-txt">句読点 (Kutōten) — ජපන් විරාම ලකුණු</div>
-            </div>
-            <span class="course-icon">📝</span>
-          </a>
-
-          <a href="flashcards.html" class="single-item">
-            <div class="btn-meta">
-              <div class="btn-main-txt">Flashcards</div>
-              <div class="btn-sub-txt">フラッシュカード (Furasshukādo) — ෆ්ලෑෂ් කාඩ්පත්</div>
-            </div>
-            <span class="course-icon">🎴</span>
-          </a>
-
-          <!-- 4. Practice Center -->
-          <div class="course-section">
-            <div class="course-header" onclick="toggleCourseSection(this)">
-              <div class="course-title-box">
-                <div class="btn-meta">
-                  <div class="btn-main-txt">Practice Center</div>
-                  <div class="btn-sub-txt">練習センター — පුහුණු මධ්‍යස්ථානය</div>
-                </div>
-                <span class="course-icon">💪</span>
-              </div>
-              <span class="course-arrow">▼</span>
-            </div>
-            <div class="course-content">
-              <a href="practice_reading.html" class="sub-item-link">Reading Practice</a>
-              <a href="practice_writing.html" class="sub-item-link">Writing Practice</a>
-              <a href="practice_typing.html" class="sub-item-link">Typing Practice</a>
-              <a href="practice_listening.html" class="sub-item-link">Listening Practice</a>
-              <a href="practice_daily.html" class="sub-item-link">Daily Challenge</a>
-            </div>
-          </div>
-
-          <!-- 5. Quiz Center -->
-          <div class="course-section">
-            <div class="course-header" onclick="toggleCourseSection(this)">
-              <div class="course-title-box">
-                <div class="btn-meta">
-                  <div class="btn-main-txt">Quiz Center</div>
-                  <div class="btn-sub-txt">クイズセンター — ප්‍රශ්නාවලි මධ්‍යස්ථානය</div>
-                </div>
-                <span class="course-icon">🧠</span>
-              </div>
-              <span class="course-arrow">▼</span>
-            </div>
-            <div class="course-content">
-              <a href="quiz_hiragana_c.html" class="sub-item-link">Hiragana Quiz</a>
-              <a href="quiz_katakana_c.html" class="sub-item-link">Katakana Quiz</a>
-              <a href="quiz_kanji_c.html" class="sub-item-link">Kanji Quiz</a>
-              <a href="quiz_mixed.html" class="sub-item-link">Mixed Quiz</a>
-              <a href="quiz_final.html" class="sub-item-link">Final Exam</a>
-            </div>
-          </div>
-
-          <!-- 6. Download Center -->
-          <div class="course-section">
-            <div class="course-header" onclick="toggleCourseSection(this)">
-              <div class="course-title-box">
-                <div class="btn-meta">
-                  <div class="btn-main-txt">Download Center</div>
-                  <div class="btn-sub-txt">ダウンロードセンター — බාගත කිරීම් මධ්‍යස්ථානය</div>
-                </div>
-                <span class="course-icon">📄</span>
-              </div>
-              <span class="course-arrow">▼</span>
-            </div>
-            <div class="course-content">
-              <a href="download_worksheets.html" class="sub-item-link">PDF Worksheets</a>
-              <a href="download_practice.html" class="sub-item-link">Practice Sheets</a>
-              <a href="download_book.html" class="sub-item-link">Writing Book</a>
-              <a href="download_charts.html" class="sub-item-link">Stroke Order Charts</a>
-            </div>
-          </div>
-
-          <!-- 7. Progress Center -->
-          <div class="course-section">
-            <div class="course-header" onclick="toggleCourseSection(this)">
-              <div class="course-title-box">
-                <div class="btn-meta">
-                  <div class="btn-main-txt">Progress Center</div>
-                  <div class="btn-sub-txt">進捗センター — ප්‍රගති මධ්‍යස්ථානය</div>
-                </div>
-                <span class="course-icon">🏆</span>
-              </div>
-              <span class="course-arrow">▼</span>
-            </div>
-            <div class="course-content">
-              <a href="progress_learning.html" class="sub-item-link">Learning Progress</a>
-              <a href="progress_scores.html" class="sub-item-link">Quiz Scores</a>
-              <a href="progress_completion.html" class="sub-item-link">Completion Rate</a>
-              <a href="progress_badges.html" class="sub-item-link">Achievement Badges</a>
-              <a href="progress_certificates.html" class="sub-item-link">Certificates</a>
-            </div>
-          </div>
-
-        </div>
-      </section>
-    </main>
-  </div>
-
-  <!-- Popups system -->
-  <div class="popup-overlay" id="popupOverlay">
-    <div class="popup-box">
-      <h3 id="popupTitle">Coming Soon</h3>
-      <p id="popupText">This section is currently locked.</p>
-      <div class="countdown" id="countdownBox"></div>
-      <button class="popup-btn" onclick="closePopup()">OK</button>
     </div>
-  </div>
 
-  <script>
-    const sidebar = document.getElementById("sidebar");
-    const overlay = document.getElementById("overlay");
-    const menuBtn = document.getElementById("menuBtn");
-    const closeSidebarBtn = document.getElementById("closeSidebarBtn");
+    <div class="sidebar" id="sidebar">
+        <div class="close-btn" onclick="toggleMenu()">✕</div>
+        <div class="sidebar-header">
+            <h1>EWONZ LINGUA</h1>
+            <p>Premium Language Learning Platform</p>
+            <div class="sidebar-line"></div>
+        </div>
 
-    const popupOverlay = document.getElementById("popupOverlay");
-    const popupTitle = document.getElementById("popupTitle");
-    const popupText = document.getElementById("popupText");
-    const countdownBox = document.getElementById("countdownBox");
+        <div class="menu-item" onclick="toggleLang()">
+            <div style="display:flex;align-items:center;">
+                <div class="icon">🌐</div>
+                Languages
+            </div>
+            <div>⌄</div>
+        </div>
 
-    const dashboardToggle = document.getElementById("dashboardToggle");
-    const dashboardSubmenu = document.getElementById("dashboardSubmenu");
-    const languageToggle = document.getElementById("languageToggle");
-    const languageSubmenu = document.getElementById("languageSubmenu");
-    const settingsToggle = document.getElementById("settingsToggle");
-    const settingsSubmenu = document.getElementById("settingsSubmenu");
+        <div class="submenu" id="langMenu">
+            <div class="item" onclick="window.location.href='japanese.html'">Japanese Language 🇯🇵</div>
+            <div class="item">Korean Language 🇰🇷 <span class="lock-tag">LOCKED</span></div>
+            <div class="item">Chinese Language 🇨🇳 <span class="lock-tag">LOCKED</span></div>
+            <div class="item">German Language 🇩🇪 <span class="lock-tag">LOCKED</span></div>
+        </div>
 
-    const darkModeToggle = document.getElementById("darkModeToggle");
-    const sidebarCountdown = document.getElementById("sidebarCountdown");
+        <div class="menu-item" onclick="toggleRates()">
+            <div style="display:flex;align-items:center;">
+                <div class="icon">📈</div>
+                Live Market Rates
+            </div>
+            <div>⌄</div>
+        </div>
 
-    function openSidebar(){
-      sidebar.classList.add("show");
-      overlay.classList.add("show");
-      document.body.style.overflow = "hidden";
+        <div class="submenu" id="ratesMenu">
+            <div class="item" style="font-size:11px;">🇱🇰 Sri Lankan Rupee: <span class="time-display">1.00</span></div>
+            <div class="item" style="font-size:11px;">🇯🇵 Japanese Yen: <span class="time-display">2.15</span> <span class="rate-up">▲</span></div>
+            <div class="item" style="font-size:11px;">🇰🇷 South Korean Won: <span class="time-display">0.25</span> <span class="rate-down">▼</span></div>
+            <div class="item" style="font-size:11px;">🇨🇳 Chinese Yuan: <span class="time-display">45.20</span> <span class="rate-up">▲</span></div>
+            <div class="item" style="font-size:11px;">🇪🇺 Euro: <span class="time-display">340.50</span> <span class="rate-down">▼</span></div>
+        </div>
+
+        <div class="menu-item" onclick="toggleSettings()">
+            <div style="display:flex;align-items:center;">
+                <div class="icon">⚙️</div>
+                Settings
+            </div>
+            <div>⌄</div>
+        </div>
+
+        <div class="submenu" id="settingsMenu">
+            <div class="item">
+                Gold Line
+                <label class="switch">
+                    <input type="checkbox" checked onchange="toggleBorder(this)">
+                    <span class="slider"></span>
+                </label>
+            </div>
+            <div class="item">
+                Animations
+                <label class="switch">
+                    <input type="checkbox" checked onchange="toggleAnimations(this)">
+                    <span class="slider"></span>
+                </label>
+            </div>
+            <div class="item">
+                Simple Theme
+                <label class="switch">
+                    <input type="checkbox" onchange="toggleSimpleTheme(this)">
+                    <span class="slider"></span>
+                </label>
+            </div>
+        </div>
+
+        <div class="menu-item" onclick="window.location.href='about.html'">
+            <div style="display:flex;align-items:center;">
+                <div class="icon">ℹ️</div>
+                About
+            </div>
+        </div>
+
+        <div style="margin-top:20px; padding:15px; border:1px solid var(--border-color-gold); border-radius:14px; text-align:center; color:#FFFFFF;">
+            <div style="font-size:12px; margin-bottom:5px; font-weight:600;">Ewonz Lingua Version 1.0</div>
+            <div style="font-size:12px; margin-bottom:5px;">Made By Danu Ewonz</div>
+            <div style="font-size:12px;">(Kalpa Mihiranga)</div>
+        </div>
+
+    </div>
+</div>
+
+<script>
+    function toggleMenu() { document.getElementById("sidebar").classList.toggle("active"); }
+    function toggleLang() { document.getElementById("langMenu").classList.toggle("open"); }
+    function toggleRates() { document.getElementById("ratesMenu").classList.toggle("open"); }
+    function toggleSettings() { document.getElementById("settingsMenu").classList.toggle("open"); }
+    
+    function toggleBorder(checkbox) {
+        const frame = document.getElementById("mobileFrame");
+        frame.style.border = checkbox.checked ? "2px solid var(--border-color-gold)" : "none";
+        frame.style.animation = checkbox.checked ? "border-run 3s infinite linear" : "none";
     }
 
-    function closeSidebar(){
-      sidebar.classList.remove("show");
-      overlay.classList.remove("show");
-      if (!popupOverlay.classList.contains("show")) {
-        document.body.style.overflow = "";
-      }
+    function toggleAnimations(checkbox) {
+        const frame = document.getElementById("mobileFrame");
+        const title = document.getElementById("sectionTitle");
+        const animationValue = checkbox.checked ? "border-run 3s infinite linear" : "none";
+        const titleAnimation = checkbox.checked ? "text-fade-white 3s infinite" : "none";
+        
+        frame.style.animation = animationValue;
+        title.style.animation = titleAnimation;
     }
 
-    function toggleCourseSection(element) {
-      const parent = element.parentElement;
-      parent.classList.toggle("active");
+    function toggleSimpleTheme(checkbox) {
+        if (checkbox.checked) {
+            document.getElementById("mainBody").classList.add("simple-theme");
+        } else {
+            document.getElementById("mainBody").classList.remove("simple-theme");
+        }
     }
+</script>
 
-    menuBtn.addEventListener("click", openSidebar);
-    closeSidebarBtn.addEventListener("click", closeSidebar);
-    overlay.addEventListener("click", closeSidebar);
-
-    dashboardToggle.addEventListener("click", () => {
-      dashboardToggle.classList.toggle("active");
-      dashboardSubmenu.classList.toggle("show");
-    });
-    languageToggle.addEventListener("click", () => {
-      languageToggle.classList.toggle("active");
-      languageSubmenu.classList.toggle("show");
-    });
-    settingsToggle.addEventListener("click", () => {
-      settingsToggle.classList.toggle("active");
-      settingsSubmenu.classList.toggle("show");
-    });
-
-    const targetDate = new Date("2026-11-28T00:00:00");
-
-    function getCountdownParts() {
-      const now = new Date();
-      const diff = targetDate - now;
-      if (diff <= 0) return { text: "Unlocked", short: "Unlocked" };
-
-      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
-      const minutes = Math.floor((diff / (1000 * 60)) % 60);
-      const seconds = Math.floor((diff / 1000) % 60);
-
-      return {
-        text: `Unlocks in: ${days}d ${hours}h ${minutes}m ${seconds}s`,
-        short: `${days}d ${hours}h`
-      };
-    }
-
-    function updateCountdown(){
-      const data = getCountdownParts();
-      if (countdownBox) countdownBox.textContent = data.text;
-      if (sidebarCountdown) sidebarCountdown.textContent = data.short;
-    }
-
-    function showLockedPopup(sectionName = "This section"){
-      popupTitle.textContent = `${sectionName} Locked`;
-      popupText.textContent = `${sectionName} is currently locked and will be available in a future Ewonz Lingua update.`;
-      popupOverlay.classList.add("show");
-      closeSidebar();
-      updateCountdown();
-      document.body.style.overflow = "hidden";
-    }
-
-    function closePopup(){
-      popupOverlay.classList.remove("show");
-      document.body.style.overflow = "";
-    }
-
-    setInterval(updateCountdown, 1000);
-    updateCountdown();
-
-    darkModeToggle.addEventListener("click", () => darkModeToggle.classList.toggle("active"));
-
-    document.addEventListener("keydown", (e) => {
-      if(e.key === "Escape"){
-        closeSidebar();
-        closePopup();
-      }
-    });
-  </script>
 </body>
 </html>
